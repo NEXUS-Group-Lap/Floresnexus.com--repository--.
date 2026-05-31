@@ -1,54 +1,99 @@
-<h1>AgenceX Landing page</h1>
+# Flores Nexus Website
 
-A simple landing page for a digital agency
+Official website project for Flores Nexus Group.
 
-![AgenceX light Theme](./screens/demoLight.webp)
-![AgenceX Dark Theme](./screens/demoDark.webp)
+This site is built with Astro and TailwindCSS. The goal of this project is to present Flores Nexus services in a clear, modern, mobile-first format.
 
+## Purpose
 
-## Tools
-- TailwindCSS v4
-- AstroJs v5
+The website is designed to function as a sales-focused catalog for digital services, including website packages, service descriptions, pricing, client intake forms, and internal sales support pages.
 
+## Main Features
 
-## 🚀 Project Structure
+* Mobile-first landing page
+* English and Spanish structure
+* Service package presentation
+* Pricing section
+* Start Your Website form
+* Representative Code field
+* Stripe payment flow preparation
+* FAQ section
+* Legal-safe sales copy
+* Internal Seller Hub structure
 
-Inside of your Astro project, you'll see the following folders and files:
+## Tech Stack
+
+* Astro
+* TailwindCSS
+* TypeScript
+* JavaScript
+* CSS
+
+## Project Structure
 
 ```
 /
 ├── public/
 │   ├── images/
-│   ├── logos/*
+│   ├── logos/
 │   └── favicon.svg
 ├── src/
 │   ├── components/
-│   │   ├── blocks/*
-│   │   ├── cards/*
-│   │   ├── elements/*
-│   │   ├── sections/*
-│   │   ├── shared/*
+│   │   ├── blocks/
+│   │   ├── cards/
+│   │   ├── elements/
+│   │   ├── sections/
+│   │   └── shared/
 │   ├── layouts/
 │   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
+│   ├── pages/
+│   │   └── index.astro
 │   └── styles/
 │       └── global.css
-└── package.json
+├── package.json
+└── README.md
 ```
 
+## Development Commands
 
-## 🧞 Commands
+All commands should be run from the root of the project.
 
-All commands are run from the root of the project, from a terminal:
+| Command           | Action                                       |
+| :---------------- | :------------------------------------------- |
+| `npm install`     | Installs project dependencies                |
+| `npm run dev`     | Starts the local development server          |
+| `npm run build`   | Builds the production version into `./dist/` |
+| `npm run preview` | Previews the production build locally        |
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:4321`      |
-| `npm run build`        | Build your production site to `./dist/`          |
-| `npm run preview`      | Preview your build locally, before deploying     |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro --help` | Get help using the Astro CLI                     |
+## Local Development
 
+To run the project locally:
 
+```bash
+npm install
+npm run dev
+```
+
+Then open:
+
+```text
+http://localhost:4321/
+```
+
+## Production Build
+
+To create the production version:
+
+```bash
+npm run build
+```
+
+The final static files will be generated inside:
+
+```text
+dist/
+```
+
+## Project Status
+
+This project is under active customization for Flores Nexus Group.
