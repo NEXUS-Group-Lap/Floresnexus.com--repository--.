@@ -1,11 +1,5 @@
 ---
 import Container from "../shared/Container.astro";
-import BtnLink from "../shared/BtnLink.astro";
-import {
-  STARTER_STRIPE_LINK,
-  PROFESSIONAL_STRIPE_LINK,
-  BUSINESS_QUOTE_FORM_LINK,
-} from "../../config/links";
 
 export interface Props {
   lang: "en" | "es";
@@ -14,11 +8,12 @@ const { lang } = Astro.props;
 
 const starterHref = lang === "en" ? "/en/start?plan=starter" : "/es/empezar?plan=starter";
 const professionalHref = lang === "en" ? "/en/start?plan=professional" : "/es/empezar?plan=professional";
+const businessQuoteHref = lang === "en" ? "/en/start?plan=business-system&type=quote" : "/es/empezar?plan=business-system&type=quote";
 
 const t = {
   en: {
     title: "Simple, Transparent Pricing",
-    subtitle: "Choose the plan that fits your business. Cancel anytime.",
+    subtitle: "Choose the plan that fits your business. Subscription cancellation follows the Terms of Service.",
     setupLabel: "setup",
     monthLabel: "/month",
     recommended: "Recommended",
@@ -73,7 +68,7 @@ const t = {
         monthly: "$399+",
         desc: "Advanced systems for businesses that need more than a standard website.",
         cta: "Request Quote",
-        ctaHref: BUSINESS_QUOTE_FORM_LINK,
+        ctaHref: businessQuoteHref,
         includes: [
           "Advanced quote forms",
           "Booking systems",
@@ -93,7 +88,7 @@ const t = {
   },
   es: {
     title: "Precios Simples y Transparentes",
-    subtitle: "Elige el plan que se adapte a tu negocio. Cancela cuando quieras.",
+    subtitle: "Elige el plan que se adapte a tu negocio. La cancelación de la suscripción sigue los Términos del Servicio.",
     setupLabel: "inicial",
     monthLabel: "/mes",
     recommended: "Recomendado",
@@ -148,7 +143,7 @@ const t = {
         monthly: "$399+",
         desc: "Sistemas avanzados para negocios que necesitan más que una página estándar.",
         cta: "Solicitar Cotización",
-        ctaHref: BUSINESS_QUOTE_FORM_LINK,
+        ctaHref: businessQuoteHref,
         includes: [
           "Formularios de cotización avanzados",
           "Sistemas de reservas",
@@ -169,7 +164,7 @@ const t = {
 }[lang];
 ---
 
-<section class="py-16" id="pricing">
+<section class="py-16" id={lang === "en" ? "pricing" : "planes"}>
   <Container>
     <div class="text-center mb-12" data-reveal>
       <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>

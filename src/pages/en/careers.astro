@@ -1,12 +1,72 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/shared/Container.astro";
+
+const jobs = [
+  {
+    title: "Sales Representative — Florida",
+    type: "Independent Contractor",
+    location: "Florida",
+    desc: "B2B sales experience preferred. Represent Flores Nexus Group to local service businesses. Commission-based structure discussed during the application process.",
+    tags: ["Sales", "B2B", "Florida", "Commission"],
+  },
+  {
+    title: "Remote Sales Representative",
+    type: "Independent Contractor",
+    location: "Remote",
+    desc: "Commission or territory-based structure may apply. Sell Flores Nexus Group website plans to local service businesses across your market.",
+    tags: ["Sales", "Remote", "Commission"],
+  },
+  {
+    title: "Local Business Outreach Representative",
+    type: "Independent Contractor",
+    location: "Florida",
+    desc: "Local outreach and appointment generation for local service businesses. Help connect business owners with Flores Nexus Group services.",
+    tags: ["Outreach", "Local", "Florida"],
+  },
+  {
+    title: "Front-End Developer",
+    type: "Contract / Full-Time",
+    location: "Remote or Florida",
+    desc: "Build and maintain client websites using Astro, TailwindCSS, and modern web technologies. Compensation depends on experience, role, and project needs.",
+    tags: ["Astro", "TailwindCSS", "Web Dev", "Remote"],
+  },
+  {
+    title: "Back-End Engineer",
+    type: "Contract / Full-Time",
+    location: "Remote or Florida",
+    desc: "Work on backend systems, integrations, and automations. Compensation determined case by case based on experience and project scope.",
+    tags: ["Backend", "Integrations", "Remote"],
+  },
+  {
+    title: "Web Designer",
+    type: "Contract",
+    location: "Remote",
+    desc: "Design and create visual website examples, mockups, and client-ready layouts. Strong portfolio required.",
+    tags: ["Design", "Remote", "Portfolio"],
+  },
+  {
+    title: "Customer Onboarding Specialist",
+    type: "Part-Time / Contract",
+    location: "Remote",
+    desc: "Collect client business information and assets after payment. Guide clients through the onboarding process professionally.",
+    tags: ["Customer Success", "Remote", "Onboarding"],
+  },
+  {
+    title: "Project / Account Coordinator",
+    type: "Part-Time / Contract",
+    location: "Remote",
+    desc: "Coordinate client updates, track delivery status, and ensure projects move from onboarding to launch smoothly.",
+    tags: ["Project Management", "Remote", "Coordination"],
+  },
+];
 ---
 
 <Layout title="Careers" description="Join the Flores Nexus Group team. Open positions in sales, development, design, and operations." lang="en">
   <main class="pt-24 pb-20">
     <Container>
       <div class="max-w-4xl mx-auto">
+
         <div class="text-center mb-12">
           <h1 class="text-4xl font-bold text-heading-1 mb-4">Careers at Flores Nexus Group</h1>
           <p class="text-heading-3 text-lg max-w-2xl mx-auto">
@@ -16,102 +76,197 @@ import Container from "../../components/shared/Container.astro";
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {[
-            {
-              title: "Sales Representative — Florida",
-              type: "Independent Contractor",
-              location: "Florida",
-              desc: "B2B sales experience preferred. Represent Flores Nexus Group to local service businesses. Commission-based structure discussed during the application process.",
-              tags: ["Sales", "B2B", "Florida", "Commission"],
-            },
-            {
-              title: "Remote Sales Representative",
-              type: "Independent Contractor",
-              location: "Remote",
-              desc: "Commission or territory-based structure may apply. Sell Flores Nexus Group website plans to local service businesses across your market.",
-              tags: ["Sales", "Remote", "Commission"],
-            },
-            {
-              title: "Local Business Outreach Representative",
-              type: "Independent Contractor",
-              location: "Florida",
-              desc: "Local outreach and appointment generation for local service businesses. Help connect business owners with Flores Nexus Group services.",
-              tags: ["Outreach", "Local", "Florida"],
-            },
-            {
-              title: "Front-End Developer",
-              type: "Contract / Full-Time",
-              location: "Remote or Florida",
-              desc: "Build and maintain client websites using Astro, TailwindCSS, and modern web technologies. Compensation depends on experience, role, and project needs.",
-              tags: ["Astro", "TailwindCSS", "Web Dev", "Remote"],
-            },
-            {
-              title: "Back-End Engineer",
-              type: "Contract / Full-Time",
-              location: "Remote or Florida",
-              desc: "Work on backend systems, integrations, and automations. Florida market references may fall around the $60k–$70k annual range for some roles; final compensation is determined case by case.",
-              tags: ["Backend", "Integrations", "Remote"],
-            },
-            {
-              title: "Web Designer",
-              type: "Contract",
-              location: "Remote",
-              desc: "Design and create visual website examples, mockups, and client-ready layouts. Strong portfolio required.",
-              tags: ["Design", "Remote", "Portfolio"],
-            },
-            {
-              title: "Customer Onboarding Specialist",
-              type: "Part-Time / Contract",
-              location: "Remote",
-              desc: "Collect client business information and assets after payment. Guide clients through the onboarding process professionally.",
-              tags: ["Customer Success", "Remote", "Onboarding"],
-            },
-            {
-              title: "Project / Account Coordinator",
-              type: "Part-Time / Contract",
-              location: "Remote",
-              desc: "Coordinate client updates, track delivery status, and ensure projects move from onboarding to launch smoothly.",
-              tags: ["Project Management", "Remote", "Coordination"],
-            },
-          ].map((job) => (
-            <div class="rounded-2xl border border-box-border bg-box-bg p-6 hover:border-primary/50 transition-all">
+        <!-- Job cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          {jobs.map((job) => (
+            <div class="rounded-2xl border border-box-border bg-box-bg p-6 hover:border-primary/50 transition-all flex flex-col">
               <div class="flex justify-between items-start mb-3 gap-2">
                 <h3 class="font-bold text-heading-1 text-lg leading-tight">{job.title}</h3>
                 <span class="text-xs bg-primary/10 text-primary px-2.5 py-1 rounded-full font-medium flex-shrink-0">{job.type}</span>
               </div>
               <p class="text-xs text-heading-3 mb-3">📍 {job.location}</p>
-              <p class="text-sm text-heading-2 leading-relaxed mb-4">{job.desc}</p>
+              <p class="text-sm text-heading-2 leading-relaxed mb-4 flex-1">{job.desc}</p>
               <div class="flex flex-wrap gap-2 mb-4">
                 {job.tags.map((tag) => (
-                  <span class="text-xs bg-box-bg border border-box-border text-heading-3 px-2 py-0.5 rounded-full">{tag}</span>
+                  <span class="text-xs bg-box-bg border border-box-border text-heading-3 px-2.5 py-1 rounded-full">{tag}</span>
                 ))}
               </div>
               <a
-                href="mailto:floresholdinggroup@gmail.com?subject=Application: " + job.title
-                class="text-sm text-primary font-semibold hover:underline"
+                href="#apply-form"
+                data-position={job.title}
+                class="apply-now-btn inline-block text-sm font-semibold text-primary hover:underline"
               >
-                Apply via Email →
+                Apply Now →
               </a>
             </div>
           ))}
         </div>
 
-        <div class="mt-12 p-6 rounded-2xl bg-primary/5 border border-primary/20 text-center">
-          <h2 class="font-bold text-heading-1 text-xl mb-3">How to Apply</h2>
-          <p class="text-heading-3 text-sm max-w-xl mx-auto mb-4">
-            Send your resume and a brief note about the position you're interested in to the email below.
-            Applications are reviewed by our team. Applying does not guarantee hiring.
-            Training may be provided for the right candidates.
+        <!-- Application Form (Formspree) -->
+        <div id="apply-form" class="scroll-mt-28 rounded-2xl border border-box-border bg-box-bg p-8">
+          <h2 class="text-2xl font-bold text-heading-1 mb-2">Apply Now</h2>
+          <p class="text-heading-3 text-sm mb-6">
+            Fill out the form below. Applications are reviewed by our team.
+            Applying does not guarantee an interview, hiring, or compensation offer.
           </p>
-          <a
-            href="mailto:floresholdinggroup@gmail.com"
-            class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-all"
-          >
-            floresholdinggroup@gmail.com
-          </a>
+
+          <form action="https://formspree.io/f/mlgkeegw" method="POST" class="space-y-5">
+            <input type="hidden" name="form_type" value="Careers Application" />
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="fullName" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Full Name <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="fullName" name="full_name" required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="John Smith" />
+              </div>
+              <div>
+                <label for="careerEmail" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Email <span class="text-red-500">*</span>
+                </label>
+                <input type="email" id="careerEmail" name="email" required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="john@email.com" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="careerPhone" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Phone <span class="text-red-500">*</span>
+                </label>
+                <input type="tel" id="careerPhone" name="phone" required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="(555) 000-0000" />
+              </div>
+              <div>
+                <label for="cityState" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  City / State <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="cityState" name="city_state" required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="Miami, FL" />
+              </div>
+            </div>
+
+            <div>
+              <label for="positionApplying" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Position Applying For <span class="text-red-500">*</span>
+              </label>
+              <select id="positionApplying" name="position" required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                <option value="">Select a position</option>
+                <option value="Independent Sales Representative">Independent Sales Representative</option>
+                <option value="Florida Local Sales Representative">Florida Local Sales Representative</option>
+                <option value="Remote Sales Representative">Remote Sales Representative</option>
+                <option value="Web Designer">Web Designer</option>
+                <option value="Frontend Developer">Frontend Developer</option>
+                <option value="Backend Engineer">Backend Engineer</option>
+                <option value="Project Coordinator">Project Coordinator</option>
+                <option value="Customer Support Assistant">Customer Support Assistant</option>
+                <option value="Content / Copywriting Assistant">Content / Copywriting Assistant</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="experience" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Relevant Experience <span class="text-red-500">*</span>
+              </label>
+              <textarea id="experience" name="experience" rows="4" required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm resize-none"
+                placeholder="Describe your relevant experience for this position..."></textarea>
+            </div>
+
+            <div>
+              <label for="availability" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Availability <span class="text-red-500">*</span>
+              </label>
+              <select id="availability" name="availability" required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                <option value="">Select availability</option>
+                <option value="Immediately">Immediately</option>
+                <option value="1–2 weeks">1–2 weeks</option>
+                <option value="2–4 weeks">2–4 weeks</option>
+                <option value="Part-time only">Part-time only</option>
+                <option value="Flexible">Flexible</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="portfolio" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                LinkedIn / Portfolio / GitHub
+                <span class="text-heading-3 font-normal ml-1">(optional)</span>
+              </label>
+              <input type="url" id="portfolio" name="portfolio_url"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                placeholder="https://linkedin.com/in/yourprofile" />
+            </div>
+
+            <div>
+              <label for="preferredLang" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Preferred Language
+                <span class="text-heading-3 font-normal ml-1">(optional)</span>
+              </label>
+              <select id="preferredLang" name="preferred_language"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                <option value="">Select language</option>
+                <option value="English">English</option>
+                <option value="Spanish">Spanish</option>
+                <option value="Bilingual EN/ES">Bilingual EN/ES</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="additionalMessage" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Additional Message
+                <span class="text-heading-3 font-normal ml-1">(optional)</span>
+              </label>
+              <textarea id="additionalMessage" name="message" rows="3"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm resize-none"
+                placeholder="Anything else you'd like us to know..."></textarea>
+            </div>
+
+            <div class="rounded-xl border border-box-border p-4">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" id="careerConsent" name="consent" value="agreed" required
+                  class="mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
+                <span class="text-xs text-heading-3 leading-relaxed">
+                  By submitting this form, I agree that Flores Nexus Group may review my application information.
+                  Submitting an application does not guarantee an interview, hiring, employment, contractor relationship, or compensation offer.
+                </span>
+              </label>
+            </div>
+
+            <button type="submit"
+              class="w-full py-3 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-all duration-300">
+              Submit Application
+            </button>
+
+            <p class="text-xs text-center text-heading-3">
+              Questions? Contact us at <a href="mailto:floresnexusgroup@gmail.com" class="text-primary hover:underline">floresnexusgroup@gmail.com</a>
+            </p>
+          </form>
         </div>
+
       </div>
     </Container>
   </main>
 </Layout>
+
+<script>
+  // Pre-select position when "Apply Now" is clicked from a job card
+  document.querySelectorAll<HTMLAnchorElement>(".apply-now-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const position = btn.dataset.position ?? "";
+      const select = document.getElementById("positionApplying") as HTMLSelectElement | null;
+      if (select && position) {
+        const match = Array.from(select.options).find((o) =>
+          position.toLowerCase().includes(o.value.toLowerCase().split(" ").slice(0, 2).join(" "))
+        );
+        if (match) select.value = match.value;
+      }
+    });
+  });
+</script>
