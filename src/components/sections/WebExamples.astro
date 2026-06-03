@@ -11,6 +11,8 @@ const t = {
     title: "Website Examples by Industry",
     subtitle: "See the type of clean, professional websites we build for local service businesses.",
     disclaimer: "These are sample layouts representing the style and structure we deliver.",
+    ctaLabel: "Start with this style →",
+    ctaHref: "/en/start?plan=professional",
     examples: [
       {
         industry: "Photographers",
@@ -71,9 +73,11 @@ const t = {
     ],
   },
   es: {
-    title: "Ejemplos de Paginas por Industria",
-    subtitle: "Ve el tipo de paginas profesionales y limpias que construimos para negocios locales.",
-    disclaimer: "Estos son disenos de muestra que representan el estilo y estructura que entregamos.",
+    title: "Ejemplos de Páginas por Industria",
+    subtitle: "Ve el tipo de páginas profesionales y limpias que construimos para negocios locales.",
+    disclaimer: "Estos son diseños de muestra que representan el estilo y estructura que entregamos.",
+    ctaLabel: "Empezar con este estilo →",
+    ctaHref: "/es/empezar?plan=professional",
     examples: [
       {
         industry: "Fotografos",
@@ -162,9 +166,17 @@ const t = {
               <div class="h-full w-2/3 bg-white/40 rounded-full draw-line"></div>
             </div>
           </div>
-          <div class="p-4 bg-box-bg">
-            <h3 class="font-bold text-heading-1 mb-2">{ex.industry} Website</h3>
-            <p class="text-sm text-heading-3 leading-relaxed">{ex.desc}</p>
+          <div class="p-4 bg-box-bg flex flex-col gap-3">
+            <div>
+              <h3 class="font-bold text-heading-1 mb-1">{ex.industry} Website</h3>
+              <p class="text-sm text-heading-3 leading-relaxed">{ex.desc}</p>
+            </div>
+            <a
+              href={t.ctaHref}
+              class="text-xs font-semibold text-primary hover:underline transition-colors mt-auto"
+            >
+              {t.ctaLabel}
+            </a>
           </div>
         </div>
       ))}
