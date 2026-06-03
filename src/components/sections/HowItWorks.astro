@@ -94,7 +94,7 @@ const t = {
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-stagger>
       {t.steps.map((step, i) => (
         <div class="relative p-6 rounded-2xl border border-box-border bg-box-bg hover:border-primary/50 transition-all motion-card">
-          <span class="text-5xl font-black text-primary/10 absolute top-4 right-4 leading-none select-none">
+          <span class="text-5xl font-black text-primary/10 absolute top-4 right-4 leading-none select-none" aria-hidden="true">
             {step.number}
           </span>
           <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">

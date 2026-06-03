@@ -88,7 +88,7 @@ import Container from "../../components/shared/Container.astro";
                 ))}
               </div>
               <a
-                href="mailto:floresholdinggroup@gmail.com"
+                href={`mailto:floresholdinggroup@gmail.com?subject=${encodeURIComponent('Aplicación: ' + job.title)}`}
                 class="text-sm text-primary font-semibold hover:underline"
               >
                 Aplicar por Correo →

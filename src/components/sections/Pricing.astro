@@ -12,7 +12,8 @@ export interface Props {
 }
 const { lang } = Astro.props;
 
-const startHref = lang === "en" ? "/en/start" : "/es/empezar";
+const starterHref = lang === "en" ? "/en/start?plan=starter" : "/es/empezar?plan=starter";
+const professionalHref = lang === "en" ? "/en/start?plan=professional" : "/es/empezar?plan=professional";
 
 const t = {
   en: {
@@ -29,7 +30,7 @@ const t = {
         monthly: "$79",
         desc: "Simple professional website for small local businesses.",
         cta: "Start Starter Website",
-        ctaHref: startHref,
+        ctaHref: starterHref,
         includes: [
           "One-page website",
           "Business information section",
@@ -42,7 +43,7 @@ const t = {
           "One pre-launch revision",
           "1 small update per month, non-accumulative",
           "Basic activity summary, when applicable",
-          "Standard domain included if available (.com / .co / .net)",
+          "Standard domain managed by Flores Nexus Group, subject to availability.",
         ],
         recommended: false,
       },
@@ -52,7 +53,7 @@ const t = {
         monthly: "$149",
         desc: "Complete website with stronger online presentation. Our most popular plan.",
         cta: "Start Professional Website",
-        ctaHref: startHref,
+        ctaHref: professionalHref,
         includes: [
           "Up to 5 pages (Home, Services, About, Gallery, Contact)",
           "Basic contact form",
@@ -62,7 +63,7 @@ const t = {
           "Hosting included",
           "Up to 3 small updates per month, non-accumulative",
           "Basic activity summary, when applicable",
-          "Standard domain included if available (.com / .co / .net)",
+          "Standard domain managed by Flores Nexus Group, subject to availability.",
         ],
         recommended: true,
       },
@@ -104,7 +105,7 @@ const t = {
         monthly: "$79",
         desc: "Página web profesional simple para pequeños negocios locales.",
         cta: "Empezar Starter Website",
-        ctaHref: startHref,
+        ctaHref: starterHref,
         includes: [
           "Página de una sola hoja",
           "Sección de información del negocio",
@@ -117,7 +118,7 @@ const t = {
           "Una revisión antes del lanzamiento",
           "1 actualización pequeña al mes, no acumulable",
           "Resumen básico de actividad, cuando aplique",
-          "Dominio estándar incluido si está disponible (.com / .co / .net)",
+          "Dominio estándar administrado por Flores Nexus Group, sujeto a disponibilidad.",
         ],
         recommended: false,
       },
@@ -127,7 +128,7 @@ const t = {
         monthly: "$149",
         desc: "Página web completa con presentación más sólida. Nuestro plan más popular.",
         cta: "Empezar Professional Website",
-        ctaHref: startHref,
+        ctaHref: professionalHref,
         includes: [
           "Hasta 5 páginas (Inicio, Servicios, Nosotros, Galería, Contacto)",
           "Formulario de contacto básico",
@@ -137,7 +138,7 @@ const t = {
           "Hosting incluido",
           "Hasta 3 actualizaciones pequeñas al mes, no acumulables",
           "Resumen básico de actividad, cuando aplique",
-          "Dominio estándar incluido si está disponible (.com / .co / .net)",
+          "Dominio estándar administrado por Flores Nexus Group, sujeto a disponibilidad.",
         ],
         recommended: true,
       },

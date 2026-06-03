@@ -170,11 +170,15 @@ import {
                 class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
               >
                 <option value="">Selecciona un plan</option>
-                <option value="mini">Nexus Mini Card — $99 inicial + $29/mes</option>
+                <option value="mini-card">Nexus Mini Card — $99 inicial + $29/mes</option>
                 <option value="starter">Starter Website — $299 inicial + $79/mes</option>
                 <option value="professional">Professional Website — $699 inicial + $149/mes</option>
-                <option value="business">Business System — Desde $2,500 (Solicitar Cotización)</option>
+                <option value="business-system">Business System — Desde $2,500 (Solicitar Cotización)</option>
               </select>
+            </div>
+
+            <div id="business-quote-notice" class="hidden rounded-xl border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-900/20 p-4 text-sm text-amber-800 dark:text-amber-300 leading-relaxed">
+              El Business System requiere una cotización personalizada. Al enviar este formulario, un representante de Flores Nexus Group se pondrá en contacto contigo para discutir el alcance y los detalles del proyecto. No se realizará ningún cargo hasta recibir la aprobación de la cotización.
             </div>
 
             <div>
@@ -258,10 +262,10 @@ import {
               disabled
               class="w-full py-3 rounded-full bg-primary text-white font-semibold transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed hover:enabled:bg-blue-800"
             >
-              Continuar al Pago
+              <span id="submit-btn-text">Continuar al Pago</span>
             </button>
 
-            <p class="text-xs text-center text-heading-3">
+            <p class="text-xs text-center text-heading-3" id="submit-footer-note">
               La producción inicia después de recibir el pago y la información completa del cliente.
             </p>
           </form>
@@ -275,7 +279,34 @@ import {
   const form = document.getElementById("start-form-es") as HTMLFormElement | null;
   const checkbox = document.getElementById("termsAcceptedEs") as HTMLInputElement | null;
   const submitBtn = document.getElementById("submit-btn-es") as HTMLButtonElement | null;
+  const submitBtnText = document.getElementById("submit-btn-text");
+  const submitFooterNote = document.getElementById("submit-footer-note");
+  const planSelect = document.getElementById("selectedPlan") as HTMLSelectElement | null;
   const planError = document.getElementById("plan-error-es");
+  const businessNotice = document.getElementById("business-quote-notice");
+
+  // Auto-select plan from URL parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const planParam = urlParams.get("plan");
+  if (planParam && planSelect) {
+    planSelect.value = planParam;
+    updateBusinessMode(planParam);
+  }
+
+  function updateBusinessMode(plan: string) {
+    const isQuote = plan === "business-system";
+    if (businessNotice) businessNotice.classList.toggle("hidden", !isQuote);
+    if (submitBtnText) submitBtnText.textContent = isQuote ? "Solicitar Cotización" : "Continuar al Pago";
+    if (submitFooterNote) {
+      submitFooterNote.textContent = isQuote
+        ? "Se te contactará para discutir el alcance. No se realizará ningún cargo hasta recibir la aprobación de la cotización."
+        : "La producción inicia después de recibir el pago y la información completa del cliente.";
+    }
+  }
+
+  if (planSelect) {
+    planSelect.addEventListener("change", () => updateBusinessMode(planSelect.value));
+  }
 
   if (checkbox && submitBtn) {
     checkbox.addEventListener("change", () => {
@@ -286,7 +317,7 @@ import {
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const plan = (document.getElementById("selectedPlan") as HTMLSelectElement)?.value;
+      const plan = planSelect?.value ?? "";
 
       if (!plan) {
         planError?.classList.remove("hidden");
@@ -295,10 +326,10 @@ import {
       planError?.classList.add("hidden");
 
       const links: Record<string, string> = {
-        mini: form.dataset.mini ?? "#",
-        starter: form.dataset.starter ?? "#",
-        professional: form.dataset.professional ?? "#",
-        business: form.dataset.business ?? "#",
+        "mini-card": form.dataset.mini ?? "#",
+        "starter": form.dataset.starter ?? "#",
+        "professional": form.dataset.professional ?? "#",
+        "business-system": form.dataset.business ?? "#",
       };
       const dest = links[plan];
       if (dest && dest !== "#") {
