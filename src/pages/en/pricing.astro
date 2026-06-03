@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Pricing from "../../components/sections/Pricing.astro";
+import MiniCard from "../../components/sections/MiniCard.astro";
+import FinalCTA from "../../components/sections/FinalCTA.astro";
+import Container from "../../components/shared/Container.astro";
+---
+
+<Layout
+  title="Pricing"
+  description="Flores Nexus Group pricing — Nexus Mini Card, Starter Website, Professional Website, and Business System plans."
+  lang="en"
+>
+  <main class="pt-24 flex flex-col overflow-hidden">
+    <section class="py-12">
+      <Container>
+        <div class="text-center max-w-2xl mx-auto">
+          <h1 class="text-4xl md:text-5xl font-bold text-heading-1 mb-4">Plans & Pricing</h1>
+          <p class="text-heading-3 text-lg">
+            Simple monthly websites and digital presence tools for local service businesses.
+            No long-term contracts. Clear pricing.
+          </p>
+        </div>
+      </Container>
+    </section>
+
+    <Pricing lang="en" />
+    <MiniCard lang="en" />
+
+    <!-- Delivery note -->
+    <section class="py-6">
+      <Container>
+        <div class="max-w-2xl mx-auto text-center p-4 rounded-xl bg-primary/5 border border-primary/20">
+          <p class="text-sm text-heading-2">
+            <strong>Production starts only after payment and complete client information are received.</strong>
+            Site ready in 24–72 hours after payment and complete client information are received.
+          </p>
+        </div>
+      </Container>
+    </section>
+
+    <FinalCTA lang="en" />
+  </main>
+</Layout>

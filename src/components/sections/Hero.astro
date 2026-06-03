@@ -1,58 +1,124 @@
 ---
-import Button from "../shared/Button.astro";
+import BtnLink from "../shared/BtnLink.astro";
 import Container from "../shared/Container.astro";
-import Paragraph from "../shared/Paragraph.astro";
-import ByNumber from "./ByNumber.astro";
 
+export interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    headline: "Simple monthly websites for local businesses",
+    subheadline:
+      "Get a professional online presence built for you, managed for you, and launched without agency prices.",
+    support:
+      "Built for local service businesses that need a clean website, clear contact options, and a professional way to present their services.",
+    cta1: "View Plans",
+    cta1Href: "/en/pricing",
+    cta2: "Start My Website",
+    cta2Href: "/en/start",
+    badge: "Website-as-a-Service",
+  },
+  es: {
+    headline: "Páginas web mensuales para negocios locales",
+    subheadline:
+      "Obtén una presencia profesional en internet, hecha por nosotros, administrada por nosotros y sin precios de agencia.",
+    support:
+      "Diseñadas para negocios locales que necesitan una página clara, botones de contacto y una forma profesional de presentar sus servicios.",
+    cta1: "Ver Planes",
+    cta1Href: "/es/precios",
+    cta2: "Empezar Mi Página",
+    cta2Href: "/es/empezar",
+    badge: "Página web como servicio",
+  },
+}[lang];
 ---
 
-<section class="relative pt-32 lg:pt-36">
-    <Container className={"flex flex-col lg:flex-row gap-10 lg:gap-12"}>
-        <div class="absolute w-full lg:w-1/2 inset-y-0 lg:right-0 ">
-            <span class="absolute -left-6 md:left-4 top-24 lg:top-28 w-24 h-24 rotate-90 skew-x-12 rounded-3xl bg-green-400 blur-xl opacity-60 lg:opacity-95 lg:block hidden"></span>
-            <span class="absolute right-4 bottom-12 w-24 h-24 rounded-3xl bg-primary blur-xl opacity-80"></span>
-        </div>
-        <span class="w-4/12 lg:w-2/12 aspect-square bg-gradient-to-tr from-primary to-green-400 absolute -top-5 lg:left-0 rounded-full skew-y-12 blur-2xl opacity-40 skew-x-12 rotate-90"></span>
-        <div class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8 
-        lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-1/2">
-            
-            <h1 class="text-3xl/tight sm:text-4xl/tight md:text-5xl/tight xl:text-6xl/tight
-             font-bold text-heading-1">
-             Social Media  <span class="text-transparent bg-clip-text bg-gradient-to-br from-indigo-600 from-20% via-primary via-30% to-green-600">Marketing</span> is the Best Ever.
-            </h1>
-            <Paragraph className="mt-8">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores repellat perspiciatis aspernatur quis voluptatum porro incidunt, 
-                libero sequi quos eos velit
-            </Paragraph>
-            <div class="mt-10  w-full flex max-w-md mx-auto lg:mx-0">
-                <div class="flex sm:flex-row flex-col gap-5 w-full">
-                    <form action="#"  class="py-1 pl-6 w-full pr-1 flex gap-3 items-center text-heading-3 shadow-lg shadow-box-shadow
-                      border border-box-border bg-box-bg rounded-full ease-linear focus-within:bg-body  focus-within:border-primary">
-                        <span class="min-w-max pr-2 border-r border-box-border">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 2.51l-4.66-2.51m0 0l-1.023-.55a2.25 2.25 0 00-2.134 0l-1.022.55m0 0l-4.661 2.51m16.5 1.615a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V8.844a2.25 2.25 0 011.183-1.98l7.5-4.04a2.25 2.25 0 012.134 0l7.5 4.04a2.25 2.25 0 011.183 1.98V19.5z" />
-                            </svg>                                                                  
-                        </span>
-                        <input type="email" name="" id="" placeholder="johndoe@gmail.com" class="w-full py-3 outline-none bg-transparent">
-                        <Button variant={"primary"} className={"min-w-max text-white"}>
-                            <span class="hidden sm:flex relative z-[5]">
-                                Get Started
-                            </span>
-                            <span class="flex sm:hidden relative z-[5]">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                                </svg>                                      
-                            </span>
-                        </Button>
-                    </form>
-                </div>
-            </div>
-        </div>
+<section class="relative pt-32 lg:pt-40 pb-20">
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <span
+      class="absolute -top-10 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 to-blue-400/10 blur-3xl float-slow"
+    ></span>
+    <span
+      class="absolute top-32 -right-20 w-64 h-64 rounded-full bg-primary/10 blur-3xl float-medium"
+    ></span>
+    <span
+      class="absolute top-40 -left-20 w-48 h-48 rounded-3xl bg-primary/10 blur-2xl rotate-12 float-tilt"
+    ></span>
+  </div>
 
-        <div class="flex flex-1 lg:w-1/2 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl">
-            <img src="/images/image1.webp" alt="Hero image" width="2350" height="2359" class="lg:absolute lg:w-full lg:h-full rounded-3xl object-cover lg:max-h-none max-h-96">
-        </div>
-    </Container>
+  <Container>
+    <div class="relative text-center max-w-4xl mx-auto">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-box-border bg-box-bg text-sm text-heading-3 mb-6 motion-card" data-reveal="scale">
+        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        {t.badge}
+      </div>
 
-    <ByNumber/>
+      <!-- Headline -->
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-heading-1 leading-tight mb-6"
+        data-reveal
+        style="--reveal-delay: 80ms"
+      >
+        {t.headline.split(" ").slice(0, 3).join(" ")}
+        <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-500 to-primary shine-text"
+        >
+          {t.headline.split(" ").slice(3, 5).join(" ")}
+        </span>
+        {t.headline.split(" ").slice(5).join(" ")}
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="text-lg md:text-xl text-heading-2 mb-4 max-w-3xl mx-auto leading-relaxed" data-reveal style="--reveal-delay: 160ms">
+        {t.subheadline}
+      </p>
+
+      <!-- Support line -->
+      <p class="text-heading-3 mb-10 max-w-2xl mx-auto" data-reveal style="--reveal-delay: 220ms">
+        {t.support}
+      </p>
+
+      <!-- CTA buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center" data-stagger>
+        <BtnLink
+          href={t.cta1Href}
+          text={t.cta1}
+          variant="primary"
+          className="min-w-44 text-center motion-button"
+        />
+        <BtnLink
+          href={t.cta2Href}
+          text={t.cta2}
+          variant="secondary"
+          className="min-w-44 text-center motion-button"
+        />
+      </div>
+
+      <!-- Trust indicators -->
+      <div class="mt-12 flex flex-wrap justify-center gap-6 text-sm text-heading-3" data-stagger>
+        <span class="flex items-center gap-2 motion-card px-3 py-2 rounded-full">
+          <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+          {lang === "en" ? "Built for you" : "Hecho por nosotros"}
+        </span>
+        <span class="flex items-center gap-2 motion-card px-3 py-2 rounded-full">
+          <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+          {lang === "en" ? "Managed for you" : "Administrado por nosotros"}
+        </span>
+        <span class="flex items-center gap-2 motion-card px-3 py-2 rounded-full">
+          <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+          {lang === "en" ? "Without agency prices" : "Sin precios de agencia"}
+        </span>
+      </div>
+    </div>
+  </Container>
 </section>

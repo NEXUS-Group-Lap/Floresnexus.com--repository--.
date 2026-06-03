@@ -1,0 +1,64 @@
+---
+import Container from "../shared/Container.astro";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    title: "Who We Help",
+    subtitle: "We build websites for local service businesses across every industry.",
+    industries: [
+      "Photographers",
+      "Roofing",
+      "Handyman",
+      "Painting",
+      "Lawn Care",
+      "Cleaning",
+      "Pressure Washing",
+      "Barbers",
+      "Food Trucks",
+      "Mobile Mechanics",
+      "Local Contractors",
+      "Small Service Businesses",
+    ],
+  },
+  es: {
+    title: "A Quienes Ayudamos",
+    subtitle: "Construimos paginas web para negocios locales de servicios en todas las industrias.",
+    industries: [
+      "Fotografos",
+      "Roofing",
+      "Handyman",
+      "Pintura",
+      "Jardineria",
+      "Limpieza",
+      "Pressure Washing",
+      "Barberos",
+      "Food Trucks",
+      "Mecanicos Moviles",
+      "Contratistas Locales",
+      "Negocios de Servicios",
+    ],
+  },
+}[lang];
+---
+
+<section class="py-16">
+  <Container>
+    <div class="text-center mb-12" data-reveal>
+      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>
+      <p class="text-heading-3 text-lg max-w-2xl mx-auto">{t.subtitle}</p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3" data-stagger>
+      {t.industries.map((name) => (
+        <div class="flex items-center justify-center p-4 rounded-xl border border-box-border bg-box-bg hover:border-primary hover:shadow-sm transition-all duration-300 text-center group motion-card">
+          <span class="text-sm font-semibold text-heading-2 leading-tight group-hover:text-primary transition-colors">{name}</span>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

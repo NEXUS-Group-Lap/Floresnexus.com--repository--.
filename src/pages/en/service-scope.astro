@@ -1,0 +1,351 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
+---
+
+<Layout
+  title="Service Scope — Flores Nexus Group LLC"
+  description="What is included and excluded in each Flores Nexus Group LLC plan. Small update definition, change request levels, domain policy, and add-ons."
+  lang="en"
+>
+  <main class="pt-24 pb-20">
+    <Container>
+      <div class="max-w-3xl mx-auto">
+
+        <!-- Attorney notice -->
+        <p class="text-xs text-heading-3 italic mb-8 leading-relaxed">
+          This document is provided for informational purposes. Flores Nexus Group LLC recommends consulting a licensed Florida attorney before relying on these terms for legal decisions.
+        </p>
+
+        <!-- Page header -->
+        <div class="mb-10">
+          <h1 class="text-4xl font-bold text-heading-1 mb-2">Service Scope</h1>
+          <p class="text-heading-3 text-sm mb-2">What is included and excluded in each plan</p>
+          <p class="text-heading-3 text-sm">Flores Nexus Group LLC — Last updated: June 2026</p>
+        </div>
+
+        <p class="text-sm text-heading-2 leading-relaxed mb-10">This page defines the exact scope of each Flores Nexus Group LLC plan. Details on this page protect both the client and Flores Nexus Group LLC by setting clear expectations before and after purchase.</p>
+
+        <div class="space-y-0">
+
+          <!-- Nexus Mini Card -->
+          <div class="py-8 border-t border-box-border">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full">Nexus Mini Card</span>
+              <span class="text-xs text-heading-3">$99 setup + $29/month or $99 setup + $299/year</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <p class="text-xs font-semibold text-green-600 dark:text-green-400 uppercase tracking-widest mb-3">Includes</p>
+                <ul class="space-y-1.5 text-sm text-heading-2">
+                  {[
+                    "Business name, phone, and services",
+                    "Call and WhatsApp button",
+                    "Service area or location",
+                    "Basic hours",
+                    "3–5 services listed",
+                    "One main image or background",
+                    "Social media links",
+                    "Mobile-friendly design",
+                    "Hosted at nexuslink.com/yourbusiness",
+                    "Managed by Flores Nexus while subscription is active",
+                  ].map((item) => (
+                    <li class="flex items-start gap-2">
+                      <svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-red-500 uppercase tracking-widest mb-3">Does not include</p>
+                <ul class="space-y-1.5 text-sm text-heading-3">
+                  {[
+                    "Edits after launch (except Flores Nexus build errors)",
+                    "Custom domain",
+                    "Contact form",
+                    "Gallery",
+                    "Additional pages",
+                    "SEO work",
+                    "Google Business setup",
+                    "Ownership transfer",
+                  ].map((item) => (
+                    <li class="flex items-start gap-2">
+                      <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Starter Website -->
+          <div class="py-8 border-t border-box-border">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full">Starter Website</span>
+              <span class="text-xs text-heading-3">$299 setup + $79/month</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <p class="text-xs font-semibold text-green-600 dark:text-green-400 uppercase tracking-widest mb-3">Includes</p>
+                <ul class="space-y-1.5 text-sm text-heading-2">
+                  {[
+                    "One-page complete website",
+                    "Business information, services, and service area",
+                    "Call and text/message button",
+                    "Google Maps or service area display",
+                    "Social media links",
+                    "Mobile-friendly design",
+                    "Hosting while subscription is active",
+                    "Standard domain if available (.com / .co / .net — not guaranteed exact match)",
+                    "One pre-launch revision",
+                    "1 small update per month, non-accumulative",
+                    "Basic activity summary when applicable",
+                  ].map((item) => (
+                    <li class="flex items-start gap-2">
+                      <svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-red-500 uppercase tracking-widest mb-3">Does not include</p>
+                <ul class="space-y-1.5 text-sm text-heading-3">
+                  {[
+                    "Multiple pages",
+                    "Unlimited edits",
+                    "Advanced SEO",
+                    "Monthly support calls",
+                    "Marketing or social media management",
+                    "Booking or payment systems",
+                    "Ownership transfer",
+                  ].map((item) => (
+                    <li class="flex items-start gap-2">
+                      <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Professional Website -->
+          <div class="py-8 border-t border-box-border">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">Professional Website</span>
+              <span class="text-xs text-heading-3">$699 setup + $149/month</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <p class="text-xs font-semibold text-green-600 dark:text-green-400 uppercase tracking-widest mb-3">Includes</p>
+                <ul class="space-y-1.5 text-sm text-heading-2">
+                  {[
+                    "Up to 5 pages: Home, Services, About, Gallery, Contact",
+                    "Contact form",
+                    "Google Maps or service area",
+                    "Basic copywriting",
+                    "Mobile-friendly design",
+                    "Hosting while subscription is active",
+                    "Standard domain if available (.com / .co / .net — not guaranteed exact match)",
+                    "Up to 3 small updates per month, non-accumulative",
+                    "Basic activity summary when applicable",
+                  ].map((item) => (
+                    <li class="flex items-start gap-2">
+                      <svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-red-500 uppercase tracking-widest mb-3">Does not include</p>
+                <ul class="space-y-1.5 text-sm text-heading-3">
+                  {[
+                    "New pages beyond 5",
+                    "Redesigns",
+                    "CRM, booking, or payment systems",
+                    "Monthly SEO campaigns",
+                    "Ad campaign management",
+                    "Social media management",
+                    "Ownership transfer",
+                  ].map((item) => (
+                    <li class="flex items-start gap-2">
+                      <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Business System -->
+          <div class="py-8 border-t border-box-border">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full">Business System</span>
+              <span class="text-xs text-heading-3">Starting at $2,500 setup + $399/month — Requires custom quote</span>
+            </div>
+            <p class="text-sm text-heading-2 leading-relaxed mb-4">Scope, timeline, and inclusions are defined in a separate written proposal for each project. May include based on quote:</p>
+            <ul class="space-y-1.5 text-sm text-heading-2">
+              {[
+                "Multi-page complete website",
+                "Online booking system",
+                "Online payments integration",
+                "CRM or email integration",
+                "Automations and workflows",
+                "Landing pages",
+                "Analytics and reports",
+                "Multiple locations",
+                "External integrations",
+              ].map((item) => (
+                <li class="flex items-start gap-2">
+                  <svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Small Update Definition -->
+          <div class="py-8 border-t border-box-border">
+            <h2 class="text-lg font-semibold text-heading-1 mb-4">Small Update Definition</h2>
+            <p class="text-sm text-heading-2 leading-relaxed mb-4">A small update is any change that takes less than 20 minutes and does not alter the structure of the site. This includes:</p>
+            <ul class="space-y-1 text-sm text-heading-2 mb-5">
+              {["Replacing one photo", "Correcting short text", "Updating phone number, hours, or address", "Updating one link or social media handle"].map((item) => (
+                <li class="flex items-start gap-2">
+                  <svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p class="text-sm text-heading-2 leading-relaxed mb-3">This does NOT include:</p>
+            <ul class="space-y-1 text-sm text-heading-3 mb-4">
+              {["Adding new pages", "Redesigning sections", "Changing colors or fonts across the site", "Adding new functionality", "SEO work", "Extensive new content"].map((item) => (
+                <li class="flex items-start gap-2">
+                  <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p class="text-sm text-heading-3 italic">Changes outside this definition are billed as Level 2 or Level 3 change requests.</p>
+          </div>
+
+          <!-- Change Request Levels -->
+          <div class="py-8 border-t border-box-border">
+            <h2 class="text-lg font-semibold text-heading-1 mb-6">Change Request Levels</h2>
+
+            <div class="space-y-5">
+              <div>
+                <p class="font-semibold text-heading-1 text-sm mb-3">Level 2 — Fixed price, billed before execution</p>
+                <div class="rounded-xl border border-box-border bg-box-bg overflow-hidden">
+                  <table class="w-full text-sm">
+                    <tbody>
+                      {[
+                        ["Replace full photo gallery", "$35"],
+                        ["Update full services list", "$35"],
+                        ["Add or replace long text section", "$35"],
+                        ["Add embedded video", "$35"],
+                        ["Change site colors or fonts", "$75"],
+                        ["Redesign one section", "$75"],
+                      ].map(([item, price], i) => (
+                        <tr class={`border-b border-box-border last:border-0 ${i % 2 === 0 ? "" : "bg-box-bg/50"}`}>
+                          <td class="px-4 py-2.5 text-heading-2">{item}</td>
+                          <td class="px-4 py-2.5 text-right font-semibold text-primary">{price}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <p class="font-semibold text-heading-1 text-sm mb-3">Level 3 — Custom quote required, approval before execution</p>
+                <div class="rounded-xl border border-box-border bg-box-bg overflow-hidden">
+                  <table class="w-full text-sm">
+                    <tbody>
+                      {[
+                        ["Add new page", "$149"],
+                        ["Add advanced contact form", "$149"],
+                        ["Add testimonials section", "$99"],
+                        ["Add WhatsApp floating button", "$59"],
+                        ["Add basic booking system", "$299"],
+                        ["Add online store or payments", "Custom quote"],
+                        ["Full site redesign", "Custom quote"],
+                      ].map(([item, price], i) => (
+                        <tr class={`border-b border-box-border last:border-0 ${i % 2 === 0 ? "" : "bg-box-bg/50"}`}>
+                          <td class="px-4 py-2.5 text-heading-2">{item}</td>
+                          <td class="px-4 py-2.5 text-right font-semibold text-primary whitespace-nowrap">{price}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Domain Policy -->
+          <div class="py-8 border-t border-box-border">
+            <h2 class="text-lg font-semibold text-heading-1 mb-3">Domain Policy</h2>
+            <div class="text-sm text-heading-2 leading-relaxed space-y-3">
+              <p>Flores Nexus Group LLC will search for the best available standard domain for your business using .com, .co, or .net extensions. Exact domain names are not guaranteed as they may already be taken or require premium pricing.</p>
+              <p>Premium domains require client approval and additional payment. If no standard option is acceptable, Flores Nexus Group LLC will discuss alternatives before launch. Domains are administered by Flores Nexus Group LLC while the subscription is active. Transfer requires a separate process.</p>
+            </div>
+          </div>
+
+          <!-- Add-ons -->
+          <div class="py-8 border-t border-box-border">
+            <h2 class="text-lg font-semibold text-heading-1 mb-4">Add-Ons</h2>
+            <p class="text-sm text-heading-3 mb-4">Available as separate services:</p>
+            <div class="rounded-xl border border-box-border bg-box-bg overflow-hidden">
+              <table class="w-full text-sm">
+                <tbody>
+                  {[
+                    ["Google Business Profile Setup", "$99 one-time"],
+                    ["Google Business Monthly Management", "$39/month"],
+                    ["Extra update pack (3 additional updates)", "$49/month"],
+                    ["Extra page", "$149 one-time"],
+                    ["Advanced SEO", "From $199/month (custom quote)"],
+                    ["Landing page", "$199 one-time"],
+                    ["Advanced form", "$149 one-time"],
+                    ["External integration", "Custom quote"],
+                  ].map(([item, price], i) => (
+                    <tr class={`border-b border-box-border last:border-0 ${i % 2 === 0 ? "" : "bg-box-bg/50"}`}>
+                      <td class="px-4 py-2.5 text-heading-2">{item}</td>
+                      <td class="px-4 py-2.5 text-right font-semibold text-primary whitespace-nowrap">{price}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </Container>
+  </main>
+</Layout>

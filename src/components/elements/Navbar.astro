@@ -1,80 +1,167 @@
 ---
 import BtnLink from "../shared/BtnLink.astro";
 import Container from "../shared/Container.astro";
-import  Navitem from "../shared/Navitem.astro";
+import Navitem from "../shared/Navitem.astro";
 
-const navItems = [
-    {
-        href:"#",
-        text:"Home"
-    },
-    {
-        href:"#services",
-        text:"Services"
-    },
-    {
-        href:"#about-us",
-        text:"About us"
-    },
-    {
-        href:"#features",
-        text:"Features"
-    },
-]
+export interface Props {
+  lang?: "en" | "es";
+}
+
+const { lang = "en" } = Astro.props;
+
+const navItems =
+  lang === "en"
+    ? [
+        { href: "/en", text: "Home" },
+        { href: "/en/pricing", text: "Pricing" },
+        { href: "/en/faq", text: "FAQ" },
+        { href: "/en/careers", text: "Careers" },
+      ]
+    : [
+        { href: "/es", text: "Inicio" },
+        { href: "/es/precios", text: "Planes" },
+        { href: "/es/preguntas", text: "Preguntas" },
+        { href: "/es/carreras", text: "Carreras" },
+      ];
+
+const startHref = lang === "en" ? "/en/start" : "/es/empezar";
+const startText = lang === "en" ? "Start My Website" : "Empezar";
+const homeHref = lang === "en" ? "/en" : "/es";
 ---
 
-<header class="absolute inset-x-0 top-0 z-50 py-6">
-    <Container>
-        <nav class="w-full flex justify-between gap-6 relative">
-            <!-- logo -->
-            <div class="min-w-max inline-flex relative">
-                <a href="/" class="relative flex items-center gap-3">
-                    <div class="relative w-7 h-7 overflow-hidden flex rounded-xl">
-                        <span class="absolute w-4 h-4 -top-1 -right-1 bg-green-500 rounded-md rotate-45"></span>
-                        <span class="absolute w-4 h-4 -bottom-1 -right-1 bg-[#FCDC58] rounded-md rotate-45"></span>
-                        <span class="absolute w-4 h-4 -bottom-1 -left-1 bg-primary rounded-md rotate-45"></span>
-                        <span class="absolute w-2 h-2 rounded-full bg-heading-1 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></span>
-                    </div>
-                    <div class="inline-flex text-lg font-semibold text-heading-1">
-                        AgenceX
-                    </div>
-                </a>
-            </div>
+<header class="absolute inset-x-0 top-0 z-50">
+  <!-- Language topbar -->
+  <div class="w-full border-b border-box-border/50 bg-box-bg/80 backdrop-blur-sm">
+    <div class="flex justify-end items-center gap-5 px-6 py-2 text-xs font-semibold tracking-wide max-w-7xl mx-auto">
+      <a
+        href="/en"
+        class={`transition-colors duration-200 ${lang === "en" ? "text-primary" : "text-heading-3 hover:text-primary"}`}
+      >
+        English
+      </a>
+      <span class="text-heading-3 opacity-30">|</span>
+      <a
+        href="/es"
+        class={`transition-colors duration-200 ${lang === "es" ? "text-primary" : "text-heading-3 hover:text-primary"}`}
+      >
+        Español
+      </a>
+    </div>
+  </div>
 
-            <div data-nav-overlay aria-hidden="true" class="fixed hidden inset-0 lg:!hidden bg-box-bg bg-opacity-50 backdrop-filter backdrop-blur-xl"></div>
-            <div data-navbar class="flex h-0 overflow-hidden lg:!h-auto lg:scale-y-100 duration-300 ease-linear flex-col gap-y-6 gap-x-4 lg:flex-row w-full lg:justify-between lg:items-center absolute lg:relative top-full lg:top-0 bg-body lg:bg-transparent border-x border-x-box-border lg:border-x-0">
-                <ul class="border-t border-box-border lg:border-t-0 px-6 lg:px-0 pt-6 lg:pt-0 flex flex-col lg:flex-row gap-y-4 gap-x-3 text-lg text-heading-2 w-full lg:justify-center lg:items-center">
-                    {navItems.map(item=>{
-                        return <Navitem {...item}/>
-                    })
-                    }
-                </ul>
+  <Container>
+    <nav class="w-full flex justify-between gap-6 relative py-5">
+      <!-- Logo -->
+      <div class="min-w-max inline-flex relative">
+        <a href={homeHref} class="relative flex items-center gap-3">
+          <div class="relative w-8 h-8 flex items-center justify-center">
+            <svg
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-8 h-8"
+            >
+              <path d="M16 2L28 10L28 22L16 30L4 22L4 10Z" class="fill-primary" fill-opacity="0.15"></path>
+              <path d="M16 6L24 12L24 20L16 26L8 20L8 12Z" class="fill-primary" fill-opacity="0.3"></path>
+              <path d="M16 10L21 14L21 18L16 22L11 18L11 14Z" class="fill-primary"></path>
+              <path d="M16 2L28 10" stroke="currentColor" stroke-width="1" class="text-primary" stroke-opacity="0.6"></path>
+              <path d="M28 10L28 22" stroke="currentColor" stroke-width="1" class="text-primary" stroke-opacity="0.6"></path>
+              <path d="M28 22L16 30" stroke="currentColor" stroke-width="1" class="text-primary" stroke-opacity="0.6"></path>
+              <path d="M16 30L4 22" stroke="currentColor" stroke-width="1" class="text-primary" stroke-opacity="0.6"></path>
+              <path d="M4 22L4 10" stroke="currentColor" stroke-width="1" class="text-primary" stroke-opacity="0.6"></path>
+              <path d="M4 10L16 2" stroke="currentColor" stroke-width="1" class="text-primary" stroke-opacity="0.6"></path>
+            </svg>
+          </div>
+          <div class="inline-flex flex-col leading-none">
+            <span class="text-sm font-bold text-heading-1 tracking-wide">FLORES NEXUS</span>
+            <span class="text-xs font-medium text-heading-3 tracking-widest uppercase">GROUP</span>
+          </div>
+        </a>
+      </div>
 
-                <div class="lg:min-w-max flex items-center sm:w-max w-full pb-6 lg:pb-0 border-b border-box-bg lg:border-0 px-6 lg:px-0">
-                    <BtnLink text="Get Started" href="#cta" className="flex justify-center w-full sm:w-max" variant="primary"/>
-                </div>
-            </div>
+      <div
+        data-nav-overlay
+        aria-hidden="true"
+        class="fixed hidden inset-0 lg:!hidden bg-box-bg bg-opacity-50 backdrop-filter backdrop-blur-xl"
+      ></div>
+      <div
+        data-navbar
+        class="flex h-0 overflow-hidden lg:!h-auto lg:scale-y-100 duration-300 ease-linear flex-col gap-y-6 gap-x-4 lg:flex-row w-full lg:justify-between lg:items-center absolute lg:relative top-full lg:top-0 bg-box-bg lg:bg-transparent border-x border-x-box-border lg:border-x-0"
+      >
+        <ul
+          class="border-t border-box-border lg:border-t-0 px-6 lg:px-0 pt-6 lg:pt-0 flex flex-col lg:flex-row gap-y-4 gap-x-3 text-lg text-heading-2 w-full lg:justify-center lg:items-center"
+        >
+          {navItems.map((item) => <Navitem {...item} />)}
+        </ul>
 
+        <div
+          class="lg:min-w-max flex items-center sm:w-max w-full pb-6 lg:pb-0 border-b border-box-border lg:border-0 px-6 lg:px-0"
+        >
+          <BtnLink
+            text={startText}
+            href={startHref}
+            className="flex justify-center w-full sm:w-max"
+            variant="primary"
+          />
+        </div>
+      </div>
 
-            <div class="min-w-max flex items-center gap-x-3">
-                <button data-switch-theme class="outline-none flex relative text-heading-2 rounded-full p-2 lg:p-3 border border-box-border ">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:flex hidden">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-                      </svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:hidden">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-                      </svg>
-                                    
-                    <span class="sr-only">switch theme</span>
-                </button>
-                
-                <button data-toggle-nav data-open-nav="false" class="lg:hidden lg:invisible outline-none w-7 h-auto flex flex-col relative">
-                    <span id="line1" class="w-6 h-0.5 rounded-full bg-heading-2 transition-all duration-300 ease-linear"></span> 
-                    <span id="line2" class="w-6 origin-center  mt-1 h-0.5 rounded-ful bg-heading-2 transition-all duration-300 ease-linear"></span> 
-                    <span id="line3" class="w-6 mt-1 h-0.5 rounded-ful bg-heading-2 transition-all duration-300 ease-linear"></span>                         
-                    <span class="sr-only">togglenav</span>
-                </button>
-            </div>
-        </nav>
-    </Container>
+      <div class="min-w-max flex items-center gap-x-3">
+        <button
+          data-switch-theme
+          class="outline-none flex relative text-heading-2 rounded-full p-2 lg:p-3 border border-box-border"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6 dark:flex hidden"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+            ></path>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6 dark:hidden"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+            ></path>
+          </svg>
+          <span class="sr-only">switch theme</span>
+        </button>
+
+        <button
+          data-toggle-nav
+          data-open-nav="false"
+          class="lg:hidden lg:invisible outline-none w-7 h-auto flex flex-col relative gap-y-1.5"
+        >
+          <span
+            id="line1"
+            class="w-6 h-0.5 rounded-full bg-heading-2 transition-all duration-300 ease-linear"
+          ></span>
+          <span
+            id="line2"
+            class="w-6 origin-center h-0.5 rounded-full bg-heading-2 transition-all duration-300 ease-linear"
+          ></span>
+          <span
+            id="line3"
+            class="w-6 h-0.5 rounded-full bg-heading-2 transition-all duration-300 ease-linear"
+          ></span>
+          <span class="sr-only">toggle nav</span>
+        </button>
+      </div>
+    </nav>
+  </Container>
 </header>

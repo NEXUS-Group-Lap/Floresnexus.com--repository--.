@@ -1,0 +1,117 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
+---
+
+<Layout title="Carreras" description="Únete al equipo de Flores Nexus Group. Posiciones abiertas en ventas, desarrollo, diseño y operaciones." lang="es">
+  <main class="pt-24 pb-20">
+    <Container>
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl font-bold text-heading-1 mb-4">Carreras en Flores Nexus Group</h1>
+          <p class="text-heading-3 text-lg max-w-2xl mx-auto">
+            Estamos creciendo y buscamos personas motivadas para unirse a nuestro equipo.
+            Las solicitudes son revisadas por nuestro equipo. Aplicar no garantiza la contratación.
+            Se puede proporcionar capacitación para los candidatos adecuados.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {[
+            {
+              title: "Representante de Ventas — Florida",
+              type: "Contratista Independiente",
+              location: "Florida",
+              desc: "Se prefiere experiencia en ventas B2B. Representa a Flores Nexus Group ante negocios locales de servicios. Estructura basada en comisiones discutida durante el proceso de solicitud.",
+              tags: ["Ventas", "B2B", "Florida", "Comisión"],
+            },
+            {
+              title: "Representante de Ventas Remoto",
+              type: "Contratista Independiente",
+              location: "Remoto",
+              desc: "Puede aplicarse estructura de comisión o territorio. Vende los planes de páginas web de Flores Nexus Group a negocios locales de servicios en tu mercado.",
+              tags: ["Ventas", "Remoto", "Comisión"],
+            },
+            {
+              title: "Representante de Alcance a Negocios Locales",
+              type: "Contratista Independiente",
+              location: "Florida",
+              desc: "Alcance local y generación de citas para negocios locales de servicios. Ayuda a conectar a propietarios de negocios con los servicios de Flores Nexus Group.",
+              tags: ["Alcance", "Local", "Florida"],
+            },
+            {
+              title: "Desarrollador Front-End",
+              type: "Contrato / Tiempo Completo",
+              location: "Remoto o Florida",
+              desc: "Construye y mantiene páginas web de clientes usando Astro, TailwindCSS y tecnologías modernas. La compensación depende de la experiencia, el rol y las necesidades del proyecto.",
+              tags: ["Astro", "TailwindCSS", "Web Dev", "Remoto"],
+            },
+            {
+              title: "Ingeniero Back-End",
+              type: "Contrato / Tiempo Completo",
+              location: "Remoto o Florida",
+              desc: "Trabaja en sistemas backend, integraciones y automatizaciones. Las referencias del mercado de Florida pueden estar alrededor de $60k–$70k anuales para algunos roles; la compensación final se determina caso por caso.",
+              tags: ["Backend", "Integraciones", "Remoto"],
+            },
+            {
+              title: "Diseñador Web",
+              type: "Contrato",
+              location: "Remoto",
+              desc: "Diseña y crea ejemplos visuales de páginas web, mockups y diseños listos para clientes. Se requiere portafolio sólido.",
+              tags: ["Diseño", "Remoto", "Portafolio"],
+            },
+            {
+              title: "Especialista en Onboarding de Clientes",
+              type: "Medio Tiempo / Contrato",
+              location: "Remoto",
+              desc: "Recolecta información y activos del negocio del cliente después del pago. Guía a los clientes a través del proceso de onboarding de manera profesional.",
+              tags: ["Éxito del Cliente", "Remoto", "Onboarding"],
+            },
+            {
+              title: "Coordinador de Proyectos / Cuentas",
+              type: "Medio Tiempo / Contrato",
+              location: "Remoto",
+              desc: "Coordina actualizaciones de clientes, rastrea el estado de entrega y asegura que los proyectos avancen del onboarding al lanzamiento sin problemas.",
+              tags: ["Gestión de Proyectos", "Remoto", "Coordinación"],
+            },
+          ].map((job) => (
+            <div class="rounded-2xl border border-box-border bg-box-bg p-6 hover:border-primary/50 transition-all">
+              <div class="flex justify-between items-start mb-3 gap-2">
+                <h3 class="font-bold text-heading-1 text-lg leading-tight">{job.title}</h3>
+                <span class="text-xs bg-primary/10 text-primary px-2.5 py-1 rounded-full font-medium flex-shrink-0">{job.type}</span>
+              </div>
+              <p class="text-xs text-heading-3 mb-3">📍 {job.location}</p>
+              <p class="text-sm text-heading-2 leading-relaxed mb-4">{job.desc}</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                {job.tags.map((tag) => (
+                  <span class="text-xs bg-box-bg border border-box-border text-heading-3 px-2 py-0.5 rounded-full">{tag}</span>
+                ))}
+              </div>
+              <a
+                href="mailto:floresholdinggroup@gmail.com"
+                class="text-sm text-primary font-semibold hover:underline"
+              >
+                Aplicar por Correo →
+              </a>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-12 p-6 rounded-2xl bg-primary/5 border border-primary/20 text-center">
+          <h2 class="font-bold text-heading-1 text-xl mb-3">Cómo Aplicar</h2>
+          <p class="text-heading-3 text-sm max-w-xl mx-auto mb-4">
+            Envía tu currículum y una breve nota sobre el puesto que te interesa al correo indicado.
+            Las solicitudes son revisadas por nuestro equipo. Aplicar no garantiza la contratación.
+            Se puede proporcionar capacitación para los candidatos adecuados.
+          </p>
+          <a
+            href="mailto:floresholdinggroup@gmail.com"
+            class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-all"
+          >
+            floresholdinggroup@gmail.com
+          </a>
+        </div>
+      </div>
+    </Container>
+  </main>
+</Layout>

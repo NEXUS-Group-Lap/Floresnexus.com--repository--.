@@ -1,0 +1,117 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
+---
+
+<Layout title="Careers" description="Join the Flores Nexus Group team. Open positions in sales, development, design, and operations." lang="en">
+  <main class="pt-24 pb-20">
+    <Container>
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl font-bold text-heading-1 mb-4">Careers at Flores Nexus Group</h1>
+          <p class="text-heading-3 text-lg max-w-2xl mx-auto">
+            We're growing and looking for motivated people to join our team.
+            Applications are reviewed by our team. Applying does not guarantee hiring.
+            Training may be provided for the right candidates.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {[
+            {
+              title: "Sales Representative — Florida",
+              type: "Independent Contractor",
+              location: "Florida",
+              desc: "B2B sales experience preferred. Represent Flores Nexus Group to local service businesses. Commission-based structure discussed during the application process.",
+              tags: ["Sales", "B2B", "Florida", "Commission"],
+            },
+            {
+              title: "Remote Sales Representative",
+              type: "Independent Contractor",
+              location: "Remote",
+              desc: "Commission or territory-based structure may apply. Sell Flores Nexus Group website plans to local service businesses across your market.",
+              tags: ["Sales", "Remote", "Commission"],
+            },
+            {
+              title: "Local Business Outreach Representative",
+              type: "Independent Contractor",
+              location: "Florida",
+              desc: "Local outreach and appointment generation for local service businesses. Help connect business owners with Flores Nexus Group services.",
+              tags: ["Outreach", "Local", "Florida"],
+            },
+            {
+              title: "Front-End Developer",
+              type: "Contract / Full-Time",
+              location: "Remote or Florida",
+              desc: "Build and maintain client websites using Astro, TailwindCSS, and modern web technologies. Compensation depends on experience, role, and project needs.",
+              tags: ["Astro", "TailwindCSS", "Web Dev", "Remote"],
+            },
+            {
+              title: "Back-End Engineer",
+              type: "Contract / Full-Time",
+              location: "Remote or Florida",
+              desc: "Work on backend systems, integrations, and automations. Florida market references may fall around the $60k–$70k annual range for some roles; final compensation is determined case by case.",
+              tags: ["Backend", "Integrations", "Remote"],
+            },
+            {
+              title: "Web Designer",
+              type: "Contract",
+              location: "Remote",
+              desc: "Design and create visual website examples, mockups, and client-ready layouts. Strong portfolio required.",
+              tags: ["Design", "Remote", "Portfolio"],
+            },
+            {
+              title: "Customer Onboarding Specialist",
+              type: "Part-Time / Contract",
+              location: "Remote",
+              desc: "Collect client business information and assets after payment. Guide clients through the onboarding process professionally.",
+              tags: ["Customer Success", "Remote", "Onboarding"],
+            },
+            {
+              title: "Project / Account Coordinator",
+              type: "Part-Time / Contract",
+              location: "Remote",
+              desc: "Coordinate client updates, track delivery status, and ensure projects move from onboarding to launch smoothly.",
+              tags: ["Project Management", "Remote", "Coordination"],
+            },
+          ].map((job) => (
+            <div class="rounded-2xl border border-box-border bg-box-bg p-6 hover:border-primary/50 transition-all">
+              <div class="flex justify-between items-start mb-3 gap-2">
+                <h3 class="font-bold text-heading-1 text-lg leading-tight">{job.title}</h3>
+                <span class="text-xs bg-primary/10 text-primary px-2.5 py-1 rounded-full font-medium flex-shrink-0">{job.type}</span>
+              </div>
+              <p class="text-xs text-heading-3 mb-3">📍 {job.location}</p>
+              <p class="text-sm text-heading-2 leading-relaxed mb-4">{job.desc}</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                {job.tags.map((tag) => (
+                  <span class="text-xs bg-box-bg border border-box-border text-heading-3 px-2 py-0.5 rounded-full">{tag}</span>
+                ))}
+              </div>
+              <a
+                href="mailto:floresholdinggroup@gmail.com?subject=Application: " + job.title
+                class="text-sm text-primary font-semibold hover:underline"
+              >
+                Apply via Email →
+              </a>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-12 p-6 rounded-2xl bg-primary/5 border border-primary/20 text-center">
+          <h2 class="font-bold text-heading-1 text-xl mb-3">How to Apply</h2>
+          <p class="text-heading-3 text-sm max-w-xl mx-auto mb-4">
+            Send your resume and a brief note about the position you're interested in to the email below.
+            Applications are reviewed by our team. Applying does not guarantee hiring.
+            Training may be provided for the right candidates.
+          </p>
+          <a
+            href="mailto:floresholdinggroup@gmail.com"
+            class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-all"
+          >
+            floresholdinggroup@gmail.com
+          </a>
+        </div>
+      </div>
+    </Container>
+  </main>
+</Layout>

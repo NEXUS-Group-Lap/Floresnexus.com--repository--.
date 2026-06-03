@@ -1,0 +1,101 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
+---
+
+<Layout
+  title="Acceptable Use Policy — Flores Nexus Group LLC"
+  description="Acceptable Use Policy for websites built and managed by Flores Nexus Group LLC."
+  lang="en"
+>
+  <main class="pt-24 pb-20">
+    <Container>
+      <div class="max-w-3xl mx-auto">
+
+        <!-- Attorney notice -->
+        <p class="text-xs text-heading-3 italic mb-8 leading-relaxed">
+          This document is provided for informational purposes. Flores Nexus Group LLC recommends consulting a licensed Florida attorney before relying on these terms for legal decisions.
+        </p>
+
+        <!-- Page header -->
+        <div class="mb-10">
+          <h1 class="text-4xl font-bold text-heading-1 mb-2">Acceptable Use Policy</h1>
+          <p class="text-heading-3 text-sm">Flores Nexus Group LLC — Last updated: June 2026</p>
+        </div>
+
+        <div class="space-y-0">
+
+          <!-- Overview -->
+          <div class="py-6 border-t border-box-border">
+            <h2 class="text-lg font-semibold text-heading-1 mb-3">Overview</h2>
+            <p class="text-sm text-heading-2 leading-relaxed">The website built and managed by Flores Nexus Group LLC must be used for lawful, legitimate business purposes only. This policy defines prohibited uses that may result in immediate suspension or termination of service without refund.</p>
+          </div>
+
+          <!-- Prohibited Uses -->
+          <div class="py-6 border-t border-box-border">
+            <h2 class="text-lg font-semibold text-heading-1 mb-5">Prohibited Uses</h2>
+            <p class="text-sm text-heading-2 leading-relaxed mb-5">The client website may not be used for:</p>
+
+            <div class="space-y-3">
+              {[
+                ["1", "Illegal activity", "Any activity that violates applicable local, state, federal, or international laws."],
+                ["2", "Sale of regulated products or services without a valid license", "Selling firearms, pharmaceuticals, alcohol, or other regulated products without proper authorization in the applicable jurisdiction."],
+                ["3", "False or misleading information", "Publishing inaccurate, deceptive, or defamatory content about the business, individuals, or other organizations."],
+                ["4", "Copyright or trademark infringement", "Using images, text, logos, or other materials belonging to third parties without proper authorization."],
+                ["5", "Spam", "Sending or facilitating unsolicited mass commercial communications."],
+                ["6", "Malware distribution", "Hosting or distributing viruses, malicious code, or harmful software."],
+                ["7", "Unauthorized system access", "Attempting to gain unauthorized access to systems, accounts, or data of third parties."],
+                ["8", "Identity impersonation", "Pretending to be another person, business, or official entity."],
+                ["9", "Unauthorized data collection", "Collecting personal data from third parties without their informed consent."],
+                ["10", "MLM or mass recruitment schemes", "Promoting multi-level marketing, pyramid schemes, or unverifiable income claims."],
+                ["11", "Reselling the service", "Reselling or sublicensing the Flores Nexus Group LLC service to third parties without written authorization."],
+                ["12", "Direct competition", "Using the service to directly replicate and compete with the Flores Nexus Group LLC business model."],
+              ].map(([num, title, desc]) => (
+                <div class="flex gap-4 p-4 rounded-xl border border-box-border bg-box-bg">
+                  <span class="text-xs font-bold text-heading-3 w-5 flex-shrink-0 mt-0.5">{num}</span>
+                  <div>
+                    <p class="font-semibold text-heading-1 text-sm mb-1">{title}</p>
+                    <p class="text-xs text-heading-3 leading-relaxed">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Consequences -->
+          <div class="py-6 border-t border-box-border">
+            <h2 class="text-lg font-semibold text-heading-1 mb-3">Consequences of Violation</h2>
+            <p class="text-sm text-heading-2 leading-relaxed mb-3">Violation of this policy may result in:</p>
+            <ul class="space-y-2 text-sm text-heading-2 ml-2">
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                </svg>
+                Immediate suspension of the website without prior notice
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                </svg>
+                Termination of the service subscription without refund
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                </svg>
+                Legal action if the violation causes harm to Flores Nexus Group LLC or third parties
+              </li>
+            </ul>
+          </div>
+
+          <!-- Reporting -->
+          <div class="py-6 border-t border-box-border">
+            <h2 class="text-lg font-semibold text-heading-1 mb-3">Reporting a Violation</h2>
+            <p class="text-sm text-heading-2 leading-relaxed">If you believe a website managed by Flores Nexus Group LLC is being used in violation of this policy, contact us at: <span class="font-medium text-heading-1">[LEGAL EMAIL]</span></p>
+          </div>
+
+        </div>
+      </div>
+    </Container>
+  </main>
+</Layout>

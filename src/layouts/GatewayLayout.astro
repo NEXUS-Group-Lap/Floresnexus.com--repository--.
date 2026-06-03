@@ -1,0 +1,132 @@
+---
+import "../styles/global.css";
+
+export interface Props {
+  title?: string;
+}
+const { title = "Choose Language" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta
+      name="description"
+      content="Flores Nexus Group — Simple monthly websites for local businesses."
+    />
+    <title>Flores Nexus Group — {title}</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="overflow-hidden overflow-y-auto min-h-screen flex flex-col">
+    <div class="absolute top-4 right-4 z-50">
+      <button
+        data-switch-theme
+        class="outline-none flex relative text-heading-2 rounded-full p-2 border border-box-border"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6 dark:flex hidden"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+          ></path>
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6 dark:hidden"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+          ></path>
+        </svg>
+        <span class="sr-only">switch theme</span>
+      </button>
+    </div>
+    <slot />
+  </body>
+  <script>
+    const switchTheme = document.querySelector(
+      "[data-switch-theme]"
+    ) as HTMLButtonElement;
+    if (
+      localStorage.getItem("appTheme") === "dark" ||
+      (!("appTheme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    if (switchTheme) {
+      switchTheme.addEventListener("click", (e) => {
+        e.preventDefault();
+        const doc = document.documentElement;
+        if (doc) {
+          if (localStorage.getItem("appTheme")) {
+            if (localStorage.getItem("appTheme") === "light") {
+              doc.classList.add("dark");
+              localStorage.setItem("appTheme", "dark");
+            } else {
+              doc.classList.remove("dark");
+              localStorage.setItem("appTheme", "light");
+            }
+          } else {
+            if (doc.classList.contains("dark")) {
+              doc.classList.remove("dark");
+              localStorage.setItem("appTheme", "light");
+            } else {
+              doc.classList.add("dark");
+              localStorage.setItem("appTheme", "dark");
+            }
+          }
+        }
+      });
+    }
+  </script>
+</html>
+<style is:global>
+  :root {
+    --color-bg: 255 255 255;
+    --color-box: 255 255 255;
+    --box-border: 229 231 235;
+    --box-sd: 226 232 240 / 0.5;
+    --heading-1: 23 37 84;
+    --heading-2: 31 41 55;
+    --heading-3: 55 65 81;
+  }
+  .dark {
+    --color-bg: 3 7 18;
+    --color-box: 17 24 39;
+    --box-border: 243 244 246 / 0.1;
+    --box-sd: transparent;
+    --heading-1: 255 255 255;
+    --heading-2: 243 244 246;
+    --heading-3: 209 213 219;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: rgb(var(--color-bg));
+    font-family: "Plus Jakarta Sans", sans-serif;
+  }
+</style>

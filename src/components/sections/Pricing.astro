@@ -1,0 +1,242 @@
+---
+import Container from "../shared/Container.astro";
+import BtnLink from "../shared/BtnLink.astro";
+import {
+  STARTER_STRIPE_LINK,
+  PROFESSIONAL_STRIPE_LINK,
+  BUSINESS_QUOTE_FORM_LINK,
+} from "../../config/links";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const startHref = lang === "en" ? "/en/start" : "/es/empezar";
+
+const t = {
+  en: {
+    title: "Simple, Transparent Pricing",
+    subtitle: "Choose the plan that fits your business. Cancel anytime.",
+    setupLabel: "setup",
+    monthLabel: "/month",
+    recommended: "Recommended",
+    requestQuote: "Request Quote",
+    plans: [
+      {
+        name: "Starter Website",
+        setup: "$299",
+        monthly: "$79",
+        desc: "Simple professional website for small local businesses.",
+        cta: "Start Starter Website",
+        ctaHref: startHref,
+        includes: [
+          "One-page website",
+          "Business information section",
+          "Services section",
+          "Call / Text button",
+          "Google Maps or service area",
+          "Social links",
+          "Mobile-friendly design",
+          "Hosting included",
+          "One pre-launch revision",
+          "1 small update per month, non-accumulative",
+          "Basic activity summary, when applicable",
+          "Standard domain included if available (.com / .co / .net)",
+        ],
+        recommended: false,
+      },
+      {
+        name: "Professional Website",
+        setup: "$699",
+        monthly: "$149",
+        desc: "Complete website with stronger online presentation. Our most popular plan.",
+        cta: "Start Professional Website",
+        ctaHref: startHref,
+        includes: [
+          "Up to 5 pages (Home, Services, About, Gallery, Contact)",
+          "Basic contact form",
+          "Google Maps or service area",
+          "Basic copywriting",
+          "Mobile-friendly design",
+          "Hosting included",
+          "Up to 3 small updates per month, non-accumulative",
+          "Basic activity summary, when applicable",
+          "Standard domain included if available (.com / .co / .net)",
+        ],
+        recommended: true,
+      },
+      {
+        name: "Business System",
+        setup: "$2,500+",
+        monthly: "$399+",
+        desc: "Advanced systems for businesses that need more than a standard website.",
+        cta: "Request Quote",
+        ctaHref: BUSINESS_QUOTE_FORM_LINK,
+        includes: [
+          "Advanced quote forms",
+          "Booking systems",
+          "Online payments",
+          "CRM or email integration",
+          "Email automation",
+          "Landing pages",
+          "Analytics",
+          "Multiple locations",
+          "External integrations",
+        ],
+        recommended: false,
+        quoteOnly: true,
+      },
+    ],
+    footerNote: "Hosting included while subscription is active. Standard domain subject to availability, administered by Flores Nexus Group. Premium domains, ownership transfers, additional changes, advanced SEO, and external integrations may require additional charges. Full terms apply.",
+  },
+  es: {
+    title: "Precios Simples y Transparentes",
+    subtitle: "Elige el plan que se adapte a tu negocio. Cancela cuando quieras.",
+    setupLabel: "inicial",
+    monthLabel: "/mes",
+    recommended: "Recomendado",
+    requestQuote: "Solicitar Cotización",
+    plans: [
+      {
+        name: "Starter Website",
+        setup: "$299",
+        monthly: "$79",
+        desc: "Página web profesional simple para pequeños negocios locales.",
+        cta: "Empezar Starter Website",
+        ctaHref: startHref,
+        includes: [
+          "Página de una sola hoja",
+          "Sección de información del negocio",
+          "Sección de servicios",
+          "Botón de llamada / texto",
+          "Google Maps o área de servicio",
+          "Redes sociales",
+          "Diseño mobile-friendly",
+          "Hosting incluido",
+          "Una revisión antes del lanzamiento",
+          "1 actualización pequeña al mes, no acumulable",
+          "Resumen básico de actividad, cuando aplique",
+          "Dominio estándar incluido si está disponible (.com / .co / .net)",
+        ],
+        recommended: false,
+      },
+      {
+        name: "Professional Website",
+        setup: "$699",
+        monthly: "$149",
+        desc: "Página web completa con presentación más sólida. Nuestro plan más popular.",
+        cta: "Empezar Professional Website",
+        ctaHref: startHref,
+        includes: [
+          "Hasta 5 páginas (Inicio, Servicios, Nosotros, Galería, Contacto)",
+          "Formulario de contacto básico",
+          "Google Maps o área de servicio",
+          "Redacción básica",
+          "Diseño mobile-friendly",
+          "Hosting incluido",
+          "Hasta 3 actualizaciones pequeñas al mes, no acumulables",
+          "Resumen básico de actividad, cuando aplique",
+          "Dominio estándar incluido si está disponible (.com / .co / .net)",
+        ],
+        recommended: true,
+      },
+      {
+        name: "Business System",
+        setup: "$2,500+",
+        monthly: "$399+",
+        desc: "Sistemas avanzados para negocios que necesitan más que una página estándar.",
+        cta: "Solicitar Cotización",
+        ctaHref: BUSINESS_QUOTE_FORM_LINK,
+        includes: [
+          "Formularios de cotización avanzados",
+          "Sistemas de reservas",
+          "Pagos en línea",
+          "Integración con CRM o correo",
+          "Automatización de correos",
+          "Landing pages",
+          "Analytics",
+          "Múltiples ubicaciones",
+          "Integraciones externas",
+        ],
+        recommended: false,
+        quoteOnly: true,
+      },
+    ],
+    footerNote: "Hosting incluido mientras la suscripción esté activa. Dominio estándar sujeto a disponibilidad, administrado por Flores Nexus Group. Dominios premium, transferencias de propiedad, cambios adicionales, SEO avanzado e integraciones externas pueden requerir cargos adicionales. Aplican términos completos.",
+  },
+}[lang];
+---
+
+<section class="py-16" id="pricing">
+  <Container>
+    <div class="text-center mb-12" data-reveal>
+      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>
+      <p class="text-heading-3 text-lg max-w-2xl mx-auto">{t.subtitle}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start" data-stagger>
+      {t.plans.map((plan) => (
+        <div class={`relative rounded-2xl border-2 bg-box-bg flex flex-col h-full motion-card ${plan.recommended ? "border-primary shadow-lg shadow-primary/10" : "border-box-border"}`}>
+          {plan.recommended && (
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+              <span class="bg-primary text-white text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap motion-card">
+                {t.recommended}
+              </span>
+            </div>
+          )}
+
+          <div class={`p-6 ${plan.recommended ? "pt-8" : ""}`}>
+            <h3 class="text-xl font-bold text-heading-1 mb-1">{plan.name}</h3>
+            <p class="text-sm text-heading-3 mb-4">{plan.desc}</p>
+
+            <div class="mb-6">
+              <div class="flex items-baseline gap-1">
+                <span class="text-3xl font-bold text-heading-1">{plan.setup}</span>
+                <span class="text-heading-3 text-sm">{t.setupLabel}</span>
+              </div>
+              {!plan.quoteOnly && (
+                <div class="flex items-baseline gap-1 mt-1">
+                  <span class="text-xl font-semibold text-primary">{plan.monthly}</span>
+                  <span class="text-heading-3 text-sm">{t.monthLabel}</span>
+                </div>
+              )}
+            </div>
+
+            {plan.quoteOnly ? (
+              <a
+                href={plan.ctaHref}
+                class="w-full flex justify-center items-center px-6 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-all duration-300 motion-button"
+              >
+                {plan.cta}
+              </a>
+            ) : (
+              <a
+                href={plan.ctaHref}
+                class={`w-full flex justify-center items-center px-6 py-3 rounded-full font-semibold transition-all duration-300 motion-button ${plan.recommended ? "bg-primary text-white hover:bg-blue-800" : "border-2 border-box-border text-heading-2 hover:border-primary hover:text-primary"}`}
+              >
+                {plan.cta}
+              </a>
+            )}
+          </div>
+
+          <div class="px-6 pb-6 flex-1">
+            <hr class="border-box-border mb-4" />
+            <ul class="space-y-2" data-stagger>
+              {plan.includes.map((item) => (
+                <li class="flex items-start gap-2 text-sm text-heading-2">
+                  <svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-center text-xs text-heading-3 mt-6 max-w-2xl mx-auto italic">{t.footerNote}</p>
+  </Container>
+</section>

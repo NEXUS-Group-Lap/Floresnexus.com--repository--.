@@ -1,0 +1,118 @@
+---
+import Container from "../shared/Container.astro";
+import { NEXUS_MINI_STRIPE_LINK } from "../../config/links";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const startHref = lang === "en" ? "/en/start" : "/es/empezar";
+
+const t = {
+  en: {
+    label: "Entry-Level Option",
+    title: "Nexus Mini Card",
+    setup: "$99 setup",
+    monthly: "$29/month",
+    annualLabel: "— or — $99 setup + $299/year (save $49)",
+    urlLine: "Your business at nexuslink.com/yourbusiness",
+    desc: "A simple digital business card for businesses that need a professional shareable link — not a full website.",
+    includes: [
+      "Business name & phone",
+      "Call / Text / WhatsApp button",
+      "Service area or location",
+      "Basic hours",
+      "3–5 services listed",
+      "One main image or background",
+      "Social media links",
+      "Mobile-friendly design",
+      "Hosted on a Flores Nexus managed link",
+    ],
+    termsLink: "See full terms at /service-scope",
+    termsHref: "/en/service-scope",
+    cta: "Start Mini Card",
+    ctaHref: startHref,
+  },
+  es: {
+    label: "Opción de Entrada",
+    title: "Nexus Mini Card",
+    setup: "$99 inicial",
+    monthly: "$29/mes",
+    annualLabel: "— o — $99 inicial + $299/año (ahorra $49)",
+    urlLine: "Tu negocio en nexuslink.com/tunegocio",
+    desc: "Una tarjeta digital de negocios simple para quienes necesitan un enlace profesional compartible — no una página web completa.",
+    includes: [
+      "Nombre y teléfono del negocio",
+      "Botón de llamada / texto / WhatsApp",
+      "Área de servicio o ubicación",
+      "Horario básico",
+      "3–5 servicios listados",
+      "Una imagen o fondo principal",
+      "Redes sociales",
+      "Diseño mobile-friendly",
+      "Alojado en enlace administrado por Flores Nexus",
+    ],
+    termsLink: "Ver términos completos en /service-scope",
+    termsHref: "/es/alcance-del-servicio",
+    cta: "Empezar Mini Card",
+    ctaHref: startHref,
+  },
+}[lang];
+---
+
+<section class="py-10">
+  <Container>
+    <div class="rounded-2xl border border-box-border bg-box-bg overflow-hidden max-w-4xl mx-auto motion-card" data-reveal="scale">
+      <div class="flex flex-col md:flex-row">
+        <!-- Left info column -->
+        <div class="md:w-2/5 bg-gradient-to-br from-primary/10 to-blue-400/5 p-8 flex flex-col justify-between" data-reveal="left">
+          <div>
+            <span class="text-xs font-semibold text-primary uppercase tracking-widest mb-3 block">
+              {t.label}
+            </span>
+            <h3 class="text-2xl font-bold text-heading-1 mb-2">{t.title}</h3>
+            <p class="text-heading-3 text-sm mb-6 leading-relaxed">{t.desc}</p>
+
+            <div class="mb-4">
+              <p class="text-2xl font-bold text-heading-1">{t.setup}</p>
+              <p class="text-primary font-semibold">{t.monthly}</p>
+              <p class="text-xs text-heading-3 mt-0.5">{t.annualLabel}</p>
+              <p class="text-xs text-heading-3 mt-2 font-medium">{t.urlLine}</p>
+            </div>
+
+            <a
+              href={t.ctaHref}
+              class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-all duration-300 text-sm motion-button"
+            >
+              {t.cta}
+            </a>
+          </div>
+        </div>
+
+        <!-- Right details column -->
+        <div class="md:w-3/5 p-8" data-reveal="right">
+          <h4 class="font-semibold text-heading-1 mb-4 text-sm uppercase tracking-wide">
+            {lang === "en" ? "Includes" : "Incluye"}
+          </h4>
+          <ul class="space-y-2 mb-6" data-stagger>
+            {t.includes.map((item) => (
+              <li class="flex items-start gap-2 text-sm text-heading-2">
+                <svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <div class="border-t border-box-border pt-4">
+            <a href={t.termsHref} class="text-xs text-primary hover:underline">
+              {t.termsLink}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

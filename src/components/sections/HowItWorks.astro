@@ -1,0 +1,118 @@
+---
+import Container from "../shared/Container.astro";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    title: "How It Works",
+    subtitle: "From choosing a plan to launching your website — here's the simple process.",
+    note: "Production starts only after payment and complete client information are received.",
+    steps: [
+      {
+        number: "01",
+        title: "Choose Your Plan",
+        desc: "Review our plans and select the one that fits your business and budget.",
+      },
+      {
+        number: "02",
+        title: "Fill Out the Form",
+        desc: "Complete the Start Your Website form with your business details, services, and contact info.",
+      },
+      {
+        number: "03",
+        title: "Complete Payment",
+        desc: "You're redirected to a secure Stripe payment link for your selected plan.",
+      },
+      {
+        number: "04",
+        title: "Complete Onboarding",
+        desc: "After payment, complete the onboarding form with your photos, social links, and any additional info.",
+      },
+      {
+        number: "05",
+        title: "We Build It",
+        desc: "Our team reviews your information and builds your professional website.",
+      },
+      {
+        number: "06",
+        title: "Review & Launch",
+        desc: "You review the result. Once approved, your website goes live.",
+      },
+    ],
+  },
+  es: {
+    title: "Cómo Funciona",
+    subtitle: "Desde elegir un plan hasta el lanzamiento de tu página — aquí está el proceso simple.",
+    note: "La producción comienza solo después de que el pago y la información completa del cliente sean recibidos.",
+    steps: [
+      {
+        number: "01",
+        title: "Elige Tu Plan",
+        desc: "Revisa nuestros planes y selecciona el que se adapte a tu negocio y presupuesto.",
+      },
+      {
+        number: "02",
+        title: "Llena el Formulario",
+        desc: "Completa el formulario de Empezar Mi Página con los detalles de tu negocio, servicios e info de contacto.",
+      },
+      {
+        number: "03",
+        title: "Completa el Pago",
+        desc: "Serás redirigido a un enlace de pago seguro de Stripe para el plan que seleccionaste.",
+      },
+      {
+        number: "04",
+        title: "Completa el Onboarding",
+        desc: "Después del pago, completa el formulario de onboarding con fotos, redes sociales e información adicional.",
+      },
+      {
+        number: "05",
+        title: "Nosotros lo Construimos",
+        desc: "Nuestro equipo revisa tu información y construye tu página web profesional.",
+      },
+      {
+        number: "06",
+        title: "Revisión y Lanzamiento",
+        desc: "Tú revisas el resultado. Una vez aprobado, tu página entra en producción.",
+      },
+    ],
+  },
+}[lang];
+---
+
+<section class="py-16" id={lang === "en" ? "how-it-works" : "como-funciona"}>
+  <Container>
+    <div class="text-center mb-12" data-reveal>
+      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>
+      <p class="text-heading-3 text-lg max-w-2xl mx-auto">{t.subtitle}</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-stagger>
+      {t.steps.map((step, i) => (
+        <div class="relative p-6 rounded-2xl border border-box-border bg-box-bg hover:border-primary/50 transition-all motion-card">
+          <span class="text-5xl font-black text-primary/10 absolute top-4 right-4 leading-none select-none">
+            {step.number}
+          </span>
+          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+            <span class="text-primary font-bold text-sm">{step.number}</span>
+          </div>
+          <h3 class="font-bold text-heading-1 text-lg mb-2">{step.title}</h3>
+          <p class="text-heading-3 text-sm leading-relaxed">{step.desc}</p>
+          {i < t.steps.length - 1 && (
+            <div class="hidden lg:block absolute top-1/2 -right-3 w-6 h-0.5 bg-primary/30 z-10 draw-line"></div>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-8 p-4 rounded-xl bg-primary/5 border border-primary/20 text-center max-w-2xl mx-auto motion-card" data-reveal="scale">
+      <p class="text-sm text-heading-2 font-medium">
+        {t.note}
+      </p>
+    </div>
+  </Container>
+</section>

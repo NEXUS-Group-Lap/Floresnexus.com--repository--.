@@ -1,0 +1,84 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
+import FinalCTA from "../../components/sections/FinalCTA.astro";
+---
+
+<Layout title="Preguntas Frecuentes" description="Preguntas frecuentes sobre los planes, precios, propiedad y soporte de Flores Nexus Group." lang="es">
+  <main class="pt-24 pb-20">
+    <Container>
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl font-bold text-heading-1 mb-4">Preguntas Frecuentes</h1>
+          <p class="text-heading-3 text-lg">Todo lo que necesitas saber sobre nuestro servicio de páginas web.</p>
+        </div>
+
+        <div class="space-y-4">
+          {[
+            {
+              q: "¿Soy dueño de la página web?",
+              a: "Bajo los planes mensuales, la página está administrada dentro del sistema de Flores Nexus Group. Estás pagando por el servicio activo de página web, hosting y administración. La transferencia de propiedad no está incluida a menos que se compre por separado y sea aprobada por Flores Nexus Group.",
+            },
+            {
+              q: "¿Qué pasa si dejo de pagar?",
+              a: "La página permanece activa mientras la suscripción esté al corriente. Si el pago no está al día, el servicio puede ser suspendido hasta que el pago sea actualizado.",
+            },
+            {
+              q: "¿Puedo hacer cambios cuando quiera?",
+              a: "Los cambios dependen del plan seleccionado. El Professional Website incluye una pequeña actualización por mes. Una actualización pequeña significa reemplazar una foto, corregir texto corto, actualizar número de teléfono u horario, o actualizar un enlace. Otros cambios se cobran por separado a través del Formulario de Solicitud de Cambio.",
+            },
+            {
+              q: "¿Esto me traerá clientes?",
+              a: "Flores Nexus Group no garantiza ventas, leads, llamadas, ingresos ni posicionamiento en Google. El servicio ofrece una presencia profesional en internet para que el negocio sea más fácil de presentar y contactar.",
+            },
+            {
+              q: "¿Por qué no usar Wix o herramientas de IA?",
+              a: "Las herramientas de construcción propia pueden ser más baratas si quieres construirlo tú mismo. Flores Nexus Group es para dueños de negocios que quieren una presencia profesional construida y administrada por nosotros, para que puedan enfocarse en su negocio.",
+            },
+            {
+              q: "¿Cuánto tiempo tarda en lanzarse mi página?",
+              a: "Página lista en 24–72 horas después de recibir el pago y la información completa del cliente. La producción comienza solo cuando ambas condiciones se cumplen.",
+            },
+            {
+              q: "¿Qué necesito proporcionar?",
+              a: "Necesitarás proporcionar: nombre del negocio, teléfono, dirección o área de servicio, redes sociales, fotos, lista de servicios y cualquier información específica. El formulario de onboarding después del pago te guiará exactamente sobre lo que se necesita.",
+            },
+            {
+              q: "¿Puedo cambiar de plan más adelante?",
+              a: "Sí. Puedes contactarnos para solicitar un cambio de plan. Se aplicarían costos adicionales de configuración y ajustes en la tarifa mensual según la diferencia entre planes.",
+            },
+            {
+              q: "¿El hosting está incluido?",
+              a: "Sí. El hosting está incluido en todos los planes mientras la suscripción esté activa. Flores Nexus Group administra el hosting, por lo que no necesitas comprarlo ni administrarlo por separado.",
+            },
+            {
+              q: "¿Mi página incluye un dominio?",
+              a: "Los detalles del plan y los arreglos de dominio se discuten durante el onboarding. Los dominios exactos no están garantizados y dependen de la disponibilidad y el plan seleccionado. La transferencia de propiedad de dominios no está incluida salvo que se compre o apruebe por separado.",
+            },
+          ].map((faq) => (
+            <details class="group border border-box-border rounded-xl bg-box-bg overflow-hidden">
+              <summary class="flex justify-between items-center p-5 cursor-pointer font-semibold text-heading-1 list-none hover:text-primary transition">
+                {faq.q}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  class="w-5 h-5 flex-shrink-0 ml-4 transition-transform group-open:rotate-180"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                </svg>
+              </summary>
+              <div class="px-5 pb-5 text-heading-3 text-sm leading-relaxed border-t border-box-border pt-4">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </Container>
+
+    <FinalCTA lang="es" />
+  </main>
+</Layout>

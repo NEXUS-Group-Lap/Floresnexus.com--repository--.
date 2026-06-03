@@ -1,0 +1,61 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
+import { ONBOARDING_FORM_LINK } from "../../config/links";
+---
+
+<Layout title="Thank You" lang="en">
+  <main class="pt-24 pb-20 min-h-screen flex items-center">
+    <Container>
+      <div class="max-w-2xl mx-auto text-center">
+        <!-- Success icon -->
+        <div class="w-20 h-20 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mx-auto mb-8">
+          <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+
+        <h1 class="text-4xl font-bold text-heading-1 mb-4">Payment Received!</h1>
+        <p class="text-heading-3 text-lg mb-8 leading-relaxed">
+          Payment received. The next step is completing the onboarding form with your business information,
+          services, photos, phone number, address or service area, and social links.
+          <strong class="text-heading-2">Production starts once the form is complete.</strong>
+        </p>
+
+        <div class="rounded-2xl border border-box-border bg-box-bg p-8 mb-8 text-left">
+          <h2 class="font-bold text-heading-1 text-lg mb-4">What happens next:</h2>
+          <ol class="space-y-3">
+            {[
+              "Complete the onboarding form below with your full business details.",
+              "Our team reviews your information.",
+              "We build your professional website.",
+              "You review and approve before launch.",
+              "Your website goes live!",
+            ].map((step, i) => (
+              <li class="flex items-start gap-3 text-heading-2 text-sm">
+                <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">
+                  {i + 1}
+                </span>
+                {step}
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <a
+          href={ONBOARDING_FORM_LINK}
+          class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-all duration-300 text-lg"
+        >
+          Complete Onboarding Form
+        </a>
+
+        <p class="text-xs text-heading-3 mt-6">
+          Questions? Contact us at{" "}
+          <a href="mailto:floresholdinggroup@gmail.com" class="text-primary hover:underline">
+            floresholdinggroup@gmail.com
+          </a>
+        </p>
+      </div>
+    </Container>
+  </main>
+</Layout>

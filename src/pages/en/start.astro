@@ -1,0 +1,315 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
+import {
+  STARTER_STRIPE_LINK,
+  PROFESSIONAL_STRIPE_LINK,
+  NEXUS_MINI_STRIPE_LINK,
+  BUSINESS_QUOTE_FORM_LINK,
+} from "../../config/links";
+---
+
+<Layout
+  title="Start Your Website"
+  description="Start the process to get your professional website. Fill out this form and we'll guide you to the right plan."
+  lang="en"
+>
+  <main class="pt-24 pb-20">
+    <Container>
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-10">
+          <h1 class="text-4xl font-bold text-heading-1 mb-3">Start Your Website</h1>
+          <p class="text-heading-3 text-lg">
+            Fill out this form to start your website. After submitting, you'll be directed to a secure payment link.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-box-border bg-box-bg p-8">
+          <form
+            id="start-form"
+            class="space-y-5"
+            data-mini={NEXUS_MINI_STRIPE_LINK}
+            data-starter={STARTER_STRIPE_LINK}
+            data-professional={PROFESSIONAL_STRIPE_LINK}
+            data-business={BUSINESS_QUOTE_FORM_LINK}
+          >
+            <!-- Name row -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="firstName" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  First Name <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="John"
+                />
+              </div>
+              <div>
+                <label for="lastName" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Last Name <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="Smith"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="businessName" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Business Name <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="businessName"
+                name="businessName"
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                placeholder="Smith's Roofing & Repair"
+              />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="phone" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Phone Number <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="(555) 000-0000"
+                />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Email <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="john@business.com"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="preferredLanguage" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Preferred Language
+              </label>
+              <select
+                id="preferredLanguage"
+                name="preferredLanguage"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+              >
+                <option value="en">English</option>
+                <option value="es">Español</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="industry" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Business Type / Industry <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="industry"
+                name="industry"
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+              >
+                <option value="">Select your industry</option>
+                <option>Photographers</option>
+                <option>Roofing</option>
+                <option>Handyman</option>
+                <option>Painting</option>
+                <option>Lawn Care</option>
+                <option>Cleaning</option>
+                <option>Pressure Washing</option>
+                <option>Barber / Hair Salon</option>
+                <option>Food Truck</option>
+                <option>Mobile Mechanic</option>
+                <option>Local Contractor</option>
+                <option>Other Service Business</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="serviceArea" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                City / Service Area <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="serviceArea"
+                name="serviceArea"
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                placeholder="Miami, FL / South Florida"
+              />
+            </div>
+
+            <div>
+              <label for="selectedPlan" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Selected Plan <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="selectedPlan"
+                name="selectedPlan"
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+              >
+                <option value="">Select a plan</option>
+                <option value="mini">Nexus Mini Card — $99 setup + $29/month</option>
+                <option value="starter">Starter Website — $299 setup + $79/month</option>
+                <option value="professional">Professional Website — $699 setup + $149/month</option>
+                <option value="business">Business System — Starting at $2,500 (Request Quote)</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="mainServices" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Main Services
+                <span class="text-heading-3 font-normal ml-1">(optional)</span>
+              </label>
+              <textarea
+                id="mainServices"
+                name="mainServices"
+                rows="3"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm resize-none"
+                placeholder="e.g. Roof repair, gutter cleaning, emergency service"
+              ></textarea>
+            </div>
+
+            <div>
+              <label for="desiredDomain" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Desired Domain
+                <span class="text-heading-3 font-normal ml-1">(optional)</span>
+              </label>
+              <input
+                type="text"
+                id="desiredDomain"
+                name="desiredDomain"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                placeholder="e.g. smithroofing.com — not guaranteed, subject to availability"
+              />
+            </div>
+
+            <div>
+              <label for="repCode" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Representative Code
+                <span class="text-heading-3 font-normal ml-1">(optional)</span>
+              </label>
+              <input
+                type="text"
+                id="repCode"
+                name="repCode"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                placeholder="If a Flores Nexus representative helped you, enter their code here."
+              />
+            </div>
+
+            <div>
+              <label for="notes" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Notes / Project Details
+                <span class="text-heading-3 font-normal ml-1">(optional)</span>
+              </label>
+              <textarea
+                id="notes"
+                name="notes"
+                rows="3"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm resize-none"
+                placeholder="Tell us anything else about your business or what you need..."
+              ></textarea>
+            </div>
+
+            <!-- Terms checkbox -->
+            <div class="rounded-xl border border-box-border bg-box-bg p-4">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  id="termsAccepted"
+                  name="termsAccepted"
+                  class="mt-0.5 w-4 h-4 flex-shrink-0 accent-primary"
+                />
+                <span class="text-xs text-heading-3 leading-relaxed">
+                  I understand that payment must be completed through the official Flores Nexus Group checkout. Production starts only after payment and complete business information are received. I have read and agree to the{" "}
+                  <a href="/en/terms-of-service" class="text-primary hover:underline">Terms of Service</a>,{" "}
+                  <a href="/en/privacy-policy" class="text-primary hover:underline">Privacy Policy</a>, and{" "}
+                  <a href="/en/refund-policy" class="text-primary hover:underline">Refund Policy</a>.
+                </span>
+              </label>
+            </div>
+
+            <div id="plan-error" class="hidden text-sm text-red-500 text-center">
+              Please select a plan to continue.
+            </div>
+
+            <button
+              type="submit"
+              id="submit-btn"
+              disabled
+              class="w-full py-3 rounded-full bg-primary text-white font-semibold transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed hover:enabled:bg-blue-800"
+            >
+              Continue to Payment
+            </button>
+
+            <p class="text-xs text-center text-heading-3">
+              Production starts after payment and complete client information are received.
+            </p>
+          </form>
+        </div>
+      </div>
+    </Container>
+  </main>
+</Layout>
+
+<script>
+  const form = document.getElementById("start-form") as HTMLFormElement | null;
+  const checkbox = document.getElementById("termsAccepted") as HTMLInputElement | null;
+  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement | null;
+  const planError = document.getElementById("plan-error");
+
+  if (checkbox && submitBtn) {
+    checkbox.addEventListener("change", () => {
+      submitBtn.disabled = !checkbox.checked;
+    });
+  }
+
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const plan = (document.getElementById("selectedPlan") as HTMLSelectElement)?.value;
+
+      if (!plan) {
+        planError?.classList.remove("hidden");
+        return;
+      }
+      planError?.classList.add("hidden");
+
+      const links: Record<string, string> = {
+        mini: form.dataset.mini ?? "#",
+        starter: form.dataset.starter ?? "#",
+        professional: form.dataset.professional ?? "#",
+        business: form.dataset.business ?? "#",
+      };
+      const dest = links[plan];
+      if (dest && dest !== "#") {
+        window.location.href = dest;
+      } else {
+        window.location.href = "/en/thank-you";
+      }
+    });
+  }
+</script>

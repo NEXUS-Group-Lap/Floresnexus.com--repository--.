@@ -1,0 +1,84 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
+import FinalCTA from "../../components/sections/FinalCTA.astro";
+---
+
+<Layout title="FAQ" description="Frequently asked questions about Flores Nexus Group website plans, pricing, ownership, and support." lang="en">
+  <main class="pt-24 pb-20">
+    <Container>
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl font-bold text-heading-1 mb-4">Frequently Asked Questions</h1>
+          <p class="text-heading-3 text-lg">Everything you need to know about our website service.</p>
+        </div>
+
+        <div class="space-y-4">
+          {[
+            {
+              q: "Do I own the website?",
+              a: "Under monthly plans, the website is managed inside the Flores Nexus Group system. You are paying for the active website service, hosting, and management. Ownership transfer is not included unless purchased separately and approved by Flores Nexus Group.",
+            },
+            {
+              q: "What happens if I stop paying?",
+              a: "The website remains active while the subscription is current. If payment is not current, the service may be suspended until payment is updated.",
+            },
+            {
+              q: "Can I make changes whenever I want?",
+              a: "Changes depend on the selected plan. The Professional Website includes one small update per month. A small update means replacing one photo, correcting short text, updating phone number or hours, or updating one link. Other changes are billed separately through the Change Request Form.",
+            },
+            {
+              q: "How does being online help my business?",
+              a: "A professional website helps customers find, understand, verify, and contact your business more easily. It also gives you a clear link to share through Google, social media, referrals, text messages, and business cards. Business results vary based on market demand, reputation, pricing, and service quality.",
+            },
+            {
+              q: "Why not use Wix or AI website builders?",
+              a: "DIY tools can be a cheaper option if you want to build the website yourself. Flores Nexus Group is for business owners who want a professional online presence built and managed for them, so they can focus on running their business.",
+            },
+            {
+              q: "How long does it take to launch my website?",
+              a: "Site ready in 24–72 hours after payment and complete client information are received. Production starts only after both conditions are met.",
+            },
+            {
+              q: "What do I need to provide?",
+              a: "You'll need to provide: business name, phone number, address or service area, social media links, photos, a list of your services, and any specific copy or information you want included. The onboarding form after payment will walk you through exactly what's needed.",
+            },
+            {
+              q: "Can I upgrade my plan later?",
+              a: "Yes. You can contact us to request a plan upgrade. Additional setup costs and monthly rate adjustments would apply based on the difference between plans.",
+            },
+            {
+              q: "Is hosting included?",
+              a: "Yes. Hosting is included in all plans while the subscription is active. Flores Nexus Group manages the hosting, so you don't need to purchase or manage it separately.",
+            },
+            {
+              q: "Does my website include a domain name?",
+              a: "Plan details and domain arrangements are discussed during onboarding. Exact domains are not guaranteed and depend on availability and the selected plan. Ownership transfer of domains is not included unless separately purchased or approved.",
+            },
+          ].map((faq) => (
+            <details class="group border border-box-border rounded-xl bg-box-bg overflow-hidden">
+              <summary class="flex justify-between items-center p-5 cursor-pointer font-semibold text-heading-1 list-none hover:text-primary transition">
+                {faq.q}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  class="w-5 h-5 flex-shrink-0 ml-4 transition-transform group-open:rotate-180"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                </svg>
+              </summary>
+              <div class="px-5 pb-5 text-heading-3 text-sm leading-relaxed border-t border-box-border pt-4">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </Container>
+
+    <FinalCTA lang="en" />
+  </main>
+</Layout>

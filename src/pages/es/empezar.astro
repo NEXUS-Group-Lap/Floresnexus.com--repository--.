@@ -1,0 +1,311 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
+import {
+  STARTER_STRIPE_LINK,
+  PROFESSIONAL_STRIPE_LINK,
+  NEXUS_MINI_STRIPE_LINK,
+  BUSINESS_QUOTE_FORM_LINK,
+} from "../../config/links";
+---
+
+<Layout
+  title="Empezar Mi Página"
+  description="Empieza el proceso para obtener tu página web profesional. Llena este formulario y te guiaremos al plan correcto."
+  lang="es"
+>
+  <main class="pt-24 pb-20">
+    <Container>
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-10">
+          <h1 class="text-4xl font-bold text-heading-1 mb-3">Empezar Mi Página</h1>
+          <p class="text-heading-3 text-lg">
+            Llena este formulario para empezar tu página. Después de enviarlo, serás dirigido a un enlace de pago seguro.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-box-border bg-box-bg p-8">
+          <form
+            id="start-form-es"
+            class="space-y-5"
+            data-mini={NEXUS_MINI_STRIPE_LINK}
+            data-starter={STARTER_STRIPE_LINK}
+            data-professional={PROFESSIONAL_STRIPE_LINK}
+            data-business={BUSINESS_QUOTE_FORM_LINK}
+          >
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="firstName" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Nombre <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="Juan"
+                />
+              </div>
+              <div>
+                <label for="lastName" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Apellido <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="González"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="businessName" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Nombre del Negocio <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="businessName"
+                name="businessName"
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                placeholder="González Roofing"
+              />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="phone" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Teléfono <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="(555) 000-0000"
+                />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Correo Electrónico <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="juan@negocio.com"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="preferredLanguage" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Idioma Preferido
+              </label>
+              <select
+                id="preferredLanguage"
+                name="preferredLanguage"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+              >
+                <option value="es">Español</option>
+                <option value="en">English</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="industry" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Tipo de Negocio / Industria <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="industry"
+                name="industry"
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+              >
+                <option value="">Selecciona tu industria</option>
+                <option>Fotografos</option>
+                <option>Roofing</option>
+                <option>Handyman</option>
+                <option>Pintura</option>
+                <option>Jardinería</option>
+                <option>Limpieza</option>
+                <option>Pressure Washing</option>
+                <option>Barbería / Salón de Belleza</option>
+                <option>Food Truck</option>
+                <option>Mecánico Móvil</option>
+                <option>Contratista Local</option>
+                <option>Otro Negocio de Servicios</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="serviceArea" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Ciudad / Área de Servicio <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="serviceArea"
+                name="serviceArea"
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                placeholder="Miami, FL / Sur de la Florida"
+              />
+            </div>
+
+            <div>
+              <label for="selectedPlan" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Plan Seleccionado <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="selectedPlan"
+                name="selectedPlan"
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+              >
+                <option value="">Selecciona un plan</option>
+                <option value="mini">Nexus Mini Card — $99 inicial + $29/mes</option>
+                <option value="starter">Starter Website — $299 inicial + $79/mes</option>
+                <option value="professional">Professional Website — $699 inicial + $149/mes</option>
+                <option value="business">Business System — Desde $2,500 (Solicitar Cotización)</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="mainServices" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Servicios Principales
+                <span class="text-heading-3 font-normal ml-1">(opcional)</span>
+              </label>
+              <textarea
+                id="mainServices"
+                name="mainServices"
+                rows="3"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm resize-none"
+                placeholder="Ej. Reparación de techos, limpieza de canaletas, servicio de emergencia"
+              ></textarea>
+            </div>
+
+            <div>
+              <label for="desiredDomain" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Dominio Deseado
+                <span class="text-heading-3 font-normal ml-1">(opcional)</span>
+              </label>
+              <input
+                type="text"
+                id="desiredDomain"
+                name="desiredDomain"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                placeholder="Ej. techossmith.com — no garantizado, sujeto a disponibilidad"
+              />
+            </div>
+
+            <div>
+              <label for="repCode" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Código del Representante
+                <span class="text-heading-3 font-normal ml-1">(opcional)</span>
+              </label>
+              <input
+                type="text"
+                id="repCode"
+                name="repCode"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                placeholder="Si un representante de Flores Nexus te ayudó, escribe su código aquí."
+              />
+            </div>
+
+            <div>
+              <label for="notes" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Notas / Detalles del Proyecto
+                <span class="text-heading-3 font-normal ml-1">(opcional)</span>
+              </label>
+              <textarea
+                id="notes"
+                name="notes"
+                rows="3"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm resize-none"
+                placeholder="Cuéntanos algo más sobre tu negocio o lo que necesitas..."
+              ></textarea>
+            </div>
+
+            <!-- Terms checkbox -->
+            <div class="rounded-xl border border-box-border bg-box-bg p-4">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  id="termsAcceptedEs"
+                  name="termsAccepted"
+                  class="mt-0.5 w-4 h-4 flex-shrink-0 accent-primary"
+                />
+                <span class="text-xs text-heading-3 leading-relaxed">
+                  Entiendo que el pago debe completarse a través del checkout oficial de Flores Nexus Group. La producción inicia únicamente después de recibir el pago y la información completa del negocio. He leído y acepto los <a href="/es/terminos-de-servicio" class="text-primary hover:underline">Términos de Servicio</a>, la <a href="/es/politica-de-privacidad" class="text-primary hover:underline">Política de Privacidad</a> y la <a href="/es/politica-de-reembolsos" class="text-primary hover:underline">Política de Reembolsos</a>.
+                </span>
+              </label>
+            </div>
+
+            <div id="plan-error-es" class="hidden text-sm text-red-500 text-center">
+              Por favor selecciona un plan para continuar.
+            </div>
+
+            <button
+              type="submit"
+              id="submit-btn-es"
+              disabled
+              class="w-full py-3 rounded-full bg-primary text-white font-semibold transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed hover:enabled:bg-blue-800"
+            >
+              Continuar al Pago
+            </button>
+
+            <p class="text-xs text-center text-heading-3">
+              La producción inicia después de recibir el pago y la información completa del cliente.
+            </p>
+          </form>
+        </div>
+      </div>
+    </Container>
+  </main>
+</Layout>
+
+<script>
+  const form = document.getElementById("start-form-es") as HTMLFormElement | null;
+  const checkbox = document.getElementById("termsAcceptedEs") as HTMLInputElement | null;
+  const submitBtn = document.getElementById("submit-btn-es") as HTMLButtonElement | null;
+  const planError = document.getElementById("plan-error-es");
+
+  if (checkbox && submitBtn) {
+    checkbox.addEventListener("change", () => {
+      submitBtn.disabled = !checkbox.checked;
+    });
+  }
+
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const plan = (document.getElementById("selectedPlan") as HTMLSelectElement)?.value;
+
+      if (!plan) {
+        planError?.classList.remove("hidden");
+        return;
+      }
+      planError?.classList.add("hidden");
+
+      const links: Record<string, string> = {
+        mini: form.dataset.mini ?? "#",
+        starter: form.dataset.starter ?? "#",
+        professional: form.dataset.professional ?? "#",
+        business: form.dataset.business ?? "#",
+      };
+      const dest = links[plan];
+      if (dest && dest !== "#") {
+        window.location.href = dest;
+      } else {
+        window.location.href = "/es/gracias";
+      }
+    });
+  }
+</script>

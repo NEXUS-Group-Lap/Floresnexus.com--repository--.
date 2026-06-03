@@ -1,0 +1,63 @@
+---
+import Container from "../shared/Container.astro";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    title: "Clear Service Scope",
+    subtitle:
+      "Each plan includes a defined set of services. Additional work can be quoted separately when needed.",
+    items: [
+      "Support is handled through the communication and request process included with each plan",
+      "Business results such as sales, leads, calls, revenue, or Google ranking depend on market conditions and customer demand",
+      "Base plans focus on professional website presence, contact visibility, hosting, and plan-based updates",
+      "Social media management is available through a separate quote when needed",
+      "Projects, pages, revisions, and edits follow the scope listed in the selected plan",
+      "Advanced SEO, ad campaigns, CRM, automations, and custom integrations are available by separate quote",
+      "Website ownership transfer is available only when separately purchased or approved in writing",
+    ],
+  },
+  es: {
+    title: "Alcance Claro Del Servicio",
+    subtitle:
+      "Cada plan incluye un conjunto definido de servicios. El trabajo adicional puede cotizarse por separado cuando sea necesario.",
+    items: [
+      "El soporte se maneja mediante el proceso de comunicación y solicitudes incluido en cada plan",
+      "Resultados como ventas, leads, llamadas, ingresos o posicionamiento en Google dependen del mercado y la demanda del cliente",
+      "Los planes base se enfocan en presencia web profesional, visibilidad de contacto, hosting y actualizaciones según el plan",
+      "El manejo de redes sociales está disponible mediante cotización separada cuando sea necesario",
+      "Los proyectos, páginas, revisiones y ediciones siguen el alcance establecido en el plan seleccionado",
+      "SEO avanzado, campañas de anuncios, CRM, automatizaciones e integraciones personalizadas están disponibles mediante cotización separada",
+      "La transferencia de propiedad del sitio web está disponible únicamente cuando se compre o se apruebe por escrito",
+    ],
+  },
+}[lang];
+---
+
+<section class="py-16">
+  <Container>
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-8" data-reveal>
+        <h2 class="text-2xl md:text-3xl font-bold text-heading-1 mb-3">{t.title}</h2>
+        <p class="text-heading-3">{t.subtitle}</p>
+      </div>
+
+      <div class="rounded-2xl border border-box-border bg-box-bg p-6 md:p-8 motion-card" data-reveal="scale">
+        <ul class="space-y-3" data-stagger>
+          {t.items.map((item) => (
+            <li class="flex items-start gap-3 text-heading-2 text-sm">
+              <svg class="w-5 h-5 text-heading-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </Container>
+</section>

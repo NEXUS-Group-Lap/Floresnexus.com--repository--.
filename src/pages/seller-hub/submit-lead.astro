@@ -1,0 +1,145 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
+---
+
+<Layout title="Seller Hub — Submit Lead" lang="en">
+  <main class="pt-24 pb-20">
+    <Container>
+      <div class="max-w-2xl mx-auto">
+        <div class="mb-2">
+          <a href="/seller-hub" class="text-sm text-primary hover:underline">← Seller Hub</a>
+        </div>
+        <h1 class="text-4xl font-bold text-heading-1 mb-3 mt-4">Submit a Lead</h1>
+        <p class="text-heading-3 text-lg mb-8">
+          Use this form to submit a qualified lead for commission tracking.
+          A lead is qualified when the client has expressed interest and is ready to move forward.
+        </p>
+
+        <div class="rounded-2xl border border-box-border bg-box-bg p-8">
+          <form class="space-y-5">
+            <div>
+              <label class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Your Representative Code <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                placeholder="Your seller code"
+              />
+            </div>
+
+            <hr class="border-box-border" />
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Client First Name <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Client Last Name <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Client Business Name <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+              />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Client Phone <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Client Email
+                </label>
+                <input
+                  type="email"
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Industry / Business Type <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                placeholder="e.g. Roofing, Cleaning, Lawn Care"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Interested Plan <span class="text-red-500">*</span>
+              </label>
+              <select
+                required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+              >
+                <option value="">Select a plan</option>
+                <option>Nexus Mini Card</option>
+                <option>Starter Website</option>
+                <option>Professional Website</option>
+                <option>Business System</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Notes
+              </label>
+              <textarea
+                rows="3"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm resize-none"
+                placeholder="Any context about this lead, their situation, or how the conversation went..."
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full py-3 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-all duration-300"
+            >
+              Submit Lead
+            </button>
+          </form>
+        </div>
+
+        <p class="text-xs text-center text-heading-3 mt-4">
+          This form is for lead tracking only. The client still needs to complete payment through the Start Your Website form to activate their plan.
+        </p>
+      </div>
+    </Container>
+  </main>
+</Layout>
