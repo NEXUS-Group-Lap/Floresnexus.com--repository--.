@@ -6,152 +6,88 @@ export interface Props {
 }
 const { lang } = Astro.props;
 
+const planStyle: Record<string, string> = {
+  "Nexus Mini Card":      "bg-pink-500/15 text-pink-500",
+  "Starter Website":      "bg-lime-500/15 text-lime-600 dark:text-lime-400",
+  "Professional Website": "bg-primary/15 text-primary",
+};
+
+function mshot(url: string) {
+  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=640&h=400`;
+}
+
 const t = {
   en: {
-    title: "Website Examples by Industry",
-    subtitle: "See the type of clean, professional websites we build for local service businesses.",
-    disclaimer: "These are sample layouts representing the style and structure we deliver.",
-    planLabel: "Recommended Plan",
-    ctaLabel: "Start with this style →",
-    ctaHref: "/en/start?plan=professional",
+    title: "Real Websites We've Built",
+    subtitle: "Live examples of the type of clean, professional websites we deliver for local businesses.",
+    visitLabel: "Website",
     examples: [
-      {
-        industry: "Photographers",
-        plan: "Professional Website",
-        color: "from-amber-500/20 to-orange-500/10",
-        border: "border-amber-500/30",
-        accent: "bg-amber-500",
-        desc: "Clean before/after gallery, services list, contact form, service area map.",
-      },
-      {
-        industry: "Roofing",
-        plan: "Professional Website",
-        color: "from-blue-500/20 to-sky-500/10",
-        border: "border-blue-500/30",
-        accent: "bg-blue-500",
-        desc: "Free estimate CTA, photo gallery, financing info, call button.",
-      },
-      {
-        industry: "Cleaning",
-        plan: "Starter Website",
-        color: "from-green-500/20 to-emerald-500/10",
-        border: "border-green-500/30",
-        accent: "bg-green-500",
-        desc: "Booking-ready layout, service packages, before/after photos, reviews area.",
-      },
       {
         industry: "Lawn Care",
         plan: "Starter Website",
-        color: "from-lime-500/20 to-green-500/10",
-        border: "border-lime-500/30",
-        accent: "bg-lime-500",
-        desc: "Service list, pricing preview, seasonal schedule info, contact form.",
+        desc: "Service list, pricing preview, seasonal schedule info, and contact form.",
+        liveHref: "https://nexus-group-lap.github.io/floreslawncare/",
       },
       {
-        industry: "Food Truck",
+        industry: "Architecture / Design",
         plan: "Starter Website",
-        color: "from-red-500/20 to-orange-500/10",
-        border: "border-red-500/30",
-        accent: "bg-red-500",
-        desc: "Menu highlights, schedule/location info, social links, order CTA.",
+        desc: "Project portfolio, services overview, about section, and contact form.",
+        liveHref: "https://3dinterior.mail-nearmelab.workers.dev/projects/",
       },
       {
-        industry: "Barber Shop",
-        plan: "Starter Website",
-        color: "from-purple-500/20 to-violet-500/10",
-        border: "border-purple-500/30",
-        accent: "bg-purple-500",
-        desc: "Portfolio gallery, services & pricing, booking link, hours & location.",
+        industry: "Photography",
+        plan: "Professional Website",
+        desc: "Elegant gallery, service packages, booking CTA, and branded layout.",
+        liveHref: "https://horizon.cosmicthemes.com",
       },
       {
-        industry: "Handyman",
+        industry: "Fintech / Payments",
+        plan: "Professional Website",
+        desc: "Send & receive money, pay bills, and manage transactions — clean, trustworthy design.",
+        liveHref: "https://zeepay-lyart.vercel.app",
+      },
+      {
+        industry: "Resale / Boutique",
         plan: "Nexus Mini Card",
-        color: "from-yellow-500/20 to-amber-500/10",
-        border: "border-yellow-500/30",
-        accent: "bg-yellow-500",
-        desc: "Service list, fast response CTA, WhatsApp button, service area.",
-      },
-      {
-        industry: "Mobile Mechanic",
-        plan: "Nexus Mini Card",
-        color: "from-gray-500/20 to-slate-500/10",
-        border: "border-gray-500/30",
-        accent: "bg-gray-500",
-        desc: "Services offered, service area, call/text button, emergency CTA.",
+        desc: "Curated link card connecting Instagram, Poshmark, eBay, and Mercari in one place.",
+        liveHref: "https://nexus-group-lap.github.io/alma/",
       },
     ],
   },
   es: {
-    title: "Ejemplos de Páginas por Industria",
-    subtitle: "Ve el tipo de páginas profesionales y limpias que construimos para negocios locales.",
-    disclaimer: "Estos son diseños de muestra que representan el estilo y estructura que entregamos.",
-    planLabel: "Plan recomendado",
-    ctaLabel: "Empezar con este estilo →",
-    ctaHref: "/es/empezar?plan=professional",
+    title: "Sitios Web Reales Que Hemos Construido",
+    subtitle: "Ejemplos en vivo del tipo de páginas profesionales y limpias que entregamos para negocios locales.",
+    visitLabel: "Website",
     examples: [
-      {
-        industry: "Fotógrafos",
-        plan: "Professional Website",
-        color: "from-amber-500/20 to-orange-500/10",
-        border: "border-amber-500/30",
-        accent: "bg-amber-500",
-        desc: "Galería antes/después, lista de servicios, formulario de contacto, mapa de área.",
-      },
-      {
-        industry: "Roofing",
-        plan: "Professional Website",
-        color: "from-blue-500/20 to-sky-500/10",
-        border: "border-blue-500/30",
-        accent: "bg-blue-500",
-        desc: "CTA de estimado gratis, galería de fotos, información de financiamiento, botón de llamada.",
-      },
-      {
-        industry: "Limpieza",
-        plan: "Starter Website",
-        color: "from-green-500/20 to-emerald-500/10",
-        border: "border-green-500/30",
-        accent: "bg-green-500",
-        desc: "Diseño listo para reservas, paquetes de servicio, fotos, área de reseñas.",
-      },
       {
         industry: "Jardinería",
         plan: "Starter Website",
-        color: "from-lime-500/20 to-green-500/10",
-        border: "border-lime-500/30",
-        accent: "bg-lime-500",
-        desc: "Lista de servicios, vista previa de precios, info de temporada, formulario.",
+        desc: "Lista de servicios, vista previa de precios, info de temporada y formulario de contacto.",
+        liveHref: "https://nexus-group-lap.github.io/floreslawncare/",
       },
       {
-        industry: "Food Truck",
+        industry: "Arquitectura / Diseño",
         plan: "Starter Website",
-        color: "from-red-500/20 to-orange-500/10",
-        border: "border-red-500/30",
-        accent: "bg-red-500",
-        desc: "Highlights del menú, horario/ubicación, redes sociales, CTA de pedido.",
+        desc: "Portafolio de proyectos, servicios, sección de equipo y formulario de contacto.",
+        liveHref: "https://3dinterior.mail-nearmelab.workers.dev/projects/",
       },
       {
-        industry: "Barbería",
-        plan: "Starter Website",
-        color: "from-purple-500/20 to-violet-500/10",
-        border: "border-purple-500/30",
-        accent: "bg-purple-500",
-        desc: "Galería de portafolios, servicios y precios, link de reserva, horarios.",
+        industry: "Fotografía",
+        plan: "Professional Website",
+        desc: "Galería elegante, paquetes de servicios, CTA de reserva y diseño de marca.",
+        liveHref: "https://horizon.cosmicthemes.com",
       },
       {
-        industry: "Handyman",
+        industry: "Fintech / Pagos",
+        plan: "Professional Website",
+        desc: "Envía y recibe dinero, paga facturas y administra transacciones — diseño limpio y confiable.",
+        liveHref: "https://zeepay-lyart.vercel.app",
+      },
+      {
+        industry: "Ropa / Boutique",
         plan: "Nexus Mini Card",
-        color: "from-yellow-500/20 to-amber-500/10",
-        border: "border-yellow-500/30",
-        accent: "bg-yellow-500",
-        desc: "Lista de servicios, CTA de respuesta rápida, botón WhatsApp, área de servicio.",
-      },
-      {
-        industry: "Mecánico Móvil",
-        plan: "Nexus Mini Card",
-        color: "from-gray-500/20 to-slate-500/10",
-        border: "border-gray-500/30",
-        accent: "bg-gray-500",
-        desc: "Servicios ofrecidos, área de servicio, botón de llamada/texto, CTA de emergencia.",
+        desc: "Link card con acceso directo a Instagram, Poshmark, eBay y Mercari en un solo lugar.",
+        liveHref: "https://nexus-group-lap.github.io/alma/",
       },
     ],
   },
@@ -160,62 +96,84 @@ const t = {
 
 <section class="py-16" id={lang === "en" ? "examples" : "ejemplos"}>
   <Container>
-    <div class="text-center mb-4" data-reveal>
+    <div class="text-center mb-10" data-reveal>
       <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>
-      <p class="text-heading-3 text-lg max-w-2xl mx-auto mb-2">{t.subtitle}</p>
-      <p class="text-sm text-heading-3 italic">{t.disclaimer}</p>
+      <p class="text-heading-3 text-lg max-w-2xl mx-auto">{t.subtitle}</p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10" data-stagger>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-stagger>
       {t.examples.map((ex) => (
-        <div class={`rounded-2xl border ${ex.border} overflow-hidden hover:shadow-lg transition-all duration-300 group motion-card`}>
-          <!-- Demo preview mockup -->
-          <div class={`bg-gradient-to-br ${ex.color} p-4 h-40 flex flex-col relative overflow-hidden`}>
-            <div class="absolute top-3 left-3 flex gap-1.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-red-400/60"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-yellow-400/60"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-green-400/60"></span>
+        <div class="group rounded-2xl border border-box-border bg-box-bg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 motion-card flex flex-col">
+          <!-- Screenshot thumbnail -->
+          <div class="relative overflow-hidden h-48 bg-gray-100 dark:bg-gray-800 example-thumb">
+            <img
+              src={mshot(ex.liveHref)}
+              alt={ex.industry}
+              class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            <!-- fallback shown via JS if img fails -->
+            <div class="thumb-fallback absolute inset-0 hidden items-center justify-center bg-gradient-to-br from-primary/10 to-primary/5">
+              <svg class="w-10 h-10 text-primary/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+              </svg>
             </div>
-            <span class="absolute top-3 right-3 rounded-full bg-white/25 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
-              Demo
-            </span>
-            <div class="mt-7 rounded-xl bg-white/30 border border-white/30 p-3 shadow-lg shadow-black/5 group-hover:-translate-y-1 transition-transform">
-              <div class="h-3 w-2/3 rounded-full bg-white/70 mb-2"></div>
-              <div class="grid grid-cols-3 gap-2 mb-3">
-                <div class="col-span-2 h-12 rounded-lg bg-white/35"></div>
-                <div class="h-12 rounded-lg bg-white/25"></div>
-              </div>
-              <div class="space-y-1.5">
-                <div class="h-1.5 rounded-full bg-white/45 w-full"></div>
-                <div class="h-1.5 rounded-full bg-white/35 w-4/5"></div>
-              </div>
-              <div class="mt-3 flex gap-2">
-                <div class={`h-5 w-16 rounded-full ${ex.accent}`}></div>
-                <div class="h-5 w-12 rounded-full bg-white/35"></div>
-              </div>
-            </div>
-            <div class="absolute bottom-3 left-3 right-3 h-1 bg-white/20 rounded-full">
-              <div class="h-full w-2/3 bg-white/40 rounded-full draw-line"></div>
+            <!-- Website badge -->
+            <div class="absolute top-3 right-3">
+              <a
+                href={ex.liveHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-1.5 bg-black/65 hover:bg-black/85 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm transition-colors"
+              >
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+                </svg>
+                {t.visitLabel}
+              </a>
             </div>
           </div>
-          <div class="p-4 bg-box-bg flex flex-col gap-2">
-            <div>
-              <h3 class="font-bold text-heading-1 mb-1">{ex.industry} Website</h3>
-              <p class="text-sm text-heading-3 leading-relaxed">{ex.desc}</p>
+
+          <!-- Card content -->
+          <div class="p-5 flex flex-col gap-3 flex-1">
+            <div class="flex items-start justify-between gap-3">
+              <a
+                href={ex.liveHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-bold text-lg text-heading-1 hover:text-primary transition-colors leading-snug"
+              >
+                {ex.industry}
+                <span class="text-heading-3 text-base ml-0.5">↗</span>
+              </a>
+              <span class={`shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full ${planStyle[ex.plan]}`}>
+                {ex.plan}
+              </span>
             </div>
-            <p class="text-xs mt-0.5">
-              <span class="text-heading-3">{t.planLabel}: </span>
-              <span class="font-bold text-primary">{ex.plan}</span>
-            </p>
-            <a
-              href={t.ctaHref}
-              class="text-xs font-semibold text-primary hover:underline transition-colors mt-auto"
-            >
-              {t.ctaLabel}
-            </a>
+            <p class="text-sm text-heading-3 leading-relaxed">{ex.desc}</p>
           </div>
         </div>
       ))}
     </div>
   </Container>
 </section>
+
+<script>
+  // If mshots returns a blank/error image, show the fallback div instead
+  document.querySelectorAll(".example-thumb img").forEach((img) => {
+    const el = img as HTMLImageElement;
+    const fallback = el.nextElementSibling as HTMLElement;
+
+    const showFallback = () => {
+      el.style.display = "none";
+      if (fallback) fallback.style.display = "flex";
+    };
+
+    el.addEventListener("error", showFallback);
+
+    // mshots returns a 307 redirect image while generating — check natural size on load
+    el.addEventListener("load", () => {
+      if (el.naturalWidth < 10) showFallback();
+    });
+  });
+</script>
