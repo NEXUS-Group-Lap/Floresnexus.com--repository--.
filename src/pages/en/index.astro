@@ -1,73 +1,32 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/sections/Hero.astro";
-import WhoWeHelp from "../../components/sections/WhoWeHelp.astro";
 import WebExamples from "../../components/sections/WebExamples.astro";
-import WhyFloresNexus from "../../components/sections/WhyFloresNexus.astro";
-import Comparison from "../../components/sections/Comparison.astro";
+import WhoWeHelp from "../../components/sections/WhoWeHelp.astro";
 import Pricing from "../../components/sections/Pricing.astro";
 import MiniCard from "../../components/sections/MiniCard.astro";
 import HowItWorks from "../../components/sections/HowItWorks.astro";
-import StartCTA from "../../components/sections/StartCTA.astro";
-import FAQPreview from "../../components/sections/FAQPreview.astro";
-import WhatWeAreNot from "../../components/sections/WhatWeAreNot.astro";
+import WhyFloresNexus from "../../components/sections/WhyFloresNexus.astro";
 import Testimonials from "../../components/sections/Testimonials.astro";
+import FAQPreview from "../../components/sections/FAQPreview.astro";
 import FinalCTA from "../../components/sections/FinalCTA.astro";
-import Container from "../../components/shared/Container.astro";
 ---
 
 <Layout
   title="Simple Monthly Websites for Local Businesses"
-  description="Flores Nexus Group — Simple monthly websites for local businesses. Built for you. Managed for you. Without agency prices."
+  description="Flores Nexus Group — We help small businesses get online and grow step by step with simple monthly websites built and managed for them."
   lang="en"
 >
   <main class="flex flex-col overflow-hidden">
     <Hero lang="en" />
-    <WhoWeHelp lang="en" />
     <WebExamples lang="en" />
-    <WhyFloresNexus lang="en" />
-    <Comparison lang="en" />
+    <WhoWeHelp lang="en" />
     <Pricing lang="en" />
     <MiniCard lang="en" />
     <HowItWorks lang="en" />
-    <StartCTA lang="en" />
-    <FAQPreview lang="en" />
-    <WhatWeAreNot lang="en" />
+    <WhyFloresNexus lang="en" />
     <Testimonials lang="en" />
-
-    <!-- Existing clients section -->
-    <section class="py-14 border-t border-box-border">
-      <Container>
-        <div class="max-w-2xl mx-auto text-center">
-          <p class="text-xs font-semibold text-primary uppercase tracking-widest mb-2">Current Clients</p>
-          <h2 class="text-2xl font-bold text-heading-1 mb-3">Already a client?</h2>
-          <p class="text-heading-3 text-sm mb-8">
-            Quick access to resources for active Flores Nexus Group clients.
-          </p>
-          <div class="flex flex-wrap gap-3 justify-center">
-            <a
-              href="mailto:floresnexusgroup@gmail.com?subject=Change%20Request"
-              class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-primary text-white text-sm font-semibold hover:bg-blue-800 transition-all duration-300"
-            >
-              Request a Change
-            </a>
-            <a
-              href="mailto:floresnexusgroup@gmail.com?subject=Issue%20Report"
-              class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-box-border text-heading-2 text-sm font-semibold hover:border-primary hover:text-primary transition-all duration-300"
-            >
-              Report an Issue
-            </a>
-            <a
-              href="/en/service-scope"
-              class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border-2 border-box-border text-heading-2 text-sm font-semibold hover:border-primary hover:text-primary transition-all duration-300"
-            >
-              View Service Scope
-            </a>
-          </div>
-        </div>
-      </Container>
-    </section>
-
+    <FAQPreview lang="en" />
     <FinalCTA lang="en" />
   </main>
 </Layout>

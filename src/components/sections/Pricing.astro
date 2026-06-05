@@ -14,16 +14,19 @@ const t = {
   en: {
     title: "Simple, Transparent Pricing",
     subtitle: "Choose the plan that fits your business. Subscription cancellation follows the Terms of Service.",
+    growthMessage: "Start with the plan that fits your business today. Upgrade when your business needs more.",
     setupLabel: "setup",
     monthLabel: "/month",
     recommended: "Recommended",
     requestQuote: "Request Quote",
+    bestForLabel: "Best for",
     plans: [
       {
         name: "Starter Website",
         setup: "$299",
         monthly: "$79",
         desc: "Simple professional website for small local businesses.",
+        bestFor: "Small businesses that need a simple online presence.",
         cta: "Start Starter Website",
         ctaHref: starterHref,
         includes: [
@@ -47,6 +50,7 @@ const t = {
         setup: "$699",
         monthly: "$149",
         desc: "Complete website with stronger online presentation. Our most popular plan.",
+        bestFor: "Businesses that need a stronger presentation with services, gallery, and contact form.",
         cta: "Start Professional Website",
         ctaHref: professionalHref,
         includes: [
@@ -67,6 +71,7 @@ const t = {
         setup: "$2,500+",
         monthly: "$399+",
         desc: "Advanced systems for businesses that need more than a standard website.",
+        bestFor: "Businesses that need advanced tools such as booking, payments, CRM, automations, or integrations.",
         cta: "Request Quote",
         ctaHref: businessQuoteHref,
         includes: [
@@ -89,16 +94,19 @@ const t = {
   es: {
     title: "Precios Simples y Transparentes",
     subtitle: "Elige el plan que se adapte a tu negocio. La cancelación de la suscripción sigue los Términos del Servicio.",
+    growthMessage: "Empieza con el plan que se adapte a tu negocio hoy. Actualiza cuando tu negocio necesite más.",
     setupLabel: "inicial",
     monthLabel: "/mes",
     recommended: "Recomendado",
     requestQuote: "Solicitar Cotización",
+    bestForLabel: "Ideal para",
     plans: [
       {
         name: "Starter Website",
         setup: "$299",
         monthly: "$79",
         desc: "Página web profesional simple para pequeños negocios locales.",
+        bestFor: "Pequeños negocios que necesitan una presencia online simple.",
         cta: "Empezar Starter Website",
         ctaHref: starterHref,
         includes: [
@@ -122,6 +130,7 @@ const t = {
         setup: "$699",
         monthly: "$149",
         desc: "Página web completa con presentación más sólida. Nuestro plan más popular.",
+        bestFor: "Negocios que necesitan una presentación más sólida con servicios, galería y formulario de contacto.",
         cta: "Empezar Professional Website",
         ctaHref: professionalHref,
         includes: [
@@ -142,6 +151,7 @@ const t = {
         setup: "$2,500+",
         monthly: "$399+",
         desc: "Sistemas avanzados para negocios que necesitan más que una página estándar.",
+        bestFor: "Negocios que necesitan herramientas avanzadas como reservas, pagos, CRM, automatizaciones o integraciones.",
         cta: "Solicitar Cotización",
         ctaHref: businessQuoteHref,
         includes: [
@@ -166,10 +176,14 @@ const t = {
 
 <section class="py-16" id={lang === "en" ? "pricing" : "planes"}>
   <Container>
-    <div class="text-center mb-12" data-reveal>
+    <div class="text-center mb-4" data-reveal>
       <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>
       <p class="text-heading-3 text-lg max-w-2xl mx-auto">{t.subtitle}</p>
     </div>
+
+    <p class="text-center text-primary font-semibold text-base max-w-xl mx-auto mb-10 motion-card" data-reveal="scale">
+      {t.growthMessage}
+    </p>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start" data-stagger>
       {t.plans.map((plan) => (
@@ -184,7 +198,11 @@ const t = {
 
           <div class={`p-6 ${plan.recommended ? "pt-8" : ""}`}>
             <h3 class="text-xl font-bold text-heading-1 mb-1">{plan.name}</h3>
-            <p class="text-sm text-heading-3 mb-4">{plan.desc}</p>
+            <p class="text-sm text-heading-3 mb-2">{plan.desc}</p>
+            <p class="text-xs mb-4">
+              <span class="text-heading-3">{t.bestForLabel}: </span>
+              <span class="font-semibold text-heading-2">{plan.bestFor}</span>
+            </p>
 
             <div class="mb-6">
               <div class="flex items-baseline gap-1">

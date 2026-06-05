@@ -14,8 +14,8 @@ import { ONBOARDING_FORM_LINK } from "../../config/links";
           </svg>
         </div>
 
-        <h1 class="text-4xl font-bold text-heading-1 mb-4">¡Pago Recibido!</h1>
-        <p class="text-heading-3 text-lg mb-8 leading-relaxed">
+        <h1 id="thank-you-title" class="text-4xl font-bold text-heading-1 mb-4">Pago Recibido</h1>
+        <p id="thank-you-message" class="text-heading-3 text-lg mb-8 leading-relaxed">
           Pago recibido. El siguiente paso es completar el formulario de onboarding con la información de tu negocio,
           servicios, fotos, número de teléfono, dirección o área de servicio y redes sociales.
           <strong class="text-heading-2">La producción empieza cuando el formulario esté completo.</strong>
@@ -29,7 +29,7 @@ import { ONBOARDING_FORM_LINK } from "../../config/links";
               "Nuestro equipo revisa tu información.",
               "Construimos tu página web profesional.",
               "Tú revisas y apruebas antes del lanzamiento.",
-              "¡Tu página entra en producción!",
+              "Tu página entra en producción.",
             ].map((step, i) => (
               <li class="flex items-start gap-3 text-heading-2 text-sm">
                 <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">
@@ -58,3 +58,24 @@ import { ONBOARDING_FORM_LINK } from "../../config/links";
     </Container>
   </main>
 </Layout>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get("type");
+  const title = document.getElementById("thank-you-title");
+  const message = document.getElementById("thank-you-message");
+
+  if (type === "quote") {
+    if (title) title.textContent = "Solicitud de Cotización Recibida";
+    if (message) {
+      message.innerHTML =
+        "Tu solicitud de cotización para Business System fue recibida. Un representante de Flores Nexus Group revisará el alcance del proyecto contigo. <strong class=\"text-heading-2\">No se cobra ningún pago de Stripe para Business System hasta que la cotización sea aprobada.</strong>";
+    }
+  } else if (type === "solicitud") {
+    if (title) title.textContent = "Solicitud Recibida";
+    if (message) {
+      message.innerHTML =
+        "Gracias. Recibimos tu información. Nuestro equipo revisará tu solicitud y te contactará con el siguiente paso.";
+    }
+  }
+</script>

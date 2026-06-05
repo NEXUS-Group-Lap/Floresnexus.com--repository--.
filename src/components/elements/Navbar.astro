@@ -1,5 +1,4 @@
 ---
-import BtnLink from "../shared/BtnLink.astro";
 import Container from "../shared/Container.astro";
 import Navitem from "../shared/Navitem.astro";
 
@@ -17,33 +16,39 @@ const navItems =
         { href: "/en#pricing", text: "Pricing" },
         { href: "/en#how-it-works", text: "How It Works" },
         { href: "/en/faq", text: "FAQ" },
+        { href: "/en/start", text: "Start" },
       ]
     : [
         { href: "/es#servicios", text: "Servicios" },
         { href: "/es#ejemplos", text: "Ejemplos" },
         { href: "/es#planes", text: "Planes" },
-        { href: "/es#como-funciona", text: "Cómo Funciona" },
+        { href: "/es#como-funciona", text: "Como Funciona" },
         { href: "/es/preguntas", text: "Preguntas" },
+        { href: "/es/empezar", text: "Empezar" },
       ];
 
-const startHref = lang === "en" ? "/en/start" : "/es/empezar";
-const startText = lang === "en" ? "Start My Website" : "Empezar";
-const homeHref = lang === "en" ? "/en" : "/es";
+const homeHref = lang === "en" ? "/en/" : "/es/";
 ---
 
 <header class="absolute inset-x-0 top-0 z-50">
-  <!-- Language topbar -->
   <div class="w-full border-b border-box-border/50 bg-box-bg/80 backdrop-blur-sm">
     <div class="flex justify-end items-center gap-5 px-6 py-2 text-xs font-semibold tracking-wide max-w-7xl mx-auto">
       <a
-        href="/en"
+        href={lang === "en" ? "/en/client-portal" : "/es/portal-cliente"}
+        class="text-heading-3 hover:text-primary transition-colors duration-200"
+      >
+        {lang === "en" ? "Client Login" : "Portal del Cliente"}
+      </a>
+      <span class="text-heading-3 opacity-30">|</span>
+      <a
+        href="/en/"
         class={`transition-colors duration-200 ${lang === "en" ? "text-primary" : "text-heading-3 hover:text-primary"}`}
       >
         English
       </a>
       <span class="text-heading-3 opacity-30">|</span>
       <a
-        href="/es"
+        href="/es/"
         class={`transition-colors duration-200 ${lang === "es" ? "text-primary" : "text-heading-3 hover:text-primary"}`}
       >
         Español
@@ -53,16 +58,10 @@ const homeHref = lang === "en" ? "/en" : "/es";
 
   <Container>
     <nav class="w-full flex justify-between gap-6 relative py-5">
-      <!-- Logo -->
       <div class="min-w-max inline-flex relative">
         <a href={homeHref} class="relative flex items-center gap-3">
           <div class="relative w-8 h-8 flex items-center justify-center">
-            <svg
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-8 h-8"
-            >
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
               <path d="M16 2L28 10L28 22L16 30L4 22L4 10Z" class="fill-primary" fill-opacity="0.15"></path>
               <path d="M16 6L24 12L24 20L16 26L8 20L8 12Z" class="fill-primary" fill-opacity="0.3"></path>
               <path d="M16 10L21 14L21 18L16 22L11 18L11 14Z" class="fill-primary"></path>
@@ -88,24 +87,13 @@ const homeHref = lang === "en" ? "/en" : "/es";
       ></div>
       <div
         data-navbar
-        class="flex h-0 overflow-hidden lg:!h-auto lg:scale-y-100 duration-300 ease-linear flex-col gap-y-6 gap-x-4 lg:flex-row w-full lg:justify-between lg:items-center absolute lg:relative top-full lg:top-0 bg-box-bg lg:bg-transparent border-x border-x-box-border lg:border-x-0"
+        class="flex h-0 overflow-hidden lg:!h-auto lg:scale-y-100 duration-300 ease-linear flex-col gap-y-6 gap-x-4 lg:flex-row w-full lg:justify-center lg:items-center absolute lg:relative top-full lg:top-0 bg-box-bg lg:bg-transparent border-x border-x-box-border lg:border-x-0"
       >
         <ul
-          class="border-t border-box-border lg:border-t-0 px-6 lg:px-0 pt-6 lg:pt-0 flex flex-col lg:flex-row gap-y-4 gap-x-3 text-lg text-heading-2 w-full lg:justify-center lg:items-center"
+          class="border-t border-box-border lg:border-t-0 px-6 lg:px-0 pt-6 lg:pt-0 pb-6 lg:pb-0 flex flex-col lg:flex-row gap-y-4 gap-x-3 text-lg text-heading-2 w-full lg:justify-center lg:items-center"
         >
           {navItems.map((item) => <Navitem {...item} />)}
         </ul>
-
-        <div
-          class="lg:min-w-max flex items-center sm:w-max w-full pb-6 lg:pb-0 border-b border-box-border lg:border-0 px-6 lg:px-0"
-        >
-          <BtnLink
-            text={startText}
-            href={startHref}
-            className="flex justify-center w-full sm:w-max"
-            variant="primary"
-          />
-        </div>
       </div>
 
       <div class="min-w-max flex items-center gap-x-3">
@@ -149,18 +137,9 @@ const homeHref = lang === "en" ? "/en" : "/es";
           data-open-nav="false"
           class="lg:hidden lg:invisible outline-none w-7 h-auto flex flex-col relative gap-y-1.5"
         >
-          <span
-            id="line1"
-            class="w-6 h-0.5 rounded-full bg-heading-2 transition-all duration-300 ease-linear"
-          ></span>
-          <span
-            id="line2"
-            class="w-6 origin-center h-0.5 rounded-full bg-heading-2 transition-all duration-300 ease-linear"
-          ></span>
-          <span
-            id="line3"
-            class="w-6 h-0.5 rounded-full bg-heading-2 transition-all duration-300 ease-linear"
-          ></span>
+          <span id="line1" class="w-6 h-0.5 rounded-full bg-heading-2 transition-all duration-300 ease-linear"></span>
+          <span id="line2" class="w-6 origin-center h-0.5 rounded-full bg-heading-2 transition-all duration-300 ease-linear"></span>
+          <span id="line3" class="w-6 h-0.5 rounded-full bg-heading-2 transition-all duration-300 ease-linear"></span>
           <span class="sr-only">toggle nav</span>
         </button>
       </div>

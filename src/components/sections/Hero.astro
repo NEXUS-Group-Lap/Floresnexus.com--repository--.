@@ -10,46 +10,47 @@ const { lang } = Astro.props;
 
 const t = {
   en: {
-    headline1: "Simple monthly websites for",
-    headline2: "local businesses",
+    headline1: "Helping small businesses get online and",
+    headline2: "grow step by step",
     subheadline:
-      "Get a professional online presence built for you, managed for you, and launched without agency prices.",
+      "We build and manage simple monthly websites for local businesses, giving them a professional online presence that can grow with them over time.",
     support:
-      "Built for local service businesses that need a clean website, clear contact options, and a professional way to present their services.",
+      "Start with what your business needs today. Expand your online presence as your business grows.",
     cta1: "View Plans",
     cta1Href: "/en/pricing",
     cta2: "Start My Website",
     cta2Href: "/en/start",
     badge: "Website-as-a-Service",
-    stat1: "Businesses",
-    stat2: "Days to launch",
+    stat1: "Plan options",
+    stat2: "Business days to launch",
     stat3: "Bilingual",
-    floatingLive: "Live in 5–7 days",
-    floatingAfter: "After info received",
+    statDays: "3–5",
+    floatingLive: "3–5 business days",
+    floatingAfter: "After payment and complete info",
   },
   es: {
-    headline1: "Páginas web mensuales para",
-    headline2: "negocios locales",
+    headline1: "Ayudamos a pequeños negocios a entrar al mundo digital y",
+    headline2: "crecer paso a paso",
     subheadline:
-      "Obtén una presencia profesional en internet, hecha por nosotros, administrada por nosotros y sin precios de agencia.",
+      "Creamos y administramos páginas web simples para negocios locales, dándoles una presencia profesional online que puede crecer con ellos con el tiempo.",
     support:
-      "Diseñadas para negocios locales que necesitan una página clara, botones de contacto y una forma profesional de presentar sus servicios.",
+      "Empieza con lo que tu negocio necesita hoy. Expande tu presencia online a medida que tu negocio crece.",
     cta1: "Ver Planes",
     cta1Href: "/es/precios",
     cta2: "Empezar Mi Página",
     cta2Href: "/es/empezar",
     badge: "Página web como servicio",
-    stat1: "Negocios",
-    stat2: "Días al lanzamiento",
+    stat1: "Opciones de plan",
+    stat2: "Días hábiles al lanzamiento",
     stat3: "Bilingüe",
-    floatingLive: "Lista en 5–7 días",
-    floatingAfter: "Tras recibir info",
+    statDays: "3–5",
+    floatingLive: "3–5 días hábiles",
+    floatingAfter: "Después del pago e info completa",
   },
 }[lang];
 ---
 
 <section class="relative pt-28 lg:pt-36 pb-16 overflow-hidden">
-  <!-- Background decorations -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none">
     <span class="absolute -top-10 left-1/4 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 to-blue-400/10 blur-3xl float-slow"></span>
     <span class="absolute top-32 -right-20 w-64 h-64 rounded-full bg-primary/10 blur-3xl float-medium"></span>
@@ -58,16 +59,12 @@ const t = {
 
   <Container>
     <div class="relative flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-
-      <!-- LEFT: Text content -->
       <div class="flex-1 text-center lg:text-left" data-reveal>
-        <!-- Badge -->
         <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-box-border bg-box-bg text-sm text-heading-3 mb-6 motion-card" data-reveal="scale">
           <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
           {t.badge}
         </div>
 
-        <!-- Headline -->
         <h1 class="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold text-heading-1 leading-tight mb-6" data-reveal style="--reveal-delay: 80ms">
           {t.headline1}{" "}
           <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-500 to-primary shine-text">
@@ -75,31 +72,27 @@ const t = {
           </span>
         </h1>
 
-        <!-- Subheadline -->
         <p class="text-lg md:text-xl text-heading-2 mb-3 leading-relaxed max-w-xl mx-auto lg:mx-0" data-reveal style="--reveal-delay: 160ms">
           {t.subheadline}
         </p>
 
-        <!-- Support line -->
         <p class="text-heading-3 mb-8 max-w-lg mx-auto lg:mx-0" data-reveal style="--reveal-delay: 220ms">
           {t.support}
         </p>
 
-        <!-- CTA buttons -->
         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-10" data-stagger>
           <BtnLink href={t.cta1Href} text={t.cta1} variant="primary" className="min-w-44 text-center motion-button" />
           <BtnLink href={t.cta2Href} text={t.cta2} variant="secondary" className="min-w-44 text-center motion-button" />
         </div>
 
-        <!-- Stats row -->
         <div class="flex flex-wrap justify-center lg:justify-start gap-8" data-stagger>
           <div class="flex flex-col items-center lg:items-start">
-            <span class="text-2xl font-bold text-heading-1">150+</span>
+            <span class="text-2xl font-bold text-heading-1">4</span>
             <span class="text-xs text-heading-3 uppercase tracking-wide">{t.stat1}</span>
           </div>
           <div class="w-px bg-box-border hidden lg:block"></div>
           <div class="flex flex-col items-center lg:items-start">
-            <span class="text-2xl font-bold text-heading-1">5–7</span>
+            <span class="text-2xl font-bold text-heading-1">{t.statDays}</span>
             <span class="text-xs text-heading-3 uppercase tracking-wide">{t.stat2}</span>
           </div>
           <div class="w-px bg-box-border hidden lg:block"></div>
@@ -110,14 +103,9 @@ const t = {
         </div>
       </div>
 
-      <!-- RIGHT: Hero image with floating cards -->
       <div class="flex-1 relative w-full max-w-lg mx-auto lg:mx-0" data-reveal="right">
-        <!-- Main image frame -->
         <div class="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-2xl shadow-primary/20 border border-box-border">
-          <!-- Gradient fallback (shows if no image) -->
           <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-blue-400/15 to-primary/5"></div>
-
-          <!-- Hero photo -->
           <img
             src="/images/image1.webp"
             alt={lang === "en" ? "Business professional" : "Profesional de negocios"}
@@ -125,11 +113,7 @@ const t = {
             onerror="this.style.display='none'"
             loading="eager"
           />
-
-          <!-- Gradient overlay for card legibility -->
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-
-          <!-- Decorative mock website bars (always visible) -->
           <div class="absolute inset-0 flex flex-col justify-end p-4 pb-14">
             <div class="space-y-1.5">
               <div class="h-1.5 bg-white/25 rounded-full w-3/4"></div>
@@ -138,7 +122,6 @@ const t = {
           </div>
         </div>
 
-        <!-- Floating card: browser mockup top-right -->
         <div class="absolute -top-4 -right-4 bg-box-bg border border-box-border rounded-2xl p-3 shadow-xl backdrop-blur-sm w-36 motion-card" data-reveal="scale">
           <div class="flex gap-1 mb-2">
             <span class="w-2 h-2 rounded-full bg-red-400/70"></span>
@@ -153,7 +136,6 @@ const t = {
           </div>
         </div>
 
-        <!-- Floating card: launch time bottom-left -->
         <div class="absolute -bottom-4 -left-4 bg-box-bg border border-box-border rounded-2xl p-3 shadow-xl backdrop-blur-sm motion-card" data-reveal="scale">
           <div class="flex items-center gap-2.5">
             <div class="w-9 h-9 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
@@ -168,11 +150,9 @@ const t = {
           </div>
         </div>
 
-        <!-- Decorative blobs behind the image -->
         <div class="absolute -z-10 -bottom-8 -right-8 w-48 h-48 rounded-full bg-primary/10 blur-3xl"></div>
         <div class="absolute -z-10 -top-6 -left-6 w-32 h-32 rounded-full bg-blue-400/10 blur-2xl"></div>
       </div>
-
     </div>
   </Container>
 </section>

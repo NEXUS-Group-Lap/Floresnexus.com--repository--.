@@ -1,6 +1,5 @@
 ---
 import Container from "../shared/Container.astro";
-import { NEXUS_MINI_STRIPE_LINK } from "../../config/links";
 
 export interface Props {
   lang: "en" | "es";
@@ -29,6 +28,7 @@ const t = {
       "Mobile-friendly design",
       "Hosted on a Flores Nexus managed link",
     ],
+    bestFor: "Businesses that only need a simple professional link to share.",
     termsLink: "See full terms at /service-scope",
     termsHref: "/en/service-scope",
     cta: "Start Mini Card",
@@ -54,6 +54,7 @@ const t = {
       "Diseño mobile-friendly",
       "Alojado en enlace administrado por Flores Nexus",
     ],
+    bestFor: "Negocios que solo necesitan un enlace profesional simple para compartir.",
     termsLink: "Ver términos completos en /service-scope",
     termsHref: "/es/alcance-del-servicio",
     cta: "Empezar Mini Card",
@@ -73,7 +74,11 @@ const t = {
               {t.label}
             </span>
             <h3 class="text-2xl font-bold text-heading-1 mb-2">{t.title}</h3>
-            <p class="text-heading-3 text-sm mb-3 leading-relaxed">{t.desc}</p>
+            <p class="text-heading-3 text-sm mb-2 leading-relaxed">{t.desc}</p>
+            <p class="text-xs font-semibold mb-3">
+              <span class="font-normal text-heading-3">{lang === "en" ? "Best for" : "Ideal para"}:</span>
+              {" "}<span class="text-primary">{t.bestFor}</span>
+            </p>
             {"disclaimer" in t && (
               <p class="text-xs text-heading-3 leading-relaxed mb-3 italic border-l-2 border-primary/30 pl-3">
                 {(t as any).disclaimer}

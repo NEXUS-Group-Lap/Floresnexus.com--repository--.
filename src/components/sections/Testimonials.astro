@@ -4,68 +4,43 @@ import Container from "../shared/Container.astro";
 export interface Props {
   lang: "en" | "es";
 }
+
 const { lang } = Astro.props;
 
 const t = {
   en: {
-    title: "What our clients say",
-    subtitle: "Local service businesses that now have a professional online presence.",
-    disclaimer: "Individual results vary. Flores Nexus Group does not guarantee sales, leads, calls, revenue, or any specific business outcomes.",
-    testimonials: [
+    title: "What we review before launch",
+    subtitle: "No fake testimonials. These are the practical checks we use before a site goes live.",
+    items: [
       {
-        name: "Carlos R.",
-        business: "Carlos Roofing — Miami, FL",
-        initials: "CR",
-        color: "bg-blue-500",
-        text: "The process was very easy. In less than a week I had my page ready and it looks very professional. The team guided me step by step.",
-        stars: 5,
+        title: "Business details",
+        desc: "We review the business name, contact details, hours, location or service area, and selected plan information.",
       },
       {
-        name: "María G.",
-        business: "MG Cleaning Services — Orlando, FL",
-        initials: "MG",
-        color: "bg-green-500",
-        text: "I never thought having a website could be so simple. Everything was very organized and the result was exactly what I needed to present my business.",
-        stars: 5,
+        title: "Service presentation",
+        desc: "We check that services are clear, organized, and easy for visitors to understand on mobile devices.",
       },
       {
-        name: "Ana L.",
-        business: "Ana's Beauty Salon — Tampa, FL",
-        initials: "AL",
-        color: "bg-purple-500",
-        text: "The page turned out exactly how I wanted. Very professional and easy for my customers to use. The service was very attentive from the start.",
-        stars: 5,
+        title: "Contact visibility",
+        desc: "We review call, text, WhatsApp, form, and map or service area elements based on the selected plan.",
       },
     ],
   },
   es: {
-    title: "Lo que dicen nuestros clientes",
-    subtitle: "Negocios locales que ahora tienen una presencia profesional en internet.",
-    disclaimer: "Los resultados varían según cada caso. Flores Nexus Group no garantiza ventas, leads, llamadas, ingresos ni ningún resultado de negocio específico.",
-    testimonials: [
+    title: "Lo que revisamos antes del lanzamiento",
+    subtitle: "Sin testimonios falsos. Estas son revisiones practicas antes de publicar una pagina.",
+    items: [
       {
-        name: "Carlos R.",
-        business: "Carlos Roofing — Miami, FL",
-        initials: "CR",
-        color: "bg-blue-500",
-        text: "El proceso fue muy sencillo. En menos de una semana ya tenía mi página lista y se ve muy profesional. El equipo me guió paso a paso desde el principio.",
-        stars: 5,
+        title: "Datos del negocio",
+        desc: "Revisamos nombre del negocio, contacto, horarios, ubicacion o area de servicio, y el plan seleccionado.",
       },
       {
-        name: "María G.",
-        business: "MG Cleaning Services — Orlando, FL",
-        initials: "MG",
-        color: "bg-green-500",
-        text: "Nunca pensé que tener una página web fuera tan fácil. Todo fue muy organizado y el resultado fue exactamente lo que necesitaba para presentar mi negocio.",
-        stars: 5,
+        title: "Presentacion de servicios",
+        desc: "Verificamos que los servicios sean claros, organizados y faciles de entender en dispositivos moviles.",
       },
       {
-        name: "Ana L.",
-        business: "Ana's Beauty Salon — Tampa, FL",
-        initials: "AL",
-        color: "bg-purple-500",
-        text: "La página quedó exactamente como yo quería. Muy profesional y fácil de usar para mis clientes. El servicio fue muy atento desde el principio.",
-        stars: 5,
+        title: "Visibilidad de contacto",
+        desc: "Revisamos llamada, texto, WhatsApp, formulario, mapa o area de servicio segun el plan seleccionado.",
       },
     ],
   },
@@ -80,41 +55,15 @@ const t = {
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-stagger>
-      {t.testimonials.map((testimonial) => (
-        <div class="relative p-6 rounded-2xl border border-box-border bg-box-bg hover:border-primary/40 hover:shadow-md transition-all duration-300 flex flex-col motion-card">
-          <!-- Stars -->
-          <div class="flex gap-1 mb-4">
-            {Array.from({ length: testimonial.stars }).map(() => (
-              <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-              </svg>
-            ))}
+      {t.items.map((item, i) => (
+        <div class="relative p-6 rounded-2xl border border-box-border bg-box-bg hover:border-primary/40 hover:shadow-md transition-all duration-300 motion-card">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+            <span class="text-primary font-bold text-sm">0{i + 1}</span>
           </div>
-
-          <!-- Quote mark -->
-          <svg class="w-8 h-8 text-primary/20 mb-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-          </svg>
-
-          <!-- Quote text -->
-          <p class="text-heading-2 text-sm leading-relaxed flex-1 mb-6 italic">
-            "{testimonial.text}"
-          </p>
-
-          <!-- Author -->
-          <div class="flex items-center gap-3">
-            <div class={`w-10 h-10 rounded-full ${testimonial.color} flex items-center justify-center flex-shrink-0`}>
-              <span class="text-white text-xs font-bold">{testimonial.initials}</span>
-            </div>
-            <div>
-              <p class="font-semibold text-heading-1 text-sm">{testimonial.name}</p>
-              <p class="text-xs text-heading-3">{testimonial.business}</p>
-            </div>
-          </div>
+          <h3 class="font-bold text-heading-1 text-lg mb-2">{item.title}</h3>
+          <p class="text-heading-3 text-sm leading-relaxed">{item.desc}</p>
         </div>
       ))}
     </div>
-
-    <p class="text-center text-xs text-heading-3 mt-8 max-w-2xl mx-auto italic">{t.disclaimer}</p>
   </Container>
 </section>

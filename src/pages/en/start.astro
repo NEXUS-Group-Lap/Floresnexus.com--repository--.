@@ -20,7 +20,7 @@ import {
         <div class="text-center mb-10">
           <h1 class="text-4xl font-bold text-heading-1 mb-3">Start Your Website</h1>
           <p class="text-heading-3 text-lg">
-            Fill out this form to start your website. After submitting, you'll be directed to a secure payment link.
+            Fill out this form to start your website. Standard plans continue to secure payment. Business System continues as a quote request.
           </p>
         </div>
 
@@ -260,6 +260,10 @@ import {
               The Business System requires a custom quote. By submitting this form, a Flores Nexus Group representative will contact you to discuss the project scope. No charge will be made until the quote is approved.
             </div>
 
+            <div id="selected-plan-confirmation" class="hidden rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm text-heading-2 leading-relaxed">
+              Selected plan: <strong id="selected-plan-label" class="text-heading-1"></strong>
+            </div>
+
             <button
               type="submit"
               id="submit-btn"
@@ -295,18 +299,30 @@ import {
   const planSelect = document.getElementById("selectedPlan") as HTMLSelectElement | null;
   const planError = document.getElementById("plan-error");
   const businessNotice = document.getElementById("business-quote-notice");
+  const selectedPlanConfirmation = document.getElementById("selected-plan-confirmation");
+  const selectedPlanLabel = document.getElementById("selected-plan-label");
+
+  const planLabels: Record<string, string> = {
+    "mini-card": "Nexus Mini Card - $99 setup + $29/month",
+    "starter": "Starter Website - $299 setup + $79/month",
+    "professional": "Professional Website - $699 setup + $149/month",
+    "business-system": "Business System - Request Quote",
+  };
 
   // Auto-select plan from URL parameter
   const urlParams = new URLSearchParams(window.location.search);
   const planParam = urlParams.get("plan");
-  if (planParam && planSelect) {
+  if (planParam && planSelect && planLabels[planParam]) {
     planSelect.value = planParam;
     updateBusinessMode(planParam);
   }
 
   function updateBusinessMode(plan: string) {
     const isQuote = plan === "business-system";
+    const hasPlan = Boolean(planLabels[plan]);
     if (businessNotice) businessNotice.classList.toggle("hidden", !isQuote);
+    if (selectedPlanConfirmation) selectedPlanConfirmation.classList.toggle("hidden", !hasPlan);
+    if (selectedPlanLabel) selectedPlanLabel.textContent = hasPlan ? planLabels[plan] : "";
     if (submitBtnText) submitBtnText.textContent = isQuote ? "Request Quote" : "Continue to Payment";
     if (submitFooterNote) {
       submitFooterNote.textContent = isQuote
@@ -346,6 +362,8 @@ import {
       const dest = links[plan];
       if (dest && dest !== "#") {
         window.location.href = dest;
+      } else if (plan === "business-system") {
+        window.location.href = "/en/thank-you?type=quote&plan=business-system";
       } else {
         window.location.href = "/en/thank-you";
       }

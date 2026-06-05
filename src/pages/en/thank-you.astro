@@ -15,8 +15,8 @@ import { ONBOARDING_FORM_LINK } from "../../config/links";
           </svg>
         </div>
 
-        <h1 class="text-4xl font-bold text-heading-1 mb-4">Payment Received!</h1>
-        <p class="text-heading-3 text-lg mb-8 leading-relaxed">
+        <h1 id="thank-you-title" class="text-4xl font-bold text-heading-1 mb-4">Payment Received!</h1>
+        <p id="thank-you-message" class="text-heading-3 text-lg mb-8 leading-relaxed">
           Payment received. The next step is completing the onboarding form with your business information,
           services, photos, phone number, address or service area, and social links.
           <strong class="text-heading-2">Production starts once the form is complete.</strong>
@@ -59,3 +59,24 @@ import { ONBOARDING_FORM_LINK } from "../../config/links";
     </Container>
   </main>
 </Layout>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get("type");
+  const title = document.getElementById("thank-you-title");
+  const message = document.getElementById("thank-you-message");
+
+  if (type === "quote") {
+    if (title) title.textContent = "Quote Request Received";
+    if (message) {
+      message.innerHTML =
+        "Your Business System quote request has been received. A Flores Nexus Group representative will review the project scope with you. <strong class=\"text-heading-2\">No Stripe payment is collected for Business System until a quote is approved.</strong>";
+    }
+  } else if (type === "application") {
+    if (title) title.textContent = "Application Received";
+    if (message) {
+      message.innerHTML =
+        "Thank you. We received your information. Our team will review your request and contact you with the next step.";
+    }
+  }
+</script>

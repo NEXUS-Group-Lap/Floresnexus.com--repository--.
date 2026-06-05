@@ -15,14 +15,14 @@ const jobs = [
     type: "Independent Contractor",
     location: "Remote",
     desc: "Commission or territory-based structure may apply. Sell Flores Nexus Group website plans to local service businesses across your market.",
-    tags: ["Sales", "Remote", "Commission"],
+    tags: ["Sales", "B2B", "Florida", "Commission"],
   },
   {
     title: "Local Business Outreach Representative",
     type: "Independent Contractor",
     location: "Florida",
     desc: "Local outreach and appointment generation for local service businesses. Help connect business owners with Flores Nexus Group services.",
-    tags: ["Outreach", "Local", "Florida"],
+    tags: ["Sales", "B2B", "Florida", "Commission"],
   },
   {
     title: "Front-End Developer",
@@ -88,7 +88,7 @@ const jobs = [
               <p class="text-sm text-heading-2 leading-relaxed mb-4 flex-1">{job.desc}</p>
               <div class="flex flex-wrap gap-2 mb-4">
                 {job.tags.map((tag) => (
-                  <span class="text-xs bg-box-bg border border-box-border text-heading-3 px-2.5 py-1 rounded-full">{tag}</span>
+                  <span class="text-xs bg-primary/10 border border-primary/20 text-primary px-2.5 py-1 rounded-full font-semibold">{tag}</span>
                 ))}
               </div>
               <a
@@ -112,6 +112,7 @@ const jobs = [
 
           <form action="https://formspree.io/f/mlgkeegw" method="POST" class="space-y-5">
             <input type="hidden" name="form_type" value="Careers Application" />
+            <input type="hidden" name="_next" value="https://www.floresnexus.com/en/thank-you?type=application" />
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
