@@ -1,0 +1,961 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
+
+const STRIPE_LINK = "https://buy.stripe.com/eVqeVf4DBgqYeW12eW9Ve03";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mdavzvqj";
+const CUSTOM_PROPOSAL_LINK = "#";
+---
+
+<Layout
+  title="Nexus Local Launch"
+  description="Paquete de apertura para negocios locales. Mini Card administrada + Google Maps y Apple Maps. $150 inicial + $45/mes."
+  lang="es"
+>
+  <main class="pt-24 pb-20">
+
+    <!-- ── HERO ─────────────────────────────────────────────── -->
+    <section class="py-12 bg-gradient-to-br from-primary/5 to-transparent">
+      <Container>
+        <div class="max-w-3xl mx-auto text-center">
+          <span class="inline-block mb-4 px-4 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary uppercase tracking-wider">
+            Oferta de Apertura
+          </span>
+          <h1 class="text-4xl md:text-5xl font-bold text-heading-1 mb-4 leading-tight">
+            Nexus Local Launch
+          </h1>
+          <p class="text-lg font-semibold text-heading-2 mb-3">
+            Mini Card + Google Maps / Apple Maps Setup
+          </p>
+          <p class="text-heading-3 text-base md:text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+            Un paquete de apertura para negocios locales que necesitan organizar su presencia digital básica,
+            tener un link profesional administrado y conectar su información con Google Maps y Apple Maps.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href="#formulario"
+              class="px-8 py-4 rounded-full bg-primary text-white font-semibold text-base hover:bg-blue-800 transition-colors duration-200 text-center"
+            >
+              Completar información del negocio
+            </a>
+            <a
+              href={STRIPE_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-8 py-4 rounded-full border-2 border-primary text-primary font-semibold text-base hover:bg-primary/5 transition-colors duration-200 text-center"
+            >
+              Pagar Nexus Local Launch
+            </a>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- ── RESUMEN DEL PAQUETE ────────────────────────────────── -->
+    <section class="py-10">
+      <Container>
+        <div class="max-w-2xl mx-auto">
+          <div class="rounded-2xl border-2 border-primary/30 bg-box-bg shadow-lg overflow-hidden">
+            <div class="bg-primary px-6 py-5 text-white text-center">
+              <h2 class="text-2xl font-bold">Nexus Local Launch</h2>
+              <p class="text-primary-100 text-sm mt-1 opacity-90">Oferta de apertura por tiempo limitado</p>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center justify-between py-2 border-b border-box-border">
+                <span class="text-heading-2 font-medium">Activación inicial</span>
+                <span class="text-heading-1 font-bold text-lg">$150</span>
+              </div>
+              <div class="flex items-center justify-between py-2 border-b border-box-border">
+                <span class="text-heading-2 font-medium">Nexus Mini Card</span>
+                <span class="text-heading-2">$25/mes</span>
+              </div>
+              <div class="flex items-center justify-between py-2 border-b border-box-border">
+                <span class="text-heading-2 font-medium">Administración Google Maps / Apple Maps</span>
+                <span class="text-heading-2">$20/mes</span>
+              </div>
+              <div class="flex items-center justify-between py-3 mt-1">
+                <span class="text-heading-1 font-bold text-lg">Total mensual</span>
+                <span class="text-primary font-bold text-2xl">$45/mes</span>
+              </div>
+              <a
+                href={STRIPE_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full text-center py-4 rounded-full bg-primary text-white font-bold text-base hover:bg-blue-800 transition-colors duration-200 mt-2"
+              >
+                Pagar Nexus Local Launch — $150 inicial + $45/mes
+              </a>
+              <p class="text-xs text-heading-3 text-center leading-relaxed mt-3 px-2">
+                Este precio corresponde a una oferta de apertura por tiempo limitado. Flores Nexus Group LLC puede
+                actualizar, modificar o descontinuar precios de apertura, promociones, paquetes especiales o
+                beneficios iniciales para futuros clientes, renovaciones, cambios de plan o servicios adicionales.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- ── QUÉ INCLUYE LA MINI CARD ───────────────────────────── -->
+    <section class="py-10">
+      <Container>
+        <div class="max-w-3xl mx-auto">
+          <button
+            class="accordion-toggle w-full text-left rounded-2xl border border-box-border bg-box-bg px-6 py-5 flex items-center justify-between hover:border-primary/40 transition-colors duration-200"
+            data-target="minicard-content"
+            aria-expanded="false"
+          >
+            <div>
+              <h2 class="text-xl font-bold text-heading-1">¿Qué incluye la Nexus Mini Card?</h2>
+              <p class="text-sm text-heading-3 mt-1">Presencia básica administrada por Flores Nexus Group</p>
+            </div>
+            <span class="accordion-icon text-primary text-2xl font-light ml-4 flex-shrink-0">+</span>
+          </button>
+          <div id="minicard-content" class="accordion-content hidden mt-1 rounded-2xl border border-box-border bg-box-bg px-6 py-6">
+            <p class="text-heading-2 mb-5 leading-relaxed">
+              La Nexus Mini Card es una tarjeta digital administrada por Flores Nexus Group. Está diseñada para
+              negocios que necesitan una presencia básica, fácil de compartir y con información esencial.
+            </p>
+            <h3 class="font-bold text-heading-1 mb-3">Incluye:</h3>
+            <ul class="space-y-2 mb-6">
+              {[
+                "Página básica administrada por Flores Nexus Group.",
+                "Link administrado por Flores Nexus.",
+                "Nombre del negocio.",
+                "Teléfono principal.",
+                "Botón para llamar.",
+                "Botón para enviar mensaje o WhatsApp, si aplica.",
+                "Dirección o área de servicio.",
+                "Horarios básicos.",
+                "Lista de 3 a 5 productos o servicios principales.",
+                "Una imagen principal o fondo visual.",
+                "Fotos básicas del negocio o productos, si el cliente las proporciona.",
+                "Redes sociales, si existen.",
+                "Botón para obtener direcciones.",
+                "Diseño adaptado para celular.",
+                "Carga inicial de información entregada por el cliente.",
+              ].map((item) => (
+                <li class="flex items-start gap-2 text-sm text-heading-2">
+                  <span class="text-primary mt-0.5 flex-shrink-0">✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div class="rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 p-4 mb-4">
+              <p class="text-sm text-amber-800 dark:text-amber-300 leading-relaxed font-medium">
+                La Mini Card está pensada como una presencia básica, no como un sitio web completo. Su función principal
+                es centralizar la información esencial del negocio y facilitar que el cliente pueda verla, compartirla
+                y contactar al negocio.
+              </p>
+            </div>
+            <h3 class="font-bold text-heading-1 mb-3 text-sm">Servicios disponibles por cotización o add-on:</h3>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+              {[
+                "Nuevas secciones",
+                "Menú completo",
+                "Catálogo de productos",
+                "Galería extensa",
+                "Página de promociones",
+                "Formularios avanzados",
+                "Booking o citas",
+                "Pagos en línea",
+                "Rediseño visual",
+                "Cambios frecuentes post publicación",
+                "Dominio personalizado del cliente",
+              ].map((item) => (
+                <li class="flex items-start gap-2 text-xs text-heading-3">
+                  <span class="text-heading-3 mt-0.5 flex-shrink-0">—</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- ── GOOGLE MAPS / APPLE MAPS ───────────────────────────── -->
+    <section class="py-2">
+      <Container>
+        <div class="max-w-3xl mx-auto">
+          <button
+            class="accordion-toggle w-full text-left rounded-2xl border border-box-border bg-box-bg px-6 py-5 flex items-center justify-between hover:border-primary/40 transition-colors duration-200"
+            data-target="maps-content"
+            aria-expanded="false"
+          >
+            <div>
+              <h2 class="text-xl font-bold text-heading-1">Administración de Google Maps y Apple Maps</h2>
+              <p class="text-sm text-heading-3 mt-1">Mantenimiento mensual básico de presencia en mapas</p>
+            </div>
+            <span class="accordion-icon text-primary text-2xl font-light ml-4 flex-shrink-0">+</span>
+          </button>
+          <div id="maps-content" class="accordion-content hidden mt-1 rounded-2xl border border-box-border bg-box-bg px-6 py-6">
+            <p class="text-heading-2 mb-5 leading-relaxed">
+              La administración de Google Maps y Apple Maps es un add-on mensual para mantener la información
+              básica del negocio organizada y actualizada en las plataformas de mapas.
+            </p>
+            <h3 class="font-bold text-heading-1 mb-3">Incluye:</h3>
+            <ul class="space-y-2 mb-6">
+              {[
+                "Revisión mensual básica de Google Business Profile.",
+                "Revisión mensual básica de Apple Maps / Apple Business Connect.",
+                "Actualización básica de nombre del negocio, teléfono, dirección, horarios, categoría, website o Mini Card, servicios principales y fotos enviadas por el cliente.",
+                "Aviso mensual al cliente sobre interacciones relevantes.",
+                "Respuesta básica o preparación de respuesta para preguntas públicas simples.",
+                "Respuesta básica a reseñas usando tono profesional previamente autorizado por el cliente.",
+                "Subida de hasta 2 fotos al mes si el cliente las proporciona.",
+                "Actualización de horarios especiales cuando el cliente lo avise con anticipación.",
+                "Conexión de Google Maps y Apple Maps con la Mini Card.",
+              ].map((item) => (
+                <li class="flex items-start gap-2 text-sm text-heading-2">
+                  <span class="text-primary mt-0.5 flex-shrink-0">✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div class="rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 p-4 mb-4">
+              <p class="text-sm text-amber-800 dark:text-amber-300 leading-relaxed font-medium">
+                Este servicio está diseñado para mantenimiento básico de información y presencia en mapas. La
+                administración se enfoca en que los datos del negocio estén correctos, visibles y conectados
+                con su presencia digital.
+              </p>
+            </div>
+            <h3 class="font-bold text-heading-1 mb-3 text-sm">Servicios disponibles por cotización o add-on:</h3>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+              {[
+                "Publicaciones frecuentes",
+                "Manejo avanzado de reseñas",
+                "Respuestas personalizadas extensas",
+                "Campañas promocionales",
+                "Fotografías profesionales recurrentes",
+                "Estrategia avanzada de posicionamiento local",
+                "Administración de redes sociales",
+                "Anuncios pagados",
+                "Reportes avanzados",
+                "Actualizaciones ilimitadas",
+                "Cambios urgentes fuera del ciclo mensual",
+              ].map((item) => (
+                <li class="flex items-start gap-2 text-xs text-heading-3">
+                  <span class="text-heading-3 mt-0.5 flex-shrink-0">—</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- ── TIEMPOS ESTIMADOS ──────────────────────────────────── -->
+    <section class="py-10">
+      <Container>
+        <div class="max-w-3xl mx-auto">
+          <h2 class="text-2xl font-bold text-heading-1 mb-6 text-center">Tiempos Estimados</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+            <div class="rounded-xl border border-box-border bg-box-bg p-5">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-2xl">🗺️</span>
+                <h3 class="font-bold text-heading-1">Google Maps</h3>
+              </div>
+              <p class="text-sm text-heading-2 leading-relaxed">
+                Puede verificarse rápido, incluso el mismo día o aproximadamente en 1 día si la información
+                está clara y Google permite una verificación rápida. Sin embargo, la revisión o verificación
+                puede tomar varios días hábiles dependiendo de Google.
+              </p>
+            </div>
+            <div class="rounded-xl border border-box-border bg-box-bg p-5">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-2xl">🍎</span>
+                <h3 class="font-bold text-heading-1">Apple Maps</h3>
+              </div>
+              <p class="text-sm text-heading-2 leading-relaxed">
+                Apple Maps / Apple Business Connect puede tomar hasta 5 días hábiles en revisar, verificar
+                o aprobar información.
+              </p>
+            </div>
+          </div>
+          <div class="rounded-xl bg-primary/5 border border-primary/20 p-4 text-center">
+            <p class="text-sm text-heading-2 leading-relaxed">
+              <strong>Importante:</strong> Los tiempos dependen de Google y Apple. Flores Nexus Group ayuda
+              con la configuración y seguimiento, pero la aprobación final depende de cada plataforma.
+            </p>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- ── AVISO DE RESULTADOS ────────────────────────────────── -->
+    <section class="py-4">
+      <Container>
+        <div class="max-w-3xl mx-auto rounded-2xl border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-900/20 p-6">
+          <p class="text-sm text-amber-900 dark:text-amber-200 leading-relaxed mb-3">
+            Flores Nexus Group ayuda a organizar y administrar la presencia digital del negocio. Este servicio
+            se enfoca en información clara, presentación profesional, conexión con mapas y facilidad de contacto.
+          </p>
+          <p class="text-sm font-semibold text-amber-900 dark:text-amber-200 leading-relaxed">
+            Flores Nexus Group LLC no garantiza ventas, llamadas, clientes, reseñas, ingresos ni posición en
+            Google. Los resultados comerciales dependen de múltiples factores externos y de cada plataforma.
+          </p>
+        </div>
+      </Container>
+    </section>
+
+    <!-- ── FORMULARIO GUIADO ──────────────────────────────────── -->
+    <section id="formulario" class="py-12">
+      <Container>
+        <div class="max-w-3xl mx-auto">
+          <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-heading-1 mb-3">Información del Negocio</h2>
+            <p class="text-heading-3">Complete este formulario con el cliente. Toda la información se enviará a Flores Nexus Group.</p>
+          </div>
+
+          <!-- Success message (hidden by default) -->
+          <div id="form-success" class="hidden rounded-2xl border border-green-300 dark:border-green-700 bg-green-50 dark:bg-green-900/20 p-8 text-center">
+            <div class="text-4xl mb-4">✅</div>
+            <h3 class="text-2xl font-bold text-heading-1 mb-3">Información recibida.</h3>
+            <p class="text-heading-2 mb-2 text-base leading-relaxed">
+              El siguiente paso es completar el pago para activar el servicio.
+            </p>
+            <p class="text-sm text-heading-3 mb-6 leading-relaxed">
+              La producción comienza después del pago y cuando Flores Nexus Group reciba la información completa
+              del negocio. Al completar el pago, el cliente acepta los términos, condiciones, alcance del servicio
+              y política de pagos de Flores Nexus Group LLC.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href={STRIPE_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-8 py-4 rounded-full bg-primary text-white font-bold text-base hover:bg-blue-800 transition-colors duration-200 text-center"
+              >
+                Pagar Nexus Local Launch
+              </a>
+              <a
+                href={CUSTOM_PROPOSAL_LINK}
+                class="px-8 py-4 rounded-full border-2 border-primary text-primary font-semibold text-base hover:bg-primary/5 transition-colors duration-200 text-center"
+              >
+                Solicitar propuesta personalizada
+              </a>
+            </div>
+          </div>
+
+          <form
+            id="nll-form"
+            action={FORMSPREE_ENDPOINT}
+            method="POST"
+            class="space-y-6"
+          >
+            <input type="hidden" name="_subject" value="Nuevo formulario guiado - Nexus Local Launch" />
+
+            <!-- SECCIÓN: Datos del vendedor -->
+            <div class="rounded-2xl border border-box-border bg-box-bg overflow-hidden">
+              <div class="bg-primary/10 dark:bg-primary/20 px-6 py-4 border-b border-box-border">
+                <h3 class="font-bold text-heading-1 text-lg">Datos del Vendedor</h3>
+              </div>
+              <div class="p-6 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Nombre del vendedor <span class="text-red-500">*</span></label>
+                    <input type="text" name="vendedor_nombre" required class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="Nombre completo" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Código del representante</label>
+                    <input type="text" name="vendedor_codigo" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="Ej. REP-001" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">Fecha de visita <span class="text-red-500">*</span></label>
+                  <input type="date" name="vendedor_fecha" required class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" />
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">Tipo de contacto <span class="text-red-500">*</span></label>
+                  <select name="vendedor_tipo_contacto" required class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm appearance-none cursor-pointer">
+                    <option value="">Seleccionar...</option>
+                    <option>Visita en persona</option>
+                    <option>Llamada</option>
+                    <option>Referido</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECCIÓN: Información del negocio -->
+            <div class="rounded-2xl border border-box-border bg-box-bg overflow-hidden">
+              <div class="bg-primary/10 dark:bg-primary/20 px-6 py-4 border-b border-box-border">
+                <h3 class="font-bold text-heading-1 text-lg">Información del Negocio</h3>
+              </div>
+              <div class="p-6 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Nombre exacto del negocio <span class="text-red-500">*</span></label>
+                    <input type="text" name="negocio_nombre" required class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="Nombre oficial del negocio" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Nombre del dueño o contacto principal <span class="text-red-500">*</span></label>
+                    <input type="text" name="negocio_contacto" required class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="Nombre completo" />
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Teléfono principal <span class="text-red-500">*</span></label>
+                    <input type="tel" name="negocio_telefono" required class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="(555) 000-0000" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Email del negocio</label>
+                    <input type="email" name="negocio_email" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="negocio@email.com" />
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Acepta mensajes de texto?</label>
+                    <select name="negocio_acepta_sms" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                      <option value="">Seleccionar...</option>
+                      <option>Sí</option>
+                      <option>No</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Usa WhatsApp?</label>
+                    <select name="negocio_usa_whatsapp" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                      <option value="">Seleccionar...</option>
+                      <option>Sí</option>
+                      <option>No</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">Dirección del negocio</label>
+                  <input type="text" name="negocio_direccion" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="Calle, número, suite" />
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div class="sm:col-span-2">
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Ciudad / Estado</label>
+                    <input type="text" name="negocio_ciudad_estado" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="Ciudad, Estado" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">ZIP</label>
+                    <input type="text" name="negocio_zip" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="00000" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">Horarios</label>
+                  <textarea name="negocio_horarios" rows="2" class="form-input resize-none" placeholder="Ej. Lun-Vie 9am-6pm, Sáb 10am-3pm"></textarea>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Tiene dirección física donde los clientes pueden visitar?</label>
+                    <select name="negocio_tiene_fisica" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                      <option value="">Seleccionar...</option>
+                      <option>Sí</option>
+                      <option>No</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Quiere mostrar la dirección públicamente?</label>
+                    <select name="negocio_mostrar_direccion" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                      <option value="">Seleccionar...</option>
+                      <option>Sí</option>
+                      <option>No</option>
+                      <option>No estoy seguro</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">Área de servicio (si aplica)</label>
+                  <input type="text" name="negocio_area_servicio" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="Ej. Miami-Dade, Broward, Palm Beach" />
+                </div>
+              </div>
+            </div>
+
+            <!-- SECCIÓN: Productos y servicios -->
+            <div class="rounded-2xl border border-box-border bg-box-bg overflow-hidden">
+              <div class="bg-primary/10 dark:bg-primary/20 px-6 py-4 border-b border-box-border">
+                <h3 class="font-bold text-heading-1 text-lg">Productos y Servicios</h3>
+              </div>
+              <div class="p-6 space-y-4">
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">Explique qué vende u ofrece el negocio <span class="text-red-500">*</span></label>
+                  <textarea name="productos_descripcion" required rows="3" class="form-input resize-none" placeholder="Descripción general del negocio y lo que ofrece"></textarea>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">Productos o servicios principales</label>
+                  <textarea name="productos_principales" rows="2" class="form-input resize-none" placeholder="Lista de productos o servicios"></textarea>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">Top 3 productos o servicios que quiere mostrar</label>
+                  <textarea name="productos_top3" rows="2" class="form-input resize-none" placeholder="Los 3 más importantes para destacar en la Mini Card"></textarea>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Quiere mostrar precios?</label>
+                  <select name="productos_mostrar_precios" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                    <option value="">Seleccionar...</option>
+                    <option>Sí</option>
+                    <option>No</option>
+                    <option>Solo algunos</option>
+                    <option>Prefiere que llamen o escriban</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECCIÓN: Presencia digital actual -->
+            <div class="rounded-2xl border border-box-border bg-box-bg overflow-hidden">
+              <div class="bg-primary/10 dark:bg-primary/20 px-6 py-4 border-b border-box-border">
+                <h3 class="font-bold text-heading-1 text-lg">Presencia Digital Actual</h3>
+              </div>
+              <div class="p-6 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Ya tiene sitio web?</label>
+                    <select name="digital_tiene_web" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                      <option value="">Seleccionar...</option>
+                      <option>Sí</option>
+                      <option>No</option>
+                      <option>No estoy seguro</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Link del sitio actual (si existe)</label>
+                    <input type="url" name="digital_web_link" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="https://..." />
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Ya aparece en Google Maps?</label>
+                    <select name="digital_google_maps" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                      <option value="">Seleccionar...</option>
+                      <option>Sí</option>
+                      <option>No</option>
+                      <option>No estoy seguro</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Link de Google Maps (si existe)</label>
+                    <input type="url" name="digital_google_maps_link" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="https://maps.google.com/..." />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Tiene acceso a Google Business Profile?</label>
+                  <select name="digital_google_business_acceso" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                    <option value="">Seleccionar...</option>
+                    <option>Sí</option>
+                    <option>No</option>
+                    <option>No sé</option>
+                  </select>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Ya aparece en Apple Maps?</label>
+                    <select name="digital_apple_maps" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                      <option value="">Seleccionar...</option>
+                      <option>Sí</option>
+                      <option>No</option>
+                      <option>No estoy seguro</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Tiene acceso a Apple Business Connect?</label>
+                    <select name="digital_apple_business_acceso" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                      <option value="">Seleccionar...</option>
+                      <option>Sí</option>
+                      <option>No</option>
+                      <option>No sé</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Facebook</label>
+                    <input type="url" name="digital_facebook" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="https://facebook.com/..." />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Instagram</label>
+                    <input type="url" name="digital_instagram" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="https://instagram.com/..." />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">TikTok</label>
+                    <input type="url" name="digital_tiktok" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="https://tiktok.com/..." />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Yelp</label>
+                    <input type="url" name="digital_yelp" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="https://yelp.com/biz/..." />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">Otro perfil o red social</label>
+                  <input type="text" name="digital_otro" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="Nombre y link" />
+                </div>
+              </div>
+            </div>
+
+            <!-- SECCIÓN: Fotos y logotipo -->
+            <div class="rounded-2xl border border-box-border bg-box-bg overflow-hidden">
+              <div class="bg-primary/10 dark:bg-primary/20 px-6 py-4 border-b border-box-border">
+                <h3 class="font-bold text-heading-1 text-lg">Fotos y Logotipo</h3>
+              </div>
+              <div class="p-6 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Tiene logotipo?</label>
+                    <select name="fotos_logotipo" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                      <option value="">Seleccionar...</option>
+                      <option>Sí</option>
+                      <option>No</option>
+                      <option>Necesita uno básico</option>
+                      <option>Tiene uno, pero quiere mejorarlo</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Tiene fotos del negocio, productos o local?</label>
+                    <select name="fotos_disponibles" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                      <option value="">Seleccionar...</option>
+                      <option>Sí</option>
+                      <option>No</option>
+                      <option>Algunas</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">Tipo de fotos disponibles</label>
+                  <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-1">
+                    {["Frente del local", "Interior", "Productos", "Servicios", "Menú", "Equipo", "Otro"].map((tipo) => (
+                      <label class="flex items-center gap-2 text-sm text-heading-2 cursor-pointer">
+                        <input type="checkbox" name="fotos_tipos" value={tipo} class="w-4 h-4 accent-primary" />
+                        {tipo}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Autoriza a Flores Nexus a usar fotos provistas o tomadas durante la visita para crear la Mini Card y actualizar mapas?</label>
+                  <select name="fotos_autorizacion_uso" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                    <option value="">Seleccionar...</option>
+                    <option>Sí</option>
+                    <option>No</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Autoriza a Flores Nexus a tomar fotos básicas durante la visita?</label>
+                  <select name="fotos_autorizacion_tomar" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                    <option value="">Seleccionar...</option>
+                    <option>Sí</option>
+                    <option>No</option>
+                    <option>Pendiente</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECCIÓN: Acción principal del cliente final -->
+            <div class="rounded-2xl border border-box-border bg-box-bg overflow-hidden">
+              <div class="bg-primary/10 dark:bg-primary/20 px-6 py-4 border-b border-box-border">
+                <h3 class="font-bold text-heading-1 text-lg">Acción Principal del Cliente Final</h3>
+              </div>
+              <div class="p-6">
+                <p class="text-sm text-heading-2 mb-4">Cuando una persona vea su Mini Card o encuentre su negocio, ¿qué quiere que haga primero?</p>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {["Llamar", "Enviar mensaje", "WhatsApp", "Pedir direcciones", "Visitar la tienda", "Ver productos", "Pedir cotización", "Reservar cita"].map((accion) => (
+                    <label class="flex items-center gap-2 text-sm text-heading-2 cursor-pointer p-2 rounded-lg border border-box-border hover:border-primary/40 transition-colors">
+                      <input type="radio" name="accion_principal" value={accion} class="w-4 h-4 accent-primary" />
+                      {accion}
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- SECCIÓN: Google Maps y Apple Maps -->
+            <div class="rounded-2xl border border-box-border bg-box-bg overflow-hidden">
+              <div class="bg-primary/10 dark:bg-primary/20 px-6 py-4 border-b border-box-border">
+                <h3 class="font-bold text-heading-1 text-lg">Google Maps y Apple Maps</h3>
+              </div>
+              <div class="p-6 space-y-4">
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Quiere que Flores Nexus ayude a revisar, configurar u optimizar Google Maps?</label>
+                  <select name="maps_google" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                    <option value="">Seleccionar...</option>
+                    <option>Sí</option>
+                    <option>No</option>
+                    <option>Quiero más información</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Quiere que Flores Nexus ayude a revisar, configurar u optimizar Apple Maps?</label>
+                  <select name="maps_apple" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                    <option value="">Seleccionar...</option>
+                    <option>Sí</option>
+                    <option>No</option>
+                    <option>Quiero más información</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Puede recibir llamadas, textos, emails o cartas si Google o Apple piden verificación?</label>
+                  <select name="maps_verificacion_disponible" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                    <option value="">Seleccionar...</option>
+                    <option>Sí</option>
+                    <option>No</option>
+                    <option>No estoy seguro</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Autoriza a Flores Nexus Group LLC a ayudar con la configuración y administración básica de Google Maps y Apple Maps mientras el plan esté activo?</label>
+                  <select name="maps_autorizacion" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                    <option value="">Seleccionar...</option>
+                    <option>Sí</option>
+                    <option>No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECCIÓN: Administración mensual -->
+            <div class="rounded-2xl border border-box-border bg-box-bg overflow-hidden">
+              <div class="bg-primary/10 dark:bg-primary/20 px-6 py-4 border-b border-box-border">
+                <h3 class="font-bold text-heading-1 text-lg">Administración Mensual</h3>
+              </div>
+              <div class="p-6 space-y-4">
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">¿Le interesa que Flores Nexus siga administrando Google Maps y Apple Maps mensualmente?</label>
+                  <select name="admin_mensual_interes" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                    <option value="">Seleccionar...</option>
+                    <option>Sí</option>
+                    <option>No</option>
+                    <option>Quiero más información</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">Servicios seleccionados para administración mensual</label>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+                    {[
+                      "Revisar Google Maps mensualmente",
+                      "Revisar Apple Maps mensualmente",
+                      "Responder preguntas públicas simples",
+                      "Preparar respuestas para reseñas",
+                      "Avisar interacciones importantes",
+                      "Actualizar horarios",
+                      "Actualizar teléfono, dirección o links",
+                      "Subir hasta 2 fotos al mes si el cliente las proporciona",
+                      "Enviar resumen mensual básico",
+                    ].map((servicio) => (
+                      <label class="flex items-start gap-2 text-sm text-heading-2 cursor-pointer">
+                        <input type="checkbox" name="admin_servicios" value={servicio} class="w-4 h-4 accent-primary mt-0.5 flex-shrink-0" />
+                        {servicio}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECCIÓN: Paquete seleccionado -->
+            <div class="rounded-2xl border border-box-border bg-box-bg overflow-hidden">
+              <div class="bg-primary/10 dark:bg-primary/20 px-6 py-4 border-b border-box-border">
+                <h3 class="font-bold text-heading-1 text-lg">Paquete Seleccionado</h3>
+              </div>
+              <div class="p-6 space-y-4">
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">Paquete seleccionado</label>
+                  <select name="paquete_seleccionado" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                    <option value="Nexus Local Launch">Nexus Local Launch</option>
+                    <option>Nexus Mini Card</option>
+                    <option>Google Maps / Apple Maps Management</option>
+                    <option>Paquete personalizado</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Costo inicial estimado ($)</label>
+                    <input type="number" name="precio_inicial" value="150" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Mini Card mensual ($)</label>
+                    <input type="number" name="precio_minicard" value="25" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Administración mapas ($)</label>
+                    <input type="number" name="precio_mapas" value="20" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Total mensual ($)</label>
+                    <input type="number" name="precio_total_mensual" value="45" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECCIÓN: Notas del vendedor -->
+            <div class="rounded-2xl border border-box-border bg-box-bg overflow-hidden">
+              <div class="bg-primary/10 dark:bg-primary/20 px-6 py-4 border-b border-box-border">
+                <h3 class="font-bold text-heading-1 text-lg">Notas del Vendedor</h3>
+              </div>
+              <div class="p-6 space-y-4">
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">Notas internas</label>
+                  <textarea name="notas_internas" rows="3" class="form-input resize-none" placeholder="Observaciones del vendedor sobre la visita o el cliente"></textarea>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-heading-2 mb-1.5">Objeciones del cliente</label>
+                  <textarea name="notas_objeciones" rows="2" class="form-input resize-none" placeholder="¿El cliente mencionó alguna duda, objeción o preocupación?"></textarea>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Próximo paso acordado</label>
+                    <input type="text" name="notas_proximo_paso" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" placeholder="Ej. Enviar propuesta, llamar mañana" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-heading-2 mb-1.5">Fecha de seguimiento</label>
+                    <input type="date" name="notas_fecha_seguimiento" class="w-full px-4 py-3 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONFIRMACIONES OBLIGATORIAS -->
+            <div class="rounded-2xl border-2 border-primary/30 bg-box-bg overflow-hidden">
+              <div class="bg-primary px-6 py-4">
+                <h3 class="font-bold text-white text-lg">Confirmaciones Obligatorias</h3>
+                <p class="text-sm text-white/80 mt-1">Todos los campos son requeridos para enviar el formulario</p>
+              </div>
+              <div class="p-6 space-y-4">
+
+                <label class="flex items-start gap-3 cursor-pointer p-4 rounded-xl border border-box-border hover:border-primary/40 transition-colors">
+                  <input type="checkbox" name="confirm_terminos" id="confirm_terminos" required class="w-5 h-5 accent-primary mt-0.5 flex-shrink-0" />
+                  <span class="text-sm text-heading-2 leading-relaxed">
+                    Al marcar esta casilla y continuar con el pago, confirmo que he leído, entendido y acepto los Términos y Condiciones, Política de Servicio, Política de Pagos y documentos aplicables de Flores Nexus Group LLC. Entiendo que la producción empieza después del pago y cuando la información completa del negocio haya sido recibida. También entiendo que Flores Nexus Group LLC puede actualizar sus términos, políticas, precios, procesos y alcances de servicio, y que el uso continuo del servicio o pagos posteriores constituyen aceptación de los términos vigentes.
+                  </span>
+                </label>
+
+                <label class="flex items-start gap-3 cursor-pointer p-4 rounded-xl border border-box-border hover:border-primary/40 transition-colors">
+                  <input type="checkbox" name="confirm_resultados" id="confirm_resultados" required class="w-5 h-5 accent-primary mt-0.5 flex-shrink-0" />
+                  <span class="text-sm text-heading-2 leading-relaxed">
+                    Entiendo que Flores Nexus Group LLC ayuda a organizar y administrar la presencia digital del negocio, pero no garantiza ventas, llamadas, clientes, reseñas, ingresos ni posición en Google.
+                  </span>
+                </label>
+
+                <label class="flex items-start gap-3 cursor-pointer p-4 rounded-xl border border-box-border hover:border-primary/40 transition-colors">
+                  <input type="checkbox" name="confirm_tiempos" id="confirm_tiempos" required class="w-5 h-5 accent-primary mt-0.5 flex-shrink-0" />
+                  <span class="text-sm text-heading-2 leading-relaxed">
+                    Entiendo que Google y Apple pueden tardar en verificar o aprobar información, y que esos tiempos dependen de cada plataforma.
+                  </span>
+                </label>
+
+                <label class="flex items-start gap-3 cursor-pointer p-4 rounded-xl border border-box-border hover:border-primary/40 transition-colors">
+                  <input type="checkbox" name="confirm_autorizacion_admin" id="confirm_autorizacion_admin" required class="w-5 h-5 accent-primary mt-0.5 flex-shrink-0" />
+                  <span class="text-sm text-heading-2 leading-relaxed">
+                    Autorizo a Flores Nexus Group LLC a ayudar con la configuración y administración básica de Google Maps y Apple Maps mientras el plan contratado esté activo.
+                  </span>
+                </label>
+
+                <label class="flex items-start gap-3 cursor-pointer p-4 rounded-xl border border-box-border hover:border-primary/40 transition-colors">
+                  <input type="checkbox" name="confirm_fotos" id="confirm_fotos" required class="w-5 h-5 accent-primary mt-0.5 flex-shrink-0" />
+                  <span class="text-sm text-heading-2 leading-relaxed">
+                    Autorizo a Flores Nexus Group LLC a utilizar fotos, capturas de pantalla, diseños, secciones del sitio web, Mini Card, logotipo, nombre comercial, imágenes del negocio, imágenes de productos, imágenes del local y material visual proporcionado por el cliente o creado durante el proyecto para fines de portafolio, demostración, promoción, publicidad, redes sociales, propuestas comerciales, ejemplos de trabajo y material de ventas de Flores Nexus Group LLC. Si deseo limitar el uso de alguna imagen, producto, persona, área privada, documento, precio, información sensible o material específico, debo notificarlo por escrito.
+                  </span>
+                </label>
+
+                <label class="flex items-start gap-3 cursor-pointer p-4 rounded-xl border border-box-border hover:border-primary/40 transition-colors">
+                  <input type="checkbox" name="confirm_precio" id="confirm_precio" required class="w-5 h-5 accent-primary mt-0.5 flex-shrink-0" />
+                  <span class="text-sm text-heading-2 leading-relaxed">
+                    Entiendo que este precio puede corresponder a una oferta de apertura, promoción inicial o paquete especial. Flores Nexus Group LLC puede modificar, actualizar o descontinuar precios de apertura, promociones, paquetes especiales, descuentos o beneficios iniciales para nuevos clientes, servicios futuros, renovaciones, cambios de plan o servicios adicionales.
+                  </span>
+                </label>
+
+              </div>
+            </div>
+
+            <!-- Error message -->
+            <div id="form-error" class="hidden rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-300 dark:border-red-700 p-4 text-sm text-red-700 dark:text-red-300 text-center">
+              Por favor complete todos los campos requeridos y marque todas las confirmaciones para continuar.
+            </div>
+
+            <!-- Submit button -->
+            <button
+              type="submit"
+              id="submit-btn"
+              class="w-full py-5 rounded-full bg-primary text-white font-bold text-lg hover:bg-blue-800 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <span id="submit-text">Enviar Información del Negocio</span>
+            </button>
+
+            <p class="text-xs text-center text-heading-3 leading-relaxed">
+              Después de enviar, verás el botón de pago para activar el servicio. La producción inicia después
+              del pago y cuando Flores Nexus Group reciba la información completa del negocio.
+            </p>
+          </form>
+        </div>
+      </Container>
+    </section>
+
+  </main>
+</Layout>
+
+
+<script>
+  // Accordion toggle
+  document.querySelectorAll(".accordion-toggle").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const targetId = (btn as HTMLElement).dataset.target;
+      const content = document.getElementById(targetId ?? "");
+      const icon = btn.querySelector(".accordion-icon");
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+
+      btn.setAttribute("aria-expanded", isOpen ? "false" : "true");
+      content?.classList.toggle("hidden", isOpen);
+      if (icon) icon.textContent = isOpen ? "+" : "−";
+    });
+  });
+
+  // Form submission via fetch (Formspree AJAX)
+  const form = document.getElementById("nll-form") as HTMLFormElement | null;
+  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement | null;
+  const submitText = document.getElementById("submit-text");
+  const formError = document.getElementById("form-error");
+  const formSuccess = document.getElementById("form-success");
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Validate required checkboxes
+      const required = ["confirm_terminos","confirm_resultados","confirm_tiempos","confirm_autorizacion_admin","confirm_fotos","confirm_precio"];
+      const allChecked = required.every((id) => (document.getElementById(id) as HTMLInputElement)?.checked);
+
+      if (!allChecked || !form.checkValidity()) {
+        formError?.classList.remove("hidden");
+        form.reportValidity();
+        return;
+      }
+
+      formError?.classList.add("hidden");
+      if (submitBtn) submitBtn.disabled = true;
+      if (submitText) submitText.textContent = "Enviando...";
+
+      try {
+        const data = new FormData(form);
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: data,
+          headers: { Accept: "application/json" },
+        });
+
+        if (res.ok) {
+          form.classList.add("hidden");
+          formSuccess?.classList.remove("hidden");
+          formSuccess?.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          if (submitBtn) submitBtn.disabled = false;
+          if (submitText) submitText.textContent = "Enviar Información del Negocio";
+          formError?.classList.remove("hidden");
+          if (formError) formError.textContent = "Hubo un error al enviar. Por favor intente de nuevo.";
+        }
+      } catch {
+        if (submitBtn) submitBtn.disabled = false;
+        if (submitText) submitText.textContent = "Enviar Información del Negocio";
+        formError?.classList.remove("hidden");
+        if (formError) formError.textContent = "Error de conexión. Por favor intente de nuevo.";
+      }
+    });
+  }
+</script>
