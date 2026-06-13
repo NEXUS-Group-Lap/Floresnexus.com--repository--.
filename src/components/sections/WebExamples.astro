@@ -12,82 +12,117 @@ const planStyle: Record<string, string> = {
   "Professional Website": "bg-primary/15 text-primary",
 };
 
+const typeStyle: Record<string, string> = {
+  real: "bg-green-500/15 text-green-600 dark:text-green-400",
+  demo: "bg-amber-500/15 text-amber-600 dark:text-amber-400",
+};
+
 function mshot(url: string) {
   return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=640&h=400`;
 }
 
 const t = {
   en: {
-    title: "Real Websites We've Built",
-    subtitle: "Live examples of the type of clean, professional websites we deliver for local businesses.",
+    title: "Real Projects and Styles We Can Build",
+    subtitle: "Some are real projects in production. Others are demo concepts showing the styles and structures we can build for your business.",
     visitLabel: "Website",
+    realLabel: "Real Project",
+    demoLabel: "Demo Concept",
+    demoNote: "Visual example to show possible styles and structures.",
     examples: [
       {
         industry: "Lawn Care",
         plan: "Starter Website",
+        type: "real",
         desc: "Service list, pricing preview, seasonal schedule info, and contact form.",
         liveHref: "https://nexus-group-lap.github.io/floreslawncare/",
       },
       {
+        industry: "Grocery Store / Pulpería",
+        plan: "Nexus Mini Card",
+        type: "real",
+        desc: "Link card with essential info, hours, and contact for a local grocery store.",
+        liveHref: "https://floresnexus.cards/lamorenita/",
+      },
+      {
+        industry: "Resale / Boutique",
+        plan: "Nexus Mini Card",
+        type: "real",
+        desc: "Curated link card connecting Instagram, Poshmark, eBay, and Mercari in one place.",
+        liveHref: "https://nexus-group-lap.github.io/alma/",
+      },
+      {
         industry: "Architecture / Design",
         plan: "Starter Website",
+        type: "demo",
         desc: "Project portfolio, services overview, about section, and contact form.",
         liveHref: "https://3dinterior.mail-nearmelab.workers.dev/projects/",
       },
       {
         industry: "Photography",
         plan: "Professional Website",
+        type: "demo",
         desc: "Elegant gallery, service packages, booking CTA, and branded layout.",
         liveHref: "https://horizon.cosmicthemes.com",
       },
       {
         industry: "Fintech / Payments",
         plan: "Professional Website",
+        type: "demo",
         desc: "Send & receive money, pay bills, and manage transactions — clean, trustworthy design.",
         liveHref: "https://zeepay-lyart.vercel.app",
-      },
-      {
-        industry: "Resale / Boutique",
-        plan: "Nexus Mini Card",
-        desc: "Curated link card connecting Instagram, Poshmark, eBay, and Mercari in one place.",
-        liveHref: "https://nexus-group-lap.github.io/alma/",
       },
     ],
   },
   es: {
-    title: "Sitios Web Reales Que Hemos Construido",
-    subtitle: "Ejemplos en vivo del tipo de páginas profesionales y limpias que entregamos para negocios locales.",
+    title: "Proyectos Reales y Estilos Que Podemos Construir",
+    subtitle: "Algunos son proyectos reales en producción. Otros son conceptos de demostración que muestran los estilos y estructuras que podemos construir para tu negocio.",
     visitLabel: "Website",
+    realLabel: "Proyecto Real",
+    demoLabel: "Concepto de Demostración",
+    demoNote: "Ejemplo visual para mostrar estilos y estructuras posibles.",
     examples: [
       {
         industry: "Jardinería",
         plan: "Starter Website",
+        type: "real",
         desc: "Lista de servicios, vista previa de precios, info de temporada y formulario de contacto.",
         liveHref: "https://nexus-group-lap.github.io/floreslawncare/",
       },
       {
+        industry: "Pulpería / Tienda Local",
+        plan: "Nexus Mini Card",
+        type: "real",
+        desc: "Link card con información esencial, horario y contacto para una tienda local de abarrotes.",
+        liveHref: "https://floresnexus.cards/lamorenita/",
+      },
+      {
+        industry: "Ropa / Boutique",
+        plan: "Nexus Mini Card",
+        type: "real",
+        desc: "Link card con acceso directo a Instagram, Poshmark, eBay y Mercari en un solo lugar.",
+        liveHref: "https://nexus-group-lap.github.io/alma/",
+      },
+      {
         industry: "Arquitectura / Diseño",
         plan: "Starter Website",
+        type: "demo",
         desc: "Portafolio de proyectos, servicios, sección de equipo y formulario de contacto.",
         liveHref: "https://3dinterior.mail-nearmelab.workers.dev/projects/",
       },
       {
         industry: "Fotografía",
         plan: "Professional Website",
+        type: "demo",
         desc: "Galería elegante, paquetes de servicios, CTA de reserva y diseño de marca.",
         liveHref: "https://horizon.cosmicthemes.com",
       },
       {
         industry: "Fintech / Pagos",
         plan: "Professional Website",
+        type: "demo",
         desc: "Envía y recibe dinero, paga facturas y administra transacciones — diseño limpio y confiable.",
         liveHref: "https://zeepay-lyart.vercel.app",
-      },
-      {
-        industry: "Ropa / Boutique",
-        plan: "Nexus Mini Card",
-        desc: "Link card con acceso directo a Instagram, Poshmark, eBay y Mercari en un solo lugar.",
-        liveHref: "https://nexus-group-lap.github.io/alma/",
       },
     ],
   },
@@ -150,7 +185,15 @@ const t = {
                 {ex.plan}
               </span>
             </div>
+            <div>
+              <span class={`text-xs font-semibold px-2.5 py-1 rounded-full ${typeStyle[ex.type]}`}>
+                {ex.type === "real" ? t.realLabel : t.demoLabel}
+              </span>
+            </div>
             <p class="text-sm text-heading-3 leading-relaxed">{ex.desc}</p>
+            {ex.type === "demo" && (
+              <p class="text-xs text-heading-3 italic leading-relaxed">{t.demoNote}</p>
+            )}
           </div>
         </div>
       ))}

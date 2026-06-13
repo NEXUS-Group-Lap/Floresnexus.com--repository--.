@@ -2,13 +2,15 @@
 import Layout from "../../layouts/Layout.astro";
 import Pricing from "../../components/sections/Pricing.astro";
 import MiniCard from "../../components/sections/MiniCard.astro";
+import LocalPresenceStarter from "../../components/sections/LocalPresenceStarter.astro";
+import BusinessSystemCTA from "../../components/sections/BusinessSystemCTA.astro";
 import FinalCTA from "../../components/sections/FinalCTA.astro";
 import Container from "../../components/shared/Container.astro";
 ---
 
 <Layout
   title="Pricing"
-  description="Flores Nexus Group pricing — Nexus Mini Card, Starter Website, Professional Website, and Business System plans."
+  description="Flores Nexus Group pricing — Nexus Mini Card, Local Presence Starter, Starter Website, Professional Website, and Business System plans."
   lang="en"
 >
   <main class="pt-24 flex flex-col overflow-hidden">
@@ -26,6 +28,8 @@ import Container from "../../components/shared/Container.astro";
 
     <Pricing lang="en" />
     <MiniCard lang="en" />
+    <LocalPresenceStarter lang="en" />
+    <BusinessSystemCTA lang="en" />
 
     <!-- Delivery note -->
     <section class="py-6">
@@ -33,7 +37,7 @@ import Container from "../../components/shared/Container.astro";
         <div class="max-w-2xl mx-auto text-center p-4 rounded-xl bg-primary/5 border border-primary/20">
           <p class="text-sm text-heading-2">
             <strong>Production starts only after payment and complete client information are received.</strong>
-            Site ready in 24–72 hours after payment and complete client information are received.
+            Standard delivery is 3–5 business days after payment and complete information are received.
           </p>
         </div>
       </Container>

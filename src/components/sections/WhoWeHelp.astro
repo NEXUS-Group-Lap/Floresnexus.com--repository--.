@@ -11,19 +11,19 @@ const t = {
     title: "Who We Help",
     subtitle: "We build websites for local service businesses across every industry.",
     industries: [
-      "Roofing", "Cleaning", "Lawn Care", "Handyman", "Barbers",
-      "Food Trucks", "Mobile Mechanics", "Local Contractors",
-      "Small Service Businesses", "Painters", "Pressure Washing", "Photographers",
+      "Home Services", "Local Shops", "Restaurants & Food Trucks",
+      "Beauty & Personal Care", "Contractors", "Independent Professionals",
     ],
+    closing: "We also evaluate other types of local businesses.",
   },
   es: {
     title: "A Quiénes Ayudamos",
     subtitle: "Construimos páginas web para negocios locales de servicios en todas las industrias.",
     industries: [
-      "Roofing", "Limpieza", "Jardinería", "Handyman", "Barberos",
-      "Food Trucks", "Mecánicos Móviles", "Contratistas Locales",
-      "Negocios de Servicios", "Pintores", "Pressure Washing", "Fotógrafos",
+      "Servicios para el Hogar", "Comercios Locales", "Restaurantes y Food Trucks",
+      "Belleza y Cuidado Personal", "Contratistas", "Profesionales Independientes",
     ],
+    closing: "También evaluamos otros tipos de negocios locales.",
   },
 }[lang];
 
@@ -47,6 +47,10 @@ const doubled = [...t.industries, ...t.industries];
       ))}
     </div>
   </div>
+
+  <Container>
+    <p class="text-center text-sm text-heading-3 mt-6" data-reveal>{t.closing}</p>
+  </Container>
 </section>
 
 <style>

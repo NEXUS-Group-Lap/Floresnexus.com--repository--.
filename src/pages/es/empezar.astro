@@ -5,6 +5,7 @@ import {
   STARTER_STRIPE_LINK,
   PROFESSIONAL_STRIPE_LINK,
   NEXUS_MINI_STRIPE_LINK,
+  LOCAL_PRESENCE_STRIPE_LINK,
   BUSINESS_QUOTE_FORM_LINK,
 } from "../../config/links";
 ---
@@ -29,6 +30,7 @@ import {
             id="start-form-es"
             class="space-y-5"
             data-mini={NEXUS_MINI_STRIPE_LINK}
+            data-local-presence={LOCAL_PRESENCE_STRIPE_LINK}
             data-starter={STARTER_STRIPE_LINK}
             data-professional={PROFESSIONAL_STRIPE_LINK}
             data-business={BUSINESS_QUOTE_FORM_LINK}
@@ -171,6 +173,7 @@ import {
               >
                 <option value="">Selecciona un plan</option>
                 <option value="mini-card">Nexus Mini Card — $99 inicial + $29/mes</option>
+                <option value="local-presence">Local Presence Starter — $150 inicial + $45/mes</option>
                 <option value="starter">Starter Website — $299 inicial + $79/mes</option>
                 <option value="professional">Professional Website — $699 inicial + $149/mes</option>
                 <option value="business-system">Business System — Desde $2,500 (Solicitar Cotización)</option>
@@ -293,6 +296,7 @@ import {
 
   const planLabels: Record<string, string> = {
     "mini-card": "Nexus Mini Card - $99 inicial + $29/mes",
+    "local-presence": "Local Presence Starter - $150 inicial + $45/mes",
     "starter": "Starter Website - $299 inicial + $79/mes",
     "professional": "Professional Website - $699 inicial + $149/mes",
     "business-system": "Business System - Solicitar Cotizacion",
@@ -343,6 +347,7 @@ import {
 
       const links: Record<string, string> = {
         "mini-card": form.dataset.mini ?? "#",
+        "local-presence": form.dataset.localPresence ?? "#",
         "starter": form.dataset.starter ?? "#",
         "professional": form.dataset.professional ?? "#",
         "business-system": "#",

@@ -10,76 +10,44 @@ const t = {
   en: {
     title: "How It Works",
     subtitle: "From choosing a plan to launching your website — here's the simple process.",
-    intro: "You do not need to start with a complex website. We help you start with what your business needs now, then upgrade as your business grows.",
-    note: "Production starts only after payment and complete client information are received.",
+    note: "Standard delivery is 3–5 business days after payment and after we receive all the necessary information.",
     steps: [
       {
         number: "01",
-        title: "Choose Your Plan",
-        desc: "Review our plans and select the one that fits your business and budget.",
+        title: "Choose a Solution",
+        desc: "Select the plan that fits your business.",
       },
       {
         number: "02",
-        title: "Fill Out the Form",
-        desc: "Complete the Start Your Website form with your business details, services, and contact info.",
+        title: "Send Your Information and Pay",
+        desc: "Fill out the form and use the official checkout.",
       },
       {
         number: "03",
-        title: "Complete Payment",
-        desc: "You're redirected to a secure Stripe payment link for your selected plan.",
-      },
-      {
-        number: "04",
-        title: "Complete Onboarding",
-        desc: "After payment, complete the onboarding form with your photos, social links, and any additional info.",
-      },
-      {
-        number: "05",
-        title: "We Build It",
-        desc: "Our team reviews your information and builds your professional website.",
-      },
-      {
-        number: "06",
-        title: "Review & Launch",
-        desc: "You review the result. Once approved, your website goes live.",
+        title: "We Adapt, Review, and Publish",
+        desc: "We build the site, send it for review, and publish after receiving complete information.",
       },
     ],
   },
   es: {
     title: "Cómo Funciona",
     subtitle: "Desde elegir un plan hasta el lanzamiento de tu página — aquí está el proceso simple.",
-    intro: "No necesitas empezar con una página compleja. Te ayudamos a empezar con lo que tu negocio necesita hoy, y crecer a medida que tu negocio avanza.",
-    note: "La producción comienza solo después de que el pago y la información completa del cliente sean recibidos.",
+    note: "La entrega estándar es de 3–5 días hábiles después del pago y de recibir toda la información necesaria.",
     steps: [
       {
         number: "01",
-        title: "Elige Tu Plan",
-        desc: "Revisa nuestros planes y selecciona el que se adapte a tu negocio y presupuesto.",
+        title: "Elige una Solución",
+        desc: "Selecciona el plan adecuado para tu negocio.",
       },
       {
         number: "02",
-        title: "Llena el Formulario",
-        desc: "Completa el formulario de Empezar Mi Página con los detalles de tu negocio, servicios e info de contacto.",
+        title: "Envía tu Información y Realiza el Pago",
+        desc: "Completa el formulario y utiliza el checkout oficial.",
       },
       {
         number: "03",
-        title: "Completa el Pago",
-        desc: "Serás redirigido a un enlace de pago seguro de Stripe para el plan que seleccionaste.",
-      },
-      {
-        number: "04",
-        title: "Completa el Onboarding",
-        desc: "Después del pago, completa el formulario de onboarding con fotos, redes sociales e información adicional.",
-      },
-      {
-        number: "05",
-        title: "Nosotros lo Construimos",
-        desc: "Nuestro equipo revisa tu información y construye tu página web profesional.",
-      },
-      {
-        number: "06",
-        title: "Revisión y Lanzamiento",
-        desc: "Tú revisas el resultado. Una vez aprobado, tu página entra en producción.",
+        title: "Adaptamos, Revisamos y Publicamos",
+        desc: "Construimos el sitio, enviamos revisión y publicamos después de recibir la información completa.",
       },
     ],
   },
@@ -88,16 +56,12 @@ const t = {
 
 <section class="py-16" id={lang === "en" ? "how-it-works" : "como-funciona"}>
   <Container>
-    <div class="text-center mb-8" data-reveal>
+    <div class="text-center mb-10" data-reveal>
       <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>
       <p class="text-heading-3 text-lg max-w-2xl mx-auto">{t.subtitle}</p>
     </div>
 
-    <div class="rounded-xl bg-primary/5 border border-primary/20 text-center max-w-2xl mx-auto p-4 mb-10 motion-card" data-reveal="scale">
-      <p class="text-sm text-heading-2 leading-relaxed">{t.intro}</p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-stagger>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6" data-stagger>
       {t.steps.map((step, i) => (
         <div class="relative p-6 rounded-2xl border border-box-border bg-box-bg hover:border-primary/50 transition-all motion-card">
           <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center mb-4">
