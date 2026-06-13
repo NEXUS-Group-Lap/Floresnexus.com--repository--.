@@ -1,0 +1,126 @@
+---
+import Container from "../shared/Container.astro";
+import FinalCTA from "./FinalCTA.astro";
+import { plans } from "../../data/plans";
+
+export interface Props {
+  planId: string;
+  lang: "en" | "es";
+}
+
+const { planId, lang } = Astro.props;
+const plan = plans[planId];
+const copy = plan[lang];
+
+const t = {
+  en: {
+    back: "Back to Plans",
+    backHref: "/en/pricing",
+    setupLabel: "setup",
+    monthLabel: "/month",
+    bestForLabel: "Best for",
+    includesLabel: "What's included",
+    launchBadge: "Launch Offer",
+    quoteBadge: "Request Quote",
+    quoteNote: "Final pricing depends on project scope and is confirmed through a custom quote. No charge is made until the quote is approved.",
+    disclaimer: "Production starts only after payment and complete client information are received. Updates and changes depend on the selected plan. Ownership transfer is not included unless separately purchased or approved.",
+    faqLink: "View Frequently Asked Questions",
+    faqHref: "/en/faq",
+  },
+  es: {
+    back: "Volver a Planes",
+    backHref: "/es/precios",
+    setupLabel: "inicial",
+    monthLabel: "/mes",
+    bestForLabel: "Ideal para",
+    includesLabel: "Qué incluye",
+    launchBadge: "Oferta de Lanzamiento",
+    quoteBadge: "Solicitar Cotización",
+    quoteNote: "El precio final depende del alcance del proyecto y se confirma mediante una cotización personalizada. No se realiza ningún cargo hasta que la cotización sea aprobada.",
+    disclaimer: "La producción comienza solo después de recibir el pago y la información completa del cliente. Las actualizaciones y cambios dependen del plan seleccionado. La transferencia de propiedad no está incluida a menos que se compre o apruebe por separado.",
+    faqLink: "Ver Preguntas Frecuentes",
+    faqHref: "/es/preguntas",
+  },
+}[lang];
+
+const features = copy.includes ?? copy.homeFeatures;
+const badge = plan.status === "launch-offer" ? t.launchBadge : plan.status === "quote" ? t.quoteBadge : null;
+---
+
+<main class="pt-24 pb-16 flex flex-col overflow-hidden">
+  <section class="py-10">
+    <Container>
+      <a href={t.backHref} class="inline-flex items-center gap-1 text-sm text-primary font-semibold mb-8 hover:underline">
+        ← {t.back}
+      </a>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+        <div data-reveal="left">
+          {badge && (
+            <span class="inline-block mb-3 px-3.5 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary uppercase tracking-wider">
+              {badge}
+            </span>
+          )}
+          <h1 class="text-3xl md:text-4xl font-bold text-heading-1 mb-3">{copy.name}</h1>
+          <p class="text-heading-3 text-base md:text-lg leading-relaxed mb-6">{copy.tagline}</p>
+
+          <div class="mb-6">
+            <div class="flex items-baseline gap-1">
+              <span class="text-3xl font-bold text-heading-1">{plan.setup}</span>
+              <span class="text-heading-3 text-sm">{t.setupLabel}</span>
+            </div>
+            {plan.monthly && (
+              <div class="flex items-baseline gap-1 mt-1">
+                <span class="text-xl font-semibold text-primary">{plan.monthly}</span>
+                <span class="text-heading-3 text-sm">{t.monthLabel}</span>
+              </div>
+            )}
+            {plan.annual && (
+              <p class="text-sm text-heading-3 mt-2">{plan.annual[lang]}</p>
+            )}
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a
+              href={plan.startForm[lang]}
+              class="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-all duration-300 motion-button"
+            >
+              {copy.cta}
+            </a>
+          </div>
+
+          {plan.status === "quote" && (
+            <p class="text-xs text-heading-3 leading-relaxed mt-4 italic max-w-md">{t.quoteNote}</p>
+          )}
+        </div>
+
+        <div class="rounded-2xl border border-box-border bg-box-bg p-6 md:p-8 motion-card" data-reveal="right">
+          <h2 class="text-xs font-semibold uppercase tracking-widest text-heading-1 mb-2">{t.bestForLabel}</h2>
+          <p class="text-heading-2 text-sm mb-6 leading-relaxed">{copy.bestFor}</p>
+
+          <h2 class="text-xs font-semibold uppercase tracking-widest text-heading-1 mb-4">{t.includesLabel}</h2>
+          <ul class="space-y-2.5" data-stagger>
+            {features.map((item) => (
+              <li class="flex items-start gap-2 text-sm text-heading-2">
+                <svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="max-w-2xl mx-auto mt-12 p-4 rounded-xl bg-primary/5 border border-primary/20 text-center">
+        <p class="text-xs text-heading-3 leading-relaxed">{t.disclaimer}</p>
+      </div>
+
+      <div class="text-center mt-6">
+        <a href={t.faqHref} class="text-sm text-primary font-semibold hover:underline">{t.faqLink} →</a>
+      </div>
+    </Container>
+  </section>
+
+  <FinalCTA lang={lang} />
+</main>

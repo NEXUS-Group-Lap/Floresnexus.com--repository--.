@@ -23,7 +23,7 @@ export interface Plan {
   status: "standard" | "launch-offer" | "quote";
   setup: string;
   monthly?: string;
-  annual?: string;
+  annual?: { en: string; es: string };
   stripeLink?: string;
   startForm: { en: string; es: string };
   detailsHref: { en: string; es: string };
@@ -37,10 +37,10 @@ export const plans: Record<string, Plan> = {
     status: "standard",
     setup: "$99",
     monthly: "$29",
-    annual: "$299/year (save $49)",
+    annual: { en: "$299/year (save $49)", es: "$299/año (ahorra $49)" },
     stripeLink: NEXUS_MINI_STRIPE_LINK,
     startForm: { en: "/en/start?plan=mini-card", es: "/es/empezar?plan=mini-card" },
-    detailsHref: { en: "/en/pricing#mini-card", es: "/es/precios#mini-card" },
+    detailsHref: { en: "/en/plans/mini-card", es: "/es/planes/mini-card" },
     en: {
       name: "Nexus Mini Card",
       tagline: "For businesses that need a professional link with their essential information.",
@@ -78,7 +78,7 @@ export const plans: Record<string, Plan> = {
     monthly: "$45",
     stripeLink: LOCAL_PRESENCE_STRIPE_LINK,
     startForm: { en: "/en/start?plan=local-presence", es: "/es/empezar?plan=local-presence" },
-    detailsHref: { en: "/en/pricing#local-presence", es: "/es/precios#local-presence" },
+    detailsHref: { en: "/en/plans/local-presence", es: "/es/planes/local-presence" },
     en: {
       name: "Local Presence Starter",
       tagline: "For businesses that first need to organize their local presence and offer clear information when people search for them.",
@@ -138,7 +138,7 @@ export const plans: Record<string, Plan> = {
     monthly: "$79",
     stripeLink: STARTER_STRIPE_LINK,
     startForm: { en: "/en/start?plan=starter", es: "/es/empezar?plan=starter" },
-    detailsHref: { en: "/en/pricing#starter", es: "/es/precios#starter" },
+    detailsHref: { en: "/en/plans/starter", es: "/es/planes/starter" },
     en: {
       name: "Starter Website",
       tagline: "For businesses that need a professional page to present their services.",
@@ -176,7 +176,7 @@ export const plans: Record<string, Plan> = {
     monthly: "$149",
     stripeLink: PROFESSIONAL_STRIPE_LINK,
     startForm: { en: "/en/start?plan=professional", es: "/es/empezar?plan=professional" },
-    detailsHref: { en: "/en/pricing#professional", es: "/es/precios#professional" },
+    detailsHref: { en: "/en/plans/professional", es: "/es/planes/professional" },
     en: {
       name: "Professional Website",
       tagline: "For businesses that need several pages and a more complete presentation.",
@@ -213,7 +213,7 @@ export const plans: Record<string, Plan> = {
     setup: "$2,500+",
     monthly: "$399+",
     startForm: { en: "/en/start?plan=business-system&type=quote", es: "/es/empezar?plan=business-system&type=quote" },
-    detailsHref: { en: "/en/pricing#business-system", es: "/es/precios#business-system" },
+    detailsHref: { en: "/en/business-system", es: "/es/business-system" },
     en: {
       name: "Business System",
       tagline: "Custom solutions for businesses with more complex processes.",
