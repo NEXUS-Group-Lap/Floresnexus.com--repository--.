@@ -17,6 +17,8 @@ const t = {
     setupLabel: "setup",
     monthLabel: "/month",
     yearLabel: "/year",
+    billedAnnually: "Billed annually",
+    vsMonthly: "vs. 12 monthly payments",
     growthMessage: "Start with the plan that fits today. Upgrade when you need more.",
     footerNote:
       "Hosting included while subscription is active. Domain administered by Flores Nexus Group. Premium domains, ownership transfers, additional changes, advanced SEO, and external integrations may require additional charges.",
@@ -30,6 +32,8 @@ const t = {
     setupLabel: "inicial",
     monthLabel: "/mes",
     yearLabel: "/año",
+    billedAnnually: "Facturado anualmente",
+    vsMonthly: "vs. 12 pagos mensuales",
     growthMessage: "Empieza con el plan que se adapte hoy. Cambia a uno mayor cuando necesites más.",
     footerNote:
       "Hosting incluido mientras la suscripción esté activa. Dominio administrado por Flores Nexus Group. Dominios premium, transferencias de propiedad, cambios adicionales, SEO avanzado e integraciones externas pueden requerir cargos adicionales.",
@@ -113,15 +117,18 @@ const cards = planOrder.map((id) => plans[id]);
                     <span class="text-heading-3 text-sm">{t.setupLabel}</span>
                   </div>
                   {plan.annualPrice && (
-                    <div class="flex items-baseline gap-2 flex-wrap">
-                      <span class="text-xl font-semibold text-primary">{plan.annualPrice}</span>
-                      <span class="text-heading-3 text-sm">{t.yearLabel}</span>
+                    <>
+                      <div class="flex items-baseline gap-1 mb-0.5">
+                        <span class="text-xl font-semibold text-primary">{plan.annualPrice}</span>
+                        <span class="text-heading-3 text-sm">{t.yearLabel}</span>
+                      </div>
+                      <p class="text-xs text-heading-3 mb-1">{t.billedAnnually}</p>
                       {plan.annualSavings && (
-                        <span class="text-xs font-bold text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-2 py-0.5 rounded-full">
-                          {plan.annualSavings[lang]}
+                        <span class="inline-block text-xs font-bold text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-2 py-0.5 rounded-full">
+                          {plan.annualSavings[lang]} {t.vsMonthly}
                         </span>
                       )}
-                    </div>
+                    </>
                   )}
                 </div>
 

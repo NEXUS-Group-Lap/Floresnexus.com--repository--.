@@ -13,19 +13,19 @@ const t = {
     sectionSubtitle: "Answer three questions and we'll show you the option that best fits your needs.",
     stepLabel: "Step {n} of 3",
     q1Title: "What does your business need right now?",
-    q1a: "A. I just want to share my information, hours, and contact options.",
-    q1b: "B. I need a professional page to explain my services.",
-    q1c: "C. I need multiple pages, a gallery, and more content.",
+    q1a: "A. I need help getting organized on Google and Apple Maps.",
+    q1b: "B. I need a simple managed link with my business info and hours.",
+    q1c: "C. I need a professional website to explain my services.",
     q1d: "D. I need booking, payments, CRM, automations, or multiple locations.",
     q2Title: "How much content do you need to show?",
-    q2a: "A. Basic information and one image.",
-    q2b: "B. Main services and up to 10 images.",
-    q2c: "C. Multiple pages, gallery, and up to 25 images.",
+    q2a: "A. Main services and up to 10 images — one page.",
+    q2b: "B. Multiple pages, gallery, and up to 25 images.",
+    q2c: "C. Basic information and one image.",
     q2d: "D. A custom structure with special features.",
-    q3Title: "How often do you need updates?",
-    q3a: "A. I don't need updates after launch.",
-    q3b: "B. I need one small update per month.",
-    q3c: "C. I need up to three small updates per month.",
+    q3Title: "How often will you need changes?",
+    q3a: "A. I need one small update per month.",
+    q3b: "B. I need up to three small updates per month.",
+    q3c: "C. I don't need updates after launch.",
     q3d: "D. I need ongoing support and custom changes.",
     back: "← Back",
     next: "Next →",
@@ -41,6 +41,11 @@ const t = {
     restart: "Change my answers",
     quoteNote: "No charge until a written quote is approved.",
     results: {
+      "local-presence": {
+        reason: "Local Presence Starter fits because your priority is being easier to find and contact on Google and Apple Maps — with a managed Mini Card included.",
+        startCta: "Start Local Presence",
+        examplesLabel: "",
+      },
       "mini-card": {
         reason: "This plan fits your needs because you only need to share your basic contact information and hours — no full website required.",
         startCta: "Start Mini Card",
@@ -68,20 +73,20 @@ const t = {
     sectionSubtitle: "Responde tres preguntas y te mostraremos la opción que mejor coincide con tus necesidades.",
     stepLabel: "Paso {n} de 3",
     q1Title: "¿Qué necesita tu negocio ahora?",
-    q1a: "A. Solo quiero compartir mi información, horario y formas de contacto.",
-    q1b: "B. Necesito una página profesional para explicar mis servicios.",
-    q1c: "C. Necesito varias páginas, galería y más contenido.",
+    q1a: "A. Necesito ayuda para organizarme en Google y Apple Maps.",
+    q1b: "B. Necesito un enlace administrado con mi información y horario.",
+    q1c: "C. Necesito un sitio web profesional para explicar mis servicios.",
     q1d: "D. Necesito reservas, pagos, CRM, automatizaciones o varias ubicaciones.",
     q2Title: "¿Cuánto contenido necesitas mostrar?",
-    q2a: "A. Información básica y una imagen.",
-    q2b: "B. Servicios principales y hasta 10 imágenes.",
-    q2c: "C. Varias páginas, galería y hasta 25 imágenes.",
+    q2a: "A. Servicios principales y hasta 10 imágenes — una página.",
+    q2b: "B. Varias páginas, galería y hasta 25 imágenes.",
+    q2c: "C. Información básica y una imagen.",
     q2d: "D. Una estructura personalizada con funciones especiales.",
-    q3Title: "¿Con qué frecuencia necesitas cambios?",
-    q3a: "A. No necesito cambios después del lanzamiento.",
-    q3b: "B. Necesito un cambio pequeño al mes.",
-    q3c: "C. Necesito hasta tres cambios pequeños al mes.",
-    q3d: "D. Necesito soporte y cambios personalizados.",
+    q3Title: "¿Con qué frecuencia necesitarás cambios?",
+    q3a: "A. Necesito un cambio pequeño al mes.",
+    q3b: "B. Necesito hasta tres cambios pequeños al mes.",
+    q3c: "C. No necesito cambios después del lanzamiento.",
+    q3d: "D. Necesito soporte continuo y cambios personalizados.",
     back: "← Anterior",
     next: "Siguiente →",
     seeResult: "Ver Mi Recomendación",
@@ -96,6 +101,11 @@ const t = {
     restart: "Cambiar mis respuestas",
     quoteNote: "No se realiza ningún cargo hasta que la cotización escrita sea aprobada.",
     results: {
+      "local-presence": {
+        reason: "Local Presence Starter es la opción adecuada porque tu prioridad es que te encuentren y contacten más fácilmente en Google y Apple Maps — con una Mini Card administrada incluida.",
+        startCta: "Comenzar Presencia Local",
+        examplesLabel: "",
+      },
       "mini-card": {
         reason: "Este plan coincide con tus necesidades porque solo necesitas compartir tu información de contacto y horario básico — sin un sitio web completo.",
         startCta: "Comenzar Mini Card",
@@ -127,12 +137,12 @@ const questions = [
 ];
 
 const optionValues = [
-  ["mini-card", "starter", "professional", "business-system"],
-  ["mini-card", "starter", "professional", "business-system"],
-  ["mini-card", "starter", "professional", "business-system"],
+  ["local-presence", "mini-card", "starter", "business-system"],
+  ["starter", "professional", "mini-card", "business-system"],
+  ["starter", "professional", "mini-card", "business-system"],
 ];
 
-const resultPlans = ["mini-card", "starter", "professional", "business-system"];
+const resultPlans = ["local-presence", "mini-card", "starter", "professional", "business-system"];
 
 const compareHref = lang === "en" ? "#compare" : "#comparar";
 const examplesHref = lang === "en" ? "#examples" : "#ejemplos";
@@ -236,6 +246,9 @@ const examplesHref = lang === "en" ? "#examples" : "#ejemplos";
             const copy = plan[lang];
             const resultCopy = (t.results as any)[planId];
             const isBS = planId === "business-system";
+            const isLP = planId === "local-presence";
+            const tabPlans = ["mini-card", "starter", "professional"];
+            const hasExamples = !isBS && !isLP && resultCopy.examplesLabel;
             return (
               <div
                 data-quiz-result-plan={planId}
@@ -246,7 +259,7 @@ const examplesHref = lang === "en" ? "#examples" : "#ejemplos";
                 <div class="mb-4">
                   {isBS ? (
                     <p class="text-primary font-semibold">
-                      {lang === "en" ? "Starting at" : "Desde"} {plan.setup}+ {lang === "en" ? "setup" : "inicial"} + {plan.monthly}{lang === "en" ? "/month" : "/mes"}
+                      {lang === "en" ? "Starting at $2,500 setup and $399/month" : "Desde $2,500 de configuración y $399/mes"}
                     </p>
                   ) : (
                     <>
@@ -258,9 +271,11 @@ const examplesHref = lang === "en" ? "#examples" : "#ejemplos";
                         <span data-show-billing="monthly" class="text-lg font-semibold text-primary">
                           {plan.monthly}{t.monthLabel}
                         </span>
-                        <span data-show-billing="annual" class="hidden text-lg font-semibold text-primary">
-                          {plan.annualPrice}{t.yearLabel}
-                        </span>
+                        {(plan as any).annualPrice && (
+                          <span data-show-billing="annual" class="hidden text-lg font-semibold text-primary">
+                            {(plan as any).annualPrice}{t.yearLabel}
+                          </span>
+                        )}
                       </div>
                     </>
                   )}
@@ -273,7 +288,7 @@ const examplesHref = lang === "en" ? "#examples" : "#ejemplos";
 
                 {!isBS && (
                   <ul class="space-y-1.5 mb-6">
-                    {copy.homeFeatures.slice(0, 4).map((item: string) => (
+                    {(isLP ? copy.homeFeatures : copy.homeFeatures.slice(0, 4)).map((item: string) => (
                       <li class="flex items-start gap-2 text-sm text-heading-2">
                         <svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                           <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
@@ -296,7 +311,7 @@ const examplesHref = lang === "en" ? "#examples" : "#ejemplos";
                   >
                     {resultCopy.startCta}
                   </a>
-                  {!isBS && (
+                  {hasExamples && (
                     <a
                       href={examplesHref}
                       data-quiz-examples-link={planId}

@@ -8,28 +8,24 @@ const { lang } = Astro.props;
 
 const t = {
   en: {
-    title: "How to Get Started",
+    title: "How It Works",
     steps: [
-      { n: "1", title: "Choose your plan", desc: "Select the plan that best fits your business needs and budget." },
-      { n: "2", title: "Complete your business information", desc: "Fill out the onboarding form with your business name, services, hours, and photos." },
-      { n: "3", title: "Secure payment", desc: "Pay the setup fee and first month (or first year) securely online." },
-      { n: "4", title: "Flores Nexus reviews your information", desc: "We review all the information you submitted before beginning production." },
-      { n: "5", title: "Production begins", desc: "We build your site based on the information you provided and your selected plan." },
-      { n: "6", title: "Review before launch", desc: "When your plan includes it, you receive a preview to review before your site goes live." },
+      { n: "1", title: "Choose a plan", desc: "Select the plan that fits your business. Use the selector above if you're unsure." },
+      { n: "2", title: "Complete the Start Form", desc: "Fill out your business name, services, hours, contact info, and photos." },
+      { n: "3", title: "Submit payment and business information", desc: "Pay the setup fee and first billing period. Production starts once payment and complete information are received." },
+      { n: "4", title: "Review and launch", desc: "We build your site and send you a preview when your plan includes it. You confirm and we launch." },
     ],
-    timelineNote: "The standard 3–5 business day timeline begins only after payment and complete client information are received. Incomplete information delays the start.",
+    timelineNote: "Typical delivery is 3–5 business days after payment and complete business information are received.",
   },
   es: {
-    title: "Cómo Empezar",
+    title: "Cómo Funciona",
     steps: [
-      { n: "1", title: "Elige tu plan", desc: "Selecciona el plan que mejor se adapte a las necesidades y presupuesto de tu negocio." },
-      { n: "2", title: "Completa la información de tu negocio", desc: "Llena el formulario de inicio con el nombre de tu negocio, servicios, horario y fotos." },
-      { n: "3", title: "Pago seguro", desc: "Paga el costo inicial y el primer mes (o primer año) de forma segura en línea." },
-      { n: "4", title: "Flores Nexus revisa tu información", desc: "Revisamos toda la información enviada antes de comenzar la producción." },
-      { n: "5", title: "Comienza la producción", desc: "Construimos tu sitio basándonos en la información que proporcionaste y en el plan seleccionado." },
-      { n: "6", title: "Revisión antes del lanzamiento", desc: "Cuando tu plan lo incluye, recibes una vista previa para revisar antes de que tu sitio esté activo." },
+      { n: "1", title: "Elige un plan", desc: "Selecciona el plan que se adapte a tu negocio. Usa el selector de arriba si no estás seguro." },
+      { n: "2", title: "Completa el formulario de inicio", desc: "Ingresa el nombre de tu negocio, servicios, horario, datos de contacto y fotos." },
+      { n: "3", title: "Envía el pago y la información", desc: "Paga el costo inicial y el primer período de facturación. La producción comienza al recibir el pago y la información completa." },
+      { n: "4", title: "Revisa y lanza", desc: "Construimos tu sitio y te enviamos una vista previa cuando tu plan lo incluye. Tú confirmas y lanzamos." },
     ],
-    timelineNote: "El plazo estándar de 3–5 días hábiles comienza solo después de recibir el pago y la información completa del negocio. La información incompleta retrasa el inicio.",
+    timelineNote: "El plazo típico de entrega es de 3–5 días hábiles después de recibir el pago y la información completa del negocio.",
   },
 }[lang];
 ---
