@@ -1,0 +1,221 @@
+---
+import Container from "../../shared/Container.astro";
+import { plans } from "../../../data/plans";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    sectionTitle: "Learn About Each Plan in Detail",
+    tabMini: "Mini Card",
+    tabStarter: "Starter",
+    tabProfessional: "Professional",
+    forWhoLabel: "Who It's For",
+    includesLabel: "What's Included",
+    notIncludesLabel: "What's Not Included",
+    smallUpdateLabel: "What is a small update?",
+    smallUpdateBody:
+      "A small update can be replacing a photo, correcting a short text, updating a phone number or hours, or changing a link.",
+    smallUpdateNot:
+      "It does not include new pages, redesigns, new sections, booking, payments, automations, advanced SEO, or social media management.",
+    smallUpdateNote: "Unused updates do not accumulate.",
+    forWho: {
+      "mini-card":
+        "Businesses that need to share basic information and contact methods without building a full website.",
+      starter:
+        "Local businesses that need to explain their services on a professional page and make it easy for customers to contact them from their phone.",
+      professional:
+        "Established businesses that need more content, multiple pages, gallery, and a more complete presentation.",
+    },
+  },
+  es: {
+    sectionTitle: "Conoce Cada Plan en Detalle",
+    tabMini: "Mini Card",
+    tabStarter: "Starter",
+    tabProfessional: "Professional",
+    forWhoLabel: "Para Quién Es",
+    includesLabel: "Qué Incluye",
+    notIncludesLabel: "Qué No Incluye",
+    smallUpdateLabel: "¿Qué es una actualización pequeña?",
+    smallUpdateBody:
+      "Una actualización pequeña puede ser reemplazar una foto, corregir un texto corto, actualizar un teléfono u horario, o cambiar un enlace.",
+    smallUpdateNot:
+      "No incluye páginas nuevas, rediseños, secciones nuevas, reservas, pagos, automatizaciones, SEO avanzado o manejo de redes sociales.",
+    smallUpdateNote: "Las actualizaciones no utilizadas no se acumulan.",
+    forWho: {
+      "mini-card":
+        "Negocios que necesitan compartir información básica y formas de contacto sin construir un sitio web completo.",
+      starter:
+        "Negocios locales que necesitan explicar sus servicios en una página profesional y facilitar el contacto desde el teléfono.",
+      professional:
+        "Negocios establecidos que necesitan más contenido, varias páginas, galería y una presentación más completa.",
+    },
+  },
+}[lang];
+
+const detailPlans = ["mini-card", "starter", "professional"] as const;
+---
+
+<section
+  id={lang === "en" ? "plan-details" : "detalles-del-plan"}
+  class="pt-10 pb-16"
+  aria-labelledby="plan-details-title"
+>
+  <Container>
+    <div class="text-center mb-8" data-reveal>
+      <h2 id="plan-details-title" class="text-3xl md:text-4xl font-bold text-heading-1 mb-3">
+        {t.sectionTitle}
+      </h2>
+    </div>
+
+    <!-- Tabs -->
+    <div
+      class="flex border-b border-box-border mb-8 overflow-x-auto"
+      role="tablist"
+      aria-label={lang === "en" ? "Plan details" : "Detalles por plan"}
+    >
+      {
+        [
+          { id: "mini-card", label: t.tabMini },
+          { id: "starter", label: t.tabStarter },
+          { id: "professional", label: t.tabProfessional },
+        ].map(({ id, label }) => (
+          <button
+            data-detail-tab={id}
+            role="tab"
+            aria-selected={id === "starter" ? "true" : "false"}
+            aria-controls={`detail-panel-${id}`}
+            class={`px-6 py-3 text-sm font-semibold whitespace-nowrap border-b-2 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset ${id === "starter" ? "border-primary text-primary" : "border-transparent text-heading-3 hover:text-heading-2"}`}
+          >
+            {label}
+          </button>
+        ))
+      }
+    </div>
+
+    <!-- Plan panels -->
+    {
+      detailPlans.map((planId) => {
+        const plan = plans[planId];
+        const copy = plan[lang];
+        const forWho = (t.forWho as any)[planId];
+        const hasUpdates = planId === "starter" || planId === "professional";
+
+        return (
+          <div
+            id={`detail-panel-${planId}`}
+            data-detail-panel={planId}
+            role="tabpanel"
+            class={planId !== "starter" ? "hidden" : ""}
+          >
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <!-- Left: Who it's for + Includes -->
+              <div class="space-y-6">
+                <div class="rounded-2xl border border-box-border bg-box-bg p-6 motion-card">
+                  <h3 class="text-xs font-bold text-primary uppercase tracking-widest mb-3">
+                    {t.forWhoLabel}
+                  </h3>
+                  <p class="text-heading-2 text-sm leading-relaxed">{forWho}</p>
+                </div>
+
+                <div class="rounded-2xl border border-box-border bg-box-bg p-6 motion-card">
+                  <h3 class="text-xs font-bold text-primary uppercase tracking-widest mb-4">
+                    {t.includesLabel}
+                  </h3>
+                  <ul class="space-y-2.5">
+                    {copy.homeFeatures.map((item: string) => (
+                      <li class="flex items-start gap-2 text-sm text-heading-2">
+                        <svg
+                          class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          aria-hidden="true"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Right: Not includes + Small update definition -->
+              <div class="space-y-6">
+                <div class="rounded-2xl border border-box-border bg-box-bg p-6 motion-card">
+                  <h3 class="text-xs font-bold text-heading-3 uppercase tracking-widest mb-4">
+                    {t.notIncludesLabel}
+                  </h3>
+                  <ul class="space-y-2.5">
+                    {copy.notIncludes?.map((item: string) => (
+                      <li class="flex items-start gap-2 text-sm text-heading-3">
+                        <svg
+                          class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          aria-hidden="true"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {hasUpdates && (
+                  <details class="rounded-2xl border border-box-border bg-box-bg overflow-hidden group motion-card">
+                    <summary class="flex items-center justify-between px-6 py-4 cursor-pointer list-none text-sm font-semibold text-heading-1 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary">
+                      <span>{t.smallUpdateLabel}</span>
+                      <svg
+                        class="w-4 h-4 text-heading-3 transition-transform duration-200 group-open:rotate-180"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </summary>
+                    <div class="px-6 pb-5 border-t border-box-border pt-4 space-y-2">
+                      <p class="text-sm text-heading-2 leading-relaxed">{t.smallUpdateBody}</p>
+                      <p class="text-sm text-heading-3 leading-relaxed">{t.smallUpdateNot}</p>
+                      <p class="text-xs font-semibold text-primary">{t.smallUpdateNote}</p>
+                    </div>
+                  </details>
+                )}
+
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href={plan.startForm[lang]}
+                    data-plan-cta={planId}
+                    class="flex-1 flex justify-center items-center px-6 py-3 rounded-full bg-primary text-white font-semibold text-sm hover:bg-blue-800 transition-all duration-200"
+                  >
+                    {copy.cta}
+                  </a>
+                  <a
+                    href={plan.detailsHref[lang]}
+                    class="flex-1 flex justify-center items-center px-6 py-3 rounded-full border-2 border-box-border text-heading-2 font-semibold text-sm hover:border-primary hover:text-primary transition-all duration-200"
+                  >
+                    {copy.detailsCta}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })
+    }
+  </Container>
+</section>

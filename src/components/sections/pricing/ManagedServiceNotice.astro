@@ -1,0 +1,48 @@
+---
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    notice:
+      "Flores Nexus Group offers a managed service. Hosting, maintenance, and administration remain active while the subscription is active. Ownership transfer is not included and can be quoted separately.",
+    termsLabel: "Terms of Service",
+    termsHref: "/en/terms-of-service",
+    scopeLabel: "Service Scope",
+    scopeHref: "/en/service-scope",
+    refundLabel: "Refund Policy",
+    refundHref: "/en/refund-policy",
+  },
+  es: {
+    notice:
+      "Flores Nexus Group ofrece un servicio administrado. El hosting, mantenimiento y administración permanecen activos mientras la suscripción esté vigente. La transferencia de propiedad no está incluida y puede cotizarse por separado.",
+    termsLabel: "Términos del Servicio",
+    termsHref: "/es/terminos-de-servicio",
+    scopeLabel: "Alcance del Servicio",
+    scopeHref: "/es/alcance-del-servicio",
+    refundLabel: "Política de Reembolso",
+    refundHref: "/es/politica-de-reembolsos",
+  },
+}[lang];
+---
+
+<section class="py-6">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6">
+    <div class="p-4 rounded-xl border border-box-border bg-box-bg/60 flex flex-col sm:flex-row sm:items-center gap-3">
+      <p class="text-xs text-heading-3 leading-relaxed flex-1">{t.notice}</p>
+      <div class="flex gap-3 flex-wrap text-xs shrink-0">
+        <a href={t.termsHref} class="text-primary hover:underline font-medium whitespace-nowrap">
+          {t.termsLabel}
+        </a>
+        <a href={t.scopeHref} class="text-primary hover:underline font-medium whitespace-nowrap">
+          {t.scopeLabel}
+        </a>
+        <a href={t.refundHref} class="text-primary hover:underline font-medium whitespace-nowrap">
+          {t.refundLabel}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

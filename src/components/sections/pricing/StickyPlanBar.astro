@@ -1,0 +1,53 @@
+---
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: { selectedLabel: "Selected plan:" },
+  es: { selectedLabel: "Plan seleccionado:" },
+}[lang];
+---
+
+<!-- Sticky plan bar — hidden until a plan is selected via JS -->
+<div
+  id="sticky-plan-bar"
+  class="fixed bottom-0 left-0 right-0 z-50 translate-y-full transition-transform duration-300 motion-reduce:transition-none bg-white dark:bg-gray-900 border-t border-box-border shadow-lg"
+  aria-live="polite"
+  aria-label={lang === "en" ? "Selected plan summary" : "Resumen del plan seleccionado"}
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <!-- Desktop layout -->
+    <div class="hidden md:flex items-center justify-between py-3 gap-6">
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="text-xs text-heading-3 whitespace-nowrap">{t.selectedLabel}</span>
+        <span data-sticky-name class="font-bold text-heading-1 text-base truncate"></span>
+      </div>
+      <span data-sticky-price class="text-primary font-semibold text-sm whitespace-nowrap shrink-0"></span>
+      <ul data-sticky-benefits class="flex gap-4 text-xs text-heading-3 max-w-sm flex-wrap">
+        <!-- Injected by JS: up to 3 benefit items -->
+      </ul>
+      <a
+        data-sticky-cta
+        href="#"
+        class="shrink-0 inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-primary text-white font-semibold text-sm hover:bg-blue-800 transition-colors"
+      >
+      </a>
+    </div>
+
+    <!-- Mobile layout (compact) -->
+    <div class="md:hidden flex items-center justify-between py-3 gap-3">
+      <div class="min-w-0 flex-1">
+        <span data-sticky-name-mobile class="font-bold text-heading-1 text-sm block truncate"></span>
+        <span data-sticky-price-mobile class="text-primary text-xs font-semibold"></span>
+      </div>
+      <a
+        data-sticky-cta-mobile
+        href="#"
+        class="shrink-0 inline-flex items-center justify-center px-4 py-2 rounded-full bg-primary text-white font-semibold text-xs hover:bg-blue-800 transition-colors"
+      >
+      </a>
+    </div>
+  </div>
+</div>

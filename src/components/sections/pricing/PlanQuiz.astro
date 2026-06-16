@@ -1,0 +1,331 @@
+---
+import Container from "../../shared/Container.astro";
+import { plans } from "../../../data/plans";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    sectionTitle: "Find the Right Plan for Your Business",
+    sectionSubtitle: "Answer three questions and we'll show you the option that best fits your needs.",
+    stepLabel: "Step {n} of 3",
+    q1Title: "What does your business need right now?",
+    q1a: "A. I just want to share my information, hours, and contact options.",
+    q1b: "B. I need a professional page to explain my services.",
+    q1c: "C. I need multiple pages, a gallery, and more content.",
+    q1d: "D. I need booking, payments, CRM, automations, or multiple locations.",
+    q2Title: "How much content do you need to show?",
+    q2a: "A. Basic information and one image.",
+    q2b: "B. Main services and up to 10 images.",
+    q2c: "C. Multiple pages, gallery, and up to 25 images.",
+    q2d: "D. A custom structure with special features.",
+    q3Title: "How often do you need updates?",
+    q3a: "A. I don't need updates after launch.",
+    q3b: "B. I need one small update per month.",
+    q3c: "C. I need up to three small updates per month.",
+    q3d: "D. I need ongoing support and custom changes.",
+    back: "← Back",
+    next: "Next →",
+    seeResult: "See My Recommendation",
+    yourPlan: "Your Recommended Plan",
+    reasonLabel: "Why this plan fits you:",
+    setupLabel: "setup",
+    monthLabel: "/month",
+    yearLabel: "/year",
+    viewExamples: "View {name} Examples",
+    startPlan: "Start {name}",
+    compareAll: "Compare all plans",
+    restart: "Change my answers",
+    quoteNote: "No charge until a written quote is approved.",
+    results: {
+      "mini-card": {
+        reason: "This plan fits your needs because you only need to share your basic contact information and hours — no full website required.",
+        startCta: "Start Mini Card",
+        examplesLabel: "View Mini Card Examples",
+      },
+      starter: {
+        reason: "This plan fits your needs because you need a professional page, up to 10 images, and one small update per month.",
+        startCta: "Start Starter",
+        examplesLabel: "View Starter Examples",
+      },
+      professional: {
+        reason: "This plan fits your needs because you need multiple pages, a gallery, and up to three small updates per month.",
+        startCta: "Start Professional",
+        examplesLabel: "View Professional Examples",
+      },
+      "business-system": {
+        reason: "Your business needs advanced features like booking, online payments, CRM, or automations. We'll evaluate your project with a custom quote.",
+        startCta: "Request Quote",
+        examplesLabel: "",
+      },
+    },
+  },
+  es: {
+    sectionTitle: "Encuentra el Plan Adecuado para Tu Negocio",
+    sectionSubtitle: "Responde tres preguntas y te mostraremos la opción que mejor coincide con tus necesidades.",
+    stepLabel: "Paso {n} de 3",
+    q1Title: "¿Qué necesita tu negocio ahora?",
+    q1a: "A. Solo quiero compartir mi información, horario y formas de contacto.",
+    q1b: "B. Necesito una página profesional para explicar mis servicios.",
+    q1c: "C. Necesito varias páginas, galería y más contenido.",
+    q1d: "D. Necesito reservas, pagos, CRM, automatizaciones o varias ubicaciones.",
+    q2Title: "¿Cuánto contenido necesitas mostrar?",
+    q2a: "A. Información básica y una imagen.",
+    q2b: "B. Servicios principales y hasta 10 imágenes.",
+    q2c: "C. Varias páginas, galería y hasta 25 imágenes.",
+    q2d: "D. Una estructura personalizada con funciones especiales.",
+    q3Title: "¿Con qué frecuencia necesitas cambios?",
+    q3a: "A. No necesito cambios después del lanzamiento.",
+    q3b: "B. Necesito un cambio pequeño al mes.",
+    q3c: "C. Necesito hasta tres cambios pequeños al mes.",
+    q3d: "D. Necesito soporte y cambios personalizados.",
+    back: "← Anterior",
+    next: "Siguiente →",
+    seeResult: "Ver Mi Recomendación",
+    yourPlan: "Tu Plan Recomendado",
+    reasonLabel: "Por qué este plan es para ti:",
+    setupLabel: "inicial",
+    monthLabel: "/mes",
+    yearLabel: "/año",
+    viewExamples: "Ver ejemplos de {name}",
+    startPlan: "Comenzar {name}",
+    compareAll: "Comparar todos los planes",
+    restart: "Cambiar mis respuestas",
+    quoteNote: "No se realiza ningún cargo hasta que la cotización escrita sea aprobada.",
+    results: {
+      "mini-card": {
+        reason: "Este plan coincide con tus necesidades porque solo necesitas compartir tu información de contacto y horario básico — sin un sitio web completo.",
+        startCta: "Comenzar Mini Card",
+        examplesLabel: "Ver ejemplos de Mini Card",
+      },
+      starter: {
+        reason: "Este plan coincide con tus necesidades porque necesitas una página profesional, hasta 10 imágenes y una actualización pequeña al mes.",
+        startCta: "Comenzar Starter",
+        examplesLabel: "Ver ejemplos de Starter",
+      },
+      professional: {
+        reason: "Este plan coincide con tus necesidades porque necesitas varias páginas, galería y hasta tres actualizaciones pequeñas al mes.",
+        startCta: "Comenzar Professional",
+        examplesLabel: "Ver ejemplos de Professional",
+      },
+      "business-system": {
+        reason: "Tu negocio necesita funciones avanzadas como reservas, pagos en línea, CRM o automatizaciones. Evaluamos tu proyecto con una cotización personalizada.",
+        startCta: "Solicitar Cotización",
+        examplesLabel: "",
+      },
+    },
+  },
+}[lang];
+
+const questions = [
+  { key: "q1", options: ["q1a", "q1b", "q1c", "q1d"] },
+  { key: "q2", options: ["q2a", "q2b", "q2c", "q2d"] },
+  { key: "q3", options: ["q3a", "q3b", "q3c", "q3d"] },
+];
+
+const optionValues = [
+  ["mini-card", "starter", "professional", "business-system"],
+  ["mini-card", "starter", "professional", "business-system"],
+  ["mini-card", "starter", "professional", "business-system"],
+];
+
+const resultPlans = ["mini-card", "starter", "professional", "business-system"];
+
+const compareHref = lang === "en" ? "#compare" : "#comparar";
+const examplesHref = lang === "en" ? "#examples" : "#ejemplos";
+---
+
+<section id="quiz-section" class="py-16 hidden" aria-labelledby="quiz-title">
+  <Container>
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-8" data-reveal>
+        <h2 id="quiz-title" class="text-3xl md:text-4xl font-bold text-heading-1 mb-3">{t.sectionTitle}</h2>
+        <p class="text-heading-3 text-base">{t.sectionSubtitle}</p>
+      </div>
+
+      <!-- Progress indicator -->
+      <div id="quiz-progress" class="flex items-center justify-center gap-4 mb-8">
+        <span
+          id="quiz-step-label"
+          data-template={t.stepLabel}
+          class="text-sm font-semibold text-heading-2"
+        >
+          {t.stepLabel.replace("{n}", "1")}
+        </span>
+        <div class="flex gap-2" role="progressbar" aria-valuemin={1} aria-valuemax={3} aria-valuenow={1}>
+          {[0, 1, 2].map((i) => (
+            <div
+              data-quiz-dot={i}
+              class={`h-2.5 rounded-full transition-all duration-300 motion-reduce:transition-none ${i === 0 ? "w-6 bg-primary" : "w-2.5 bg-gray-300 dark:bg-gray-600"}`}
+            />
+          ))}
+        </div>
+      </div>
+
+      <!-- Questions -->
+      <div id="quiz-questions">
+        {
+          questions.map((q, stepIdx) => (
+            <div data-quiz-question={stepIdx} class={stepIdx > 0 ? "hidden" : ""}>
+              <h3 class="text-xl font-bold text-heading-1 mb-5 text-center">
+                {(t as any)[q.key + "Title"]}
+              </h3>
+
+              <div class="grid gap-3 mb-6" role="radiogroup">
+                {q.options.map((optKey, optIdx) => (
+                  <button
+                    data-quiz-option
+                    data-quiz-step={stepIdx}
+                    data-quiz-value={optionValues[stepIdx][optIdx]}
+                    class="w-full text-left px-4 py-3.5 rounded-xl border-2 border-box-border text-heading-2 text-sm transition-all duration-150 hover:border-primary hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary motion-reduce:transition-none"
+                    role="radio"
+                    aria-checked="false"
+                  >
+                    {(t as any)[optKey]}
+                  </button>
+                ))}
+              </div>
+
+              <div class="flex items-center justify-between gap-3">
+                {stepIdx > 0 ? (
+                  <button
+                    data-quiz-back={stepIdx}
+                    class="px-5 py-2.5 rounded-full border-2 border-box-border text-heading-2 font-semibold text-sm hover:border-primary hover:text-primary transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  >
+                    {t.back}
+                  </button>
+                ) : (
+                  <div />
+                )}
+
+                {stepIdx < 2 ? (
+                  <button
+                    data-quiz-next={stepIdx}
+                    disabled
+                    class="px-6 py-2.5 rounded-full bg-primary text-white font-semibold text-sm opacity-40 cursor-not-allowed transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                  >
+                    {t.next}
+                  </button>
+                ) : (
+                  <button
+                    id="quiz-see-result"
+                    disabled
+                    class="px-6 py-2.5 rounded-full bg-primary text-white font-semibold text-sm opacity-40 cursor-not-allowed transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                  >
+                    {t.seeResult}
+                  </button>
+                )}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Results (one per plan, shown/hidden by JS) -->
+      <div id="quiz-result" class="hidden" aria-live="polite">
+        <div class="text-center mb-6">
+          <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-1">{t.yourPlan}</p>
+        </div>
+
+        {
+          resultPlans.map((planId) => {
+            const plan = plans[planId];
+            const copy = plan[lang];
+            const resultCopy = (t.results as any)[planId];
+            const isBS = planId === "business-system";
+            return (
+              <div
+                data-quiz-result-plan={planId}
+                class="hidden rounded-2xl border-2 border-primary bg-box-bg p-6 md:p-8"
+              >
+                <h3 class="text-2xl font-bold text-heading-1 mb-2">{copy.name}</h3>
+
+                <div class="mb-4">
+                  {isBS ? (
+                    <p class="text-primary font-semibold">
+                      {lang === "en" ? "Starting at" : "Desde"} {plan.setup}+ {lang === "en" ? "setup" : "inicial"} + {plan.monthly}{lang === "en" ? "/month" : "/mes"}
+                    </p>
+                  ) : (
+                    <>
+                      <div class="flex items-baseline gap-1">
+                        <span class="text-2xl font-bold text-heading-1">{plan.setup}</span>
+                        <span class="text-sm text-heading-3">{t.setupLabel}</span>
+                      </div>
+                      <div class="flex items-baseline gap-1 mt-0.5">
+                        <span data-show-billing="monthly" class="text-lg font-semibold text-primary">
+                          {plan.monthly}{t.monthLabel}
+                        </span>
+                        <span data-show-billing="annual" class="hidden text-lg font-semibold text-primary">
+                          {plan.annualPrice}{t.yearLabel}
+                        </span>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                <div class="mb-5 p-4 rounded-xl bg-primary/5 border border-primary/20">
+                  <p class="text-sm font-semibold text-heading-1 mb-1">{t.reasonLabel}</p>
+                  <p class="text-sm text-heading-2 leading-relaxed">{resultCopy.reason}</p>
+                </div>
+
+                {!isBS && (
+                  <ul class="space-y-1.5 mb-6">
+                    {copy.homeFeatures.slice(0, 4).map((item: string) => (
+                      <li class="flex items-start gap-2 text-sm text-heading-2">
+                        <svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {isBS && (
+                  <p class="text-xs text-heading-3 italic mb-6">{t.quoteNote}</p>
+                )}
+
+                <div class="flex flex-col sm:flex-row gap-3 flex-wrap">
+                  <a
+                    href={plan.startForm[lang]}
+                    data-plan-cta={planId}
+                    class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-semibold text-sm hover:bg-blue-800 transition-all duration-200"
+                  >
+                    {resultCopy.startCta}
+                  </a>
+                  {!isBS && (
+                    <a
+                      href={examplesHref}
+                      data-quiz-examples-link={planId}
+                      class="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-box-border text-heading-2 font-semibold text-sm hover:border-primary hover:text-primary transition-all duration-200"
+                    >
+                      {resultCopy.examplesLabel}
+                    </a>
+                  )}
+                </div>
+
+                <div class="mt-4 flex gap-4 flex-wrap">
+                  <a href={compareHref} class="text-sm text-primary hover:underline font-medium">
+                    {t.compareAll} →
+                  </a>
+                </div>
+              </div>
+            );
+          })
+        }
+
+        <div class="text-center mt-6">
+          <button
+            id="quiz-restart"
+            class="text-sm text-heading-3 hover:text-primary hover:underline transition-colors"
+          >
+            {t.restart}
+          </button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,137 @@
+---
+import Container from "../../shared/Container.astro";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    sectionTitle: "Compare All Plans",
+    subtitle: "Full feature breakdown for Mini Card, Starter, and Professional.",
+    featureCol: "Feature",
+    miniCol: "Mini Card",
+    starterCol: "Starter",
+    proCol: "Professional",
+    yes: "Yes",
+    no: "—",
+    quote: "Quote",
+    rows: [
+      { feature: "Product type", mini: "Digital card", starter: "1-page website", pro: "Multi-page website" },
+      { feature: "Pages", mini: "1 (card)", starter: "1", pro: "Up to 5" },
+      { feature: "Published images", mini: "1 main", starter: "Up to 10", pro: "Up to 25" },
+      { feature: "Contact buttons (call / text / WhatsApp)", mini: true, starter: true, pro: true },
+      { feature: "Map or service area", mini: true, starter: true, pro: true },
+      { feature: "Contact form", mini: false, starter: false, pro: true },
+      { feature: "Gallery section", mini: false, starter: false, pro: true },
+      { feature: "Basic copywriting", mini: false, starter: false, pro: true },
+      { feature: "Social media links", mini: true, starter: true, pro: true },
+      { feature: "Mobile-first design", mini: true, starter: true, pro: true },
+      { feature: "Managed hosting", mini: true, starter: true, pro: true },
+      { feature: "Domain", mini: "floresnexus.cards", starter: "Standard (administered)", pro: "Standard (administered)" },
+      { feature: "Review before launch", mini: false, starter: true, pro: true },
+      { feature: "Monthly small updates", mini: "0", starter: "1", pro: "Up to 3" },
+      { feature: "Activity summary", mini: false, starter: "When applicable", pro: true },
+      { feature: "Ownership transfer", mini: "Not included", starter: "Not included", pro: "Not included" },
+      { feature: "Booking / scheduling", mini: false, starter: false, pro: false },
+      { feature: "Online payments", mini: false, starter: false, pro: false },
+      { feature: "CRM integration", mini: false, starter: false, pro: false },
+      { feature: "Automations", mini: false, starter: false, pro: false },
+      { feature: "Recommended for", mini: "Vendors, mobile services, early-stage", starter: "Most local businesses", pro: "Established businesses with more content" },
+    ],
+    ownershipNote: "Ownership transfer is not included and can be quoted separately.",
+    bsNote: "Booking, payments, CRM, and automations are available through the Business System plan. Request a quote for your project.",
+  },
+  es: {
+    sectionTitle: "Comparar Todos los Planes",
+    subtitle: "Desglose completo de funciones para Mini Card, Starter y Professional.",
+    featureCol: "Función",
+    miniCol: "Mini Card",
+    starterCol: "Starter",
+    proCol: "Professional",
+    yes: "Sí",
+    no: "—",
+    quote: "Cotización",
+    rows: [
+      { feature: "Tipo de producto", mini: "Tarjeta digital", starter: "Sitio de 1 página", pro: "Sitio multi-página" },
+      { feature: "Páginas", mini: "1 (tarjeta)", starter: "1", pro: "Hasta 5" },
+      { feature: "Imágenes publicadas", mini: "1 principal", starter: "Hasta 10", pro: "Hasta 25" },
+      { feature: "Botones de contacto (llamada / texto / WhatsApp)", mini: true, starter: true, pro: true },
+      { feature: "Mapa o área de servicio", mini: true, starter: true, pro: true },
+      { feature: "Formulario de contacto", mini: false, starter: false, pro: true },
+      { feature: "Sección de galería", mini: false, starter: false, pro: true },
+      { feature: "Copywriting básico", mini: false, starter: false, pro: true },
+      { feature: "Redes sociales", mini: true, starter: true, pro: true },
+      { feature: "Diseño mobile-first", mini: true, starter: true, pro: true },
+      { feature: "Hosting administrado", mini: true, starter: true, pro: true },
+      { feature: "Dominio", mini: "floresnexus.cards", starter: "Estándar (administrado)", pro: "Estándar (administrado)" },
+      { feature: "Revisión antes del lanzamiento", mini: false, starter: true, pro: true },
+      { feature: "Actualizaciones pequeñas al mes", mini: "0", starter: "1", pro: "Hasta 3" },
+      { feature: "Resumen de actividad", mini: false, starter: "Cuando aplique", pro: true },
+      { feature: "Transferencia de propiedad", mini: "No incluida", starter: "No incluida", pro: "No incluida" },
+      { feature: "Reservas / citas", mini: false, starter: false, pro: false },
+      { feature: "Pagos en línea", mini: false, starter: false, pro: false },
+      { feature: "Integración CRM", mini: false, starter: false, pro: false },
+      { feature: "Automatizaciones", mini: false, starter: false, pro: false },
+      { feature: "Recomendado para", mini: "Vendedores, servicios móviles, etapa inicial", starter: "La mayoría de negocios locales", pro: "Negocios establecidos con más contenido" },
+    ],
+    ownershipNote: "La transferencia de propiedad no está incluida y puede cotizarse por separado.",
+    bsNote: "Reservas, pagos, CRM y automatizaciones están disponibles a través del plan Business System. Solicita una cotización para tu proyecto.",
+  },
+}[lang];
+---
+
+<section
+  id={lang === "en" ? "compare" : "comparar"}
+  class="py-16"
+  aria-labelledby="compare-title"
+>
+  <Container>
+    <div class="text-center mb-10" data-reveal>
+      <h2 id="compare-title" class="text-3xl md:text-4xl font-bold text-heading-1 mb-3">
+        {t.sectionTitle}
+      </h2>
+      <p class="text-heading-3 text-base max-w-2xl mx-auto">{t.subtitle}</p>
+    </div>
+
+    <div class="overflow-x-auto rounded-2xl border border-box-border motion-card" data-reveal="scale">
+      <table class="w-full text-sm min-w-[600px]">
+        <thead>
+          <tr class="bg-box-bg border-b border-box-border">
+            <th class="p-4 text-left text-heading-3 font-medium w-2/5 text-xs uppercase tracking-wide">
+              {t.featureCol}
+            </th>
+            <th class="p-4 text-center font-semibold text-heading-2 w-1/5">{t.miniCol}</th>
+            <th class="p-4 text-center font-semibold text-primary bg-primary/5 w-1/5">{t.starterCol}</th>
+            <th class="p-4 text-center font-semibold text-heading-2 w-1/5">{t.proCol}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            t.rows.map((row, i) => {
+              const renderCell = (val: boolean | string) => {
+                if (val === true) return <span class="text-green-500 font-bold text-base" aria-label={t.yes}>✓</span>;
+                if (val === false) return <span class="text-heading-3 text-base" aria-label={t.no}>—</span>;
+                return <span class="text-heading-2 text-xs">{val}</span>;
+              };
+              return (
+                <tr class={`border-b border-box-border ${i % 2 === 0 ? "" : "bg-box-bg/50"}`}>
+                  <td class="p-4 text-heading-2 font-medium text-xs md:text-sm">{row.feature}</td>
+                  <td class="p-4 text-center">{renderCell(row.mini)}</td>
+                  <td class="p-4 text-center bg-primary/5">{renderCell(row.starter)}</td>
+                  <td class="p-4 text-center">{renderCell(row.pro)}</td>
+                </tr>
+              );
+            })
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-6 space-y-2 max-w-2xl mx-auto">
+      <p class="text-xs text-heading-3 text-center italic">{t.ownershipNote}</p>
+      <p class="text-xs text-heading-3 text-center italic">{t.bsNote}</p>
+    </div>
+  </Container>
+</section>

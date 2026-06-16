@@ -1,0 +1,393 @@
+---
+import Container from "../../shared/Container.astro";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    sectionTitle: "Website Styles and Client Projects",
+    sectionSubtitle: "Select a plan to see the styles of sites that match that level.",
+    tabMini: "Mini Card",
+    tabStarter: "Starter",
+    tabProfessional: "Professional",
+    badgeMini: "Mini Card",
+    badgeStarter: "Starter",
+    badgeProfessional: "Professional",
+    demoLabel: "Conceptual Demo",
+    industryLabel: "Demo — Industry Example",
+    viewExample: "View Example",
+    wantThis: "I Want Something Like This",
+    pagesLabel: "approx. pages",
+    demoNote: "Examples marked \"Conceptual Demo\" represent the style and structure available at this plan level. Active client projects are labeled separately.",
+  },
+  es: {
+    sectionTitle: "Estilos de Sitios y Proyectos de Clientes",
+    sectionSubtitle: "Selecciona un plan para ver los estilos de sitios que encajan con ese nivel.",
+    tabMini: "Mini Card",
+    tabStarter: "Starter",
+    tabProfessional: "Professional",
+    badgeMini: "Mini Card",
+    badgeStarter: "Starter",
+    badgeProfessional: "Professional",
+    demoLabel: "Demo Conceptual",
+    industryLabel: "Demo — Ejemplo de Industria",
+    viewExample: "Ver Ejemplo",
+    wantThis: "Quiero Algo Así",
+    pagesLabel: "páginas aprox.",
+    demoNote: "Los ejemplos marcados como \"Demo Conceptual\" representan el estilo y estructura disponible en ese nivel de plan. Los proyectos de clientes activos se identifican por separado.",
+  },
+}[lang];
+
+const startBase = {
+  en: "/en/start",
+  es: "/es/empezar",
+}[lang];
+
+// Mini Card examples — simple digital card style
+const miniCardExamples = [
+  {
+    industry: lang === "en" ? "Food Truck" : "Food Truck",
+    style: "food-truck",
+    desc: lang === "en"
+      ? "Name, location, hours, menu items, call/WhatsApp buttons, social links."
+      : "Nombre, ubicación, horario, artículos del menú, botones de llamada/WhatsApp, redes sociales.",
+    color: "from-orange-400 to-red-500",
+    initial: "FT",
+  },
+  {
+    industry: lang === "en" ? "Hair Stylist" : "Estilista",
+    style: "hair-stylist",
+    desc: lang === "en"
+      ? "Services list, phone and WhatsApp contact, hours, Instagram link, service area."
+      : "Lista de servicios, contacto por teléfono y WhatsApp, horario, link de Instagram, área de servicio.",
+    color: "from-pink-400 to-purple-500",
+    initial: "ES",
+  },
+  {
+    industry: lang === "en" ? "Independent Vendor" : "Vendedor Independiente",
+    style: "vendor",
+    desc: lang === "en"
+      ? "Product categories, contact methods, area served, hours, social links."
+      : "Categorías de productos, métodos de contacto, área de servicio, horario, redes sociales.",
+    color: "from-blue-400 to-indigo-500",
+    initial: "VI",
+  },
+  {
+    industry: lang === "en" ? "Handyman" : "Handyman",
+    style: "handyman",
+    desc: lang === "en"
+      ? "Top 5 services, call & text buttons, service area, hours."
+      : "5 servicios principales, botones para llamar y enviar texto, área de servicio, horario.",
+    color: "from-yellow-500 to-orange-500",
+    initial: "HM",
+  },
+  {
+    industry: lang === "en" ? "Mobile Service" : "Servicio Móvil",
+    style: "mobile-service",
+    desc: lang === "en"
+      ? "Service description, contact buttons, coverage area, WhatsApp link."
+      : "Descripción del servicio, botones de contacto, área de cobertura, enlace de WhatsApp.",
+    color: "from-teal-400 to-cyan-500",
+    initial: "SM",
+  },
+];
+
+// Starter examples — one-page professional sites
+const starterExamples = [
+  {
+    industry: lang === "en" ? "Lawn Care" : "Lawn Care",
+    style: "lawn-care",
+    desc: lang === "en"
+      ? "Single-section page with services, images, service area, and contact buttons."
+      : "Página de una sola sección con servicios, imágenes, área de servicio y botones de contacto.",
+    color: "from-green-500 to-emerald-600",
+    initial: "LC",
+  },
+  {
+    industry: lang === "en" ? "Barbershop" : "Barbería",
+    style: "barbershop",
+    desc: lang === "en"
+      ? "Professional page with services, gallery, hours, location, and contact."
+      : "Página profesional con servicios, galería, horario, ubicación y contacto.",
+    color: "from-slate-600 to-gray-800",
+    initial: "BB",
+  },
+  {
+    industry: lang === "en" ? "Cleaning Service" : "Servicio de Limpieza",
+    style: "cleaning",
+    desc: lang === "en"
+      ? "Service list, service area map, contact form, and social media links."
+      : "Lista de servicios, mapa del área de servicio, formulario de contacto y redes sociales.",
+    color: "from-sky-400 to-blue-500",
+    initial: "CL",
+  },
+  {
+    industry: lang === "en" ? "Restaurant" : "Restaurante",
+    style: "restaurant",
+    desc: lang === "en"
+      ? "Menu highlights, hours, location, call and WhatsApp buttons, Instagram link."
+      : "Destacados del menú, horario, ubicación, botones para llamar y WhatsApp, Instagram.",
+    color: "from-red-500 to-rose-600",
+    initial: "RS",
+  },
+  {
+    industry: lang === "en" ? "Beauty Salon" : "Salón de Belleza",
+    style: "beauty-salon",
+    desc: lang === "en"
+      ? "Services, photo gallery, booking contact, hours, and social media."
+      : "Servicios, galería de fotos, contacto para citas, horario y redes sociales.",
+    color: "from-fuchsia-400 to-pink-500",
+    initial: "SB",
+  },
+  {
+    industry: lang === "en" ? "Handyman" : "Handyman",
+    style: "handyman-starter",
+    desc: lang === "en"
+      ? "Services list, before/after images, service area, contact form and phone."
+      : "Lista de servicios, imágenes de antes/después, área de servicio, formulario y teléfono.",
+    color: "from-amber-500 to-orange-600",
+    initial: "HY",
+  },
+];
+
+// Professional examples — multi-page sites
+const professionalExamples = [
+  {
+    industry: lang === "en" ? "General Contractor" : "Contratista General",
+    style: "contractor",
+    desc: lang === "en"
+      ? "Home, Services, Gallery, About, Contact — 5 pages with project photos and form."
+      : "Home, Servicios, Galería, About, Contacto — 5 páginas con fotos de proyectos y formulario.",
+    pages: 5,
+    color: "from-stone-500 to-gray-700",
+    initial: "GC",
+  },
+  {
+    industry: lang === "en" ? "Windows & Doors" : "Ventanas y Puertas",
+    style: "windows-doors",
+    desc: lang === "en"
+      ? "Product pages, gallery, service areas, contact form, and quote request."
+      : "Páginas de productos, galería, áreas de servicio, formulario y solicitud de cotización.",
+    pages: 5,
+    color: "from-cyan-500 to-blue-600",
+    initial: "VP",
+  },
+  {
+    industry: lang === "en" ? "Cleaning Company" : "Empresa de Limpieza",
+    style: "cleaning-pro",
+    desc: lang === "en"
+      ? "Residential and commercial services pages, team, gallery, and contact form."
+      : "Páginas de servicios residenciales y comerciales, equipo, galería y formulario de contacto.",
+    pages: 4,
+    color: "from-sky-400 to-indigo-500",
+    initial: "EP",
+  },
+  {
+    industry: lang === "en" ? "Real Estate Photographer" : "Fotógrafo Inmobiliario",
+    style: "re-photographer",
+    desc: lang === "en"
+      ? "Portfolio, packages, about the photographer, galleries by category, and contact."
+      : "Portafolio, paquetes, sobre el fotógrafo, galerías por categoría y contacto.",
+    pages: 5,
+    color: "from-violet-500 to-purple-600",
+    initial: "FI",
+  },
+  {
+    industry: lang === "en" ? "Professional Services" : "Servicios Profesionales",
+    style: "professional-services",
+    desc: lang === "en"
+      ? "Services, about, testimonial area, resources page, and contact form."
+      : "Servicios, about, área de testimonios, página de recursos y formulario de contacto.",
+    pages: 5,
+    color: "from-emerald-500 to-teal-600",
+    initial: "SP",
+  },
+];
+---
+
+<section
+  id={lang === "en" ? "examples" : "ejemplos"}
+  class="pt-16 pb-8"
+  aria-labelledby="examples-title"
+>
+  <Container>
+    <div class="text-center mb-8" data-reveal>
+      <h2 id="examples-title" class="text-3xl md:text-4xl font-bold text-heading-1 mb-3">
+        {t.sectionTitle}
+      </h2>
+      <p class="text-heading-3 text-base max-w-2xl mx-auto">{t.sectionSubtitle}</p>
+    </div>
+
+    <!-- Tabs -->
+    <div
+      class="flex border-b border-box-border mb-8 overflow-x-auto"
+      role="tablist"
+      aria-label={lang === "en" ? "Plan examples" : "Ejemplos por plan"}
+    >
+      {
+        [
+          { id: "mini-card", label: t.tabMini },
+          { id: "starter", label: t.tabStarter },
+          { id: "professional", label: t.tabProfessional },
+        ].map(({ id, label }) => (
+          <button
+            data-examples-tab={id}
+            role="tab"
+            aria-selected={id === "starter" ? "true" : "false"}
+            aria-controls={`examples-panel-${id}`}
+            class={`px-6 py-3 text-sm font-semibold whitespace-nowrap border-b-2 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset ${id === "starter" ? "border-primary text-primary" : "border-transparent text-heading-3 hover:text-heading-2"}`}
+          >
+            {label}
+          </button>
+        ))
+      }
+    </div>
+
+    <!-- Mini Card panel -->
+    <div
+      id="examples-panel-mini-card"
+      data-examples-panel="mini-card"
+      role="tabpanel"
+      class="hidden"
+    >
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {
+          miniCardExamples.map((ex) => (
+            <div class="rounded-2xl border border-box-border bg-box-bg overflow-hidden flex flex-col motion-card">
+              <!-- Placeholder image -->
+              <div class={`aspect-video bg-gradient-to-br ${ex.color} flex items-center justify-center relative`}>
+                <span class="text-3xl font-bold text-white/80">{ex.initial}</span>
+                <span class="absolute top-2 left-2 text-xs font-bold bg-white/20 text-white px-2 py-0.5 rounded-full">
+                  {t.demoLabel}
+                </span>
+                <span class="absolute top-2 right-2 text-xs font-bold bg-primary text-white px-2 py-0.5 rounded-full">
+                  {t.badgeMini}
+                </span>
+              </div>
+              <div class="p-4 flex flex-col flex-1">
+                <p class="text-xs font-semibold text-primary uppercase tracking-wide mb-1">{ex.industry}</p>
+                <p class="text-sm text-heading-2 leading-relaxed mb-4 flex-1">{ex.desc}</p>
+                <div class="flex gap-2">
+                  <a
+                    href="#"
+                    aria-label={`${t.viewExample} — ${ex.industry}`}
+                    class="flex-1 text-center px-3 py-2 rounded-full border border-box-border text-heading-2 text-xs font-semibold hover:border-primary hover:text-primary transition-colors"
+                    aria-disabled="true"
+                    title={lang === "en" ? "Demo placeholder — link not yet available" : "Placeholder demo — enlace aún no disponible"}
+                  >
+                    {t.viewExample}
+                  </a>
+                  <a
+                    href={`${startBase}?plan=mini-card&style=${ex.style}`}
+                    class="flex-1 text-center px-3 py-2 rounded-full bg-primary text-white text-xs font-semibold hover:bg-blue-800 transition-colors"
+                  >
+                    {t.wantThis}
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Starter panel -->
+    <div
+      id="examples-panel-starter"
+      data-examples-panel="starter"
+      role="tabpanel"
+    >
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {
+          starterExamples.map((ex) => (
+            <div class="rounded-2xl border border-box-border bg-box-bg overflow-hidden flex flex-col motion-card">
+              <div class={`aspect-video bg-gradient-to-br ${ex.color} flex items-center justify-center relative`}>
+                <span class="text-3xl font-bold text-white/80">{ex.initial}</span>
+                <span class="absolute top-2 left-2 text-xs font-bold bg-white/20 text-white px-2 py-0.5 rounded-full">
+                  {t.demoLabel}
+                </span>
+                <span class="absolute top-2 right-2 text-xs font-bold bg-primary text-white px-2 py-0.5 rounded-full">
+                  {t.badgeStarter}
+                </span>
+              </div>
+              <div class="p-4 flex flex-col flex-1">
+                <p class="text-xs font-semibold text-primary uppercase tracking-wide mb-1">{ex.industry}</p>
+                <p class="text-sm text-heading-2 leading-relaxed mb-4 flex-1">{ex.desc}</p>
+                <div class="flex gap-2">
+                  <a
+                    href="#"
+                    aria-label={`${t.viewExample} — ${ex.industry}`}
+                    class="flex-1 text-center px-3 py-2 rounded-full border border-box-border text-heading-2 text-xs font-semibold hover:border-primary hover:text-primary transition-colors"
+                    aria-disabled="true"
+                    title={lang === "en" ? "Demo placeholder — link not yet available" : "Placeholder demo — enlace aún no disponible"}
+                  >
+                    {t.viewExample}
+                  </a>
+                  <a
+                    href={`${startBase}?plan=starter&style=${ex.style}`}
+                    class="flex-1 text-center px-3 py-2 rounded-full bg-primary text-white text-xs font-semibold hover:bg-blue-800 transition-colors"
+                  >
+                    {t.wantThis}
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Professional panel -->
+    <div
+      id="examples-panel-professional"
+      data-examples-panel="professional"
+      role="tabpanel"
+      class="hidden"
+    >
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {
+          professionalExamples.map((ex) => (
+            <div class="rounded-2xl border border-box-border bg-box-bg overflow-hidden flex flex-col motion-card">
+              <div class={`aspect-video bg-gradient-to-br ${ex.color} flex items-center justify-center relative`}>
+                <span class="text-3xl font-bold text-white/80">{ex.initial}</span>
+                <span class="absolute top-2 left-2 text-xs font-bold bg-white/20 text-white px-2 py-0.5 rounded-full">
+                  {t.demoLabel}
+                </span>
+                <span class="absolute top-2 right-2 text-xs font-bold bg-primary text-white px-2 py-0.5 rounded-full">
+                  {t.badgeProfessional}
+                </span>
+              </div>
+              <div class="p-4 flex flex-col flex-1">
+                <p class="text-xs font-semibold text-primary uppercase tracking-wide mb-1">{ex.industry}</p>
+                <p class="text-xs text-heading-3 mb-1">~{ex.pages} {t.pagesLabel}</p>
+                <p class="text-sm text-heading-2 leading-relaxed mb-4 flex-1">{ex.desc}</p>
+                <div class="flex gap-2">
+                  <a
+                    href="#"
+                    aria-label={`${t.viewExample} — ${ex.industry}`}
+                    class="flex-1 text-center px-3 py-2 rounded-full border border-box-border text-heading-2 text-xs font-semibold hover:border-primary hover:text-primary transition-colors"
+                    aria-disabled="true"
+                    title={lang === "en" ? "Demo placeholder — link not yet available" : "Placeholder demo — enlace aún no disponible"}
+                  >
+                    {t.viewExample}
+                  </a>
+                  <a
+                    href={`${startBase}?plan=professional&style=${ex.style}`}
+                    class="flex-1 text-center px-3 py-2 rounded-full bg-primary text-white text-xs font-semibold hover:bg-blue-800 transition-colors"
+                  >
+                    {t.wantThis}
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <p class="text-xs text-heading-3 text-center mt-8 max-w-2xl mx-auto italic">{t.demoNote}</p>
+  </Container>
+</section>

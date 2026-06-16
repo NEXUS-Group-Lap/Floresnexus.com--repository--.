@@ -1,0 +1,178 @@
+---
+import Container from "../../shared/Container.astro";
+import { plans, planOrder } from "../../../data/plans";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    title: "Simple, Transparent Pricing",
+    subtitle: "Choose the plan that fits your business. No long-term contracts.",
+    billingMonthly: "Monthly",
+    billingAnnual: "Annual — Save",
+    popularBadge: "Most Popular",
+    setupLabel: "setup",
+    monthLabel: "/month",
+    yearLabel: "/year",
+    growthMessage: "Start with the plan that fits today. Upgrade when you need more.",
+    footerNote:
+      "Hosting included while subscription is active. Domain administered by Flores Nexus Group. Premium domains, ownership transfers, additional changes, advanced SEO, and external integrations may require additional charges.",
+  },
+  es: {
+    title: "Precios Simples y Transparentes",
+    subtitle: "Elige el plan que se adapte a tu negocio. Sin contratos a largo plazo.",
+    billingMonthly: "Mensual",
+    billingAnnual: "Anual — Ahorra",
+    popularBadge: "Más Popular",
+    setupLabel: "inicial",
+    monthLabel: "/mes",
+    yearLabel: "/año",
+    growthMessage: "Empieza con el plan que se adapte hoy. Cambia a uno mayor cuando necesites más.",
+    footerNote:
+      "Hosting incluido mientras la suscripción esté activa. Dominio administrado por Flores Nexus Group. Dominios premium, transferencias de propiedad, cambios adicionales, SEO avanzado e integraciones externas pueden requerir cargos adicionales.",
+  },
+}[lang];
+
+const cards = planOrder.map((id) => plans[id]);
+---
+
+<section id={lang === "en" ? "pricing" : "planes"} class="pt-4 pb-16">
+  <Container>
+    <!-- Billing toggle -->
+    <div class="flex justify-center mb-10" data-reveal>
+      <div
+        class="inline-flex rounded-full border border-box-border bg-box-bg p-1 gap-1"
+        role="group"
+        aria-label={lang === "en" ? "Billing period" : "Período de facturación"}
+      >
+        <button
+          data-billing="monthly"
+          aria-pressed="true"
+          class="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 bg-primary text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        >
+          {t.billingMonthly}
+        </button>
+        <button
+          data-billing="annual"
+          aria-pressed="false"
+          class="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 text-heading-2 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        >
+          {t.billingAnnual}
+        </button>
+      </div>
+    </div>
+
+    <!-- Plan cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start" data-stagger>
+      {
+        cards.map((plan) => {
+          const copy = plan[lang];
+          const isPopular = plan.id === "starter";
+          return (
+            <div
+              id={plan.id}
+              data-plan-card={plan.id}
+              class={`relative rounded-2xl border-2 bg-box-bg flex flex-col h-full cursor-pointer transition-all duration-200 hover:border-primary/50 motion-card ${isPopular ? "border-primary" : "border-box-border"}`}
+              tabindex="0"
+              role="button"
+              aria-label={`${lang === "en" ? "Select plan" : "Seleccionar plan"} ${copy.name}`}
+            >
+              {isPopular && (
+                <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                  <span class="inline-block bg-primary text-white text-xs font-bold px-4 py-1 rounded-full tracking-wide uppercase">
+                    {t.popularBadge}
+                  </span>
+                </div>
+              )}
+
+              <div class="p-6 pt-8">
+                <h3 class="text-xl font-bold text-heading-1 mb-1">{copy.name}</h3>
+                <p class="text-sm text-heading-3 mb-5 leading-relaxed">{copy.tagline}</p>
+
+                <!-- Monthly price -->
+                <div data-show-billing="monthly" class="mb-5">
+                  <div class="flex items-baseline gap-1 mb-0.5">
+                    <span class="text-3xl font-bold text-heading-1">{plan.setup}</span>
+                    <span class="text-heading-3 text-sm">{t.setupLabel}</span>
+                  </div>
+                  {plan.monthly && (
+                    <div class="flex items-baseline gap-1">
+                      <span class="text-xl font-semibold text-primary">{plan.monthly}</span>
+                      <span class="text-heading-3 text-sm">{t.monthLabel}</span>
+                    </div>
+                  )}
+                </div>
+
+                <!-- Annual price -->
+                <div data-show-billing="annual" class="hidden mb-5">
+                  <div class="flex items-baseline gap-1 mb-0.5">
+                    <span class="text-3xl font-bold text-heading-1">{plan.setup}</span>
+                    <span class="text-heading-3 text-sm">{t.setupLabel}</span>
+                  </div>
+                  {plan.annualPrice && (
+                    <div class="flex items-baseline gap-2 flex-wrap">
+                      <span class="text-xl font-semibold text-primary">{plan.annualPrice}</span>
+                      <span class="text-heading-3 text-sm">{t.yearLabel}</span>
+                      {plan.annualSavings && (
+                        <span class="text-xs font-bold text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-2 py-0.5 rounded-full">
+                          {plan.annualSavings[lang]}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                <div class="flex flex-col gap-2">
+                  <a
+                    href={plan.startForm[lang]}
+                    data-plan-cta={plan.id}
+                    class={`w-full flex justify-center items-center px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 motion-button ${isPopular ? "bg-primary text-white hover:bg-blue-800" : "bg-primary text-white hover:bg-blue-800"}`}
+                    onclick={`event.stopPropagation()`}
+                  >
+                    {copy.cta}
+                  </a>
+                  <a
+                    href={plan.detailsHref[lang]}
+                    class="w-full flex justify-center items-center px-6 py-3 rounded-full border-2 border-box-border text-heading-2 font-semibold text-sm hover:border-primary hover:text-primary transition-all duration-200 motion-button"
+                    onclick={`event.stopPropagation()`}
+                  >
+                    {copy.detailsCta}
+                  </a>
+                </div>
+              </div>
+
+              <div class="px-6 pb-6 flex-1">
+                <hr class="border-box-border mb-4" />
+                <ul class="space-y-2.5" data-stagger>
+                  {copy.homeFeatures.slice(0, 5).map((item) => (
+                    <li class="flex items-start gap-2 text-sm text-heading-2">
+                      <svg
+                        class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <p class="text-center text-primary font-semibold text-sm max-w-xl mx-auto mt-8 mb-2">{t.growthMessage}</p>
+    <p class="text-center text-xs text-heading-3 max-w-2xl mx-auto italic">{t.footerNote}</p>
+  </Container>
+</section>

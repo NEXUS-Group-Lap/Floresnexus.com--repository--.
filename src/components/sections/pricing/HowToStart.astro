@@ -1,0 +1,69 @@
+---
+import Container from "../../shared/Container.astro";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    title: "How to Get Started",
+    steps: [
+      { n: "1", title: "Choose your plan", desc: "Select the plan that best fits your business needs and budget." },
+      { n: "2", title: "Complete your business information", desc: "Fill out the onboarding form with your business name, services, hours, and photos." },
+      { n: "3", title: "Secure payment", desc: "Pay the setup fee and first month (or first year) securely online." },
+      { n: "4", title: "Flores Nexus reviews your information", desc: "We review all the information you submitted before beginning production." },
+      { n: "5", title: "Production begins", desc: "We build your site based on the information you provided and your selected plan." },
+      { n: "6", title: "Review before launch", desc: "When your plan includes it, you receive a preview to review before your site goes live." },
+    ],
+    timelineNote: "The standard 3–5 business day timeline begins only after payment and complete client information are received. Incomplete information delays the start.",
+  },
+  es: {
+    title: "Cómo Empezar",
+    steps: [
+      { n: "1", title: "Elige tu plan", desc: "Selecciona el plan que mejor se adapte a las necesidades y presupuesto de tu negocio." },
+      { n: "2", title: "Completa la información de tu negocio", desc: "Llena el formulario de inicio con el nombre de tu negocio, servicios, horario y fotos." },
+      { n: "3", title: "Pago seguro", desc: "Paga el costo inicial y el primer mes (o primer año) de forma segura en línea." },
+      { n: "4", title: "Flores Nexus revisa tu información", desc: "Revisamos toda la información enviada antes de comenzar la producción." },
+      { n: "5", title: "Comienza la producción", desc: "Construimos tu sitio basándonos en la información que proporcionaste y en el plan seleccionado." },
+      { n: "6", title: "Revisión antes del lanzamiento", desc: "Cuando tu plan lo incluye, recibes una vista previa para revisar antes de que tu sitio esté activo." },
+    ],
+    timelineNote: "El plazo estándar de 3–5 días hábiles comienza solo después de recibir el pago y la información completa del negocio. La información incompleta retrasa el inicio.",
+  },
+}[lang];
+---
+
+<section class="py-16" aria-labelledby="how-to-start-title">
+  <Container>
+    <div class="text-center mb-10" data-reveal>
+      <h2 id="how-to-start-title" class="text-3xl md:text-4xl font-bold text-heading-1 mb-3">
+        {t.title}
+      </h2>
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+      <ol class="space-y-6" data-stagger>
+        {
+          t.steps.map((step) => (
+            <li class="flex gap-5 items-start motion-card">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">
+                {step.n}
+              </div>
+              <div class="flex-1 pt-1.5">
+                <h3 class="font-semibold text-heading-1 mb-0.5">{step.title}</h3>
+                <p class="text-sm text-heading-3 leading-relaxed">{step.desc}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="mt-8 p-4 rounded-xl bg-primary/5 border border-primary/20 text-center">
+        <p class="text-sm text-heading-2 leading-relaxed">
+          <strong>{t.timelineNote}</strong>
+        </p>
+      </div>
+    </div>
+  </Container>
+</section>
