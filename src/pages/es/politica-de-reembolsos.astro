@@ -29,7 +29,8 @@ import Container from "../../components/shared/Container.astro";
           <div class="py-6 border-t border-box-border">
             <h2 class="text-lg font-semibold text-heading-1 mb-3">Descripción General</h2>
             <div class="text-sm text-heading-2 leading-relaxed space-y-3">
-              <p>Flores Nexus Group LLC ofrece trabajo basado en servicios. Los cargos iniciales cubren diseño, configuración y trabajo de lanzamiento que comienza inmediatamente después de recibir el pago y la información completa de incorporación. Las tarifas mensuales cubren hosting activo, administración y los servicios incluidos en el plan.</p>
+              <p>Flores Nexus Group LLC ofrece trabajo basado en servicios. Los cargos iniciales cubren diseño, configuración y trabajo de lanzamiento que comienza después de recibir el pago y la información completa de incorporación ("producción"). Las tarifas mensuales cubren hosting activo, administración y los servicios incluidos en el plan en cada periodo.</p>
+              <p class="font-medium text-heading-1">Regla clave: Si cancelas antes de que inicie la producción, recibes un reembolso completo de lo pagado, menos las comisiones de procesamiento de pago (no reembolsables) que cobra nuestro procesador (Stripe).</p>
             </div>
           </div>
 
@@ -37,11 +38,16 @@ import Container from "../../components/shared/Container.astro";
           <div class="py-6 border-t border-box-border">
             <h2 class="text-lg font-semibold text-heading-1 mb-6">Escenarios de Reembolso</h2>
 
-            <div class="space-y-6">
+            <div class="space-y-4">
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
-                <p class="font-semibold text-heading-1 text-sm mb-2">El cliente paga pero no completa la incorporación</p>
-                <p class="text-sm text-heading-2 leading-relaxed">El cargo inicial puede ser retenido como crédito de cuenta, revisado caso por caso. Los reembolsos automáticos no están garantizados.</p>
+                <p class="font-semibold text-heading-1 text-sm mb-2">Cancelación antes de que inicie la producción</p>
+                <p class="text-sm text-heading-2 leading-relaxed">Reembolso completo de lo pagado, menos las comisiones de procesamiento no reembolsables.</p>
+              </div>
+
+              <div class="rounded-xl border border-box-border bg-box-bg p-5">
+                <p class="font-semibold text-heading-1 text-sm mb-2">El cliente paga pero no entrega la información para empezar</p>
+                <p class="text-sm text-heading-2 leading-relaxed">La producción no ha iniciado; aplica la regla anterior hasta que la producción comience.</p>
               </div>
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
@@ -51,32 +57,37 @@ import Container from "../../components/shared/Container.astro";
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
                 <p class="font-semibold text-heading-1 text-sm mb-2">Vista previa entregada — el cliente cancela</p>
-                <p class="text-sm text-heading-2 leading-relaxed">El cargo inicial no es reembolsable. La cancelación de la suscripción mensual sigue la política de facturación.</p>
+                <p class="text-sm text-heading-2 leading-relaxed">El cargo inicial no es reembolsable. La cancelación mensual sigue la regla de facturación de abajo.</p>
               </div>
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
                 <p class="font-semibold text-heading-1 text-sm mb-2">Suscripción mensual ya cobrada</p>
-                <p class="text-sm text-heading-2 leading-relaxed">No reembolsable por períodos de facturación ya iniciados. El servicio permanece activo hasta el final del período pagado, salvo terminación por violación de políticas.</p>
+                <p class="text-sm text-heading-2 leading-relaxed">No reembolsable por periodos ya iniciados. Cancelar detiene los cobros futuros; el servicio sigue activo hasta el fin del periodo pagado, salvo terminación por violación de políticas.</p>
               </div>
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
-                <p class="font-semibold text-heading-1 text-sm mb-2">Error causado por Flores Nexus durante la construcción inicial</p>
-                <p class="text-sm text-heading-2 leading-relaxed">La corrección se incluye sin costo adicional dentro del alcance razonable del plan adquirido.</p>
+                <p class="font-semibold text-heading-1 text-sm mb-2">Planes anuales</p>
+                <p class="text-sm text-heading-2 leading-relaxed">Cuentas con 30 días desde la compra para solicitar el reembolso de los meses completos no utilizados, menos las comisiones de procesamiento. Pasados los 30 días, el plan continúa y los meses restantes no son reembolsables.</p>
               </div>
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
-                <p class="font-semibold text-heading-1 text-sm mb-2">Cancelación antes de que inicie la producción</p>
-                <p class="text-sm text-heading-2 leading-relaxed">Revisado caso por caso. El resultado máximo es crédito de cuenta — no un reembolso automático.</p>
+                <p class="font-semibold text-heading-1 text-sm mb-2">Error causado por Flores Nexus en la construcción inicial</p>
+                <p class="text-sm text-heading-2 leading-relaxed">Se corrige sin costo adicional dentro del alcance razonable del plan adquirido.</p>
+              </div>
+
+              <div class="rounded-xl border border-box-border bg-box-bg p-5">
+                <p class="font-semibold text-heading-1 text-sm mb-2">Complementos, solicitudes de cambio y dominios premium</p>
+                <p class="text-sm text-heading-2 leading-relaxed">No reembolsables una vez iniciado el trabajo o adquirido/aprobado el recurso (por ejemplo, un dominio).</p>
               </div>
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
                 <p class="font-semibold text-heading-1 text-sm mb-2">Proyecto personalizado de Business System</p>
-                <p class="text-sm text-heading-2 leading-relaxed">Los reembolsos, hitos, depósitos y términos de cancelación deben definirse en un acuerdo escrito por separado antes de que comience el trabajo.</p>
+                <p class="text-sm text-heading-2 leading-relaxed">Reembolsos, hitos, depósitos y cancelación se definen en un acuerdo escrito por separado antes de iniciar.</p>
               </div>
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
                 <p class="font-semibold text-heading-1 text-sm mb-2">Contracargo injustificado o disputa de pago</p>
-                <p class="text-sm text-heading-2 leading-relaxed">Puede resultar en terminación inmediata del servicio y pérdida de cualquier crédito.</p>
+                <p class="text-sm text-heading-2 leading-relaxed">Contáctanos primero; resolvemos la mayoría de los casos rápido. Un contracargo injustificado puede resultar en suspensión o terminación del servicio y pérdida de cualquier crédito.</p>
               </div>
 
             </div>
@@ -84,8 +95,8 @@ import Container from "../../components/shared/Container.astro";
 
           <!-- Cómo solicitar -->
           <div class="py-6 border-t border-box-border">
-            <h2 class="text-lg font-semibold text-heading-1 mb-3">Cómo Solicitar una Revisión</h2>
-            <p class="text-sm text-heading-2 leading-relaxed">Contacta a Flores Nexus Group LLC por correo electrónico en [SUPPORT EMAIL] con tu ID de cliente, el plan adquirido y una descripción de tu situación. Responderemos dentro de 5 días hábiles.</p>
+            <h2 class="text-lg font-semibold text-heading-1 mb-3">Cómo Solicitar un Reembolso</h2>
+            <p class="text-sm text-heading-2 leading-relaxed">Escribe a <a href="mailto:info@floresnexus.com" class="text-primary hover:underline">info@floresnexus.com</a> con tu ID de cliente, el plan adquirido y una descripción de tu situación. Los reembolsos aprobados se procesan al método de pago original. Respondemos dentro de 5 días hábiles.</p>
           </div>
 
         </div>

@@ -6,6 +6,21 @@ export interface Props {
 }
 const { lang } = Astro.props;
 
+function mshot(url: string) {
+  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=640&h=400`;
+}
+
+const planStyle: Record<string, string> = {
+  "Nexus Mini Card":      "bg-pink-500/15 text-pink-500",
+  "Starter Website":      "bg-lime-500/15 text-lime-600 dark:text-lime-400",
+  "Professional Website": "bg-primary/15 text-primary",
+};
+
+const typeStyle = {
+  real: "bg-green-500/15 text-green-600 dark:text-green-400",
+  demo: "bg-amber-500/15 text-amber-600 dark:text-amber-400",
+};
+
 const t = {
   en: {
     sectionTitle: "Website Examples by Plan",
@@ -13,14 +28,11 @@ const t = {
     tabMini: "Mini Card",
     tabStarter: "Starter",
     tabProfessional: "Professional",
-    badgeMini: "Mini Card",
-    badgeStarter: "Starter",
-    badgeProfessional: "Professional",
-    demoLabel: "Conceptual Demo",
-    viewExample: "View Example",
+    visitLabel: "Website",
+    realLabel: "Real Project",
+    demoLabel: "Demo Concept",
+    demoNote: "Visual example to show possible styles and structures.",
     wantThis: "I Want Something Like This",
-    viewAll: "View all website examples",
-    demoNote: "Examples marked \"Conceptual Demo\" represent the style and structure available at this plan level.",
   },
   es: {
     sectionTitle: "Ejemplos de Sitios por Plan",
@@ -28,91 +40,104 @@ const t = {
     tabMini: "Mini Card",
     tabStarter: "Starter",
     tabProfessional: "Professional",
-    badgeMini: "Mini Card",
-    badgeStarter: "Starter",
-    badgeProfessional: "Professional",
-    demoLabel: "Demo Conceptual",
-    viewExample: "Ver Ejemplo",
+    visitLabel: "Website",
+    realLabel: "Proyecto Real",
+    demoLabel: "Concepto Demo",
+    demoNote: "Ejemplo visual para mostrar estilos y estructuras posibles.",
     wantThis: "Quiero Algo Así",
-    viewAll: "Ver todos los ejemplos de sitios",
-    demoNote: "Los ejemplos marcados como \"Demo Conceptual\" representan el estilo y estructura disponible en ese nivel de plan.",
   },
 }[lang];
 
 const startBase = { en: "/en/start", es: "/es/empezar" }[lang];
-const examplesHref = { en: "/en/examples", es: "/es/ejemplos" }[lang];
 
-const miniCardExamples = [
-  {
-    industry: lang === "en" ? "Food Truck" : "Food Truck",
-    style: "food-truck",
-    desc: lang === "en"
-      ? "Name, hours, menu items, call/WhatsApp buttons, social links."
-      : "Nombre, horario, artículos del menú, botones de llamada/WhatsApp, redes sociales.",
-    color: "from-orange-400 to-red-500",
-    initial: "FT",
-  },
-  {
-    industry: lang === "en" ? "Hair Stylist" : "Estilista",
-    style: "hair-stylist",
-    desc: lang === "en"
-      ? "Services, phone and WhatsApp contact, hours, Instagram link, service area."
-      : "Servicios, contacto por teléfono y WhatsApp, horario, Instagram, área de servicio.",
-    color: "from-pink-400 to-purple-500",
-    initial: "ES",
-  },
-];
+type Example = {
+  industry: string;
+  plan: string;
+  planId: string;
+  type: "real" | "demo";
+  desc: string;
+  liveHref: string;
+};
 
-const starterExamples = [
+const panels: { id: string; label: string; examples: Example[] }[] = [
   {
-    industry: lang === "en" ? "Lawn Care" : "Lawn Care",
-    style: "lawn-care",
-    desc: lang === "en"
-      ? "Professional page with services, images, service area, and contact buttons."
-      : "Página profesional con servicios, imágenes, área de servicio y botones de contacto.",
-    color: "from-green-500 to-emerald-600",
-    initial: "LC",
+    id: "mini-card",
+    label: t.tabMini,
+    examples: [
+      {
+        industry: lang === "en" ? "Grocery Store / Pulpería" : "Pulpería / Tienda Local",
+        plan: "Nexus Mini Card",
+        planId: "mini-card",
+        type: "real",
+        desc: lang === "en"
+          ? "Link card with essential info, hours, and contact for a local grocery store."
+          : "Link card con información esencial, horario y contacto para una tienda local de abarrotes.",
+        liveHref: "https://floresnexus.cards/lamorenita/",
+      },
+      {
+        industry: lang === "en" ? "Resale / Boutique" : "Ropa / Boutique",
+        plan: "Nexus Mini Card",
+        planId: "mini-card",
+        type: "real",
+        desc: lang === "en"
+          ? "Curated link card connecting Instagram, Poshmark, eBay, and Mercari in one place."
+          : "Link card con acceso directo a Instagram, Poshmark, eBay y Mercari en un solo lugar.",
+        liveHref: "https://nexus-group-lap.github.io/alma/",
+      },
+    ],
   },
   {
-    industry: lang === "en" ? "Barbershop" : "Barbería",
-    style: "barbershop",
-    desc: lang === "en"
-      ? "Services, gallery, hours, location, and contact."
-      : "Servicios, galería, horario, ubicación y contacto.",
-    color: "from-slate-600 to-gray-800",
-    initial: "BB",
+    id: "starter",
+    label: t.tabStarter,
+    examples: [
+      {
+        industry: lang === "en" ? "Lawn Care" : "Jardinería",
+        plan: "Starter Website",
+        planId: "starter",
+        type: "real",
+        desc: lang === "en"
+          ? "Service list, pricing preview, seasonal schedule info, and contact form."
+          : "Lista de servicios, vista previa de precios, info de temporada y formulario de contacto.",
+        liveHref: "https://nexus-group-lap.github.io/floreslawncare/",
+      },
+      {
+        industry: lang === "en" ? "Architecture / Design" : "Arquitectura / Diseño",
+        plan: "Starter Website",
+        planId: "starter",
+        type: "demo",
+        desc: lang === "en"
+          ? "Project portfolio, services overview, about section, and contact form."
+          : "Portafolio de proyectos, servicios, sección de equipo y formulario de contacto.",
+        liveHref: "https://3dinterior.mail-nearmelab.workers.dev/projects/",
+      },
+    ],
   },
-];
-
-const professionalExamples = [
   {
-    industry: lang === "en" ? "General Contractor" : "Contratista General",
-    style: "contractor",
-    desc: lang === "en"
-      ? "Home, Services, Gallery, About, Contact — 5 pages with project photos and form."
-      : "Home, Servicios, Galería, About, Contacto — 5 páginas con fotos y formulario.",
-    pages: 5,
-    color: "from-stone-500 to-gray-700",
-    initial: "GC",
+    id: "professional",
+    label: t.tabProfessional,
+    examples: [
+      {
+        industry: lang === "en" ? "Photography" : "Fotografía",
+        plan: "Professional Website",
+        planId: "professional",
+        type: "demo",
+        desc: lang === "en"
+          ? "Elegant gallery, service packages, booking CTA, and branded layout."
+          : "Galería elegante, paquetes de servicios, CTA de reserva y diseño de marca.",
+        liveHref: "https://horizon.cosmicthemes.com",
+      },
+      {
+        industry: lang === "en" ? "Fintech / Payments" : "Fintech / Pagos",
+        plan: "Professional Website",
+        planId: "professional",
+        type: "demo",
+        desc: lang === "en"
+          ? "Send & receive money, pay bills, and manage transactions — clean, trustworthy design."
+          : "Envía y recibe dinero, paga facturas y administra transacciones — diseño limpio y confiable.",
+        liveHref: "https://zeepay-lyart.vercel.app",
+      },
+    ],
   },
-  {
-    industry: lang === "en" ? "Windows & Doors" : "Ventanas y Puertas",
-    style: "windows-doors",
-    desc: lang === "en"
-      ? "Product pages, gallery, service areas, contact form, and quote request."
-      : "Páginas de productos, galería, áreas de servicio, formulario y solicitud de cotización.",
-    pages: 5,
-    color: "from-cyan-500 to-blue-600",
-    initial: "VP",
-  },
-];
-
-type ExampleType = { industry: string; style: string; desc: string; color: string; initial: string; pages?: number };
-
-const panels: { id: string; badge: string; examples: ExampleType[] }[] = [
-  { id: "mini-card", badge: t.badgeMini, examples: miniCardExamples },
-  { id: "starter", badge: t.badgeStarter, examples: starterExamples },
-  { id: "professional", badge: t.badgeProfessional, examples: professionalExamples },
 ];
 ---
 
@@ -135,92 +160,112 @@ const panels: { id: string; badge: string; examples: ExampleType[] }[] = [
       role="tablist"
       aria-label={lang === "en" ? "Plan examples" : "Ejemplos por plan"}
     >
-      {
-        [
-          { id: "mini-card", label: t.tabMini },
-          { id: "starter", label: t.tabStarter },
-          { id: "professional", label: t.tabProfessional },
-        ].map(({ id, label }) => (
-          <button
-            data-examples-tab={id}
-            role="tab"
-            aria-selected={id === "starter" ? "true" : "false"}
-            aria-controls={`examples-panel-${id}`}
-            class={`px-6 py-3 text-sm font-semibold whitespace-nowrap border-b-2 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset ${id === "starter" ? "border-primary text-primary" : "border-transparent text-heading-3 hover:text-heading-2"}`}
-          >
-            {label}
-          </button>
-        ))
-      }
+      {panels.map(({ id, label }) => (
+        <button
+          data-examples-tab={id}
+          role="tab"
+          aria-selected={id === "starter" ? "true" : "false"}
+          aria-controls={`examples-panel-${id}`}
+          class={`px-6 py-3 text-sm font-semibold whitespace-nowrap border-b-2 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset ${id === "starter" ? "border-primary text-primary" : "border-transparent text-heading-3 hover:text-heading-2"}`}
+        >
+          {label}
+        </button>
+      ))}
     </div>
 
     <!-- Panels -->
-    {
-      panels.map(({ id, badge, examples }) => (
-        <div
-          id={`examples-panel-${id}`}
-          data-examples-panel={id}
-          role="tabpanel"
-          class={id !== "starter" ? "hidden" : ""}
-        >
-          <div class="grid sm:grid-cols-2 gap-5 mb-6" data-stagger>
-            {examples.map((ex) => (
-              <div class="rounded-xl border border-box-border bg-box-bg overflow-hidden motion-card">
-                <!-- Placeholder image -->
-                <div class={`relative aspect-video bg-gradient-to-br ${ex.color} flex items-center justify-center`}>
-                  <span class="text-white text-3xl font-black opacity-40 select-none">{ex.initial}</span>
-                  <span class="absolute top-2 left-2 text-xs font-bold text-white/90 bg-black/30 px-2 py-0.5 rounded-full">
-                    {t.demoLabel}
-                  </span>
-                  <span class="absolute top-2 right-2 text-xs font-semibold text-white bg-primary/80 px-2 py-0.5 rounded-full">
-                    {badge}
-                  </span>
-                  {ex.pages && (
-                    <span class="absolute bottom-2 right-2 text-xs text-white/80 bg-black/30 px-2 py-0.5 rounded-full">
-                      {ex.pages} {lang === "en" ? "pages" : "páginas"}
-                    </span>
-                  )}
+    {panels.map(({ id, examples }) => (
+      <div
+        id={`examples-panel-${id}`}
+        data-examples-panel={id}
+        role="tabpanel"
+        class={id !== "starter" ? "hidden" : ""}
+      >
+        <div class="grid sm:grid-cols-2 gap-6 mb-6" data-stagger>
+          {examples.map((ex) => (
+            <div class="group rounded-2xl border border-box-border bg-box-bg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 motion-card flex flex-col">
+              <!-- Screenshot thumbnail -->
+              <div class="relative overflow-hidden h-48 bg-gray-100 dark:bg-gray-800 example-thumb">
+                <img
+                  src={mshot(ex.liveHref)}
+                  alt={ex.industry}
+                  class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div class="thumb-fallback absolute inset-0 hidden items-center justify-center bg-gradient-to-br from-primary/10 to-primary/5">
+                  <svg class="w-10 h-10 text-primary/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+                  </svg>
                 </div>
-
-                <div class="p-4">
-                  <p class="text-xs font-bold text-primary uppercase tracking-wide mb-0.5">{ex.industry}</p>
-                  <p class="text-xs text-heading-3 leading-relaxed mb-3">{ex.desc}</p>
-                  <div class="flex gap-2 flex-wrap">
-                    <a
-                      href="#"
-                      class="text-xs px-3 py-1.5 rounded-full border border-box-border text-heading-3 cursor-not-allowed opacity-60"
-                      aria-disabled="true"
-                      title={lang === "en" ? "Live demo coming soon" : "Demo en vivo próximamente"}
-                    >
-                      {t.viewExample}
-                    </a>
-                    <a
-                      href={`${startBase}?plan=${id}&style=${ex.style}`}
-                      class="text-xs px-3 py-1.5 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-colors"
-                    >
-                      {t.wantThis}
-                    </a>
-                  </div>
+                <!-- Website badge -->
+                <div class="absolute top-3 right-3">
+                  <a
+                    href={ex.liveHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-1.5 bg-black/65 hover:bg-black/85 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm transition-colors"
+                  >
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+                    </svg>
+                    {t.visitLabel}
+                  </a>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      ))
-    }
 
-    <!-- View all link + footnote -->
-    <div class="text-center mt-4">
-      <a
-        href={examplesHref}
-        class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
-      >
-        {t.viewAll}
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </a>
-    </div>
-    <p class="text-center text-xs text-heading-3 italic mt-4 max-w-xl mx-auto">{t.demoNote}</p>
+              <!-- Card content -->
+              <div class="p-5 flex flex-col gap-3 flex-1">
+                <div class="flex items-start justify-between gap-3">
+                  <a
+                    href={ex.liveHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-bold text-lg text-heading-1 hover:text-primary transition-colors leading-snug"
+                  >
+                    {ex.industry}
+                    <span class="text-heading-3 text-base ml-0.5">↗</span>
+                  </a>
+                  <span class={`shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full ${planStyle[ex.plan]}`}>
+                    {ex.plan}
+                  </span>
+                </div>
+                <div>
+                  <span class={`text-xs font-semibold px-2.5 py-1 rounded-full ${typeStyle[ex.type]}`}>
+                    {ex.type === "real" ? t.realLabel : t.demoLabel}
+                  </span>
+                </div>
+                <p class="text-sm text-heading-3 leading-relaxed">{ex.desc}</p>
+                {ex.type === "demo" && (
+                  <p class="text-xs text-heading-3 italic leading-relaxed">{t.demoNote}</p>
+                )}
+                <div class="mt-auto pt-2">
+                  <a
+                    href={`${startBase}?plan=${ex.planId}&style=${ex.planId}`}
+                    class="text-xs px-4 py-2 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-colors"
+                  >
+                    {t.wantThis}
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
   </Container>
 </section>
+
+<script>
+  document.querySelectorAll(".example-thumb img").forEach((img) => {
+    const el = img as HTMLImageElement;
+    const fallback = el.nextElementSibling as HTMLElement;
+    const showFallback = () => {
+      el.style.display = "none";
+      if (fallback) fallback.style.display = "flex";
+    };
+    el.addEventListener("error", showFallback);
+    el.addEventListener("load", () => {
+      if (el.naturalWidth < 10) showFallback();
+    });
+  });
+</script>

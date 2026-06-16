@@ -29,7 +29,8 @@ import Container from "../../components/shared/Container.astro";
           <div class="py-6 border-t border-box-border">
             <h2 class="text-lg font-semibold text-heading-1 mb-3">Overview</h2>
             <div class="text-sm text-heading-2 leading-relaxed space-y-3">
-              <p>Flores Nexus Group LLC provides service-based work. Setup fees cover design, configuration, and launch work that begins immediately after payment and complete onboarding information are received. Monthly fees cover active hosting, management, and plan-included services.</p>
+              <p>Flores Nexus Group LLC provides service-based work. Setup fees cover design, configuration, and launch work that begins after payment and complete onboarding information are received ("production"). Monthly fees cover active hosting, management, and plan-included services for each billing period.</p>
+              <p class="font-medium text-heading-1">Key rule: If you cancel before production starts, you receive a full refund of amounts paid, minus the non-refundable payment-processing fees charged by our payment processor (Stripe).</p>
             </div>
           </div>
 
@@ -37,11 +38,16 @@ import Container from "../../components/shared/Container.astro";
           <div class="py-6 border-t border-box-border">
             <h2 class="text-lg font-semibold text-heading-1 mb-6">Refund Scenarios</h2>
 
-            <div class="space-y-6">
+            <div class="space-y-4">
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
-                <p class="font-semibold text-heading-1 text-sm mb-2">Client pays but does not complete onboarding</p>
-                <p class="text-sm text-heading-2 leading-relaxed">Setup fee may be held as account credit, reviewed case by case. Automatic refunds are not guaranteed.</p>
+                <p class="font-semibold text-heading-1 text-sm mb-2">Cancellation before production starts</p>
+                <p class="text-sm text-heading-2 leading-relaxed">Full refund of amounts paid, minus non-refundable payment-processing fees.</p>
+              </div>
+
+              <div class="rounded-xl border border-box-border bg-box-bg p-5">
+                <p class="font-semibold text-heading-1 text-sm mb-2">Client pays but does not provide the information needed to start</p>
+                <p class="text-sm text-heading-2 leading-relaxed">Production has not started; the "before production" rule above applies until production begins.</p>
               </div>
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
@@ -51,32 +57,37 @@ import Container from "../../components/shared/Container.astro";
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
                 <p class="font-semibold text-heading-1 text-sm mb-2">Preview delivered — client cancels</p>
-                <p class="text-sm text-heading-2 leading-relaxed">Setup fee is non-refundable. Monthly subscription cancellation follows billing policy.</p>
+                <p class="text-sm text-heading-2 leading-relaxed">Setup fee is non-refundable. Monthly subscription cancellation follows the billing rule below.</p>
               </div>
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
                 <p class="font-semibold text-heading-1 text-sm mb-2">Monthly subscription already charged</p>
-                <p class="text-sm text-heading-2 leading-relaxed">Non-refundable for billing periods already started. Service remains active until end of paid period unless terminated for policy violation.</p>
+                <p class="text-sm text-heading-2 leading-relaxed">Non-refundable for billing periods already started. Canceling stops future charges; service remains active until the end of the paid period unless terminated for a policy violation.</p>
               </div>
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
-                <p class="font-semibold text-heading-1 text-sm mb-2">Error caused by Flores Nexus during initial build</p>
-                <p class="text-sm text-heading-2 leading-relaxed">Correction included at no additional cost within reasonable scope of the purchased plan.</p>
+                <p class="font-semibold text-heading-1 text-sm mb-2">Annual plans</p>
+                <p class="text-sm text-heading-2 leading-relaxed">You have a 30-day window from purchase to request a refund of unused full months, minus payment-processing fees. After 30 days, the annual term continues and remaining months are non-refundable.</p>
               </div>
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
-                <p class="font-semibold text-heading-1 text-sm mb-2">Cancellation before production starts</p>
-                <p class="text-sm text-heading-2 leading-relaxed">Reviewed case by case. Maximum outcome is account credit — not an automatic refund.</p>
+                <p class="font-semibold text-heading-1 text-sm mb-2">Error caused by Flores Nexus during the initial build</p>
+                <p class="text-sm text-heading-2 leading-relaxed">Corrected at no additional cost within the reasonable scope of the purchased plan.</p>
+              </div>
+
+              <div class="rounded-xl border border-box-border bg-box-bg p-5">
+                <p class="font-semibold text-heading-1 text-sm mb-2">Add-ons, change requests, and premium domains</p>
+                <p class="text-sm text-heading-2 leading-relaxed">Non-refundable once work begins or the resource (e.g., a domain) has been purchased or approved.</p>
               </div>
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
                 <p class="font-semibold text-heading-1 text-sm mb-2">Business System custom project</p>
-                <p class="text-sm text-heading-2 leading-relaxed">Refunds, milestones, deposits, and cancellation terms must be defined in a separate written agreement before work begins.</p>
+                <p class="text-sm text-heading-2 leading-relaxed">Refunds, milestones, deposits, and cancellation terms are defined in a separate written agreement before work begins.</p>
               </div>
 
               <div class="rounded-xl border border-box-border bg-box-bg p-5">
                 <p class="font-semibold text-heading-1 text-sm mb-2">Unjustified chargeback or payment dispute</p>
-                <p class="text-sm text-heading-2 leading-relaxed">May result in immediate service termination and forfeiture of any credit.</p>
+                <p class="text-sm text-heading-2 leading-relaxed">Please contact us first; most issues are resolved quickly. An unjustified chargeback may result in suspension or termination of service and forfeiture of any credit.</p>
               </div>
 
             </div>
@@ -84,8 +95,8 @@ import Container from "../../components/shared/Container.astro";
 
           <!-- How to Request -->
           <div class="py-6 border-t border-box-border">
-            <h2 class="text-lg font-semibold text-heading-1 mb-3">How to Request a Review</h2>
-            <p class="text-sm text-heading-2 leading-relaxed">Contact Flores Nexus Group LLC via email at [SUPPORT EMAIL] with your client ID, the plan purchased, and a description of your situation. We will respond within 5 business days.</p>
+            <h2 class="text-lg font-semibold text-heading-1 mb-3">How to Request a Refund</h2>
+            <p class="text-sm text-heading-2 leading-relaxed">Email <a href="mailto:info@floresnexus.com" class="text-primary hover:underline">info@floresnexus.com</a> with your client ID, the plan purchased, and a description of your situation. Approved refunds are issued to the original payment method. We respond within 5 business days.</p>
           </div>
 
         </div>
