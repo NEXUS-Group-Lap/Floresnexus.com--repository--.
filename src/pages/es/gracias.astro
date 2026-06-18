@@ -66,16 +66,20 @@ import { ONBOARDING_FORM_LINK } from "../../config/links";
   const message = document.getElementById("thank-you-message");
 
   if (type === "quote") {
-    if (title) title.textContent = "Solicitud de Cotizaci√≥n Recibida";
+    if (title) title.textContent = "Solicitud de CotizaciÛn Recibida";
     if (message) {
-      message.innerHTML =
-        "Tu solicitud de cotizaci√≥n para Business System fue recibida. Un representante de Flores Nexus Group revisar√° el alcance del proyecto contigo. <strong class=\"text-heading-2\">No se cobra ning√∫n pago de Stripe para Business System hasta que la cotizaci√≥n sea aprobada.</strong>";
+      const strong = document.createElement("strong");
+      strong.className = "text-heading-2";
+      strong.textContent = "No se cobra ning˙n pago de Stripe para Business System hasta que la cotizaciÛn sea aprobada.";
+      message.replaceChildren(
+        document.createTextNode("Tu solicitud de cotizaciÛn para Business System fue recibida. Un representante de Flores Nexus Group revisar· el alcance del proyecto contigo. "),
+        strong
+      );
     }
   } else if (type === "solicitud") {
     if (title) title.textContent = "Solicitud Recibida";
     if (message) {
-      message.innerHTML =
-        "Gracias. Recibimos tu informaci√≥n. Nuestro equipo revisar√° tu solicitud y te contactar√° con el siguiente paso.";
+      message.textContent = "Gracias. Recibimos tu informaciÛn. Nuestro equipo revisar· tu solicitud y te contactar· con el siguiente paso.";
     }
   }
 </script>

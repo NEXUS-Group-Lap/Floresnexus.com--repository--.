@@ -1,13 +1,14 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/sections/Hero.astro";
-import Pricing from "../../components/sections/Pricing.astro";
-import LocalPresenceStarter from "../../components/sections/LocalPresenceStarter.astro";
-import BusinessSystemCTA from "../../components/sections/BusinessSystemCTA.astro";
-import WebExamples from "../../components/sections/WebExamples.astro";
+import WhatWeDo from "../../components/sections/WhatWeDo.astro";
 import WhoWeHelp from "../../components/sections/WhoWeHelp.astro";
-import HowItWorks from "../../components/sections/HowItWorks.astro";
+import WebExamples from "../../components/sections/WebExamples.astro";
+import Comparison from "../../components/sections/Comparison.astro";
+import Pricing from "../../components/sections/Pricing.astro";
+import BusinessSystemCTA from "../../components/sections/BusinessSystemCTA.astro";
 import WhyFloresNexus from "../../components/sections/WhyFloresNexus.astro";
+import HowItWorks from "../../components/sections/HowItWorks.astro";
 import FAQPreview from "../../components/sections/FAQPreview.astro";
 import FinalCTA from "../../components/sections/FinalCTA.astro";
 ---
@@ -19,14 +20,19 @@ import FinalCTA from "../../components/sections/FinalCTA.astro";
 >
   <main class="flex flex-col overflow-hidden">
     <Hero lang="en" />
-    <Pricing lang="en" />
-    <LocalPresenceStarter lang="en" />
-    <BusinessSystemCTA lang="en" />
-    <WebExamples lang="en" />
+    <WhatWeDo lang="en" />
     <WhoWeHelp lang="en" />
+    <WebExamples lang="en" />
+    <Comparison lang="en" />
+    <Pricing lang="en" />
+    <BusinessSystemCTA lang="en" />
+    <div class="bg-gray-50 dark:bg-gray-900/30">
+      <WhyFloresNexus lang="en" />
+    </div>
     <HowItWorks lang="en" />
-    <WhyFloresNexus lang="en" />
-    <FAQPreview lang="en" />
+    <div class="bg-gray-50 dark:bg-gray-900/30">
+      <FAQPreview lang="en" />
+    </div>
     <FinalCTA lang="en" />
   </main>
 </Layout>

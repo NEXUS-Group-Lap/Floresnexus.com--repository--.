@@ -13,7 +13,7 @@ const t = {
     sectionSubtitle: "Answer three questions and we'll show you the option that best fits your needs.",
     stepLabel: "Step {n} of 3",
     q1Title: "What does your business need right now?",
-    q1a: "A. I need help getting organized on Google and Apple Maps.",
+    q1a: "A. I need a simple professional link with my basic business information.",
     q1b: "B. I need a simple managed link with my business info and hours.",
     q1c: "C. I need a professional website to explain my services.",
     q1d: "D. I need booking, payments, CRM, automations, or multiple locations.",
@@ -41,11 +41,6 @@ const t = {
     restart: "Change my answers",
     quoteNote: "No charge until a written quote is approved.",
     results: {
-      "local-presence": {
-        reason: "Local Presence Starter fits because your priority is being easier to find and contact on Google and Apple Maps — with a managed Mini Card included.",
-        startCta: "Start Local Presence",
-        examplesLabel: "",
-      },
       "mini-card": {
         reason: "This plan fits your needs because you only need to share your basic contact information and hours — no full website required.",
         startCta: "Start Mini Card",
@@ -73,7 +68,7 @@ const t = {
     sectionSubtitle: "Responde tres preguntas y te mostraremos la opción que mejor coincide con tus necesidades.",
     stepLabel: "Paso {n} de 3",
     q1Title: "¿Qué necesita tu negocio ahora?",
-    q1a: "A. Necesito ayuda para organizarme en Google y Apple Maps.",
+    q1a: "A. Necesito un enlace profesional simple con la informacion basica de mi negocio.",
     q1b: "B. Necesito un enlace administrado con mi información y horario.",
     q1c: "C. Necesito un sitio web profesional para explicar mis servicios.",
     q1d: "D. Necesito reservas, pagos, CRM, automatizaciones o varias ubicaciones.",
@@ -101,11 +96,6 @@ const t = {
     restart: "Cambiar mis respuestas",
     quoteNote: "No se realiza ningún cargo hasta que la cotización escrita sea aprobada.",
     results: {
-      "local-presence": {
-        reason: "Local Presence Starter es la opción adecuada porque tu prioridad es que te encuentren y contacten más fácilmente en Google y Apple Maps — con una Mini Card administrada incluida.",
-        startCta: "Comenzar Presencia Local",
-        examplesLabel: "",
-      },
       "mini-card": {
         reason: "Este plan coincide con tus necesidades porque solo necesitas compartir tu información de contacto y horario básico — sin un sitio web completo.",
         startCta: "Comenzar Mini Card",
@@ -137,12 +127,12 @@ const questions = [
 ];
 
 const optionValues = [
-  ["local-presence", "mini-card", "starter", "business-system"],
+  ["mini-card", "mini-card", "starter", "business-system"],
   ["starter", "professional", "mini-card", "business-system"],
   ["starter", "professional", "mini-card", "business-system"],
 ];
 
-const resultPlans = ["local-presence", "mini-card", "starter", "professional", "business-system"];
+const resultPlans = ["mini-card", "starter", "professional", "business-system"];
 
 const compareHref = lang === "en" ? "#compare" : "#comparar";
 const examplesHref = lang === "en" ? "#examples" : "#ejemplos";
@@ -246,9 +236,8 @@ const examplesHref = lang === "en" ? "#examples" : "#ejemplos";
             const copy = plan[lang];
             const resultCopy = (t.results as any)[planId];
             const isBS = planId === "business-system";
-            const isLP = planId === "local-presence";
             const tabPlans = ["mini-card", "starter", "professional"];
-            const hasExamples = !isBS && !isLP && resultCopy.examplesLabel;
+            const hasExamples = !isBS && resultCopy.examplesLabel;
             return (
               <div
                 data-quiz-result-plan={planId}
@@ -288,7 +277,7 @@ const examplesHref = lang === "en" ? "#examples" : "#ejemplos";
 
                 {!isBS && (
                   <ul class="space-y-1.5 mb-6">
-                    {(isLP ? copy.homeFeatures : copy.homeFeatures.slice(0, 4)).map((item: string) => (
+                    {copy.homeFeatures.slice(0, 4).map((item: string) => (
                       <li class="flex items-start gap-2 text-sm text-heading-2">
                         <svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                           <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />

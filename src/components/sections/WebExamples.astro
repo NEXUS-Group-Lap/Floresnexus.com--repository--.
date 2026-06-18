@@ -1,222 +1,194 @@
 ---
 import Container from "../shared/Container.astro";
+import CardFanCarousel from "../ui/CardFanCarousel";
 
 export interface Props {
   lang: "en" | "es";
 }
 const { lang } = Astro.props;
 
-const planStyle: Record<string, string> = {
-  "Nexus Mini Card":      "bg-pink-500/15 text-pink-500",
-  "Starter Website":      "bg-lime-500/15 text-lime-600 dark:text-lime-400",
-  "Professional Website": "bg-primary/15 text-primary",
-};
-
-const typeStyle: Record<string, string> = {
-  real: "bg-green-500/15 text-green-600 dark:text-green-400",
-  demo: "bg-amber-500/15 text-amber-600 dark:text-amber-400",
-};
-
 function mshot(url: string) {
-  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=640&h=400`;
+  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=640&h=960`;
 }
 
 const t = {
   en: {
     title: "Real Projects and Styles We Can Build",
     subtitle: "Some are real projects in production. Others are demo concepts showing the styles and structures we can build for your business.",
-    visitLabel: "Website",
-    realLabel: "Real Project",
-    demoLabel: "Demo Concept",
-    demoNote: "Visual example to show possible styles and structures.",
     examples: [
       {
         industry: "Lawn Care",
         plan: "Starter Website",
-        type: "real",
-        desc: "Service list, pricing preview, seasonal schedule info, and contact form.",
+        type: "real" as const,
         liveHref: "https://nexus-group-lap.github.io/floreslawncare/",
+        imgUrl: "",
       },
       {
         industry: "Grocery Store / Pulpería",
         plan: "Nexus Mini Card",
-        type: "real",
-        desc: "Link card with essential info, hours, and contact for a local grocery store.",
+        type: "real" as const,
         liveHref: "https://floresnexus.cards/lamorenita/",
+        imgUrl: "",
       },
       {
         industry: "Resale / Boutique",
         plan: "Nexus Mini Card",
-        type: "real",
-        desc: "Curated link card connecting Instagram, Poshmark, eBay, and Mercari in one place.",
+        type: "real" as const,
         liveHref: "https://nexus-group-lap.github.io/alma/",
+        imgUrl: "",
       },
       {
         industry: "Architecture / Design",
         plan: "Starter Website",
-        type: "demo",
-        desc: "Project portfolio, services overview, about section, and contact form.",
+        type: "demo" as const,
         liveHref: "https://3dinterior.mail-nearmelab.workers.dev/projects/",
+        imgUrl: "",
       },
       {
         industry: "Photography",
         plan: "Professional Website",
-        type: "demo",
-        desc: "Elegant gallery, service packages, booking CTA, and branded layout.",
+        type: "demo" as const,
         liveHref: "https://horizon.cosmicthemes.com",
+        imgUrl: "",
       },
       {
         industry: "Fintech / Payments",
         plan: "Professional Website",
-        type: "demo",
-        desc: "Send & receive money, pay bills, and manage transactions — clean, trustworthy design.",
+        type: "demo" as const,
         liveHref: "https://zeepay-lyart.vercel.app",
+        imgUrl: "",
+      },
+      {
+        industry: "Restaurant / Café",
+        plan: "Starter Website",
+        type: "demo" as const,
+        liveHref: "",
+        imgUrl: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=640&h=960&fit=crop",
+      },
+      {
+        industry: "Barbershop",
+        plan: "Starter Website",
+        type: "demo" as const,
+        liveHref: "",
+        imgUrl: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=640&h=960&fit=crop",
+      },
+      {
+        industry: "Gym / Personal Trainer",
+        plan: "Professional Website",
+        type: "demo" as const,
+        liveHref: "",
+        imgUrl: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=640&h=960&fit=crop",
+      },
+      {
+        industry: "Cleaning Service",
+        plan: "Starter Website",
+        type: "demo" as const,
+        liveHref: "",
+        imgUrl: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=640&h=960&fit=crop",
       },
     ],
   },
   es: {
     title: "Proyectos Reales y Estilos Que Podemos Construir",
     subtitle: "Algunos son proyectos reales en producción. Otros son conceptos de demostración que muestran los estilos y estructuras que podemos construir para tu negocio.",
-    visitLabel: "Website",
-    realLabel: "Proyecto Real",
-    demoLabel: "Concepto de Demostración",
-    demoNote: "Ejemplo visual para mostrar estilos y estructuras posibles.",
     examples: [
       {
         industry: "Jardinería",
         plan: "Starter Website",
-        type: "real",
-        desc: "Lista de servicios, vista previa de precios, info de temporada y formulario de contacto.",
+        type: "real" as const,
         liveHref: "https://nexus-group-lap.github.io/floreslawncare/",
+        imgUrl: "",
       },
       {
         industry: "Pulpería / Tienda Local",
         plan: "Nexus Mini Card",
-        type: "real",
-        desc: "Link card con información esencial, horario y contacto para una tienda local de abarrotes.",
+        type: "real" as const,
         liveHref: "https://floresnexus.cards/lamorenita/",
+        imgUrl: "",
       },
       {
         industry: "Ropa / Boutique",
         plan: "Nexus Mini Card",
-        type: "real",
-        desc: "Link card con acceso directo a Instagram, Poshmark, eBay y Mercari en un solo lugar.",
+        type: "real" as const,
         liveHref: "https://nexus-group-lap.github.io/alma/",
+        imgUrl: "",
       },
       {
         industry: "Arquitectura / Diseño",
         plan: "Starter Website",
-        type: "demo",
-        desc: "Portafolio de proyectos, servicios, sección de equipo y formulario de contacto.",
+        type: "demo" as const,
         liveHref: "https://3dinterior.mail-nearmelab.workers.dev/projects/",
+        imgUrl: "",
       },
       {
         industry: "Fotografía",
         plan: "Professional Website",
-        type: "demo",
-        desc: "Galería elegante, paquetes de servicios, CTA de reserva y diseño de marca.",
+        type: "demo" as const,
         liveHref: "https://horizon.cosmicthemes.com",
+        imgUrl: "",
       },
       {
         industry: "Fintech / Pagos",
         plan: "Professional Website",
-        type: "demo",
-        desc: "Envía y recibe dinero, paga facturas y administra transacciones — diseño limpio y confiable.",
+        type: "demo" as const,
         liveHref: "https://zeepay-lyart.vercel.app",
+        imgUrl: "",
+      },
+      {
+        industry: "Restaurante / Café",
+        plan: "Starter Website",
+        type: "demo" as const,
+        liveHref: "",
+        imgUrl: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=640&h=960&fit=crop",
+      },
+      {
+        industry: "Barbería",
+        plan: "Starter Website",
+        type: "demo" as const,
+        liveHref: "",
+        imgUrl: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=640&h=960&fit=crop",
+      },
+      {
+        industry: "Gimnasio / Entrenador",
+        plan: "Professional Website",
+        type: "demo" as const,
+        liveHref: "",
+        imgUrl: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=640&h=960&fit=crop",
+      },
+      {
+        industry: "Servicio de Limpieza",
+        plan: "Starter Website",
+        type: "demo" as const,
+        liveHref: "",
+        imgUrl: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=640&h=960&fit=crop",
       },
     ],
   },
 }[lang];
+
+const badgeClasses: Record<string, string> = {
+  "Nexus Mini Card": "bg-pink-500/30 text-pink-100",
+  "Starter Website": "bg-lime-500/30 text-lime-100",
+  "Professional Website": "bg-blue-500/30 text-blue-100",
+};
+
+const fanCards = t.examples.map((ex) => ({
+  imgUrl: ex.imgUrl || mshot(ex.liveHref),
+  alt: ex.industry,
+  linkUrl: ex.liveHref || undefined,
+  label: ex.industry,
+  badge: ex.plan,
+  badgeClass: badgeClasses[ex.plan] || "bg-white/20 text-white",
+}));
 ---
 
 <section class="py-16" id={lang === "en" ? "examples" : "ejemplos"}>
   <Container>
-    <div class="text-center mb-10" data-reveal>
+    <div class="text-center mb-6" data-reveal>
       <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>
       <p class="text-heading-3 text-lg max-w-2xl mx-auto">{t.subtitle}</p>
     </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-stagger>
-      {t.examples.map((ex) => (
-        <div class="group rounded-2xl border border-box-border bg-box-bg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 motion-card flex flex-col">
-          <!-- Screenshot thumbnail -->
-          <div class="relative overflow-hidden h-48 bg-gray-100 dark:bg-gray-800 example-thumb">
-            <img
-              src={mshot(ex.liveHref)}
-              alt={ex.industry}
-              class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
-            <!-- fallback shown via JS if img fails -->
-            <div class="thumb-fallback absolute inset-0 hidden items-center justify-center bg-gradient-to-br from-primary/10 to-primary/5">
-              <svg class="w-10 h-10 text-primary/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
-              </svg>
-            </div>
-            <!-- Website badge -->
-            <div class="absolute top-3 right-3">
-              <a
-                href={ex.liveHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center gap-1.5 bg-black/65 hover:bg-black/85 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm transition-colors"
-              >
-                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
-                </svg>
-                {t.visitLabel}
-              </a>
-            </div>
-          </div>
-
-          <!-- Card content -->
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <div class="flex items-start justify-between gap-3">
-              <a
-                href={ex.liveHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="font-bold text-lg text-heading-1 hover:text-primary transition-colors leading-snug"
-              >
-                {ex.industry}
-                <span class="text-heading-3 text-base ml-0.5">↗</span>
-              </a>
-              <span class={`shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full ${planStyle[ex.plan]}`}>
-                {ex.plan}
-              </span>
-            </div>
-            <div>
-              <span class={`text-xs font-semibold px-2.5 py-1 rounded-full ${typeStyle[ex.type]}`}>
-                {ex.type === "real" ? t.realLabel : t.demoLabel}
-              </span>
-            </div>
-            <p class="text-sm text-heading-3 leading-relaxed">{ex.desc}</p>
-            {ex.type === "demo" && (
-              <p class="text-xs text-heading-3 italic leading-relaxed">{t.demoNote}</p>
-            )}
-          </div>
-        </div>
-      ))}
-    </div>
   </Container>
+
+  <CardFanCarousel client:visible cards={fanCards} />
 </section>
-
-<script>
-  // If mshots returns a blank/error image, show the fallback div instead
-  document.querySelectorAll(".example-thumb img").forEach((img) => {
-    const el = img as HTMLImageElement;
-    const fallback = el.nextElementSibling as HTMLElement;
-
-    const showFallback = () => {
-      el.style.display = "none";
-      if (fallback) fallback.style.display = "flex";
-    };
-
-    el.addEventListener("error", showFallback);
-
-    // mshots returns a 307 redirect image while generating — check natural size on load
-    el.addEventListener("load", () => {
-      if (el.naturalWidth < 10) showFallback();
-    });
-  });
-</script>

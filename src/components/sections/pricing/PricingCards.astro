@@ -13,7 +13,7 @@ const t = {
     subtitle: "Choose the plan that fits your business. No long-term contracts.",
     billingMonthly: "Monthly",
     billingAnnual: "Annual — Save",
-    popularBadge: "Most Popular",
+    popularBadge: "Recommended",
     setupLabel: "setup",
     monthLabel: "/month",
     yearLabel: "/year",
@@ -28,7 +28,7 @@ const t = {
     subtitle: "Elige el plan que se adapte a tu negocio. Sin contratos a largo plazo.",
     billingMonthly: "Mensual",
     billingAnnual: "Anual — Ahorra",
-    popularBadge: "Más Popular",
+    popularBadge: "Recomendado",
     setupLabel: "inicial",
     monthLabel: "/mes",
     yearLabel: "/año",
@@ -74,7 +74,7 @@ const cards = planOrder.map((id) => plans[id]);
       {
         cards.map((plan) => {
           const copy = plan[lang];
-          const isPopular = plan.id === "starter";
+          const isPopular = plan.id === "professional";
           return (
             <div
               id={plan.id}

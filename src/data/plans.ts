@@ -2,7 +2,6 @@ import {
   NEXUS_MINI_STRIPE_LINK,
   STARTER_STRIPE_LINK,
   PROFESSIONAL_STRIPE_LINK,
-  LOCAL_PRESENCE_STRIPE_LINK,
   BUSINESS_QUOTE_FORM_LINK,
 } from "../config/links";
 
@@ -21,7 +20,7 @@ export interface PlanLocalized {
 
 export interface Plan {
   id: string;
-  status: "standard" | "launch-offer" | "quote";
+  status: "standard" | "quote";
   setup: string;
   monthly?: string;
   annual?: { en: string; es: string };
@@ -98,66 +97,6 @@ export const plans: Record<string, Plan> = {
         "Automatizaciones",
       ],
       cta: "Comenzar Mini Card",
-      detailsCta: "Ver detalles",
-    },
-  },
-
-  "local-presence": {
-    id: "local-presence",
-    status: "launch-offer",
-    setup: "$150",
-    monthly: "$45",
-    stripeLink: LOCAL_PRESENCE_STRIPE_LINK,
-    startForm: { en: "/en/start?plan=local-presence", es: "/es/empezar?plan=local-presence" },
-    detailsHref: { en: "/en/plans/local-presence", es: "/es/planes/local-presence" },
-    en: {
-      name: "Local Presence Starter",
-      tagline: "For businesses that first need to organize their local presence and offer clear information when people search for them.",
-      bestFor: "Local businesses that want to be easy to find and contact on Google and Apple Maps.",
-      homeFeatures: [
-        "Managed Mini Card",
-        "Hours and main services",
-        "Call and directions buttons",
-        "Basic images and social links",
-        "Initial Google Business Profile & Apple Business Connect review",
-      ],
-      includes: [
-        "Managed Mini Card",
-        "Hours and main services",
-        "Call and directions buttons",
-        "Basic images",
-        "Social media links",
-        "Initial Google Business Profile review",
-        "Initial Apple Business Connect review",
-        "Help organizing your essential business information",
-        "Link at floresnexus.cards/yourbusiness/",
-      ],
-      cta: "Start with Local Presence",
-      detailsCta: "View Details",
-    },
-    es: {
-      name: "Local Presence Starter",
-      tagline: "Para negocios que primero necesitan organizar su presencia local y ofrecer información clara cuando los buscan.",
-      bestFor: "Negocios locales que quieren ser fáciles de encontrar y contactar en Google y Apple Maps.",
-      homeFeatures: [
-        "Mini Card administrada",
-        "Horario y servicios principales",
-        "Botones para llamar y obtener direcciones",
-        "Imágenes básicas y enlaces sociales",
-        "Revisión inicial de Google Business Profile y Apple Business Connect",
-      ],
-      includes: [
-        "Mini Card administrada",
-        "Horario y servicios principales",
-        "Botones para llamar y obtener direcciones",
-        "Imágenes básicas",
-        "Enlaces a redes sociales",
-        "Revisión inicial de Google Business Profile",
-        "Revisión inicial de Apple Business Connect",
-        "Ayuda para organizar la información esencial del negocio",
-        "Enlace en floresnexus.cards/nombredelnegocio/",
-      ],
-      cta: "Comenzar con presencia local",
       detailsCta: "Ver detalles",
     },
   },

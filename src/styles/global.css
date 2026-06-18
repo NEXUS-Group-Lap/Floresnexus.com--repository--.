@@ -13,6 +13,8 @@
   --breakpoint-midmd: 880px;
 }
 
+/* ── Motion design tokens ──────────────────────────────────────────────── */
+
 :root {
   --color-bg: 255 255 255;
   --color-box: 255 255 255;
@@ -21,6 +23,16 @@
   --heading-1: 23 37 84;
   --heading-2: 31 41 55;
   --heading-3: 55 65 81;
+
+  --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+  --motion-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --motion-fast: 150ms;
+  --motion-base: 250ms;
+  --motion-slow: 400ms;
+  --motion-reveal: 550ms;
+  --motion-distance: 20px;
+  --motion-stagger: 60ms;
 }
 
 .dark {
@@ -46,26 +58,27 @@ body {
   background: rgb(29 78 216 / 0.18);
 }
 
+/* ── Scroll reveals ────────────────────────────────────────────────────── */
+
 [data-reveal] {
   opacity: 0;
-  transform: translate3d(0, 28px, 0) scale(0.98);
+  transform: translate3d(0, var(--motion-distance), 0);
   transition:
-    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--motion-reveal) var(--motion-ease),
+    transform var(--motion-reveal) var(--motion-ease);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
 }
 
 [data-reveal="left"] {
-  transform: translate3d(-32px, 0, 0) scale(0.98);
+  transform: translate3d(calc(var(--motion-distance) * -1.4), 0, 0);
 }
 
 [data-reveal="right"] {
-  transform: translate3d(32px, 0, 0) scale(0.98);
+  transform: translate3d(calc(var(--motion-distance) * 1.4), 0, 0);
 }
 
 [data-reveal="scale"] {
-  transform: translate3d(0, 16px, 0) scale(0.94);
+  transform: translate3d(0, calc(var(--motion-distance) * 0.6), 0) scale(0.96);
 }
 
 [data-reveal].is-visible {
@@ -73,17 +86,19 @@ body {
   transform: translate3d(0, 0, 0) scale(1);
 }
 
+/* ── Stagger children ──────────────────────────────────────────────────── */
+
 [data-stagger] > * {
   opacity: 0;
-  transform: translate3d(0, 24px, 0);
+  transform: translate3d(0, calc(var(--motion-distance) * 0.8), 0);
   transition:
-    opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 250ms ease,
-    box-shadow 250ms ease,
-    color 250ms ease,
-    background-color 250ms ease;
-  transition-delay: calc(var(--stagger-index, 0) * 70ms);
+    opacity var(--motion-reveal) var(--motion-ease),
+    transform var(--motion-reveal) var(--motion-ease),
+    border-color var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    color var(--motion-base) ease,
+    background-color var(--motion-base) ease;
+  transition-delay: calc(var(--stagger-index, 0) * var(--motion-stagger));
 }
 
 [data-stagger].is-visible > * {
@@ -91,77 +106,78 @@ body {
   transform: translate3d(0, 0, 0);
 }
 
+/* ── Not-visible state (prevents FOUC) ─────────────────────────────────── */
+
+[data-reveal]:not(.is-visible) {
+  opacity: 0;
+}
+
+[data-stagger]:not(.is-visible) > * {
+  opacity: 0;
+}
+
+/* ── Card hover ────────────────────────────────────────────────────────── */
+
 .motion-card {
-  transform: translateZ(0);
   transition:
-    transform 300ms ease,
-    box-shadow 300ms ease,
-    border-color 300ms ease,
-    background-color 300ms ease;
+    transform var(--motion-base) var(--motion-ease),
+    box-shadow var(--motion-slow) var(--motion-ease),
+    border-color var(--motion-base) ease,
+    background-color var(--motion-base) ease;
 }
 
 .motion-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 46px rgb(15 23 42 / 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgb(15 23 42 / 0.10);
 }
 
 .dark .motion-card:hover {
-  box-shadow: 0 22px 56px rgb(0 0 0 / 0.28);
+  box-shadow: 0 14px 40px rgb(0 0 0 / 0.24);
 }
+
+/* ── Button hover ──────────────────────────────────────────────────────── */
 
 .motion-button {
   position: relative;
   overflow: hidden;
-  transform: translateZ(0);
   transition:
-    transform 250ms ease,
-    box-shadow 250ms ease,
-    border-color 250ms ease,
-    color 250ms ease,
-    background-color 250ms ease;
+    transform var(--motion-base) var(--motion-ease),
+    box-shadow var(--motion-base) var(--motion-ease),
+    border-color var(--motion-base) ease,
+    color var(--motion-fast) ease,
+    background-color var(--motion-fast) ease;
 }
 
 .motion-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgb(29 78 216 / 0.18);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgb(29 78 216 / 0.14);
 }
 
-.motion-button::after {
-  content: "";
-  position: absolute;
-  inset: -40% auto -40% -70%;
-  width: 45%;
-  transform: skewX(-18deg);
-  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.34), transparent);
-  transition: left 600ms ease;
+.motion-button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: none;
+  transition-duration: var(--motion-fast);
 }
 
-.motion-button:hover::after {
-  left: 125%;
-}
+/* ── Headline gradient shimmer (plays once) ────────────────────────────── */
 
 .shine-text {
   background-size: 220% auto;
-  animation: shine-text 5s ease-in-out infinite;
+  animation: shine-text 2.4s var(--motion-ease) 0.3s 1 both;
 }
 
-.float-slow {
-  animation: float-slow 8s ease-in-out infinite;
+@keyframes shine-text {
+  0% { background-position: 100% center; }
+  100% { background-position: 0% center; }
 }
 
-.float-medium {
-  animation: float-medium 6s ease-in-out infinite;
-}
-
-.float-tilt {
-  animation: float-tilt 9s ease-in-out infinite;
-}
+/* ── Marquee strip ─────────────────────────────────────────────────────── */
 
 .loop-strip {
   display: flex;
   width: max-content;
   min-width: 100%;
-  animation: loop-strip 18s linear infinite;
+  animation: loop-strip 24s linear infinite;
 }
 
 .loop-strip:hover {
@@ -170,95 +186,55 @@ body {
 
 .loop-item {
   flex: 0 0 auto;
-  transform: translateZ(0);
-}
-
-.draw-line {
-  transform-origin: left;
-  animation: draw-line 2.2s ease-in-out infinite;
-}
-
-[data-reveal]:not(.is-visible) {
-  opacity: 0;
-  transform: translate3d(0, 28px, 0) scale(0.98);
-}
-
-[data-reveal="left"]:not(.is-visible) {
-  transform: translate3d(-32px, 0, 0) scale(0.98);
-}
-
-[data-reveal="right"]:not(.is-visible) {
-  transform: translate3d(32px, 0, 0) scale(0.98);
-}
-
-[data-reveal="scale"]:not(.is-visible) {
-  transform: translate3d(0, 16px, 0) scale(0.94);
-}
-
-[data-stagger]:not(.is-visible) > * {
-  opacity: 0;
-  transform: translate3d(0, 24px, 0);
-}
-
-@keyframes shine-text {
-  0%,
-  100% {
-    background-position: 0% center;
-  }
-  50% {
-    background-position: 100% center;
-  }
-}
-
-@keyframes float-slow {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, 18px, 0);
-  }
-}
-
-@keyframes float-medium {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(-12px, -16px, 0);
-  }
-}
-
-@keyframes float-tilt {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(12deg);
-  }
-  50% {
-    transform: translate3d(10px, -18px, 0) rotate(18deg);
-  }
 }
 
 @keyframes loop-strip {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Step connector line ───────────────────────────────────────────────── */
+
+.draw-line {
+  transform-origin: left;
+  animation: draw-line 3s ease-in-out infinite;
 }
 
 @keyframes draw-line {
-  0%,
-  100% {
-    transform: scaleX(0.35);
-    opacity: 0.35;
+  0%, 100% { transform: scaleX(0.3); opacity: 0.3; }
+  50%      { transform: scaleX(1); opacity: 1; }
+}
+
+/* ── FAQ accordion (native <details>) ──────────────────────────────────── */
+
+details.motion-card > summary {
+  transition: color var(--motion-base) ease;
+}
+
+details.motion-card[open] > summary {
+  color: var(--color-primary);
+}
+
+details.motion-card > summary + div {
+  animation: faq-open var(--motion-slow) var(--motion-ease) both;
+}
+
+@keyframes faq-open {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
   }
-  50% {
-    transform: scaleX(1);
+  to {
     opacity: 1;
+    transform: translateY(0);
   }
+}
+
+/* ── Navbar hamburger ──────────────────────────────────────────────────── */
+
+[data-toggle-nav] span {
+  transition: transform var(--motion-base) var(--motion-ease),
+              opacity var(--motion-fast) ease;
 }
 
 [data-toggle-nav][data-open-nav="true"] #line1 {
@@ -274,10 +250,21 @@ body {
   transform: translateY(-0.375rem) rotate(-40deg);
 }
 
+/* ── Mobile nav overlay ────────────────────────────────────────────────── */
+
+[data-nav-overlay] {
+  transition: opacity var(--motion-base) ease,
+              visibility 0ms linear var(--motion-base);
+}
+
 [data-nav-overlay][data-is-visible="true"] {
   visibility: visible;
   display: flex;
+  opacity: 1;
+  transition-delay: 0ms;
 }
+
+/* ── Reduced motion ────────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -286,14 +273,87 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
   }
 
   [data-reveal],
+  [data-reveal="left"],
+  [data-reveal="right"],
+  [data-reveal="scale"],
   [data-stagger] > * {
-    opacity: 1;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .motion-card,
+  .motion-button {
+    transition-property: border-color, box-shadow, color, background-color;
+    transition-duration: var(--motion-fast);
+  }
+
+  .motion-card:hover {
+    transform: none;
+  }
+
+  .motion-button:hover {
     transform: none;
   }
 }
 
+/* ── Card fan carousel ─────────────────────────────────────────────────── */
 
+.fan-layout {
+  height: 22rem;
+  perspective: 1200px;
+}
+
+.fan-card {
+  position: absolute;
+  width: 11rem;
+  height: 16rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgb(0 0 0 / 0.12), 0 2px 8px rgb(0 0 0 / 0.06);
+  border: 1.5px solid rgb(var(--box-border));
+  opacity: 0;
+  background: rgb(var(--color-box));
+}
+
+.dark .fan-card {
+  box-shadow: 0 8px 30px rgb(0 0 0 / 0.3), 0 2px 8px rgb(0 0 0 / 0.15);
+}
+
+@media (min-width: 480px) {
+  .fan-layout { height: 26rem; }
+  .fan-card { width: 13rem; height: 19rem; }
+}
+
+@media (min-width: 640px) {
+  .fan-layout { height: 28rem; }
+  .fan-card { width: 15rem; height: 22rem; }
+}
+
+@media (min-width: 768px) {
+  .fan-layout { height: 34rem; }
+  .fan-card { width: 18rem; height: 26rem; border-radius: 1.25rem; }
+}
+
+@media (min-width: 1024px) {
+  .fan-layout { height: 38rem; }
+  .fan-card { width: 22rem; height: 32rem; border-radius: 1.5rem; }
+}
+
+/* ── Mobile: simpler motion ────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  :root {
+    --motion-distance: 14px;
+    --motion-reveal: 450ms;
+    --motion-stagger: 40ms;
+  }
+
+  .motion-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,134 @@
+---
+/**
+ * Subtle animated hexagon logo background.
+ * Extracted from Claude Design project (Flores Nexus Logo.dc.html).
+ * Pure SVG + CSS — no JS framework needed.
+ */
+export interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+---
+
+<div class={`logo-watermark pointer-events-none select-none ${className}`} aria-hidden="true">
+  <svg
+    viewBox="0 0 800 800"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-full h-full"
+  >
+    <!-- Outer hexagon — R=340 -->
+    <polygon
+      points="400,60 694.4,230 694.4,570 400,740 105.6,570 105.6,230"
+      fill="#cfdcfd"
+      fill-opacity="0.08"
+      stroke="#8aabfc"
+      stroke-width="1.5"
+      stroke-opacity="0.12"
+      class="hex hex-outer"
+    />
+    <!-- Middle hexagon — R=238 -->
+    <polygon
+      points="400,162 606.1,281 606.1,519 400,638 193.9,519 193.9,281"
+      fill="#92b4fd"
+      fill-opacity="0.07"
+      stroke="#4a82f8"
+      stroke-width="1.5"
+      stroke-opacity="0.14"
+      class="hex hex-mid"
+    />
+    <!-- Inner hexagon — R=140 -->
+    <polygon
+      points="400,260 521.2,330 521.2,470 400,540 278.8,470 278.8,330"
+      fill="#1055f4"
+      fill-opacity="0.06"
+      stroke="#1450e8"
+      stroke-width="1.5"
+      stroke-opacity="0.18"
+      class="hex hex-inner"
+    />
+    <!-- Vertex accent dots (connection nodes from design) -->
+    <g class="hex-nodes" opacity="0.10">
+      <!-- Outer ring vertices -->
+      <circle cx="400" cy="60" r="3" fill="#8aabfc" />
+      <circle cx="694.4" cy="230" r="3" fill="#8aabfc" />
+      <circle cx="694.4" cy="570" r="3" fill="#8aabfc" />
+      <circle cx="400" cy="740" r="3" fill="#8aabfc" />
+      <circle cx="105.6" cy="570" r="3" fill="#8aabfc" />
+      <circle cx="105.6" cy="230" r="3" fill="#8aabfc" />
+      <!-- Inner ring vertices -->
+      <circle cx="400" cy="260" r="2.5" fill="#1450e8" />
+      <circle cx="521.2" cy="330" r="2.5" fill="#1450e8" />
+      <circle cx="521.2" cy="470" r="2.5" fill="#1450e8" />
+      <circle cx="400" cy="540" r="2.5" fill="#1450e8" />
+      <circle cx="278.8" cy="470" r="2.5" fill="#1450e8" />
+      <circle cx="278.8" cy="330" r="2.5" fill="#1450e8" />
+    </g>
+  </svg>
+</div>
+
+<style>
+  .logo-watermark {
+    position: absolute;
+    opacity: 0.35;
+    animation: wm-breathe 16s ease-in-out infinite;
+  }
+
+  .dark .logo-watermark {
+    opacity: 0.20;
+  }
+
+  @keyframes wm-breathe {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.02) rotate(0.8deg); }
+  }
+
+  .hex {
+    transform-origin: 400px 400px;
+  }
+
+  .hex-outer {
+    animation: hex-rotate 80s linear infinite;
+  }
+  .hex-mid {
+    animation: hex-rotate 60s linear infinite reverse;
+  }
+  .hex-inner {
+    animation: hex-rotate 45s linear infinite;
+  }
+
+  @keyframes hex-rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .hex-nodes {
+    animation: nodes-pulse 8s ease-in-out infinite;
+  }
+
+  @keyframes nodes-pulse {
+    0%, 100% { opacity: 0.06; }
+    50%      { opacity: 0.12; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-watermark,
+    .hex-outer,
+    .hex-mid,
+    .hex-inner,
+    .hex-nodes {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .logo-watermark {
+      opacity: 0.20;
+    }
+    .hex-outer,
+    .hex-mid,
+    .hex-inner {
+      animation: none;
+    }
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import Container from "../shared/Container.astro";
+import SquishyPricingCards from "../ui/SquishyPricingCards";
 import { plans, planOrder } from "../../data/plans";
 
 export interface Props {
@@ -14,6 +15,8 @@ const t = {
     growthMessage: "Start with the plan that fits your business today. Upgrade when your business needs more.",
     setupLabel: "setup",
     monthLabel: "/month",
+    recommendedBadge: "Recommended",
+    seeAll: "See all features",
     footerNote: "Hosting included while subscription is active. Standard domain subject to availability, administered by Flores Nexus Group. Premium domains, ownership transfers, additional changes, advanced SEO, and external integrations may require additional charges. Full terms apply.",
   },
   es: {
@@ -22,11 +25,33 @@ const t = {
     growthMessage: "Empieza con el plan que se adapte a tu negocio hoy. Actualiza cuando tu negocio necesite más.",
     setupLabel: "inicial",
     monthLabel: "/mes",
+    recommendedBadge: "Recomendado",
+    seeAll: "Ver todas las funciones",
     footerNote: "Hosting incluido mientras la suscripción esté activa. Dominio estándar sujeto a disponibilidad, administrado por Flores Nexus Group. Dominios premium, transferencias de propiedad, cambios adicionales, SEO avanzado e integraciones externas pueden requerir cargos adicionales. Aplican términos completos.",
   },
 }[lang];
 
-const cards = planOrder.map((id) => plans[id]);
+const pricingPlans = planOrder.map((id) => {
+  const plan = plans[id];
+  const copy = plan[lang];
+  return {
+    id: plan.id,
+    name: copy.name,
+    tagline: copy.tagline,
+    setup: plan.setup,
+    monthly: plan.monthly,
+    setupLabel: t.setupLabel,
+    monthLabel: t.monthLabel,
+    cta: copy.cta,
+    ctaHref: plan.startForm[lang],
+    detailsCta: copy.detailsCta,
+    detailsHref: plan.detailsHref[lang],
+    features: copy.homeFeatures.slice(0, 4),
+    seeAllLabel: t.seeAll,
+    isRecommended: plan.id === "professional",
+    recommendedLabel: plan.id === "professional" ? t.recommendedBadge : undefined,
+  };
+});
 ---
 
 <section class="py-16" id={lang === "en" ? "pricing" : "planes"}>
@@ -36,66 +61,13 @@ const cards = planOrder.map((id) => plans[id]);
       <p class="text-heading-3 text-lg max-w-2xl mx-auto">{t.subtitle}</p>
     </div>
 
-    <p class="text-center text-primary font-semibold text-base max-w-xl mx-auto mb-10 motion-card" data-reveal="scale">
+    <p class="text-center text-primary font-semibold text-base max-w-xl mx-auto mb-10" data-reveal="scale">
       {t.growthMessage}
     </p>
+  </Container>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start" data-stagger>
-      {cards.map((plan) => {
-        const copy = plan[lang];
-        return (
-          <div id={plan.id} class="relative rounded-2xl border-2 border-box-border bg-box-bg flex flex-col h-full motion-card">
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-heading-1 mb-1">{copy.name}</h3>
-              <p class="text-sm text-heading-3 mb-4">{copy.tagline}</p>
-
-              <div class="mb-6">
-                <div class="flex items-baseline gap-1">
-                  <span class="text-3xl font-bold text-heading-1">{plan.setup}</span>
-                  <span class="text-heading-3 text-sm">{t.setupLabel}</span>
-                </div>
-                {plan.monthly && (
-                  <div class="flex items-baseline gap-1 mt-1">
-                    <span class="text-xl font-semibold text-primary">{plan.monthly}</span>
-                    <span class="text-heading-3 text-sm">{t.monthLabel}</span>
-                  </div>
-                )}
-              </div>
-
-              <div class="flex flex-col gap-2">
-                <a
-                  href={plan.startForm[lang]}
-                  class="w-full flex justify-center items-center px-6 py-3 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-all duration-300 motion-button"
-                >
-                  {copy.cta}
-                </a>
-                <a
-                  href={plan.detailsHref[lang]}
-                  class="w-full flex justify-center items-center px-6 py-3 rounded-full border-2 border-box-border text-heading-2 font-semibold hover:border-primary hover:text-primary transition-all duration-300 motion-button"
-                >
-                  {copy.detailsCta}
-                </a>
-              </div>
-            </div>
-
-            <div class="px-6 pb-6 flex-1">
-              <hr class="border-box-border mb-4" />
-              <ul class="space-y-2" data-stagger>
-                {copy.homeFeatures.map((item) => (
-                  <li class="flex items-start gap-2 text-sm text-heading-2">
-                    <svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-
-    <p class="text-center text-xs text-heading-3 mt-6 max-w-2xl mx-auto italic">{t.footerNote}</p>
+  <Container>
+    <SquishyPricingCards client:visible plans={pricingPlans} />
+    <p class="text-center text-xs text-heading-3 mt-8 max-w-2xl mx-auto italic">{t.footerNote}</p>
   </Container>
 </section>

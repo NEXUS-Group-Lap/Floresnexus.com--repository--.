@@ -5,8 +5,8 @@ import {
   STARTER_STRIPE_LINK,
   PROFESSIONAL_STRIPE_LINK,
   NEXUS_MINI_STRIPE_LINK,
-  LOCAL_PRESENCE_STRIPE_LINK,
   BUSINESS_QUOTE_FORM_LINK,
+  START_FORM_ENDPOINT,
 } from "../../config/links";
 ---
 
@@ -30,10 +30,10 @@ import {
             id="start-form-es"
             class="space-y-5"
             data-mini={NEXUS_MINI_STRIPE_LINK}
-            data-local-presence={LOCAL_PRESENCE_STRIPE_LINK}
             data-starter={STARTER_STRIPE_LINK}
             data-professional={PROFESSIONAL_STRIPE_LINK}
             data-business={BUSINESS_QUOTE_FORM_LINK}
+            data-endpoint={START_FORM_ENDPOINT}
           >
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
@@ -173,7 +173,6 @@ import {
               >
                 <option value="">Selecciona un plan</option>
                 <option value="mini-card">Nexus Mini Card — $99 inicial + $29/mes</option>
-                <option value="local-presence">Local Presence Starter — $150 inicial + $45/mes</option>
                 <option value="starter">Starter Website — $299 inicial + $79/mes</option>
                 <option value="professional">Professional Website — $699 inicial + $149/mes</option>
                 <option value="business-system">Business System — Desde $2,500 (Solicitar Cotización)</option>
@@ -296,7 +295,6 @@ import {
 
   const planLabels: Record<string, string> = {
     "mini-card": "Nexus Mini Card - $99 inicial + $29/mes",
-    "local-presence": "Local Presence Starter - $150 inicial + $45/mes",
     "starter": "Starter Website - $299 inicial + $79/mes",
     "professional": "Professional Website - $699 inicial + $149/mes",
     "business-system": "Business System - Solicitar Cotizacion",
@@ -335,7 +333,7 @@ import {
   }
 
   if (form) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const plan = planSelect?.value ?? "";
 
@@ -345,9 +343,28 @@ import {
       }
       planError?.classList.add("hidden");
 
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        if (submitBtnText) submitBtnText.textContent = "Enviando...";
+      }
+
+      const formData = new FormData(form);
+      const endpoint = form.dataset.endpoint;
+
+      if (endpoint && endpoint !== "#") {
+        try {
+          await fetch(endpoint, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" },
+          });
+        } catch (_) {
+          // Continue to payment even if form submission fails
+        }
+      }
+
       const links: Record<string, string> = {
         "mini-card": form.dataset.mini ?? "#",
-        "local-presence": form.dataset.localPresence ?? "#",
         "starter": form.dataset.starter ?? "#",
         "professional": form.dataset.professional ?? "#",
         "business-system": "#",

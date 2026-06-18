@@ -69,13 +69,18 @@ import { ONBOARDING_FORM_LINK } from "../../config/links";
   if (type === "quote") {
     if (title) title.textContent = "Quote Request Received";
     if (message) {
-      message.innerHTML =
-        "Your Business System quote request has been received. A Flores Nexus Group representative will review the project scope with you. <strong class=\"text-heading-2\">No Stripe payment is collected for Business System until a quote is approved.</strong>";
+      const strong = document.createElement("strong");
+      strong.className = "text-heading-2";
+      strong.textContent = "No Stripe payment is collected for Business System until a quote is approved.";
+      message.replaceChildren(
+        document.createTextNode("Your Business System quote request has been received. A Flores Nexus Group representative will review the project scope with you. "),
+        strong
+      );
     }
   } else if (type === "application") {
     if (title) title.textContent = "Application Received";
     if (message) {
-      message.innerHTML =
+      message.textContent =
         "Thank you. We received your information. Our team will review your request and contact you with the next step.";
     }
   }
