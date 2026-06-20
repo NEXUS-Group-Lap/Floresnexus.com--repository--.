@@ -171,6 +171,30 @@ body {
   100% { background-position: 0% center; }
 }
 
+/* ── Orbit animation ──────────────────────────────────────────────────── */
+
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.orbit-container:hover * {
+  animation-play-state: paused;
+}
+
+.orbit-grid-item {
+  opacity: 0;
+  transform: translateY(10px) scale(0.92);
+  animation: orbit-grid-enter var(--motion-reveal, 450ms) var(--motion-ease) forwards;
+}
+
+@keyframes orbit-grid-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* ── Marquee strip ─────────────────────────────────────────────────────── */
 
 .loop-strip {

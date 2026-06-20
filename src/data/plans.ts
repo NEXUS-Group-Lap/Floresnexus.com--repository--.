@@ -46,7 +46,7 @@ export const plans: Record<string, Plan> = {
     startForm: { en: "/en/start?plan=mini-card", es: "/es/empezar?plan=mini-card" },
     detailsHref: { en: "/en/plans/mini-card", es: "/es/planes/mini-card" },
     en: {
-      name: "Nexus Mini Card",
+      name: "Nexus Card",
       tagline: "For businesses that need a professional link with their essential information.",
       bestFor: "Businesses that only need a simple professional link to share.",
       homeFeatures: [
@@ -69,11 +69,11 @@ export const plans: Record<string, Plan> = {
         "Booking or payments",
         "Automations",
       ],
-      cta: "Start Mini Card",
+      cta: "Start Nexus Card",
       detailsCta: "View Details",
     },
     es: {
-      name: "Nexus Mini Card",
+      name: "Nexus Card",
       tagline: "Para negocios que necesitan un enlace profesional con su información esencial.",
       bestFor: "Negocios que solo necesitan un enlace profesional simple para compartir.",
       homeFeatures: [
@@ -96,7 +96,7 @@ export const plans: Record<string, Plan> = {
         "Reservas o pagos",
         "Automatizaciones",
       ],
-      cta: "Comenzar Mini Card",
+      cta: "Comenzar Nexus Card",
       detailsCta: "Ver detalles",
     },
   },

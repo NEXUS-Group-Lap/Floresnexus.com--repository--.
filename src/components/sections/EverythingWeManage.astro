@@ -1,0 +1,67 @@
+---
+import Container from "../shared/Container.astro";
+import BtnLink from "../shared/BtnLink.astro";
+import OrbitServices from "../ui/OrbitServices.tsx";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    title: "Everything We Manage",
+    subtitle:
+      "We handle every piece of your online presence — from design and hosting to updates and security.",
+    cta1: "View Plans",
+    cta1Href: "/en/pricing",
+    cta2: "Get Started",
+    cta2Href: "/en/start",
+  },
+  es: {
+    title: "Todo Lo Que Administramos",
+    subtitle:
+      "Nos encargamos de cada aspecto de tu presencia en línea — desde el diseño y hosting hasta actualizaciones y seguridad.",
+    cta1: "Ver Planes",
+    cta1Href: "/es/precios",
+    cta2: "Empezar",
+    cta2Href: "/es/empezar",
+  },
+}[lang];
+---
+
+<section
+  class="py-16 overflow-hidden"
+  id={lang === "en" ? "everything-we-manage" : "todo-lo-que-administramos"}
+>
+  <Container>
+    <div class="text-center mb-8 md:mb-12" data-reveal>
+      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">
+        {t.title}
+      </h2>
+      <p class="text-heading-3 text-lg max-w-2xl mx-auto">{t.subtitle}</p>
+    </div>
+
+    <div data-reveal="scale">
+      <OrbitServices lang={lang} client:visible />
+    </div>
+
+    <div
+      class="flex justify-center gap-4 mt-8 md:mt-12"
+      data-stagger
+    >
+      <BtnLink
+        href={t.cta1Href}
+        text={t.cta1}
+        variant="primary"
+        className="motion-button"
+      />
+      <BtnLink
+        href={t.cta2Href}
+        text={t.cta2}
+        variant="secondary"
+        className="motion-button"
+      />
+    </div>
+  </Container>
+</section>

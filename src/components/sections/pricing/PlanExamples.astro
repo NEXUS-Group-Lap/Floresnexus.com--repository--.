@@ -11,7 +11,7 @@ function mshot(url: string) {
 }
 
 const planStyle: Record<string, string> = {
-  "Nexus Mini Card":      "bg-pink-500/15 text-pink-500",
+  "Nexus Card":      "bg-pink-500/15 text-pink-500",
   "Starter Website":      "bg-lime-500/15 text-lime-600 dark:text-lime-400",
   "Professional Website": "bg-primary/15 text-primary",
 };
@@ -25,7 +25,7 @@ const t = {
   en: {
     sectionTitle: "Website Examples by Plan",
     sectionSubtitle: "Select a plan to see what that level looks like.",
-    tabMini: "Mini Card",
+    tabMini: "Nexus Card",
     tabStarter: "Starter",
     tabProfessional: "Professional",
     visitLabel: "Website",
@@ -37,7 +37,7 @@ const t = {
   es: {
     sectionTitle: "Ejemplos de Sitios por Plan",
     sectionSubtitle: "Selecciona un plan para ver cómo se ve ese nivel.",
-    tabMini: "Mini Card",
+    tabMini: "Nexus Card",
     tabStarter: "Starter",
     tabProfessional: "Professional",
     visitLabel: "Website",
@@ -66,7 +66,7 @@ const panels: { id: string; label: string; examples: Example[] }[] = [
     examples: [
       {
         industry: lang === "en" ? "Grocery Store / Pulpería" : "Pulpería / Tienda Local",
-        plan: "Nexus Mini Card",
+        plan: "Nexus Card",
         planId: "mini-card",
         type: "real",
         desc: lang === "en"
@@ -76,7 +76,7 @@ const panels: { id: string; label: string; examples: Example[] }[] = [
       },
       {
         industry: lang === "en" ? "Resale / Boutique" : "Ropa / Boutique",
-        plan: "Nexus Mini Card",
+        plan: "Nexus Card",
         planId: "mini-card",
         type: "real",
         desc: lang === "en"

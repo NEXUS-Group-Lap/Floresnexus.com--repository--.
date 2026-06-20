@@ -29,7 +29,7 @@ Active development brief: Master Development Brief v1.4 (May 2026).
 
 ## Approved Prices (do not change without approval)
 
-- Nexus Mini Card: $99 setup + $29/month (optional $299/year)
+- Nexus Card: $99 setup + $29/month (optional $299/year)
 - Starter Website: $299 setup + $79/month
 - Professional Website: $699 setup + $149/month (mark as Recommended)
 - Business System: starting at $2,500 setup + $399/month (Request Quote only)
