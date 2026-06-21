@@ -80,7 +80,7 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
   const content = t[lang]
 
   return (
-    <section className="w-full min-h-screen overflow-hidden flex flex-col items-center justify-center relative pt-24 pb-20">
+    <section className="w-full min-h-[calc(100vh-7rem)] overflow-hidden flex flex-col items-center justify-center relative pb-20">
       <Floating sensitivity={-0.5} className="h-full pointer-events-none hidden md:block">
         {/* Upper-left — La Morenita */}
         <FloatingElement
