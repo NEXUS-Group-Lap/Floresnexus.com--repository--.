@@ -1,0 +1,51 @@
+---
+import Container from "../shared/Container.astro";
+import BtnLink from "../shared/BtnLink.astro";
+
+export interface Props {
+  lang: "en" | "es";
+  active?: boolean;
+}
+
+const { lang, active = false } = Astro.props;
+
+const t = {
+  en: {
+    title: "Local Business Launch Offer",
+    copy: "For a limited number of approved new local businesses, Flores Nexus may waive the setup cost for Nexus Card or Starter Website. The first month is paid at confirmation, and the next charge occurs 30 days later.",
+    disclaimer: "Limited to approved clients. Professional Website excluded. Add-ons not included. Availability may be paused based on capacity.",
+    cta: "Start Your Website",
+    ctaHref: "/en/start",
+  },
+  es: {
+    title: "Oferta de Lanzamiento para Negocios Locales",
+    copy: "Para un número limitado de nuevos negocios locales aprobados, Flores Nexus puede eliminar el costo de configuración de Nexus Card o Starter Website. El primer mes se paga al confirmar y el siguiente cobro ocurre 30 días después.",
+    disclaimer: "Limitado a clientes aprobados. Professional Website excluido. Add-ons no incluidos. La disponibilidad puede pausarse según capacidad.",
+    cta: "Empezar Mi Página",
+    ctaHref: "/es/empezar",
+  },
+}[lang];
+---
+
+{active && (
+  <section class="py-12 lg:py-16">
+    <Container>
+      <div class="max-w-2xl mx-auto text-center p-8 rounded-2xl border border-primary/20 bg-primary/5" data-reveal>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          {lang === "en" ? "Limited Offer" : "Oferta Limitada"}
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-heading-1 mb-4">
+          {t.title}
+        </h2>
+        <p class="text-heading-2 leading-relaxed mb-4">
+          {t.copy}
+        </p>
+        <p class="text-sm text-heading-3 mb-6">
+          {t.disclaimer}
+        </p>
+        <BtnLink href={t.ctaHref} text={t.cta} variant="primary" className="min-w-48 text-center" />
+      </div>
+    </Container>
+  </section>
+)}

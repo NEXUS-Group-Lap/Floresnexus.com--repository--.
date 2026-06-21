@@ -4,7 +4,7 @@ import Container from "../../components/shared/Container.astro";
 import {
   STARTER_STRIPE_LINK,
   PROFESSIONAL_STRIPE_LINK,
-  NEXUS_MINI_STRIPE_LINK,
+  NEXUS_CARD_STRIPE_LINK,
   BUSINESS_QUOTE_FORM_LINK,
   START_FORM_ENDPOINT,
 } from "../../config/links";
@@ -29,7 +29,7 @@ import {
           <form
             id="start-form"
             class="space-y-5"
-            data-mini={NEXUS_MINI_STRIPE_LINK}
+            data-nexus-card={NEXUS_CARD_STRIPE_LINK}
             data-starter={STARTER_STRIPE_LINK}
             data-professional={PROFESSIONAL_STRIPE_LINK}
             data-business={BUSINESS_QUOTE_FORM_LINK}
@@ -108,18 +108,34 @@ import {
               </div>
             </div>
 
-            <div>
-              <label for="preferredLanguage" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                Preferred Language
-              </label>
-              <select
-                id="preferredLanguage"
-                name="preferredLanguage"
-                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
-              >
-                <option value="en">English</option>
-                <option value="es">Español</option>
-              </select>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="mainLanguage" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Main Language <span class="text-red-500">*</span>
+                </label>
+                <select
+                  id="mainLanguage"
+                  name="mainLanguage"
+                  required
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                >
+                  <option value="en">English</option>
+                  <option value="es">Español</option>
+                </select>
+              </div>
+              <div>
+                <label for="secondLanguage" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Second language needed?
+                </label>
+                <select
+                  id="secondLanguage"
+                  name="secondLanguage"
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                >
+                  <option value="no">No</option>
+                  <option value="yes-addon">Yes, as add-on</option>
+                </select>
+              </div>
             </div>
 
             <div>
@@ -173,7 +189,7 @@ import {
                 class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
               >
                 <option value="">Select a plan</option>
-                <option value="mini-card">Nexus Card — $99 setup + $29/month</option>
+                <option value="nexus-card">Nexus Card — $99 setup + $29/month</option>
                 <option value="starter">Starter Website — $299 setup + $79/month</option>
                 <option value="professional">Professional Website — $699 setup + $149/month</option>
                 <option value="business-system">Business System — Starting at $2,500 (Request Quote)</option>
@@ -182,12 +198,12 @@ import {
 
             <div>
               <label for="mainServices" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                Main Services
-                <span class="text-heading-3 font-normal ml-1">(optional)</span>
+                Main Services <span class="text-red-500">*</span>
               </label>
               <textarea
                 id="mainServices"
                 name="mainServices"
+                required
                 rows="3"
                 class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm resize-none"
                 placeholder="e.g. Roof repair, gutter cleaning, emergency service"
@@ -208,18 +224,76 @@ import {
               />
             </div>
 
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="repCode" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Representative Code
+                  <span class="text-heading-3 font-normal ml-1">(optional)</span>
+                </label>
+                <input
+                  type="text"
+                  id="repCode"
+                  name="repCode"
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="Rep code"
+                />
+              </div>
+              <div>
+                <label for="repName" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Representative Name
+                  <span class="text-heading-3 font-normal ml-1">(optional)</span>
+                </label>
+                <input
+                  type="text"
+                  id="repName"
+                  name="repName"
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="Rep name"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="hasLogo" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Logo available?
+                </label>
+                <select
+                  id="hasLogo"
+                  name="hasLogo"
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                >
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+              <div>
+                <label for="hasPhotos" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Photos available?
+                </label>
+                <select
+                  id="hasPhotos"
+                  name="hasPhotos"
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                >
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </div>
+
             <div>
-              <label for="repCode" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                Representative Code
+              <label for="socialLinks" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Social Links
                 <span class="text-heading-3 font-normal ml-1">(optional)</span>
               </label>
-              <input
-                type="text"
-                id="repCode"
-                name="repCode"
-                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
-                placeholder="If a Flores Nexus representative helped you, enter their code here."
-              />
+              <textarea
+                id="socialLinks"
+                name="socialLinks"
+                rows="2"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm resize-none"
+                placeholder="Instagram, Facebook, Google Maps, etc."
+              ></textarea>
             </div>
 
             <div>
@@ -236,17 +310,43 @@ import {
               ></textarea>
             </div>
 
-            <!-- Terms checkbox -->
-            <div class="rounded-xl border border-box-border bg-box-bg p-4">
+            <!-- Legal acknowledgements -->
+            <div class="rounded-xl border border-box-border bg-box-bg p-4 space-y-3">
+              <p class="text-xs font-semibold text-heading-1 mb-2">Please confirm you understand:</p>
               <label class="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  id="termsAccepted"
-                  name="termsAccepted"
-                  class="mt-0.5 w-4 h-4 flex-shrink-0 accent-primary"
-                />
+                <input type="checkbox" name="ack_production" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
                 <span class="text-xs text-heading-3 leading-relaxed">
-                  I understand that payment must be completed through the official Flores Nexus Group checkout. Production starts only after payment and complete business information are received. I have read and agree to the{" "}
+                  I understand production starts only after payment, acceptance, and complete business information.
+                </span>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" name="ack_language" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
+                <span class="text-xs text-heading-3 leading-relaxed">
+                  I understand each plan includes one main language; second language is a paid add-on.
+                </span>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" name="ack_domain" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
+                <span class="text-xs text-heading-3 leading-relaxed">
+                  I understand domains are subject to availability.
+                </span>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" name="ack_ownership" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
+                <span class="text-xs text-heading-3 leading-relaxed">
+                  I understand ownership transfer is not included unless separately approved or purchased.
+                </span>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" name="ack_extras" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
+                <span class="text-xs text-heading-3 leading-relaxed">
+                  I understand additional changes, add-ons, logo design, maps, rush delivery, and third-party tools may require additional payment.
+                </span>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" id="termsAccepted" name="termsAccepted" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
+                <span class="text-xs text-heading-3 leading-relaxed">
+                  I have read and agree to the{" "}
                   <a href="/en/terms-of-service" class="text-primary hover:underline">Terms of Service</a>,{" "}
                   <a href="/en/privacy-policy" class="text-primary hover:underline">Privacy Policy</a>, and{" "}
                   <a href="/en/refund-policy" class="text-primary hover:underline">Refund Policy</a>.
@@ -276,7 +376,7 @@ import {
             </button>
 
             <p class="text-xs text-center text-heading-3" id="submit-footer-note">
-              Production starts after payment and complete client information are received.
+              Production starts after payment, acceptance, and complete business information.
             </p>
           </form>
         </div>
@@ -286,15 +386,8 @@ import {
 </Layout>
 
 <script>
-  // Stripe payment links are confirmed and active for mini-card, starter, and professional.
-  // Business System is quote-only — never redirects to Stripe checkout.
-  // Nexus Card: $99 setup + $29/month
-  // Starter Website: $299 setup + $79/month
-  // Professional Website: $699 setup + $149/month
-  // Business System: quote-only, no direct Stripe checkout
-
   const form = document.getElementById("start-form") as HTMLFormElement | null;
-  const checkbox = document.getElementById("termsAccepted") as HTMLInputElement | null;
+  const checkboxes = document.querySelectorAll(".ack-checkbox") as NodeListOf<HTMLInputElement>;
   const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement | null;
   const submitBtnText = document.getElementById("submit-btn-text");
   const submitFooterNote = document.getElementById("submit-footer-note");
@@ -305,13 +398,12 @@ import {
   const selectedPlanLabel = document.getElementById("selected-plan-label");
 
   const planLabels: Record<string, string> = {
-    "mini-card": "Nexus Card - $99 setup + $29/month",
+    "nexus-card": "Nexus Card - $99 setup + $29/month",
     "starter": "Starter Website - $299 setup + $79/month",
     "professional": "Professional Website - $699 setup + $149/month",
     "business-system": "Business System - Request Quote",
   };
 
-  // Auto-select plan from URL parameter
   const urlParams = new URLSearchParams(window.location.search);
   const planParam = urlParams.get("plan");
   if (planParam && planSelect && planLabels[planParam]) {
@@ -329,19 +421,20 @@ import {
     if (submitFooterNote) {
       submitFooterNote.textContent = isQuote
         ? "You will be contacted to discuss the scope. No charge until the quote is approved."
-        : "Production starts after payment and complete client information are received.";
+        : "Production starts after payment, acceptance, and complete business information.";
     }
+  }
+
+  function checkAllAcknowledged() {
+    const allChecked = Array.from(checkboxes).every((cb) => cb.checked);
+    if (submitBtn) submitBtn.disabled = !allChecked;
   }
 
   if (planSelect) {
     planSelect.addEventListener("change", () => updateBusinessMode(planSelect.value));
   }
 
-  if (checkbox && submitBtn) {
-    checkbox.addEventListener("change", () => {
-      submitBtn.disabled = !checkbox.checked;
-    });
-  }
+  checkboxes.forEach((cb) => cb.addEventListener("change", checkAllAcknowledged));
 
   if (form) {
     form.addEventListener("submit", async (e) => {
@@ -369,13 +462,11 @@ import {
             body: formData,
             headers: { Accept: "application/json" },
           });
-        } catch (_) {
-          // Continue to payment even if form submission fails
-        }
+        } catch (_) {}
       }
 
       const links: Record<string, string> = {
-        "mini-card": form.dataset.mini ?? "#",
+        "nexus-card": form.dataset.nexusCard ?? "#",
         "starter": form.dataset.starter ?? "#",
         "professional": form.dataset.professional ?? "#",
         "business-system": "#",

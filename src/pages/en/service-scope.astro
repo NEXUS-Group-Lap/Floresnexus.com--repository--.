@@ -12,12 +12,10 @@ import Container from "../../components/shared/Container.astro";
     <Container>
       <div class="max-w-3xl mx-auto">
 
-        <!-- Attorney notice -->
         <p class="text-xs text-heading-3 italic mb-8 leading-relaxed">
           This document is provided for informational purposes. Flores Nexus Group LLC recommends consulting a licensed Florida attorney before relying on these terms for legal decisions.
         </p>
 
-        <!-- Page header -->
         <div class="mb-10">
           <h1 class="text-4xl font-bold text-heading-1 mb-2">Service Scope</h1>
           <p class="text-heading-3 text-sm mb-2">What is included and excluded in each plan</p>
@@ -32,7 +30,7 @@ import Container from "../../components/shared/Container.astro";
           <div class="py-8 border-t border-box-border">
             <div class="flex items-center gap-3 mb-4">
               <span class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full">Nexus Card</span>
-              <span class="text-xs text-heading-3">$99 setup + $29/month or $99 setup + $299/year</span>
+              <span class="text-xs text-heading-3">$99 setup + $29/month or $299/year</span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -40,15 +38,13 @@ import Container from "../../components/shared/Container.astro";
                 <p class="text-xs font-semibold text-green-600 dark:text-green-400 uppercase tracking-widest mb-3">Includes</p>
                 <ul class="space-y-1.5 text-sm text-heading-2">
                   {[
-                    "Business name, phone, and services",
-                    "Call and WhatsApp button",
-                    "Service area or location",
-                    "Basic hours",
-                    "3–5 services listed",
-                    "One main image or background",
-                    "Social media links",
-                    "Mobile-friendly design",
-                    "Hosted on floresnexus.cards/your-business",
+                    "Up to 5 content blocks",
+                    "Up to 5 services listed",
+                    "Logo + 1 main image",
+                    "1 language",
+                    "Contact buttons and social links",
+                    "1 basic review round",
+                    "Managed route: floresnexus.cards/businessname",
                     "Managed by Flores Nexus while subscription is active",
                   ].map((item) => (
                     <li class="flex items-start gap-2">
@@ -64,14 +60,13 @@ import Container from "../../components/shared/Container.astro";
                 <p class="text-xs font-semibold text-red-500 uppercase tracking-widest mb-3">Does not include</p>
                 <ul class="space-y-1.5 text-sm text-heading-3">
                   {[
-                    "Edits after launch (except Flores Nexus build errors)",
                     "Custom domain",
                     "Contact form",
-                    "Gallery",
+                    "Monthly updates after launch",
                     "Additional pages",
-                    "SEO work",
-                    "Google Business setup",
+                    "Gallery or multiple images",
                     "Ownership transfer",
+                    "Second language (available as add-on)",
                   ].map((item) => (
                     <li class="flex items-start gap-2">
                       <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -89,7 +84,7 @@ import Container from "../../components/shared/Container.astro";
           <div class="py-8 border-t border-box-border">
             <div class="flex items-center gap-3 mb-4">
               <span class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full">Starter Website</span>
-              <span class="text-xs text-heading-3">$299 setup + $79/month</span>
+              <span class="text-xs text-heading-3">$299 setup + $79/month or $799/year</span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -97,17 +92,16 @@ import Container from "../../components/shared/Container.astro";
                 <p class="text-xs font-semibold text-green-600 dark:text-green-400 uppercase tracking-widest mb-3">Includes</p>
                 <ul class="space-y-1.5 text-sm text-heading-2">
                   {[
-                    "One-page complete website",
-                    "Business information, services, and service area",
-                    "Call and text/message button",
-                    "Google Maps or service area display",
-                    "Social media links",
-                    "Mobile-friendly design",
-                    "Hosting while subscription is active",
-                    "Standard domain if available (.com / .co / .net — not guaranteed exact match)",
-                    "One pre-launch revision",
-                    "1 small update per month, non-accumulative",
-                    "Basic activity summary when applicable",
+                    "1-page website",
+                    "Up to 8 sections",
+                    "Up to 10 published images",
+                    "1 language",
+                    "1 managed standard domain, subject to availability",
+                    "Basic contact form up to 6 fields",
+                    "1 review round",
+                    "1 small update per month (non-accumulative)",
+                    "External links for booking or payments",
+                    "Hosting and technical management",
                   ].map((item) => (
                     <li class="flex items-start gap-2">
                       <svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -122,13 +116,12 @@ import Container from "../../components/shared/Container.astro";
                 <p class="text-xs font-semibold text-red-500 uppercase tracking-widest mb-3">Does not include</p>
                 <ul class="space-y-1.5 text-sm text-heading-3">
                   {[
-                    "Multiple pages",
-                    "Unlimited edits",
-                    "Advanced SEO",
-                    "Monthly support calls",
-                    "Marketing or social media management",
-                    "Booking or payment systems",
+                    "Extra pages",
+                    "Accumulative updates",
+                    "Automations or databases",
+                    "Direct payment processing",
                     "Ownership transfer",
+                    "Second language (available as add-on)",
                   ].map((item) => (
                     <li class="flex items-start gap-2">
                       <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -146,7 +139,7 @@ import Container from "../../components/shared/Container.astro";
           <div class="py-8 border-t border-box-border">
             <div class="flex items-center gap-3 mb-4">
               <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">Professional Website</span>
-              <span class="text-xs text-heading-3">$699 setup + $149/month</span>
+              <span class="text-xs text-heading-3">$699 setup + $149/month or $1,499/year</span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -154,15 +147,16 @@ import Container from "../../components/shared/Container.astro";
                 <p class="text-xs font-semibold text-green-600 dark:text-green-400 uppercase tracking-widest mb-3">Includes</p>
                 <ul class="space-y-1.5 text-sm text-heading-2">
                   {[
-                    "Up to 5 pages: Home, Services, About, Gallery, Contact",
-                    "Contact form",
-                    "Google Maps or service area",
-                    "Basic copywriting",
-                    "Mobile-friendly design",
-                    "Hosting while subscription is active",
-                    "Standard domain if available (.com / .co / .net — not guaranteed exact match)",
-                    "Up to 3 small updates per month, non-accumulative",
-                    "Basic activity summary when applicable",
+                    "Up to 5 pages",
+                    "Up to 25 published images",
+                    "1 language",
+                    "1 managed standard domain, subject to availability",
+                    "Basic contact form up to 8 fields",
+                    "2 review rounds",
+                    "3 small updates per month (non-accumulative)",
+                    "External links for booking or payments",
+                    "Hosting and technical management",
+                    "Up to 2 additional standard pages available as paid add-ons",
                   ].map((item) => (
                     <li class="flex items-start gap-2">
                       <svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -177,13 +171,12 @@ import Container from "../../components/shared/Container.astro";
                 <p class="text-xs font-semibold text-red-500 uppercase tracking-widest mb-3">Does not include</p>
                 <ul class="space-y-1.5 text-sm text-heading-3">
                   {[
-                    "New pages beyond 5",
-                    "Redesigns",
-                    "CRM, booking, or payment systems",
-                    "Monthly SEO campaigns",
-                    "Ad campaign management",
-                    "Social media management",
+                    "Pages beyond 5 (max 2 extra as add-on)",
+                    "Accumulative updates",
+                    "Custom apps or user accounts",
+                    "API automations",
                     "Ownership transfer",
+                    "Second language (available as add-on)",
                   ].map((item) => (
                     <li class="flex items-start gap-2">
                       <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -206,15 +199,16 @@ import Container from "../../components/shared/Container.astro";
             <p class="text-sm text-heading-2 leading-relaxed mb-4">Scope, timeline, and inclusions are defined in a separate written proposal for each project. May include based on quote:</p>
             <ul class="space-y-1.5 text-sm text-heading-2">
               {[
-                "Multi-page complete website",
-                "Online booking system",
-                "Online payments integration",
-                "CRM or email integration",
-                "Automations and workflows",
-                "Landing pages",
-                "Analytics and reports",
-                "Multiple locations",
-                "External integrations",
+                "User accounts",
+                "Customer portal",
+                "Database",
+                "Custom booking",
+                "Payment integration",
+                "Automations",
+                "API integrations",
+                "Admin dashboard",
+                "Document generation",
+                "Custom internal workflows",
               ].map((item) => (
                 <li class="flex items-start gap-2">
                   <svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -224,6 +218,7 @@ import Container from "../../components/shared/Container.astro";
                 </li>
               ))}
             </ul>
+            <p class="text-sm text-heading-3 mt-4 italic">Written scope required. Quote required. No direct checkout. Final pricing depends on approved scope.</p>
           </div>
 
           <!-- Small Update Definition -->
@@ -251,88 +246,42 @@ import Container from "../../components/shared/Container.astro";
                 </li>
               ))}
             </ul>
-            <p class="text-sm text-heading-3 italic">Changes outside this definition are billed as Level 2 or Level 3 change requests.</p>
-          </div>
-
-          <!-- Change Request Levels -->
-          <div class="py-8 border-t border-box-border">
-            <h2 class="text-lg font-semibold text-heading-1 mb-6">Change Request Levels</h2>
-
-            <div class="space-y-5">
-              <div>
-                <p class="font-semibold text-heading-1 text-sm mb-3">Level 2 — Fixed price, billed before execution</p>
-                <div class="rounded-xl border border-box-border bg-box-bg overflow-hidden">
-                  <table class="w-full text-sm">
-                    <tbody>
-                      {[
-                        ["Replace full photo gallery", "$35"],
-                        ["Update full services list", "$35"],
-                        ["Add or replace long text section", "$35"],
-                        ["Add embedded video", "$35"],
-                        ["Change site colors or fonts", "$75"],
-                        ["Redesign one section", "$75"],
-                      ].map(([item, price], i) => (
-                        <tr class={`border-b border-box-border last:border-0 ${i % 2 === 0 ? "" : "bg-box-bg/50"}`}>
-                          <td class="px-4 py-2.5 text-heading-2">{item}</td>
-                          <td class="px-4 py-2.5 text-right font-semibold text-primary">{price}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <div>
-                <p class="font-semibold text-heading-1 text-sm mb-3">Level 3 — Custom quote required, approval before execution</p>
-                <div class="rounded-xl border border-box-border bg-box-bg overflow-hidden">
-                  <table class="w-full text-sm">
-                    <tbody>
-                      {[
-                        ["Add new page", "$149"],
-                        ["Add advanced contact form", "$149"],
-                        ["Add testimonials section", "$99"],
-                        ["Add WhatsApp floating button", "$59"],
-                        ["Add basic booking system", "$299"],
-                        ["Add online store or payments", "Custom quote"],
-                        ["Full site redesign", "Custom quote"],
-                      ].map(([item, price], i) => (
-                        <tr class={`border-b border-box-border last:border-0 ${i % 2 === 0 ? "" : "bg-box-bg/50"}`}>
-                          <td class="px-4 py-2.5 text-heading-2">{item}</td>
-                          <td class="px-4 py-2.5 text-right font-semibold text-primary whitespace-nowrap">{price}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+            <p class="text-sm text-heading-3 italic">Changes outside this definition are billed separately.</p>
           </div>
 
           <!-- Domain Policy -->
           <div class="py-8 border-t border-box-border">
             <h2 class="text-lg font-semibold text-heading-1 mb-3">Domain Policy</h2>
             <div class="text-sm text-heading-2 leading-relaxed space-y-3">
-              <p>Flores Nexus Group LLC will search for the best available standard domain for your business using .com, .co, or .net extensions. Exact domain names are not guaranteed as they may already be taken or require premium pricing.</p>
-              <p>Premium domains require client approval and additional payment. If no standard option is acceptable, Flores Nexus Group LLC will discuss alternatives before launch. Domains are administered by Flores Nexus Group LLC while the subscription is active. Transfer requires a separate process.</p>
+              <p>Nexus Card is published under a managed Flores Nexus route (floresnexus.cards/businessname). Custom domain is not included.</p>
+              <p>Starter and Professional plans include one managed standard domain using .com, .co, or .net extensions, subject to availability. Exact domain names are not guaranteed as they may already be taken or require premium pricing.</p>
+              <p>Premium domains require client approval and additional payment. Domains are administered by Flores Nexus Group LLC while the subscription is active. Transfer requires a separate process and is not included.</p>
             </div>
           </div>
 
           <!-- Add-ons -->
           <div class="py-8 border-t border-box-border">
             <h2 class="text-lg font-semibold text-heading-1 mb-4">Add-Ons</h2>
-            <p class="text-sm text-heading-3 mb-4">Available as separate services:</p>
+            <p class="text-sm text-heading-3 mb-4">Available as separate services. Pricing may vary.</p>
             <div class="rounded-xl border border-box-border bg-box-bg overflow-hidden">
               <table class="w-full text-sm">
                 <tbody>
                   {[
-                    ["Google Business Profile Setup", "$99 one-time"],
-                    ["Google Business Monthly Management", "$39/month"],
-                    ["Extra update pack (3 additional updates)", "$49/month"],
-                    ["Extra page", "$149 one-time"],
-                    ["Advanced SEO", "From $199/month (custom quote)"],
-                    ["Landing page", "$199 one-time"],
-                    ["Advanced form", "$149 one-time"],
-                    ["External integration", "Custom quote"],
+                    ["Maps Setup (Google + Apple initial setup)", "$50 one-time"],
+                    ["Extra Small Update", "$29 one-time"],
+                    ["Monthly Update Pack (3 additional updates, max 1 pack)", "$49/month"],
+                    ["Second Language — Nexus Card", "$49 + $9/month or $99/year"],
+                    ["Second Language — Starter", "$149 + $19/month or $199/year"],
+                    ["Second Language — Professional", "$349 + $39/month or $399/year"],
+                    ["Additional Standard Page (Professional only, max 2)", "$149/page"],
+                    ["Third-Party Tool Connection (button/link/embed only)", "$99/tool"],
+                    ["Business Email Setup (provider fees not included)", "$75 one-time"],
+                    ["Domain Change", "$75 + domain cost"],
+                    ["Additional Domain (redirect only)", "$35 + annual cost"],
+                    ["Domain Transfer Assistance", "$75 + fees"],
+                    ["Rush Delivery (with approval and capacity)", "$99 / $149 / $349"],
+                    ["Website Ownership Transfer", "Quote required"],
+                    ["Logo Design (not unlimited branding)", "Quote required"],
                   ].map(([item, price], i) => (
                     <tr class={`border-b border-box-border last:border-0 ${i % 2 === 0 ? "" : "bg-box-bg/50"}`}>
                       <td class="px-4 py-2.5 text-heading-2">{item}</td>
@@ -342,6 +291,7 @@ import Container from "../../components/shared/Container.astro";
                 </tbody>
               </table>
             </div>
+            <p class="text-xs text-heading-3 mt-3 italic">Maps setup does not guarantee listing approval by Google or Apple. Monthly Update Pack updates do not accumulate. Third-party tool connection includes button, link, or embed integration only — no API automation.</p>
           </div>
 
         </div>

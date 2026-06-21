@@ -41,7 +41,7 @@ const t = {
     restart: "Change my answers",
     quoteNote: "No charge until a written quote is approved.",
     results: {
-      "mini-card": {
+      "nexus-card": {
         reason: "This plan fits your needs because you only need to share your basic contact information and hours — no full website required.",
         startCta: "Start Nexus Card",
         examplesLabel: "View Nexus Card Examples",
@@ -96,7 +96,7 @@ const t = {
     restart: "Cambiar mis respuestas",
     quoteNote: "No se realiza ningún cargo hasta que la cotización escrita sea aprobada.",
     results: {
-      "mini-card": {
+      "nexus-card": {
         reason: "Este plan coincide con tus necesidades porque solo necesitas compartir tu información de contacto y horario básico — sin un sitio web completo.",
         startCta: "Comenzar Nexus Card",
         examplesLabel: "Ver ejemplos de Nexus Card",
@@ -127,12 +127,12 @@ const questions = [
 ];
 
 const optionValues = [
-  ["mini-card", "mini-card", "starter", "business-system"],
-  ["starter", "professional", "mini-card", "business-system"],
-  ["starter", "professional", "mini-card", "business-system"],
+  ["nexus-card", "nexus-card", "starter", "business-system"],
+  ["starter", "professional", "nexus-card", "business-system"],
+  ["starter", "professional", "nexus-card", "business-system"],
 ];
 
-const resultPlans = ["mini-card", "starter", "professional", "business-system"];
+const resultPlans = ["nexus-card", "starter", "professional", "business-system"];
 
 const compareHref = lang === "en" ? "#compare" : "#comparar";
 const examplesHref = lang === "en" ? "#examples" : "#ejemplos";
@@ -236,7 +236,7 @@ const examplesHref = lang === "en" ? "#examples" : "#ejemplos";
             const copy = plan[lang];
             const resultCopy = (t.results as any)[planId];
             const isBS = planId === "business-system";
-            const tabPlans = ["mini-card", "starter", "professional"];
+            const tabPlans = ["nexus-card", "starter", "professional"];
             const hasExamples = !isBS && resultCopy.examplesLabel;
             return (
               <div

@@ -9,16 +9,20 @@ import HowToStart from "../../components/sections/pricing/HowToStart.astro";
 import StickyPlanBar from "../../components/sections/pricing/StickyPlanBar.astro";
 import CriticalServiceInfo from "../../components/sections/pricing/CriticalServiceInfo.astro";
 import BusinessSystemCTA from "../../components/sections/BusinessSystemCTA.astro";
+import NoLogoYet from "../../components/sections/NoLogoYet.astro";
+import GrowthPath from "../../components/sections/GrowthPath.astro";
+import DigitalAccessProgram from "../../components/sections/DigitalAccessProgram.astro";
+import PromoLaunchOffer from "../../components/sections/PromoLaunchOffer.astro";
 import { plans } from "../../data/plans";
 
 const pagePlanData = {
-  "mini-card": {
-    name: plans["mini-card"].es.name,
-    priceMonthly: `${plans["mini-card"].setup} inicial + ${plans["mini-card"].monthly}/mes`,
-    priceAnnual: `${plans["mini-card"].setup} inicial + ${plans["mini-card"].annualPrice}/año`,
-    startHref: plans["mini-card"].startForm.es,
-    ctaText: plans["mini-card"].es.cta,
-    benefits: plans["mini-card"].es.homeFeatures.slice(0, 3),
+  "nexus-card": {
+    name: plans["nexus-card"].es.name,
+    priceMonthly: `${plans["nexus-card"].setup} inicial + ${plans["nexus-card"].monthly}/mes`,
+    priceAnnual: `${plans["nexus-card"].setup} inicial + ${plans["nexus-card"].annualPrice}/año`,
+    startHref: plans["nexus-card"].startForm.es,
+    ctaText: plans["nexus-card"].es.cta,
+    benefits: plans["nexus-card"].es.homeFeatures.slice(0, 3),
   },
   starter: {
     name: plans.starter.es.name,
@@ -99,6 +103,17 @@ const pagePlanData = {
       <PlanExamples lang="es" />
     </div>
 
+    <!-- ¿No tienes logo? -->
+    <NoLogoYet lang="es" />
+
+    <!-- Ruta de crecimiento -->
+    <div class="bg-gray-50 dark:bg-gray-900/30">
+      <GrowthPath lang="es" />
+    </div>
+
+    <!-- Promo (oculta por defecto, set active={true} para mostrar) -->
+    <PromoLaunchOffer lang="es" active={false} />
+
     <!-- 6. Información crítica del servicio -->
     <CriticalServiceInfo lang="es" />
 
@@ -106,6 +121,9 @@ const pagePlanData = {
     <div class="bg-gray-50 dark:bg-gray-900/30">
       <BusinessSystemCTA lang="es" />
     </div>
+
+    <!-- Programa de Acceso Digital -->
+    <DigitalAccessProgram lang="es" />
 
     <!-- 8. Cómo funciona (4 pasos) -->
     <HowToStart lang="es" />
@@ -146,8 +164,8 @@ const pagePlanData = {
 <script is:inline define:vars={{ pagePlanData }}>
 (function () {
   var params = new URLSearchParams(window.location.search);
-  var validPlans = ["mini-card", "starter", "professional", "business-system"];
-  var tabPlans = ["mini-card", "starter", "professional"];
+  var validPlans = ["nexus-card", "starter", "professional", "business-system"];
+  var tabPlans = ["nexus-card", "starter", "professional"];
 
   var state = {
     billing: params.get("billing") === "annual" ? "annual" : "monthly",
@@ -331,12 +349,12 @@ const pagePlanData = {
 
   function calcRecommendation() {
     if (state.quizAnswers.includes("business-system")) return "business-system";
-    var s = { "mini-card": 0, starter: 0, professional: 0 };
+    var s = { "nexus-card": 0, starter: 0, professional: 0 };
     state.quizAnswers.forEach(function (a) { if (a && s[a] !== undefined) s[a]++; });
-    var max = Math.max(s["mini-card"], s.starter, s.professional);
+    var max = Math.max(s["nexus-card"], s.starter, s.professional);
     if (s.professional === max && s.professional > 0) return "professional";
     if (s.starter === max && s.starter > 0) return "starter";
-    return "mini-card";
+    return "nexus-card";
   }
 
   function showQuizResult() {

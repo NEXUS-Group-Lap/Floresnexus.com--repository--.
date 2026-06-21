@@ -1,0 +1,39 @@
+---
+import Container from "../shared/Container.astro";
+
+export interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    title: "No logo yet?",
+    p1: "You can still start. We can work with a basic visual direction, and if you need a logo, we can quote logo design as an add-on.",
+    p2: "Logo design is not automatically included in the website plans and does not include unlimited branding work.",
+  },
+  es: {
+    title: "¿Todavía no tienes logo?",
+    p1: "Puedes comenzar de todas formas. Podemos trabajar con una dirección visual básica y, si necesitas un logo, podemos cotizar el diseño como servicio adicional.",
+    p2: "El diseño de logo no está incluido automáticamente en los planes y no equivale a branding ilimitado.",
+  },
+}[lang];
+---
+
+<section class="py-12">
+  <Container>
+    <div class="max-w-2xl mx-auto flex items-start gap-4 p-6 rounded-2xl border border-box-border bg-box-bg" data-reveal>
+      <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+        <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-heading-1 mb-2">{t.title}</h3>
+        <p class="text-heading-2 text-sm leading-relaxed mb-1">{t.p1}</p>
+        <p class="text-heading-3 text-sm leading-relaxed">{t.p2}</p>
+      </div>
+    </div>
+  </Container>
+</section>

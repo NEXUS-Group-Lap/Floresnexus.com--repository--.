@@ -15,7 +15,7 @@ const t = {
     tabProfessional: "Professional",
     forWhoLabel: "Who It's For",
     includesLabel: "What's Included",
-    notIncludesLabel: "What's Not Included",
+    notIncludesLabel: "Plan Scope",
     smallUpdateLabel: "What is a small update?",
     smallUpdateBody:
       "A small update can be replacing a photo, correcting a short text, updating a phone number or hours, or changing a link.",
@@ -23,7 +23,7 @@ const t = {
       "It does not include new pages, redesigns, new sections, booking, payments, automations, advanced SEO, or social media management.",
     smallUpdateNote: "Unused updates do not accumulate.",
     forWho: {
-      "mini-card":
+      "nexus-card":
         "Businesses that need to share basic information and contact methods without building a full website.",
       starter:
         "Local businesses that need to explain their services on a professional page and make it easy for customers to contact them from their phone.",
@@ -38,7 +38,7 @@ const t = {
     tabProfessional: "Professional",
     forWhoLabel: "Para Quién Es",
     includesLabel: "Qué Incluye",
-    notIncludesLabel: "Qué No Incluye",
+    notIncludesLabel: "Alcance del Plan",
     smallUpdateLabel: "¿Qué es una actualización pequeña?",
     smallUpdateBody:
       "Una actualización pequeña puede ser reemplazar una foto, corregir un texto corto, actualizar un teléfono u horario, o cambiar un enlace.",
@@ -46,7 +46,7 @@ const t = {
       "No incluye páginas nuevas, rediseños, secciones nuevas, reservas, pagos, automatizaciones, SEO avanzado o manejo de redes sociales.",
     smallUpdateNote: "Las actualizaciones no utilizadas no se acumulan.",
     forWho: {
-      "mini-card":
+      "nexus-card":
         "Negocios que necesitan compartir información básica y formas de contacto sin construir un sitio web completo.",
       starter:
         "Negocios locales que necesitan explicar sus servicios en una página profesional y facilitar el contacto desde el teléfono.",
@@ -56,7 +56,7 @@ const t = {
   },
 }[lang];
 
-const detailPlans = ["mini-card", "starter", "professional"] as const;
+const detailPlans = ["nexus-card", "starter", "professional"] as const;
 ---
 
 <section
@@ -79,7 +79,7 @@ const detailPlans = ["mini-card", "starter", "professional"] as const;
     >
       {
         [
-          { id: "mini-card", label: t.tabMini },
+          { id: "nexus-card", label: t.tabMini },
           { id: "starter", label: t.tabStarter },
           { id: "professional", label: t.tabProfessional },
         ].map(({ id, label }) => (
@@ -154,17 +154,17 @@ const detailPlans = ["mini-card", "starter", "professional"] as const;
                     {t.notIncludesLabel}
                   </h3>
                   <ul class="space-y-2.5">
-                    {copy.notIncludes?.map((item: string) => (
+                    {(copy.limits || copy.notIncludes)?.map((item: string) => (
                       <li class="flex items-start gap-2 text-sm text-heading-3">
                         <svg
-                          class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5"
+                          class="w-4 h-4 text-primary/60 flex-shrink-0 mt-0.5"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                           aria-hidden="true"
                         >
                           <path
                             fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                             clip-rule="evenodd"
                           />
                         </svg>

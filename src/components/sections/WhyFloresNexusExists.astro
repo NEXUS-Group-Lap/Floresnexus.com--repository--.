@@ -1,0 +1,43 @@
+---
+import Container from "../shared/Container.astro";
+
+export interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    title: "Why Flores Nexus Exists",
+    p1: "Many local businesses do excellent work, but people never discover them because they are hard to find, hard to verify, or only visible through scattered social media posts.",
+    p2: "A website gives your business one clear place to show what you do, where you work, your best examples, and how customers can contact you.",
+    p3: "Flores Nexus exists to help small businesses build that connection without agency-level pricing or technical complexity.",
+  },
+  es: {
+    title: "Por Qué Existe Flores Nexus",
+    p1: "Muchos negocios locales hacen trabajos excelentes, pero las personas no los descubren porque son difíciles de encontrar, difíciles de verificar o solo aparecen en publicaciones dispersas en redes sociales.",
+    p2: "Un sitio web le da a tu negocio un lugar claro para mostrar lo que haces, dónde trabajas, tus mejores ejemplos y cómo pueden contactarte.",
+    p3: "Flores Nexus existe para ayudar a pequeños negocios a crear esa conexión sin precios de agencia ni complejidad técnica.",
+  },
+}[lang];
+---
+
+<section class="py-16 lg:py-24">
+  <Container>
+    <div class="max-w-3xl mx-auto text-center" data-reveal>
+      <h2 class="text-3xl sm:text-4xl font-bold text-heading-1 mb-8" data-reveal>
+        {t.title}
+      </h2>
+      <p class="text-lg text-heading-2 leading-relaxed mb-6" data-reveal style="--reveal-delay: 80ms">
+        {t.p1}
+      </p>
+      <p class="text-lg text-heading-2 leading-relaxed mb-6" data-reveal style="--reveal-delay: 160ms">
+        {t.p2}
+      </p>
+      <p class="text-lg text-heading-2 leading-relaxed font-medium" data-reveal style="--reveal-delay: 240ms">
+        {t.p3}
+      </p>
+    </div>
+  </Container>
+</section>

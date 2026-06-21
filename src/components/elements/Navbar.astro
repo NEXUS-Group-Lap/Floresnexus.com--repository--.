@@ -1,6 +1,7 @@
 ---
 import Container from "../shared/Container.astro";
 import Navitem from "../shared/Navitem.astro";
+import { TubelightNav } from "../ui/tubelight-navbar";
 
 export interface Props {
   lang?: "en" | "es";
@@ -79,12 +80,17 @@ const homeHref = lang === "en" ? "/en/" : "/es/";
         aria-hidden="true"
         class="fixed hidden inset-0 lg:!hidden bg-box-bg bg-opacity-50 backdrop-filter backdrop-blur-xl"
       ></div>
+
+      <!-- Desktop: Tubelight animated nav -->
+      <TubelightNav client:load lang={lang} />
+
+      <!-- Mobile: Dropdown nav (hidden on desktop) -->
       <div
         data-navbar
-        class="flex h-0 overflow-hidden lg:!h-auto lg:scale-y-100 duration-300 ease-linear flex-col gap-y-6 gap-x-4 lg:flex-row w-full lg:justify-center lg:items-center absolute lg:relative top-full lg:top-0 bg-box-bg lg:bg-transparent border-x border-x-box-border lg:border-x-0"
+        class="flex h-0 overflow-hidden duration-300 ease-linear flex-col gap-y-6 gap-x-4 w-full absolute top-full bg-box-bg border-x border-x-box-border lg:hidden"
       >
         <ul
-          class="border-t border-box-border lg:border-t-0 px-6 lg:px-0 pt-6 lg:pt-0 pb-6 lg:pb-0 flex flex-col lg:flex-row gap-y-4 gap-x-3 text-lg text-heading-2 w-full lg:justify-center lg:items-center"
+          class="border-t border-box-border px-6 pt-6 pb-6 flex flex-col gap-y-4 gap-x-3 text-lg text-heading-2 w-full"
         >
           {navItems.map((item) => <Navitem {...item} />)}
         </ul>

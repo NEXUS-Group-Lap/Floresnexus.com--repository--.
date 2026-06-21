@@ -1,0 +1,83 @@
+---
+import Container from "../shared/Container.astro";
+import BtnLink from "../shared/BtnLink.astro";
+import { DIGITAL_ACCESS_FORM_LINK } from "../../config/links";
+
+export interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    title: "Need help getting started?",
+    subtitle: "Apply for the Flores Nexus Digital Access Program.",
+    p1: "Some small businesses do great work but cannot afford a professional online presence at the beginning. Flores Nexus may review applications for limited sponsored or reduced-cost support.",
+    p2: "Approval is not guaranteed. Availability is limited. Support may include a sponsored Nexus Card, reduced setup cost, partial support for a Starter Website, or selected add-ons.",
+    eligibilityTitle: "Eligibility:",
+    eligibility: [
+      "Local small business or independent professional",
+      "No functional website",
+      "Clear legal service or product",
+      "Limited budget",
+      "Able to provide business information and photos",
+      "Manual review required",
+    ],
+    cta: "Apply for Digital Access",
+  },
+  es: {
+    title: "¿Necesitas apoyo para comenzar?",
+    subtitle: "Aplica al Programa de Acceso Digital Flores Nexus.",
+    p1: "Algunos pequeños negocios hacen un gran trabajo, pero no pueden pagar una presencia digital profesional al inicio. Flores Nexus puede revisar solicitudes para apoyo limitado, patrocinado o con precio reducido.",
+    p2: "La aprobación no está garantizada. Los espacios son limitados. El apoyo puede incluir una Nexus Card patrocinada, reducción del costo inicial, apoyo parcial para un Starter Website o servicios específicos.",
+    eligibilityTitle: "Elegibilidad:",
+    eligibility: [
+      "Pequeño negocio local o trabajador independiente",
+      "Sin sitio web funcional",
+      "Producto o servicio legal y claro",
+      "Presupuesto limitado",
+      "Capacidad de entregar información y fotos",
+      "Revisión manual requerida",
+    ],
+    cta: "Aplicar para Acceso Digital",
+  },
+}[lang];
+---
+
+<section class="py-16 lg:py-24">
+  <Container>
+    <div class="max-w-2xl mx-auto text-center" data-reveal>
+      <h2 class="text-2xl sm:text-3xl font-bold text-heading-1 mb-2">
+        {t.title}
+      </h2>
+      <p class="text-lg text-primary font-medium mb-6">
+        {t.subtitle}
+      </p>
+      <p class="text-heading-2 leading-relaxed mb-4">
+        {t.p1}
+      </p>
+      <p class="text-heading-2 leading-relaxed mb-8">
+        {t.p2}
+      </p>
+
+      <div class="text-left inline-block mb-8">
+        <p class="font-semibold text-heading-1 mb-3">{t.eligibilityTitle}</p>
+        <ul class="space-y-2">
+          {t.eligibility.map((item) => (
+            <li class="flex items-start gap-2 text-sm text-heading-2">
+              <svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <BtnLink href={DIGITAL_ACCESS_FORM_LINK} text={t.cta} variant="secondary" className="min-w-52 text-center" />
+      </div>
+    </div>
+  </Container>
+</section>

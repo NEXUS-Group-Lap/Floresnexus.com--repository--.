@@ -23,7 +23,9 @@ const t = {
     launchBadge: "Launch Offer",
     quoteBadge: "Request Quote",
     quoteNote: "Final pricing depends on project scope and is confirmed through a custom quote. No charge is made until the quote is approved.",
-    disclaimer: "Production starts only after payment and complete client information are received. Updates and changes depend on the selected plan. Ownership transfer is not included unless separately purchased or approved.",
+    limitsLabel: "Plan Scope",
+    upgradeLabel: "Ready for more?",
+    disclaimer: "Production starts only after payment, acceptance, and complete business information. Updates and changes depend on the selected plan. Ownership transfer is not included unless separately purchased or approved.",
     faqLink: "View Frequently Asked Questions",
     faqHref: "/en/faq",
   },
@@ -37,7 +39,9 @@ const t = {
     launchBadge: "Oferta de Lanzamiento",
     quoteBadge: "Solicitar Cotización",
     quoteNote: "El precio final depende del alcance del proyecto y se confirma mediante una cotización personalizada. No se realiza ningún cargo hasta que la cotización sea aprobada.",
-    disclaimer: "La producción comienza solo después de recibir el pago y la información completa del cliente. Las actualizaciones y cambios dependen del plan seleccionado. La transferencia de propiedad no está incluida a menos que se compre o apruebe por separado.",
+    limitsLabel: "Alcance del Plan",
+    upgradeLabel: "¿Listo para más?",
+    disclaimer: "La producción comienza solo después del pago, aceptación e información completa del negocio. Las actualizaciones y cambios dependen del plan seleccionado. La transferencia de propiedad no está incluida a menos que se compre o apruebe por separado.",
     faqLink: "Ver Preguntas Frecuentes",
     faqHref: "/es/preguntas",
   },
@@ -109,6 +113,29 @@ const badge = plan.status === "launch-offer" ? t.launchBadge : plan.status === "
               </li>
             ))}
           </ul>
+
+          {copy.limits && copy.limits.length > 0 && (
+            <div class="mt-6 pt-6 border-t border-box-border">
+              <h2 class="text-xs font-semibold uppercase tracking-widest text-heading-1 mb-4">{t.limitsLabel}</h2>
+              <ul class="space-y-2.5">
+                {copy.limits.map((item) => (
+                  <li class="flex items-start gap-2 text-sm text-heading-3">
+                    <svg class="w-4 h-4 text-primary/60 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {copy.upgradePrompt && (
+            <div class="mt-6 p-4 rounded-xl bg-primary/5 border border-primary/20">
+              <p class="text-xs font-semibold text-primary mb-1">{t.upgradeLabel}</p>
+              <p class="text-sm text-heading-2 leading-relaxed">{copy.upgradePrompt}</p>
+            </div>
+          )}
         </div>
       </div>
 
