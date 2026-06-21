@@ -20,16 +20,16 @@ interface NavItem {
 const navItemsByLang: Record<"en" | "es", NavItem[]> = {
   en: [
     { name: "Services", url: "/en#what-we-do", icon: Wrench },
-    { name: "Pricing", url: "/en#pricing", icon: CreditCard },
     { name: "Examples", url: "/en#examples", icon: LayoutGrid },
+    { name: "Pricing", url: "/en#pricing", icon: CreditCard },
     { name: "How It Works", url: "/en#how-it-works", icon: Layers },
     { name: "FAQ", url: "/en/faq", icon: HelpCircle },
     { name: "Start", url: "/en/start", icon: Rocket },
   ],
   es: [
     { name: "Servicios", url: "/es#que-hacemos", icon: Wrench },
-    { name: "Planes", url: "/es#planes", icon: CreditCard },
     { name: "Ejemplos", url: "/es#ejemplos", icon: LayoutGrid },
+    { name: "Planes", url: "/es#planes", icon: CreditCard },
     { name: "Cómo Funciona", url: "/es#como-funciona", icon: Layers },
     { name: "Preguntas", url: "/es/preguntas", icon: HelpCircle },
     { name: "Empezar", url: "/es/empezar", icon: Rocket },
@@ -43,8 +43,67 @@ interface TubelightNavProps {
 
 export function TubelightNav({ lang, className }: TubelightNavProps) {
   const items = navItemsByLang[lang]
-  const [activeTab, setActiveTab] = useState(items[0].name)
   const [isMobile, setIsMobile] = useState(false)
+
+  const getActiveFromURL = () => {
+    const path = window.location.pathname.replace(/\/$/, "")
+    const hash = window.location.hash
+
+    for (const item of [...items].reverse()) {
+      if (item.url.includes("#")) {
+        if (path + hash === item.url) {
+          return item.name
+        }
+      } else {
+        if (path === item.url.replace(/\/$/, "")) {
+          return item.name
+        }
+      }
+    }
+    return items[0].name
+  }
+
+  const [activeTab, setActiveTab] = useState(items[0].name)
+
+  useEffect(() => {
+    setActiveTab(getActiveFromURL())
+
+    const handleHash = () => setActiveTab(getActiveFromURL())
+    window.addEventListener("hashchange", handleHash)
+
+    const hashItems = items.filter((item) => item.url.includes("#"))
+    const sectionIds = hashItems.map((item) => item.url.split("#")[1])
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[]
+
+    if (sections.length === 0) return () => window.removeEventListener("hashchange", handleHash)
+
+    const idToName = new Map(
+      hashItems.map((item) => [item.url.split("#")[1], item.name])
+    )
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+
+        if (visible.length > 0) {
+          const name = idToName.get(visible[0].target.id)
+          if (name) setActiveTab(name)
+        }
+      },
+      { rootMargin: "-20% 0px -60% 0px", threshold: 0 }
+    )
+
+    sections.forEach((el) => observer.observe(el))
+
+    return () => {
+      window.removeEventListener("hashchange", handleHash)
+      observer.disconnect()
+    }
+  }, [])
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768)
