@@ -6,7 +6,24 @@ export interface Props{
 const {href, text} = Astro.props
 ---
 <li>
-    <a href={href} class="font-medium hover:text-primary py-3 transition-colors" style="transition-duration: var(--motion-base)">
+    <a href={href} class="nav-smooth-link font-medium hover:text-primary py-3 transition-colors" style="transition-duration: var(--motion-base)">
     {text}
     </a>
 </li>
+
+<script>
+  document.addEventListener('click', (e) => {
+    const link = (e.target as HTMLElement).closest<HTMLAnchorElement>('a.nav-smooth-link');
+    if (!link) return;
+
+    const url = new URL(link.href, window.location.origin);
+    const currentPath = window.location.pathname.replace(/\/$/, '');
+    const targetPath = url.pathname.replace(/\/$/, '');
+
+    if (currentPath === targetPath && url.hash) {
+      e.preventDefault();
+      const el = document.getElementById(url.hash.slice(1));
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+</script>

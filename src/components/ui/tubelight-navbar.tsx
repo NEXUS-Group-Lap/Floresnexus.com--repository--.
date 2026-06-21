@@ -87,11 +87,17 @@ export function TubelightNav({ lang, className }: TubelightNavProps) {
   const handleClick = useCallback((name: string, url: string, e: React.MouseEvent) => {
     const path = window.location.pathname.replace(/\/$/, "")
     const targetPath = url.split("#")[0].replace(/\/$/, "")
-    const isHomePage = !url.includes("#") && path === targetPath
+    const hash = url.includes("#") ? url.split("#")[1] : ""
+    const isSamePage = path === targetPath
 
-    if (isHomePage) {
+    if (isSamePage) {
       e.preventDefault()
-      window.scrollTo({ top: 0, behavior: "smooth" })
+      if (hash) {
+        const el = document.getElementById(hash)
+        if (el) el.scrollIntoView({ behavior: "smooth" })
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      }
     }
 
     clickLockRef.current = true
