@@ -174,7 +174,7 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
       </Floating>
 
       {/* Center content */}
-      <div className="flex flex-col justify-center items-center w-[280px] sm:w-[400px] md:w-[550px] lg:w-[700px] z-50 pointer-events-auto">
+      <div className="flex flex-col justify-center items-center w-[280px] sm:w-[400px] md:w-[550px] lg:w-[700px] z-10 pointer-events-auto">
         {/* Badge */}
         <motion.div
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgb(var(--box-border))] bg-[rgb(var(--color-box))] text-sm text-[rgb(var(--heading-3))] mb-6"
