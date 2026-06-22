@@ -1,7 +1,7 @@
 ---
 import Container from "../shared/Container.astro";
 import SquishyPricingCards from "../ui/SquishyPricingCards";
-import { plans, planOrder } from "../../data/plans";
+import { plans, planOrder, promoConfig } from "../../data/plans";
 
 export interface Props {
   lang: "en" | "es";
@@ -11,29 +11,30 @@ const { lang } = Astro.props;
 const t = {
   en: {
     title: "Simple, Transparent Pricing",
-    subtitle: "Choose the plan that fits your business. Subscription cancellation follows the Terms of Service.",
-    growthMessage: "Start with the plan that fits your business today. Upgrade when your business needs more.",
+    subtitle: "Choose the plan that fits your business today. No hidden fees.",
+    growthMessage: "Start with what you need. Move up when your business grows.",
     setupLabel: "setup",
     monthLabel: "/month",
     recommendedBadge: "Recommended",
     seeAll: "See all features",
-    footerNote: "Hosting included while subscription is active. Standard domain subject to availability, administered by Flores Nexus Group. Premium domains, ownership transfers, additional changes, advanced SEO, and external integrations may require additional charges. Full terms apply.",
+    footerNote: "We keep your site online while your subscription is active. Your own web address is subject to availability and managed by Flores Nexus Group. Premium addresses, extra changes, and advanced features may have additional costs. Full terms apply.",
   },
   es: {
     title: "Precios Simples y Transparentes",
-    subtitle: "Elige el plan que se adapte a tu negocio. La cancelación de la suscripción sigue los Términos del Servicio.",
-    growthMessage: "Empieza con el plan que se adapte a tu negocio hoy. Actualiza cuando tu negocio necesite más.",
+    subtitle: "Elige el plan que se adapte a tu negocio hoy. Sin costos ocultos.",
+    growthMessage: "Empieza con lo que necesitas. Sube de plan cuando tu negocio crezca.",
     setupLabel: "inicial",
     monthLabel: "/mes",
     recommendedBadge: "Recomendado",
-    seeAll: "Ver todas las funciones",
-    footerNote: "Hosting incluido mientras la suscripción esté activa. Dominio estándar sujeto a disponibilidad, administrado por Flores Nexus Group. Dominios premium, transferencias de propiedad, cambios adicionales, SEO avanzado e integraciones externas pueden requerir cargos adicionales. Aplican términos completos.",
+    seeAll: "Ver todo lo que incluye",
+    footerNote: "Mantenemos tu sitio en internet mientras tu suscripción esté activa. Tu dirección web está sujeta a disponibilidad y es administrada por Flores Nexus Group. Direcciones premium, cambios extra y funciones avanzadas pueden tener costos adicionales. Aplican términos completos.",
   },
 }[lang];
 
 const pricingPlans = planOrder.map((id) => {
   const plan = plans[id];
   const copy = plan[lang];
+  const isPromoEligible = promoConfig.active && plan.promoEligible;
   return {
     id: plan.id,
     name: copy.name,
@@ -50,6 +51,9 @@ const pricingPlans = planOrder.map((id) => {
     seeAllLabel: t.seeAll,
     isRecommended: plan.id === "professional",
     recommendedLabel: plan.id === "professional" ? t.recommendedBadge : undefined,
+    promoEligible: isPromoEligible,
+    promoSetup: isPromoEligible ? promoConfig.promoSetup : undefined,
+    promoBadge: isPromoEligible ? promoConfig[lang].badge : undefined,
   };
 });
 ---

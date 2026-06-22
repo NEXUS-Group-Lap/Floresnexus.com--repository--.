@@ -13,6 +13,7 @@ import NoLogoYet from "../../components/sections/NoLogoYet.astro";
 import GrowthPath from "../../components/sections/GrowthPath.astro";
 import DigitalAccessProgram from "../../components/sections/DigitalAccessProgram.astro";
 import PromoLaunchOffer from "../../components/sections/PromoLaunchOffer.astro";
+import UpgradeTable from "../../components/sections/UpgradeTable.astro";
 import { plans } from "../../data/plans";
 
 const pagePlanData = {
@@ -111,8 +112,11 @@ const pagePlanData = {
       <GrowthPath lang="en" />
     </div>
 
-    <!-- Promo launch offer (hidden by default, set active={true} to show) -->
-    <PromoLaunchOffer lang="en" active={false} />
+    <!-- Promo launch offer -->
+    <PromoLaunchOffer lang="en" />
+
+    <!-- Upgrade table -->
+    <UpgradeTable lang="en" />
 
     <!-- 6. Critical service info -->
     <CriticalServiceInfo lang="en" />

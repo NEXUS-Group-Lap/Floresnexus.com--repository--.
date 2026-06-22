@@ -2,71 +2,59 @@
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/shared/Container.astro";
 import FinalCTA from "../../components/sections/FinalCTA.astro";
+
+const faqs = [
+  { q: "¿Necesito saber de computación?", a: "No. Nosotros hacemos todo lo técnico. Tú solo nos das la información de tu negocio — qué haces, dónde estás, cómo contactarte — y nosotros construimos el resto." },
+  { q: "¿Qué pasa si no me gusta cómo queda?", a: "Tienes 1 o 2 oportunidades de pedir cambios (según tu plan) antes de que lo publiquemos. Son listas consolidadas de correcciones, no cambios ilimitados." },
+  { q: "¿Puedo cancelar cuando quiera?", a: "Sí, sin penalización. Solo nos avisas y dejamos de cobrar el siguiente mes. No hay contrato mínimo." },
+  { q: "¿Qué pasa si mi negocio cierra?", a: "Puedes cancelar y dejamos de cobrar. Tu sitio se desactiva al final del período de facturación." },
+  { q: "¿Quién es dueño de mi información?", a: "Tú. Tu contenido (textos, fotos, información del negocio) es tuyo. Nosotros solo administramos el espacio en internet donde vive." },
+  { q: "¿Qué pasa si quiero cambiar de plan?", a: "Puedes subir de plan cuando quieras. Pagas la diferencia del precio inicial (según la tabla de upgrades) y la nueva mensualidad." },
+  { q: "¿Qué incluye exactamente la mensualidad?", a: "Que tu sitio siga en internet, actualizado y funcionando. Incluye mantenerlo en línea, mantenimiento básico y los cambios pequeños según tu plan (0 en Nexus Card, 1 en Starter, 3 en Professional)." },
+  { q: "¿Puedo ser dueño de mi sitio web?", a: "Los planes mensuales son administrados por Flores Nexus. Si quieres ser dueño completo del sitio (para moverlo a otro lugar), eso es un servicio separado que se cotiza según la complejidad (desde $3,500). La mayoría de nuestros clientes no necesitan esto porque nosotros nos encargamos de todo." },
+  { q: "¿Qué pasa si necesito más cambios de los incluidos?", a: "Puedes comprar cambios extra por $29 cada uno o un paquete de 3 cambios por $49/mes (solo Starter/Professional). Los cambios no usados no se acumulan al siguiente mes." },
+  { q: "¿Cuánto tiempo toma tener mi sitio listo?", a: "3-5 días hábiles DESPUÉS de que nos des toda tu información completa. Si no nos das toda la info, el reloj no corre." },
+  { q: "¿Qué pasa si quiero mi sitio más rápido?", a: "Podemos acelerar el proceso por un costo adicional (desde $99), sujeto a disponibilidad y aprobación previa." },
+  { q: "¿Prometen que voy a vender más?", a: "No. Nosotros te damos un espacio profesional en internet para que te encuentren y contacten. Que vendas más depende de tu producto, tu atención al cliente y tu esfuerzo." },
+  { q: "¿Me van a poner primero en Google?", a: "No. No prometemos posiciones en Google ni resultados de marketing. Lo que sí garantizamos es que tu sitio esté en internet, se vea profesional y sea fácil de encontrar." },
+  { q: "¿Qué pasa con mi dirección web (dominio)?", a: "Nexus Card: Tu espacio vive en floresnexus.cards/tunegocio (no incluye dirección propia). Starter/Professional: Incluye 1 dirección web estándar (hasta $25/año incluido). Si quieres una dirección específica, premium o extensión especial, puede tener costo adicional. La disponibilidad no está garantizada." },
+  { q: "¿Puedo tener mi sitio en inglés y español?", a: "Cada plan incluye 1 idioma. Si necesitas los dos, es un extra pagado: Nexus Card $49 + $9/mes, Starter $149 + $19/mes, Professional $349 + $39/mes." },
+  { q: "¿Qué pasa si quiero un reembolso?", a: "Antes de que empecemos a trabajar: reembolso 100% menos comisiones de Stripe. Después de que empecemos: el precio inicial no es reembolsable. Planes anuales: dentro de 30 días, reembolso por meses completos no usados, menos comisiones. Detalles completos en nuestra Política de Reembolsos." },
+  { q: "¿Qué pasa si Flores Nexus comete un error?", a: "Corregimos el error sin consumir tus cambios incluidos del mes." },
+  { q: "¿Puedo usar fotos que encontré en internet?", a: "No. Solo puedes usar fotos que tú hayas tomado, que hayas comprado con licencia, o que tengas derechos para usar. Debes confirmar derechos de imagen al enviar tu contenido." },
+];
 ---
 
-<Layout title="Preguntas Frecuentes" description="Preguntas frecuentes sobre los planes, precios, propiedad y soporte de Flores Nexus Group." lang="es">
+<Layout title="Preguntas Frecuentes" description="Respuestas a las preguntas más comunes sobre los sitios web de Flores Nexus Group para negocios locales." lang="es">
   <main class="pt-24 pb-20">
     <Container>
       <div class="max-w-3xl mx-auto">
         <div class="text-center mb-12">
           <h1 class="text-4xl font-bold text-heading-1 mb-4">Preguntas Frecuentes</h1>
-          <p class="text-heading-3 text-lg">Todo lo que necesitas saber sobre nuestro servicio de paginas web.</p>
+          <p class="text-heading-3 text-lg">Preguntas reales de personas como tú. Si no encuentras tu respuesta, contáctanos.</p>
         </div>
 
-        <div class="space-y-4">
-          {[
-            {
-              q: "Que cubre la mensualidad?",
-              a: "Hosting, administracion tecnica y las actualizaciones incluidas en tu plan seleccionado mientras la suscripcion este activa.",
-            },
-            {
-              q: "Que tipo de cambios puedo solicitar?",
-              a: "Nexus Card incluye 0 actualizaciones mensuales. Starter incluye 1 actualizacion pequena al mes. Professional incluye 3 actualizaciones pequenas al mes. Las actualizaciones no se acumulan. Cambios adicionales se cobran por separado.",
-            },
-            {
-              q: "Cuanto tiempo tarda?",
-              a: "La entrega estandar es de 3-5 dias habiles despues del pago, aceptacion e informacion completa del negocio.",
-            },
-            {
-              q: "Soy dueno del sitio web?",
-              a: "Los planes mensuales son administrados por Flores Nexus. La transferencia de propiedad no esta incluida a menos que sea cotizada, aprobada y comprada por separado.",
-            },
-            {
-              q: "Esto garantiza clientes?",
-              a: "No. Flores Nexus no garantiza ventas, leads, llamadas, ingresos, ranking ni resultados comerciales. Proporcionamos una presencia profesional en linea que ayuda a las personas a encontrar, entender, verificar y contactar tu negocio mas facilmente.",
-            },
-            {
-              q: "Necesito un logo?",
-              a: "No. Puedes comenzar sin uno. El diseno de logo se puede cotizar como add-on.",
-            },
-            {
-              q: "Puedo subir de plan despues?",
-              a: "Si. Puedes subir de plan a medida que tu negocio crece. El credito de upgrade se calcula segun el setup realmente pagado. Un setup promocional de $0 genera $0 de credito.",
-            },
-            {
-              q: "Esta incluido un segundo idioma?",
-              a: "Cada plan incluye un idioma principal. Una segunda version completa en otro idioma esta disponible como add-on pagado.",
-            },
-          ].map((faq) => (
-            <details class="group border border-box-border rounded-xl bg-box-bg overflow-hidden">
-              <summary class="flex justify-between items-center p-5 cursor-pointer font-semibold text-heading-1 list-none hover:text-primary transition">
+        <div class="space-y-3">
+          {faqs.map((faq) => (
+            <details class="rounded-xl border border-box-border bg-box-bg overflow-hidden motion-card group">
+              <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer text-heading-1 font-semibold text-sm hover:bg-primary/5 transition-colors list-none">
                 {faq.q}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  class="w-5 h-5 flex-shrink-0 ml-4 transition-transform group-open:rotate-180"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                <svg class="w-5 h-5 text-heading-3 flex-shrink-0 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                 </svg>
               </summary>
-              <div class="px-5 pb-5 text-heading-3 text-sm leading-relaxed border-t border-box-border pt-4">
+              <div class="px-5 pb-4 text-heading-3 text-sm leading-relaxed border-t border-box-border pt-3">
                 {faq.a}
               </div>
             </details>
           ))}
+        </div>
+
+        <div class="text-center mt-10">
+          <p class="text-heading-3 text-sm">
+            ¿Aún tienes preguntas?{" "}
+            <a href="mailto:hola@floresnexus.com" class="text-primary hover:underline font-semibold">hola@floresnexus.com</a>
+          </p>
         </div>
       </div>
     </Container>

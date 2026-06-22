@@ -5,14 +5,14 @@ import {
   STARTER_STRIPE_LINK,
   PROFESSIONAL_STRIPE_LINK,
   NEXUS_CARD_STRIPE_LINK,
-  BUSINESS_QUOTE_FORM_LINK,
   START_FORM_ENDPOINT,
 } from "../../config/links";
+import { promoConfig } from "../../data/plans";
 ---
 
 <Layout
   title="Start Your Website"
-  description="Start the process to get your professional website. Fill out this form and we'll guide you to the right plan."
+  description="Start the process to get your professional website. Fill out this short form and continue to secure payment."
   lang="en"
 >
   <main class="pt-24 pb-20">
@@ -21,31 +21,35 @@ import {
         <div class="text-center mb-10">
           <h1 class="text-4xl font-bold text-heading-1 mb-3">Start Your Website</h1>
           <p class="text-heading-3 text-lg">
-            Fill out this form to start your website. Standard plans continue to secure payment. Business System continues as a quote request.
+            This takes about 2 minutes. After this, you'll continue to secure payment with Stripe.
           </p>
+          {promoConfig.active && (
+            <div class="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-full bg-green-500/10 text-green-700 dark:text-green-400 text-sm font-semibold">
+              <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+              {promoConfig.en.badge}: Setup $0 for Nexus Card & Starter
+            </div>
+          )}
         </div>
 
         <div class="rounded-2xl border border-box-border bg-box-bg p-8">
+          <p class="text-xs text-heading-3 mb-6 text-center">Step 1 of 2 — Basic information before payment</p>
+
           <form
             id="start-form"
             class="space-y-5"
             data-nexus-card={NEXUS_CARD_STRIPE_LINK}
             data-starter={STARTER_STRIPE_LINK}
             data-professional={PROFESSIONAL_STRIPE_LINK}
-            data-business={BUSINESS_QUOTE_FORM_LINK}
             data-endpoint={START_FORM_ENDPOINT}
           >
-            <!-- Name row -->
+            <!-- Name -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label for="firstName" class="block text-sm font-semibold text-heading-2 mb-1.5">
                   First Name <span class="text-red-500">*</span>
                 </label>
                 <input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  required
+                  type="text" id="firstName" name="firstName" required
                   class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
                   placeholder="John"
                 />
@@ -55,40 +59,33 @@ import {
                   Last Name <span class="text-red-500">*</span>
                 </label>
                 <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  required
+                  type="text" id="lastName" name="lastName" required
                   class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
                   placeholder="Smith"
                 />
               </div>
             </div>
 
+            <!-- Business Name -->
             <div>
               <label for="businessName" class="block text-sm font-semibold text-heading-2 mb-1.5">
                 Business Name <span class="text-red-500">*</span>
               </label>
               <input
-                type="text"
-                id="businessName"
-                name="businessName"
-                required
+                type="text" id="businessName" name="businessName" required
                 class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
                 placeholder="Smith's Roofing & Repair"
               />
             </div>
 
+            <!-- Phone + Email -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label for="phone" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                  Phone Number <span class="text-red-500">*</span>
+                  Phone / WhatsApp <span class="text-red-500">*</span>
                 </label>
                 <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  required
+                  type="tel" id="phone" name="phone" required
                   class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
                   placeholder="(555) 000-0000"
                 />
@@ -98,285 +95,83 @@ import {
                   Email <span class="text-red-500">*</span>
                 </label>
                 <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
+                  type="email" id="email" name="email" required
                   class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
                   placeholder="john@business.com"
                 />
               </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label for="mainLanguage" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                  Main Language <span class="text-red-500">*</span>
-                </label>
-                <select
-                  id="mainLanguage"
-                  name="mainLanguage"
-                  required
-                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
-                >
-                  <option value="en">English</option>
-                  <option value="es">Español</option>
-                </select>
-              </div>
-              <div>
-                <label for="secondLanguage" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                  Second language needed?
-                </label>
-                <select
-                  id="secondLanguage"
-                  name="secondLanguage"
-                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
-                >
-                  <option value="no">No</option>
-                  <option value="yes-addon">Yes, as add-on</option>
-                </select>
-              </div>
-            </div>
-
+            <!-- Language -->
             <div>
-              <label for="industry" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                Business Type / Industry <span class="text-red-500">*</span>
+              <label for="mainLanguage" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Main Language for Your Website <span class="text-red-500">*</span>
               </label>
               <select
-                id="industry"
-                name="industry"
-                required
+                id="mainLanguage" name="mainLanguage" required
                 class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
               >
-                <option value="">Select your industry</option>
-                <option>Photographers</option>
-                <option>Roofing</option>
-                <option>Handyman</option>
-                <option>Painting</option>
-                <option>Lawn Care</option>
-                <option>Cleaning</option>
-                <option>Pressure Washing</option>
-                <option>Barber / Hair Salon</option>
-                <option>Food Truck</option>
-                <option>Mobile Mechanic</option>
-                <option>Local Contractor</option>
-                <option>Other Service Business</option>
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
               </select>
+              <p class="text-xs text-heading-3 mt-1">Each plan includes 1 language. A second language is a paid add-on.</p>
             </div>
 
-            <div>
-              <label for="serviceArea" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                City / Service Area <span class="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="serviceArea"
-                name="serviceArea"
-                required
-                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
-                placeholder="Miami, FL / South Florida"
-              />
-            </div>
-
-            <div>
-              <label for="selectedPlan" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                Selected Plan <span class="text-red-500">*</span>
-              </label>
-              <select
-                id="selectedPlan"
-                name="selectedPlan"
-                required
-                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
-              >
-                <option value="">Select a plan</option>
-                <option value="nexus-card">Nexus Card — $99 setup + $29/month</option>
-                <option value="starter">Starter Website — $299 setup + $79/month</option>
-                <option value="professional">Professional Website — $699 setup + $149/month</option>
-                <option value="business-system">Business System — Starting at $2,500 (Request Quote)</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="mainServices" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                Main Services <span class="text-red-500">*</span>
-              </label>
-              <textarea
-                id="mainServices"
-                name="mainServices"
-                required
-                rows="3"
-                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm resize-none"
-                placeholder="e.g. Roof repair, gutter cleaning, emergency service"
-              ></textarea>
-            </div>
-
-            <div>
-              <label for="desiredDomain" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                Desired Domain
-                <span class="text-heading-3 font-normal ml-1">(optional)</span>
-              </label>
-              <input
-                type="text"
-                id="desiredDomain"
-                name="desiredDomain"
-                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
-                placeholder="e.g. smithroofing.com — not guaranteed, subject to availability"
-              />
-            </div>
-
+            <!-- Plan + Billing -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label for="repCode" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                  Representative Code
-                  <span class="text-heading-3 font-normal ml-1">(optional)</span>
-                </label>
-                <input
-                  type="text"
-                  id="repCode"
-                  name="repCode"
-                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
-                  placeholder="Rep code"
-                />
-              </div>
-              <div>
-                <label for="repName" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                  Representative Name
-                  <span class="text-heading-3 font-normal ml-1">(optional)</span>
-                </label>
-                <input
-                  type="text"
-                  id="repName"
-                  name="repName"
-                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
-                  placeholder="Rep name"
-                />
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label for="hasLogo" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                  Logo available?
+                <label for="selectedPlan" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Plan <span class="text-red-500">*</span>
                 </label>
                 <select
-                  id="hasLogo"
-                  name="hasLogo"
+                  id="selectedPlan" name="selectedPlan" required
                   class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
                 >
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
+                  <option value="">Select a plan</option>
+                  <option value="nexus-card">Nexus Card — $29/mo</option>
+                  <option value="starter">Starter Website — $79/mo</option>
+                  <option value="professional">Professional Website — $149/mo</option>
+                  <option value="business-system">Business System — Request Quote</option>
                 </select>
               </div>
               <div>
-                <label for="hasPhotos" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                  Photos available?
+                <label for="billingType" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Billing <span class="text-red-500">*</span>
                 </label>
                 <select
-                  id="hasPhotos"
-                  name="hasPhotos"
+                  id="billingType" name="billingType" required
                   class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
                 >
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="annual">Annual (prepay option)</option>
                 </select>
               </div>
             </div>
 
-            <div>
-              <label for="socialLinks" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                Social Links
-                <span class="text-heading-3 font-normal ml-1">(optional)</span>
-              </label>
-              <textarea
-                id="socialLinks"
-                name="socialLinks"
-                rows="2"
-                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm resize-none"
-                placeholder="Instagram, Facebook, Google Maps, etc."
-              ></textarea>
+            <!-- Plan confirmation -->
+            <div id="selected-plan-confirmation" class="hidden rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm text-heading-2 leading-relaxed">
+              <span id="selected-plan-label" class="font-semibold text-heading-1"></span>
             </div>
 
-            <div>
-              <label for="notes" class="block text-sm font-semibold text-heading-2 mb-1.5">
-                Notes / Project Details
-                <span class="text-heading-3 font-normal ml-1">(optional)</span>
-              </label>
-              <textarea
-                id="notes"
-                name="notes"
-                rows="3"
-                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm resize-none"
-                placeholder="Tell us anything else about your business or what you need..."
-              ></textarea>
-            </div>
-
-            <!-- Legal acknowledgements -->
-            <div class="rounded-xl border border-box-border bg-box-bg p-4 space-y-3">
-              <p class="text-xs font-semibold text-heading-1 mb-2">Please confirm you understand:</p>
-              <label class="flex items-start gap-3 cursor-pointer">
-                <input type="checkbox" name="ack_production" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
-                <span class="text-xs text-heading-3 leading-relaxed">
-                  I understand production starts only after payment, acceptance, and complete business information.
-                </span>
-              </label>
-              <label class="flex items-start gap-3 cursor-pointer">
-                <input type="checkbox" name="ack_language" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
-                <span class="text-xs text-heading-3 leading-relaxed">
-                  I understand each plan includes one main language; second language is a paid add-on.
-                </span>
-              </label>
-              <label class="flex items-start gap-3 cursor-pointer">
-                <input type="checkbox" name="ack_domain" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
-                <span class="text-xs text-heading-3 leading-relaxed">
-                  I understand domains are subject to availability.
-                </span>
-              </label>
-              <label class="flex items-start gap-3 cursor-pointer">
-                <input type="checkbox" name="ack_ownership" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
-                <span class="text-xs text-heading-3 leading-relaxed">
-                  I understand ownership transfer is not included unless separately approved or purchased.
-                </span>
-              </label>
-              <label class="flex items-start gap-3 cursor-pointer">
-                <input type="checkbox" name="ack_extras" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
-                <span class="text-xs text-heading-3 leading-relaxed">
-                  I understand additional changes, add-ons, logo design, maps, rush delivery, and third-party tools may require additional payment.
-                </span>
-              </label>
-              <label class="flex items-start gap-3 cursor-pointer">
-                <input type="checkbox" id="termsAccepted" name="termsAccepted" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
-                <span class="text-xs text-heading-3 leading-relaxed">
-                  I have read and agree to the{" "}
-                  <a href="/en/terms-of-service" class="text-primary hover:underline">Terms of Service</a>,{" "}
-                  <a href="/en/privacy-policy" class="text-primary hover:underline">Privacy Policy</a>, and{" "}
-                  <a href="/en/refund-policy" class="text-primary hover:underline">Refund Policy</a>.
-                </span>
-              </label>
+            <!-- Business System notice -->
+            <div id="business-quote-notice" class="hidden rounded-xl border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-900/20 p-4 text-sm text-amber-800 dark:text-amber-300 leading-relaxed">
+              Business System requires a custom quote. By submitting this form, a representative will contact you. No charge until the quote is approved.
             </div>
 
             <div id="plan-error" class="hidden text-sm text-red-500 text-center">
               Please select a plan to continue.
             </div>
 
-            <div id="business-quote-notice" class="hidden rounded-xl border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-900/20 p-4 text-sm text-amber-800 dark:text-amber-300 leading-relaxed">
-              The Business System requires a custom quote. By submitting this form, a Flores Nexus Group representative will contact you to discuss the project scope. No charge will be made until the quote is approved.
-            </div>
-
-            <div id="selected-plan-confirmation" class="hidden rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm text-heading-2 leading-relaxed">
-              Selected plan: <strong id="selected-plan-label" class="text-heading-1"></strong>
-            </div>
-
             <button
               type="submit"
               id="submit-btn"
-              disabled
-              class="w-full py-3 rounded-full bg-primary text-white font-semibold transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed hover:enabled:bg-blue-800"
+              class="w-full py-3 rounded-full bg-primary text-white font-semibold transition-all duration-300 hover:bg-blue-800"
             >
-              <span id="submit-btn-text">Continue to Payment</span>
+              <span id="submit-btn-text">Continue to Secure Payment</span>
             </button>
 
             <p class="text-xs text-center text-heading-3" id="submit-footer-note">
-              Production starts after payment, acceptance, and complete business information.
+              Secure payment with Stripe. We never see your card information.
             </p>
           </form>
         </div>
@@ -387,7 +182,6 @@ import {
 
 <script>
   const form = document.getElementById("start-form") as HTMLFormElement | null;
-  const checkboxes = document.querySelectorAll(".ack-checkbox") as NodeListOf<HTMLInputElement>;
   const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement | null;
   const submitBtnText = document.getElementById("submit-btn-text");
   const submitFooterNote = document.getElementById("submit-footer-note");
@@ -398,43 +192,36 @@ import {
   const selectedPlanLabel = document.getElementById("selected-plan-label");
 
   const planLabels: Record<string, string> = {
-    "nexus-card": "Nexus Card - $99 setup + $29/month",
-    "starter": "Starter Website - $299 setup + $79/month",
-    "professional": "Professional Website - $699 setup + $149/month",
-    "business-system": "Business System - Request Quote",
+    "nexus-card": "Nexus Card — $0 setup (promo) + $29/month",
+    "starter": "Starter Website — $0 setup (promo) + $79/month",
+    "professional": "Professional Website — $699 setup + $149/month",
+    "business-system": "Business System — Custom Quote",
   };
 
   const urlParams = new URLSearchParams(window.location.search);
   const planParam = urlParams.get("plan");
   if (planParam && planSelect && planLabels[planParam]) {
     planSelect.value = planParam;
-    updateBusinessMode(planParam);
+    updatePlanDisplay(planParam);
   }
 
-  function updateBusinessMode(plan: string) {
+  function updatePlanDisplay(plan: string) {
     const isQuote = plan === "business-system";
     const hasPlan = Boolean(planLabels[plan]);
     if (businessNotice) businessNotice.classList.toggle("hidden", !isQuote);
     if (selectedPlanConfirmation) selectedPlanConfirmation.classList.toggle("hidden", !hasPlan);
     if (selectedPlanLabel) selectedPlanLabel.textContent = hasPlan ? planLabels[plan] : "";
-    if (submitBtnText) submitBtnText.textContent = isQuote ? "Request Quote" : "Continue to Payment";
+    if (submitBtnText) submitBtnText.textContent = isQuote ? "Request Quote" : "Continue to Secure Payment";
     if (submitFooterNote) {
       submitFooterNote.textContent = isQuote
-        ? "You will be contacted to discuss the scope. No charge until the quote is approved."
-        : "Production starts after payment, acceptance, and complete business information.";
+        ? "A representative will contact you. No charge until the quote is approved."
+        : "Secure payment with Stripe. We never see your card information.";
     }
   }
 
-  function checkAllAcknowledged() {
-    const allChecked = Array.from(checkboxes).every((cb) => cb.checked);
-    if (submitBtn) submitBtn.disabled = !allChecked;
-  }
-
   if (planSelect) {
-    planSelect.addEventListener("change", () => updateBusinessMode(planSelect.value));
+    planSelect.addEventListener("change", () => updatePlanDisplay(planSelect.value));
   }
-
-  checkboxes.forEach((cb) => cb.addEventListener("change", checkAllAcknowledged));
 
   if (form) {
     form.addEventListener("submit", async (e) => {

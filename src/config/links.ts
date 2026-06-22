@@ -12,3 +12,10 @@ export const LOGO_DESIGN_QUOTE_LINK = "#";
 export const START_FORM_ENDPOINT = "https://formspree.io/f/mdavkvlo";
 
 export const NEXUS_MINI_STRIPE_LINK = NEXUS_CARD_STRIPE_LINK;
+
+export const NEXUS_CARD_PROMO_STRIPE_LINK = "#";
+export const STARTER_PROMO_STRIPE_LINK = "#";
+
+export const WHATSAPP_LINK = "https://wa.me/1XXXXXXXXXX";
+export const CONTACT_EMAIL = "hola@floresnexus.com";
+export const LEGAL_EMAIL = "legal@floresnexus.com";

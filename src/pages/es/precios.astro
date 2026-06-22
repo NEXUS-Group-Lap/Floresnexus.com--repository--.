@@ -13,6 +13,7 @@ import NoLogoYet from "../../components/sections/NoLogoYet.astro";
 import GrowthPath from "../../components/sections/GrowthPath.astro";
 import DigitalAccessProgram from "../../components/sections/DigitalAccessProgram.astro";
 import PromoLaunchOffer from "../../components/sections/PromoLaunchOffer.astro";
+import UpgradeTable from "../../components/sections/UpgradeTable.astro";
 import { plans } from "../../data/plans";
 
 const pagePlanData = {
@@ -112,7 +113,9 @@ const pagePlanData = {
     </div>
 
     <!-- Promo (oculta por defecto, set active={true} para mostrar) -->
-    <PromoLaunchOffer lang="es" active={false} />
+    <PromoLaunchOffer lang="es" />
+
+    <UpgradeTable lang="es" />
 
     <!-- 6. Información crítica del servicio -->
     <CriticalServiceInfo lang="es" />

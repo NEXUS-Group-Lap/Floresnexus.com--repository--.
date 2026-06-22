@@ -18,6 +18,9 @@ export interface PricingPlan {
   seeAllLabel: string;
   isRecommended?: boolean;
   recommendedLabel?: string;
+  promoEligible?: boolean;
+  promoSetup?: string;
+  promoBadge?: string;
 }
 
 interface SquishyPricingCardsProps {
@@ -60,13 +63,19 @@ function PricingCard({
       whileHover="hover"
       transition={{ duration: 1, ease: "backInOut" }}
       variants={{ hover: { scale: 1.05 } }}
-      className={`relative h-[26rem] w-full sm:w-80 shrink-0 overflow-hidden rounded-2xl p-7 ${background} shadow-lg hover:shadow-xl transition-shadow ${
+      className={`relative h-[28rem] w-full sm:w-80 shrink-0 overflow-hidden rounded-2xl p-7 ${background} shadow-lg hover:shadow-xl transition-shadow ${
         plan.isRecommended ? "ring-2 ring-white/30 ring-offset-2 ring-offset-transparent" : ""
       }`}
     >
       {plan.isRecommended && plan.recommendedLabel && (
         <span className="absolute top-3 right-3 z-20 rounded-full bg-white/25 backdrop-blur-sm px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white border border-white/20">
           {plan.recommendedLabel}
+        </span>
+      )}
+
+      {plan.promoEligible && plan.promoBadge && (
+        <span className="absolute top-3 right-3 z-20 rounded-full bg-green-500/30 backdrop-blur-sm px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider text-green-200 border border-green-400/30">
+          {plan.promoBadge}
         </span>
       )}
 
@@ -82,8 +91,18 @@ function PricingCard({
           className="origin-top-left mb-2"
         >
           <div className="flex items-baseline gap-1.5">
-            <span className="text-4xl font-bold leading-none">{plan.setup}</span>
-            <span className="text-sm text-white/70">{plan.setupLabel}</span>
+            {plan.promoEligible && plan.promoSetup ? (
+              <>
+                <span className="text-4xl font-bold leading-none text-green-300">{plan.promoSetup}</span>
+                <span className="text-lg text-white/50 line-through">{plan.setup}</span>
+                <span className="text-sm text-white/70">{plan.setupLabel}</span>
+              </>
+            ) : (
+              <>
+                <span className="text-4xl font-bold leading-none">{plan.setup}</span>
+                <span className="text-sm text-white/70">{plan.setupLabel}</span>
+              </>
+            )}
           </div>
           {plan.monthly && (
             <div className="flex items-baseline gap-1 mt-1">

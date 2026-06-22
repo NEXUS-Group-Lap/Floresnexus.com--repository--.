@@ -1,59 +1,224 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/shared/Container.astro";
-import { ONBOARDING_FORM_LINK } from "../../config/links";
+import { START_FORM_ENDPOINT } from "../../config/links";
 ---
 
 <Layout title="Thank You" lang="en">
-  <main class="pt-24 pb-20 min-h-screen flex items-center">
+  <main class="pt-24 pb-20">
     <Container>
-      <div class="max-w-2xl mx-auto text-center">
-        <!-- Success icon -->
-        <div class="w-20 h-20 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mx-auto mb-8">
-          <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-          </svg>
+      <div class="max-w-2xl mx-auto">
+        <!-- Success header -->
+        <div class="text-center mb-10">
+          <div class="w-20 h-20 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <h1 id="thank-you-title" class="text-4xl font-bold text-heading-1 mb-4">Payment Received!</h1>
+          <p id="thank-you-message" class="text-heading-3 text-lg leading-relaxed">
+            Now we need your business information to start building. Please complete the form below.
+            <strong class="text-heading-2 block mt-2">The 3-5 business day timeline starts after you complete this form.</strong>
+          </p>
         </div>
 
-        <h1 id="thank-you-title" class="text-4xl font-bold text-heading-1 mb-4">Payment Received!</h1>
-        <p id="thank-you-message" class="text-heading-3 text-lg mb-8 leading-relaxed">
-          Payment received. The next step is completing the onboarding form with your business information,
-          services, photos, phone number, address or service area, and social links.
-          <strong class="text-heading-2">Production starts once the form is complete.</strong>
-        </p>
+        <!-- Step 2 Form -->
+        <div class="rounded-2xl border border-box-border bg-box-bg p-8">
+          <p class="text-xs text-heading-3 mb-6 text-center">Step 2 of 2 — Tell us about your business</p>
 
-        <div class="rounded-2xl border border-box-border bg-box-bg p-8 mb-8 text-left">
-          <h2 class="font-bold text-heading-1 text-lg mb-4">What happens next:</h2>
-          <ol class="space-y-3">
-            {[
-              "Complete the onboarding form below with your full business details.",
-              "Our team reviews your information.",
-              "We build your professional website.",
-              "You review and approve before launch.",
-              "Your website goes live!",
-            ].map((step, i) => (
-              <li class="flex items-start gap-3 text-heading-2 text-sm">
-                <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">
-                  {i + 1}
+          <form id="onboarding-form" class="space-y-5" data-endpoint={START_FORM_ENDPOINT}>
+            <div>
+              <label for="industry" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                What type of business do you have? <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="industry" name="industry" required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+              >
+                <option value="">Select your industry</option>
+                <option>Roofing</option>
+                <option>Lawn Care / Landscaping</option>
+                <option>Cleaning Services</option>
+                <option>Pressure Washing</option>
+                <option>Painting</option>
+                <option>Handyman</option>
+                <option>Plumbing</option>
+                <option>Electrical</option>
+                <option>Barber / Hair Salon</option>
+                <option>Nail Salon / Spa</option>
+                <option>Photography</option>
+                <option>Food Truck / Restaurant</option>
+                <option>Mobile Mechanic</option>
+                <option>Tutoring / Teaching</option>
+                <option>Pet Services</option>
+                <option>Local Contractor</option>
+                <option>Other Service Business</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="serviceArea" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Where do you serve customers? <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text" id="serviceArea" name="serviceArea" required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                placeholder="e.g. Miami, FL / South Florida"
+              />
+            </div>
+
+            <div>
+              <label for="mainServices" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                What services do you offer? <span class="text-red-500">*</span>
+              </label>
+              <textarea
+                id="mainServices" name="mainServices" required rows="3"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm resize-none"
+                placeholder="e.g. Roof repair, gutter cleaning, emergency roofing, new roof installation"
+              ></textarea>
+            </div>
+
+            <div>
+              <label for="desiredDomain" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Preferred web address
+                <span class="text-heading-3 font-normal ml-1">(optional — Starter/Professional only)</span>
+              </label>
+              <input
+                type="text" id="desiredDomain" name="desiredDomain"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                placeholder="e.g. smithroofing.com — not guaranteed, subject to availability"
+              />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="repCode" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Representative Code <span class="text-heading-3 font-normal">(optional)</span>
+                </label>
+                <input
+                  type="text" id="repCode" name="repCode"
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="Rep code"
+                />
+              </div>
+              <div>
+                <label for="repName" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Representative Name <span class="text-heading-3 font-normal">(optional)</span>
+                </label>
+                <input
+                  type="text" id="repName" name="repName"
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  placeholder="Rep name"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="hasLogo" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Do you have a logo?
+                </label>
+                <select id="hasLogo" name="hasLogo" class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+              <div>
+                <label for="hasPhotos" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                  Do you have photos of your work?
+                </label>
+                <select id="hasPhotos" name="hasPhotos" class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="socialLinks" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Social media links <span class="text-heading-3 font-normal">(optional)</span>
+              </label>
+              <textarea
+                id="socialLinks" name="socialLinks" rows="2"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm resize-none"
+                placeholder="Instagram, Facebook, Google Maps, etc."
+              ></textarea>
+            </div>
+
+            <div>
+              <label for="notes" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Anything else we should know? <span class="text-heading-3 font-normal">(optional)</span>
+              </label>
+              <textarea
+                id="notes" name="notes" rows="3"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm resize-none"
+                placeholder="Special requests, hours, anything about your business..."
+              ></textarea>
+            </div>
+
+            <!-- Legal acknowledgements -->
+            <div class="rounded-xl border border-box-border bg-box-bg p-4 space-y-3">
+              <p class="text-xs font-semibold text-heading-1 mb-2">Please confirm you understand:</p>
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" name="ack_production" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
+                <span class="text-xs text-heading-3 leading-relaxed">
+                  I understand production starts only after complete business information is received.
                 </span>
-                {step}
-              </li>
-            ))}
-          </ol>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" name="ack_ownership" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
+                <span class="text-xs text-heading-3 leading-relaxed">
+                  I understand ownership transfer is not included unless separately approved or purchased.
+                </span>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" name="ack_images" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
+                <span class="text-xs text-heading-3 leading-relaxed">
+                  I confirm I have the rights to use all photos and content I submit.
+                </span>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" name="ack_noguarantees" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
+                <span class="text-xs text-heading-3 leading-relaxed">
+                  I understand no sales, leads, or Google ranking positions are guaranteed.
+                </span>
+              </label>
+              <div class="border-t border-box-border pt-3">
+                <label class="flex items-start gap-3 cursor-pointer">
+                  <input type="checkbox" name="ack_terms" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
+                  <span class="text-xs text-heading-3 leading-relaxed">
+                    I have read and agree to the
+                    <a href="/en/terms-of-service" class="text-primary hover:underline">Terms of Service</a>,
+                    <a href="/en/privacy-policy" class="text-primary hover:underline">Privacy Policy</a>, and
+                    <a href="/en/refund-policy" class="text-primary hover:underline">Refund Policy</a>.
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <button
+              type="submit" id="onboarding-submit" disabled
+              class="w-full py-3 rounded-full bg-primary text-white font-semibold transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed hover:enabled:bg-blue-800"
+            >
+              Submit Business Information
+            </button>
+          </form>
+
+          <!-- Success message (hidden until form submitted) -->
+          <div id="onboarding-success" class="hidden text-center py-8">
+            <div class="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-heading-1 mb-2">Information Received!</h3>
+            <p class="text-heading-3">Our team will begin working on your website within 3-5 business days.</p>
+          </div>
         </div>
 
-        <a
-          href={ONBOARDING_FORM_LINK}
-          class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-all duration-300 text-lg"
-        >
-          Complete Onboarding Form
-        </a>
-
-        <p class="text-xs text-heading-3 mt-6">
-          Questions? Contact us at{" "}
-          <a href="mailto:info@floresnexus.com" class="text-primary hover:underline">
-            info@floresnexus.com
-          </a>
+        <p class="text-xs text-center text-heading-3 mt-6">
+          Questions? Contact us at
+          <a href="mailto:hola@floresnexus.com" class="text-primary hover:underline">hola@floresnexus.com</a>
         </p>
       </div>
     </Container>
@@ -69,19 +234,46 @@ import { ONBOARDING_FORM_LINK } from "../../config/links";
   if (type === "quote") {
     if (title) title.textContent = "Quote Request Received";
     if (message) {
-      const strong = document.createElement("strong");
-      strong.className = "text-heading-2";
-      strong.textContent = "No Stripe payment is collected for Business System until a quote is approved.";
-      message.replaceChildren(
-        document.createTextNode("Your Business System quote request has been received. A Flores Nexus Group representative will review the project scope with you. "),
-        strong
-      );
+      message.innerHTML = `Your Business System quote request has been received. A Flores Nexus Group representative will review the project scope with you. <strong class="text-heading-2 block mt-2">No payment is collected until the quote is approved.</strong>`;
     }
   } else if (type === "application") {
     if (title) title.textContent = "Application Received";
     if (message) {
-      message.textContent =
-        "Thank you. We received your information. Our team will review your request and contact you with the next step.";
+      message.textContent = "Thank you. We received your information. Our team will review your request and contact you.";
     }
+  }
+
+  const form = document.getElementById("onboarding-form") as HTMLFormElement | null;
+  const checkboxes = document.querySelectorAll(".ack-checkbox") as NodeListOf<HTMLInputElement>;
+  const submitBtn = document.getElementById("onboarding-submit") as HTMLButtonElement | null;
+  const successDiv = document.getElementById("onboarding-success");
+
+  function checkAllAcknowledged() {
+    const allChecked = Array.from(checkboxes).every((cb) => cb.checked);
+    if (submitBtn) submitBtn.disabled = !allChecked;
+  }
+
+  checkboxes.forEach((cb) => cb.addEventListener("change", checkAllAcknowledged));
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting...";
+      }
+
+      const formData = new FormData(form);
+      const endpoint = form.dataset.endpoint;
+
+      if (endpoint && endpoint !== "#") {
+        try {
+          await fetch(endpoint, { method: "POST", body: formData, headers: { Accept: "application/json" } });
+        } catch (_) {}
+      }
+
+      form.classList.add("hidden");
+      if (successDiv) successDiv.classList.remove("hidden");
+    });
   }
 </script>

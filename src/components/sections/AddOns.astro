@@ -1,0 +1,91 @@
+---
+import Container from "../shared/Container.astro";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    title: "Extras You Can Add",
+    subtitle: "These are optional. Add them when you need them.",
+    note: "Add-ons are NOT included in the Launch Offer (PROMO-01). They are quoted and paid separately.",
+    priceLabel: "Price",
+    forLabel: "For",
+    addons: [
+      { name: "Second language — Nexus Card", price: "$49 + $9/month (or $99/year)", forWho: "If your customers speak another language" },
+      { name: "Second language — Starter", price: "$149 + $19/month (or $199/year)", forWho: "If your customers speak another language" },
+      { name: "Second language — Professional", price: "$349 + $39/month (or $399/year)", forWho: "If your customers speak another language" },
+      { name: "Google Maps & Apple Maps setup", price: "$50 (one-time)", forWho: "So customers can find you on maps" },
+      { name: "Professional business email", price: "$75 (one-time)", forWho: "To look more professional (e.g. info@yourbusiness.com)" },
+      { name: "Extra small change", price: "$29 each", forWho: "If you need more changes than your plan includes" },
+      { name: "Monthly pack of 3 extra changes", price: "$49/month", forWho: "Starter/Professional only" },
+      { name: "Additional page (Professional only)", price: "$149 each", forWho: "Maximum 2 additional pages" },
+      { name: "External tool connection", price: "$99 per tool", forWho: "Button, link, or standard embed" },
+      { name: "Rush delivery", price: "$99 / $149 / $349", forWho: "If you need your site faster (subject to availability)" },
+      { name: "Domain change", price: "$75 + domain cost", forWho: "If you want to change your web address" },
+      { name: "Additional domain", price: "$35 + annual cost", forWho: "Redirects to your main address" },
+      { name: "Domain transfer assistance", price: "$75 + fees", forWho: "Transfer of the domain (not the site)" },
+      { name: "Full site ownership transfer", price: "Custom quote", forWho: "Separate service — not a plan upgrade" },
+      { name: "Logo design", price: "Custom quote", forWho: "Not unlimited branding — scoped design" },
+    ],
+  },
+  es: {
+    title: "Extras Que Puedes Agregar",
+    subtitle: "Son opcionales. Agrégalos cuando los necesites.",
+    note: "Los extras NO están incluidos en la Oferta de Lanzamiento (PROMO-01). Se cotizan y pagan por separado.",
+    priceLabel: "Precio",
+    forLabel: "Para",
+    addons: [
+      { name: "Segundo idioma — Nexus Card", price: "$49 + $9/mes (o $99/año)", forWho: "Si tus clientes hablan otro idioma" },
+      { name: "Segundo idioma — Starter", price: "$149 + $19/mes (o $199/año)", forWho: "Si tus clientes hablan otro idioma" },
+      { name: "Segundo idioma — Professional", price: "$349 + $39/mes (o $399/año)", forWho: "Si tus clientes hablan otro idioma" },
+      { name: "Configuración de Google Maps y Apple Maps", price: "$50 (único)", forWho: "Para que te encuentren en mapas" },
+      { name: "Correo profesional del negocio", price: "$75 (único)", forWho: "Para verte más profesional (ej: info@tunegocio.com)" },
+      { name: "Cambio pequeño extra", price: "$29 c/u", forWho: "Si necesitas más cambios de los incluidos" },
+      { name: "Paquete mensual de 3 cambios extra", price: "$49/mes", forWho: "Solo Starter/Professional" },
+      { name: "Página adicional (solo Professional)", price: "$149 c/u", forWho: "Máximo 2 páginas adicionales" },
+      { name: "Conexión con herramienta externa", price: "$99/herramienta", forWho: "Botón, enlace o embed estándar" },
+      { name: "Entrega rápida", price: "$99 / $149 / $349", forWho: "Si necesitas tu sitio antes de tiempo (sujeto a disponibilidad)" },
+      { name: "Cambio de dirección web", price: "$75 + costo del dominio", forWho: "Si quieres cambiar tu dirección en internet" },
+      { name: "Dirección web adicional", price: "$35 + costo anual", forWho: "Redirección a dirección principal" },
+      { name: "Asistencia para transferencia de dominio", price: "$75 + fees", forWho: "Transferencia del dominio (no del sitio)" },
+      { name: "Transferencia de propiedad del sitio", price: "Cotización", forWho: "Servicio separado, no es upgrade de plan" },
+      { name: "Diseño de logo", price: "Cotización", forWho: "No es branding ilimitado — diseño con alcance definido" },
+    ],
+  },
+}[lang];
+---
+
+<section class="py-16">
+  <Container>
+    <div class="text-center mb-12" data-reveal>
+      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>
+      <p class="text-heading-3 text-lg max-w-2xl mx-auto">{t.subtitle}</p>
+    </div>
+
+    <div class="max-w-4xl mx-auto overflow-x-auto rounded-2xl border border-box-border" data-reveal="scale">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-box-bg border-b border-box-border">
+            <th class="p-4 text-left text-heading-1 font-semibold">Add-on</th>
+            <th class="p-4 text-left text-heading-1 font-semibold">{t.priceLabel}</th>
+            <th class="p-4 text-left text-heading-1 font-semibold">{t.forLabel}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {t.addons.map((addon, i) => (
+            <tr class={`border-b border-box-border ${i % 2 === 0 ? "bg-box-bg" : ""}`}>
+              <td class="p-4 font-medium text-heading-2">{addon.name}</td>
+              <td class="p-4 text-primary font-semibold whitespace-nowrap">{addon.price}</td>
+              <td class="p-4 text-heading-3">{addon.forWho}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-center text-xs text-heading-3 mt-6 max-w-2xl mx-auto italic">{t.note}</p>
+  </Container>
+</section>

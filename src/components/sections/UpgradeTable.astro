@@ -1,0 +1,73 @@
+---
+import Container from "../shared/Container.astro";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    title: "Want to Grow? Upgrade Anytime",
+    subtitle: "Move to a bigger plan when your business needs it.",
+    fromLabel: "Upgrade",
+    setupLabel: "Setup Difference",
+    newMonthlyLabel: "New Monthly",
+    note: "IMPORTANT: A promotional $0 setup does NOT create upgrade credit. For example, Nexus Card promo → Professional pays the full $699 setup.",
+    upgrades: [
+      { from: "Nexus Card (regular) → Starter", setup: "$200", monthly: "$79/month" },
+      { from: "Nexus Card (regular) → Professional", setup: "$600", monthly: "$149/month" },
+      { from: "Starter (regular) → Professional", setup: "$400", monthly: "$149/month" },
+      { from: "Nexus Card (promo) → Professional", setup: "$699", monthly: "$149/month" },
+      { from: "Starter (promo) → Professional", setup: "$699", monthly: "$149/month" },
+    ],
+  },
+  es: {
+    title: "¿Quieres Crecer? Sube de Plan Cuando Quieras",
+    subtitle: "Cambia a un plan más grande cuando tu negocio lo necesite.",
+    fromLabel: "Upgrade",
+    setupLabel: "Diferencia Inicial",
+    newMonthlyLabel: "Nueva Mensualidad",
+    note: "IMPORTANTE: Un setup promocional de $0 NO genera crédito de upgrade. Por ejemplo, Nexus Card promo → Professional paga los $699 completos.",
+    upgrades: [
+      { from: "Nexus Card (regular) → Starter", setup: "$200", monthly: "$79/mes" },
+      { from: "Nexus Card (regular) → Professional", setup: "$600", monthly: "$149/mes" },
+      { from: "Starter (regular) → Professional", setup: "$400", monthly: "$149/mes" },
+      { from: "Nexus Card (promo) → Professional", setup: "$699", monthly: "$149/mes" },
+      { from: "Starter (promo) → Professional", setup: "$699", monthly: "$149/mes" },
+    ],
+  },
+}[lang];
+---
+
+<section class="py-16">
+  <Container>
+    <div class="text-center mb-10" data-reveal>
+      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>
+      <p class="text-heading-3 text-lg max-w-2xl mx-auto">{t.subtitle}</p>
+    </div>
+
+    <div class="max-w-3xl mx-auto overflow-x-auto rounded-2xl border border-box-border" data-reveal="scale">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-box-bg border-b border-box-border">
+            <th class="p-4 text-left text-heading-1 font-semibold">{t.fromLabel}</th>
+            <th class="p-4 text-center text-heading-1 font-semibold">{t.setupLabel}</th>
+            <th class="p-4 text-center text-heading-1 font-semibold">{t.newMonthlyLabel}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {t.upgrades.map((row, i) => (
+            <tr class={`border-b border-box-border ${i % 2 === 0 ? "bg-box-bg" : ""}`}>
+              <td class="p-4 font-medium text-heading-2">{row.from}</td>
+              <td class="p-4 text-center text-primary font-bold">{row.setup}</td>
+              <td class="p-4 text-center text-heading-1 font-semibold">{row.monthly}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-center text-xs text-heading-3 mt-6 max-w-2xl mx-auto italic">{t.note}</p>
+  </Container>
+</section>

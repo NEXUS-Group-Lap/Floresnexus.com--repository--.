@@ -2,79 +2,59 @@
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/shared/Container.astro";
 import FinalCTA from "../../components/sections/FinalCTA.astro";
+
+const faqs = [
+  { q: "Do I need to know anything about computers?", a: "No. We do everything technical. You just give us the information about your business — what you do, where you are, how to contact you — and we build the rest." },
+  { q: "What if I don't like how it looks?", a: "You have 1 or 2 chances to request changes (depending on your plan) before we publish it. These are consolidated lists of corrections, not unlimited changes." },
+  { q: "Can I cancel whenever I want?", a: "Yes, without penalty. Just let us know and we stop charging the next month. No minimum contract." },
+  { q: "What happens if my business closes?", a: "You can cancel and we stop charging. Your site will go offline at the end of the billing period." },
+  { q: "Who owns my information?", a: "You own your content (text, photos, business information). We manage the space on the internet where it lives." },
+  { q: "What if I want to change plans?", a: "You can move to a higher plan at any time. You pay the difference in setup (according to the upgrade table) and the new monthly price." },
+  { q: "What exactly does the monthly payment cover?", a: "That your site stays on the internet, updated, and working. This includes keeping it online, basic maintenance, and the small changes included in your plan (0 for Nexus Card, 1 for Starter, 3 for Professional)." },
+  { q: "Can I own my website completely?", a: "The monthly plans are managed by Flores Nexus. If you want to own the site completely (to move it somewhere else), that's a separate service quoted based on complexity (starting at $3,500). Most of our clients don't need this because we take care of everything." },
+  { q: "What if I need more changes than what's included?", a: "You can buy extra changes for $29 each or a pack of 3 changes for $49/month (Starter/Professional only). Unused changes don't carry over to the next month." },
+  { q: "How long does it take to have my site ready?", a: "3-5 business days AFTER you give us all your complete information. If you don't send everything, the clock doesn't start." },
+  { q: "What if I need it faster?", a: "We can speed up the process for an additional cost (starting at $99), subject to availability and prior approval." },
+  { q: "Do you guarantee I'll sell more?", a: "No. We give you a professional space on the internet so people can find you and contact you. Whether you sell more depends on your product, your customer service, and your effort." },
+  { q: "Will you put me first on Google?", a: "No. We don't promise Google positions or marketing results. What we do guarantee is that your site is on the internet, looks professional, and is easy to find." },
+  { q: "What happens with my web address (domain)?", a: "Nexus Card: Your space lives at floresnexus.cards/yourbusiness (does not include your own address). Starter/Professional: Includes 1 standard web address (up to $25/year included). If you want a specific address, premium, or special extension, it may cost extra. Availability is not guaranteed." },
+  { q: "Can I have my site in English and Spanish?", a: "Each plan includes 1 language. If you need both, it's a paid add-on: Nexus Card $49 + $9/month, Starter $149 + $19/month, Professional $349 + $39/month." },
+  { q: "What if I want a refund?", a: "Before we start working: 100% refund minus Stripe processing fees. After we start working: the setup is not refundable. Annual plans: within 30 days, refund for complete unused months, minus fees. Full details at our Refund Policy page." },
+  { q: "What if Flores Nexus makes a mistake?", a: "We correct the error without using your included monthly changes." },
+  { q: "Can I use photos I found on the internet?", a: "No. You can only use photos that you took yourself, that you purchased with a license, or that you have the rights to use. You must confirm image rights when sending your content." },
+];
 ---
 
-<Layout title="FAQ" description="Frequently asked questions about Flores Nexus Group website plans, pricing, ownership, and support." lang="en">
+<Layout title="Frequently Asked Questions" description="Answers to common questions about Flores Nexus Group websites for local businesses." lang="en">
   <main class="pt-24 pb-20">
     <Container>
       <div class="max-w-3xl mx-auto">
         <div class="text-center mb-12">
           <h1 class="text-4xl font-bold text-heading-1 mb-4">Frequently Asked Questions</h1>
-          <p class="text-heading-3 text-lg">Everything you need to know about our website service.</p>
+          <p class="text-heading-3 text-lg">Real questions from people like you. If you don't find your answer, contact us.</p>
         </div>
 
-        <div class="space-y-4">
-          {[
-            {
-              q: "What does the monthly fee cover?",
-              a: "Hosting, technical management, and the updates included in your selected plan while your subscription is active.",
-            },
-            {
-              q: "What kind of changes can I request?",
-              a: "Nexus Card includes 0 monthly updates. Starter includes 1 small update per month. Professional includes 3 small updates per month. Updates do not accumulate. Extra changes are billed separately.",
-            },
-            {
-              q: "How long does it take?",
-              a: "Standard delivery is 3–5 business days after payment, acceptance, and complete business information.",
-            },
-            {
-              q: "Do I own the website?",
-              a: "Monthly plans are managed by Flores Nexus. Ownership transfer is not included unless separately quoted, approved, and purchased.",
-            },
-            {
-              q: "Does this guarantee customers?",
-              a: "No. Flores Nexus does not guarantee sales, leads, calls, revenue, ranking, or business results. We provide a professional online presence that helps people find, understand, verify, and contact your business more easily.",
-            },
-            {
-              q: "Do I need a logo?",
-              a: "No. You can start without one. Logo design can be quoted as an add-on.",
-            },
-            {
-              q: "Can I upgrade later?",
-              a: "Yes. You can upgrade as your business grows. Upgrade credit is based on the setup amount actually paid. Promotional $0 setup creates $0 setup credit.",
-            },
-            {
-              q: "Is a second language included?",
-              a: "Each plan includes one main language. A second full-language version is available as a paid add-on.",
-            },
-            {
-              q: "Is hosting included?",
-              a: "Yes. Hosting is included in all plans while the subscription is active. Flores Nexus manages the hosting, so you don't need to purchase or manage it separately.",
-            },
-            {
-              q: "Does my website include a domain name?",
-              a: "Nexus Card is published under a managed Flores Nexus route. Starter and Professional include one managed standard domain, subject to availability. Exact domain names are not guaranteed. Domains are administered by Flores Nexus while the subscription is active. Transfer requires a separate process.",
-            },
-          ].map((faq) => (
-            <details class="group border border-box-border rounded-xl bg-box-bg overflow-hidden">
-              <summary class="flex justify-between items-center p-5 cursor-pointer font-semibold text-heading-1 list-none hover:text-primary transition">
+        <div class="space-y-3">
+          {faqs.map((faq) => (
+            <details class="rounded-xl border border-box-border bg-box-bg overflow-hidden motion-card group">
+              <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer text-heading-1 font-semibold text-sm hover:bg-primary/5 transition-colors list-none">
                 {faq.q}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  class="w-5 h-5 flex-shrink-0 ml-4 transition-transform group-open:rotate-180"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                <svg class="w-5 h-5 text-heading-3 flex-shrink-0 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                 </svg>
               </summary>
-              <div class="px-5 pb-5 text-heading-3 text-sm leading-relaxed border-t border-box-border pt-4">
+              <div class="px-5 pb-4 text-heading-3 text-sm leading-relaxed border-t border-box-border pt-3">
                 {faq.a}
               </div>
             </details>
           ))}
+        </div>
+
+        <div class="text-center mt-10">
+          <p class="text-heading-3 text-sm">
+            Still have questions?{" "}
+            <a href="mailto:hola@floresnexus.com" class="text-primary hover:underline font-semibold">hola@floresnexus.com</a>
+          </p>
         </div>
       </div>
     </Container>

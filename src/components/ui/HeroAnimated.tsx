@@ -39,40 +39,40 @@ const siteScreenshots = [
 
 const t = {
   en: {
-    headline1: "Your work deserves",
-    headline2Prefix: "to be ",
-    rotatingWords: ["found.", "trusted.", "seen.", "contacted.", "showcased."],
+    headline1: "Your business online,",
+    headline2Prefix: "",
+    rotatingWords: ["without complications.", "ready for customers.", "managed for you.", "hassle-free."],
     subheadline:
-      "We build and manage websites for local businesses that do great work but need a clearer way to be found, trusted, and contacted online.",
+      "We create and maintain your professional space on the internet so your customers can find you, contact you, and trust you.",
+    subheadline2: "You don't do anything technical. We take care of everything.",
     cta1: "View Plans",
     cta1Href: "/en/pricing",
-    cta2: "See Examples",
-    cta2Href: "/en#examples",
+    cta2: "Start Now — Setup $0",
+    cta2Href: "/en/start",
     badge: "Websites for local businesses",
-    indicators: ["From $99 setup", "3–5 business days", "EN/ES support"],
+    oneliner: "Built for you. Managed for you. Without agency-level pricing.",
+    indicators: ["Setup $0 for first 30 businesses", "3–5 business days", "EN/ES support"],
+    promoBadge: "Launch Offer",
+    promoText: "Setup $0 for the first 30 local businesses",
+    promoHref: "/en/start",
   },
   es: {
-    headline1: "Tu trabajo merece",
-    headline2Prefix: "ser ",
-    rotatingWords: [
-      "encontrado.",
-      "confiable.",
-      "visto.",
-      "contactado.",
-      "destacado.",
-    ],
+    headline1: "Tu negocio en internet,",
+    headline2Prefix: "",
+    rotatingWords: ["sin complicaciones.", "listo para clientes.", "administrado por ti.", "sin estrés."],
     subheadline:
-      "Creamos y administramos sitios web para negocios locales que hacen un gran trabajo, pero necesitan una forma más clara de ser encontrados y contactados.",
+      "Creamos y mantenemos tu espacio profesional en internet para que tus clientes te encuentren, te contacten y confíen en ti.",
+    subheadline2: "Tú no haces nada técnico. Nosotros nos encargamos de todo.",
     cta1: "Ver Planes",
     cta1Href: "/es/precios",
-    cta2: "Ver Ejemplos",
-    cta2Href: "/es#ejemplos",
+    cta2: "Empezar Ahora — Inicial $0",
+    cta2Href: "/es/empezar",
     badge: "Sitios web para negocios locales",
-    indicators: [
-      "Desde $99 inicial",
-      "3–5 días hábiles",
-      "Atención EN/ES",
-    ],
+    oneliner: "Lo creamos por ti. Lo administramos por ti. Sin precios de agencia.",
+    indicators: ["Inicial $0 para los primeros 30 negocios", "3–5 días hábiles", "Atención EN/ES"],
+    promoBadge: "Oferta de Lanzamiento",
+    promoText: "Inicial $0 para los primeros 30 negocios locales",
+    promoHref: "/es/empezar",
   },
 }
 
@@ -225,16 +225,26 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
           {content.subheadline}
         </motion.p>
 
+        {/* Bold statement */}
+        <motion.p
+          className="text-sm sm:text-base md:text-lg font-semibold text-center pt-3 max-w-xl text-[rgb(var(--heading-1))]"
+          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3, ease: "easeOut", delay: 0.6 }}
+        >
+          {content.subheadline2}
+        </motion.p>
+
         {/* CTAs */}
         <motion.div
-          className="flex flex-row justify-center space-x-4 items-center mt-8 sm:mt-10 md:mt-12"
+          className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 items-center mt-8 sm:mt-10 md:mt-12 w-full sm:w-auto"
           animate={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3, ease: "easeOut", delay: 0.7 }}
         >
           <motion.a
             href={content.cta1Href}
-            className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-white bg-[#1d4ed8] px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3 rounded-full z-20 shadow-2xl hover:bg-blue-800 transition-colors duration-200"
+            className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-white bg-[#1d4ed8] px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3 rounded-full z-20 shadow-2xl hover:bg-blue-800 transition-colors duration-200 text-center"
             whileHover={{
               scale: 1.05,
               transition: { type: "spring", damping: 30, stiffness: 400 },
@@ -244,7 +254,7 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
           </motion.a>
           <motion.a
             href={content.cta2Href}
-            className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-[#1d4ed8] border border-[rgb(var(--box-border))] bg-[rgb(var(--color-box))] px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3 rounded-full z-20 shadow-lg hover:border-[#1d4ed8] hover:bg-[#1d4ed8]/5 transition-colors duration-200"
+            className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-white bg-green-600 px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3 rounded-full z-20 shadow-2xl hover:bg-green-700 transition-colors duration-200 text-center"
             whileHover={{
               scale: 1.05,
               transition: { type: "spring", damping: 30, stiffness: 400 },
@@ -253,6 +263,16 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
             {content.cta2}
           </motion.a>
         </motion.div>
+
+        {/* One-liner */}
+        <motion.p
+          className="text-xs sm:text-sm text-center pt-4 text-[rgb(var(--heading-3))] italic"
+          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3, ease: "easeOut", delay: 0.8 }}
+        >
+          {content.oneliner}
+        </motion.p>
 
         {/* Indicators */}
         <motion.div

@@ -1,5 +1,6 @@
 ---
 import Container from "../shared/Container.astro";
+import { WHATSAPP_LINK, CONTACT_EMAIL, LEGAL_EMAIL } from "../../config/links";
 
 export interface Props {
   lang?: "en" | "es";
@@ -9,17 +10,19 @@ const { lang = "en" } = Astro.props;
 
 const t = {
   en: {
-    tagline: "Websites for local businesses. Built for you. Managed for you. Without agency prices.",
+    tagline: "Websites for local businesses. Built for you. Managed for you. Without agency-level pricing.",
     services: "Services",
     company: "Company",
     support: "Support",
     legal: "Legal",
+    contact: "Contact",
     copyright: "Flores Nexus Group LLC. All rights reserved.",
     serviceLinks: [
       { text: "Nexus Card", href: "/en/plans/mini-card" },
       { text: "Starter Website", href: "/en/plans/starter" },
       { text: "Professional Website", href: "/en/plans/professional" },
       { text: "Business System", href: "/en/business-system" },
+      { text: "Add-Ons", href: "/en/addons" },
     ],
     companyLinks: [
       { text: "Home", href: "/en" },
@@ -31,7 +34,6 @@ const t = {
       { text: "FAQ", href: "/en/faq" },
       { text: "Start My Website", href: "/en/start" },
       { text: "How It Works", href: "/en#how-it-works" },
-      { text: "Contact", href: "mailto:info@floresnexus.com" },
     ],
     legalLinks: [
       { text: "Privacy Policy", href: "/en/privacy-policy" },
@@ -39,8 +41,15 @@ const t = {
       { text: "Refund Policy", href: "/en/refund-policy" },
       { text: "Service Scope", href: "/en/service-scope" },
       { text: "Acceptable Use", href: "/en/acceptable-use-policy" },
-      { text: "Ownership", href: "/en/service-scope#add-ons" },
+      { text: "Ownership", href: "/en/ownership" },
     ],
+    contactInfo: {
+      email: CONTACT_EMAIL,
+      legalEmail: LEGAL_EMAIL,
+      whatsapp: WHATSAPP_LINK,
+      whatsappLabel: "WhatsApp",
+      hours: "Mon–Fri 9AM–5PM ET",
+    },
   },
   es: {
     tagline: "Sitios web para negocios locales. Hechos por nosotros. Administrados por nosotros. Sin precios de agencia.",
@@ -48,12 +57,14 @@ const t = {
     company: "Empresa",
     support: "Soporte",
     legal: "Legal",
+    contact: "Contacto",
     copyright: "Flores Nexus Group LLC. Todos los derechos reservados.",
     serviceLinks: [
       { text: "Nexus Card", href: "/es/planes/mini-card" },
       { text: "Starter Website", href: "/es/planes/starter" },
       { text: "Professional Website", href: "/es/planes/professional" },
       { text: "Business System", href: "/es/business-system" },
+      { text: "Extras", href: "/es/extras" },
     ],
     companyLinks: [
       { text: "Inicio", href: "/es" },
@@ -65,7 +76,6 @@ const t = {
       { text: "Preguntas Frecuentes", href: "/es/preguntas" },
       { text: "Empezar Mi Página", href: "/es/empezar" },
       { text: "Cómo Funciona", href: "/es#como-funciona" },
-      { text: "Contacto", href: "mailto:info@floresnexus.com" },
     ],
     legalLinks: [
       { text: "Política de Privacidad", href: "/es/politica-de-privacidad" },
@@ -73,8 +83,15 @@ const t = {
       { text: "Política de Reembolsos", href: "/es/politica-de-reembolsos" },
       { text: "Alcance del Servicio", href: "/es/alcance-del-servicio" },
       { text: "Uso Aceptable", href: "/es/uso-aceptable" },
-      { text: "Propiedad", href: "/es/alcance-del-servicio#add-ons" },
+      { text: "Propiedad", href: "/en/ownership" },
     ],
+    contactInfo: {
+      email: CONTACT_EMAIL,
+      legalEmail: LEGAL_EMAIL,
+      whatsapp: WHATSAPP_LINK,
+      whatsappLabel: "WhatsApp",
+      hours: "Lun–Vie 9AM–5PM ET",
+    },
   },
 }[lang];
 ---
@@ -163,7 +180,7 @@ const t = {
         </ul>
       </div>
 
-      <!-- Support + Legal -->
+      <!-- Support + Contact + Legal -->
       <div>
         <h4 class="font-semibold text-heading-1 mb-4">{t.support}</h4>
         <ul class="space-y-2">
@@ -175,6 +192,22 @@ const t = {
             </li>
           ))}
         </ul>
+
+        <h4 class="font-semibold text-heading-1 mt-6 mb-4">{t.contact}</h4>
+        <ul class="space-y-2">
+          <li>
+            <a href={`mailto:${t.contactInfo.email}`} class="text-sm text-heading-3 hover:text-primary transition">
+              📧 {t.contactInfo.email}
+            </a>
+          </li>
+          <li>
+            <a href={t.contactInfo.whatsapp} target="_blank" rel="noopener noreferrer" class="text-sm text-heading-3 hover:text-primary transition">
+              💬 {t.contactInfo.whatsappLabel}
+            </a>
+          </li>
+          <li class="text-sm text-heading-3">🕐 {t.contactInfo.hours}</li>
+        </ul>
+
         <h4 class="font-semibold text-heading-1 mt-6 mb-4">{t.legal}</h4>
         <ul class="space-y-2">
           {t.legalLinks.map((link) => (

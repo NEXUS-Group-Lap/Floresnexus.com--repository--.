@@ -8,47 +8,29 @@ const { lang } = Astro.props;
 
 const t = {
   en: {
-    title: "How It Works",
-    subtitle: "From choosing a plan to launching your website — here's the simple process.",
-    note: "Standard delivery is 3–5 business days after payment and after we receive all the necessary information.",
+    title: "This Is How It Works",
+    subtitle: "It's easier than you think. Your total time: less than 1 hour. We do the rest.",
     steps: [
-      {
-        number: "01",
-        title: "Choose a Solution",
-        desc: "Select the plan that fits your business.",
-      },
-      {
-        number: "02",
-        title: "Send Your Information and Pay",
-        desc: "Fill out the form and use the official checkout.",
-      },
-      {
-        number: "03",
-        title: "We Adapt, Review, and Publish",
-        desc: "We build the site, send it for review, and publish after receiving complete information.",
-      },
+      { number: "1", title: "Choose a plan", time: "2 min", desc: "Pick the plan that fits your business." },
+      { number: "2", title: "Fill out the short form", time: "1 min", desc: "Name, business, phone, email, and plan." },
+      { number: "3", title: "Complete payment", time: "1 min", desc: "Secure payment through Stripe. We never see your card." },
+      { number: "4", title: "Send us your business info", time: "15–30 min", desc: "What you sell, where you are, photos if you have them. Without complete info, the clock doesn't start." },
+      { number: "5", title: "We build your site", time: "3–5 days", desc: "3–5 business days AFTER we have everything." },
+      { number: "6", title: "You review it", time: "5 min", desc: "We show you the result and you tell us if you want changes (1 or 2 rounds depending on your plan)." },
+      { number: "7", title: "We publish it", time: "Same day", desc: "Your business is now on the internet. We keep it running." },
     ],
   },
   es: {
-    title: "Cómo Funciona",
-    subtitle: "Desde elegir un plan hasta el lanzamiento de tu página — aquí está el proceso simple.",
-    note: "La entrega estándar es de 3–5 días hábiles después del pago y de recibir toda la información necesaria.",
+    title: "Así Funciona",
+    subtitle: "Es más fácil de lo que crees. Tu tiempo total: menos de 1 hora. Nosotros hacemos el resto.",
     steps: [
-      {
-        number: "01",
-        title: "Elige una Solución",
-        desc: "Selecciona el plan adecuado para tu negocio.",
-      },
-      {
-        number: "02",
-        title: "Envía tu Información y Realiza el Pago",
-        desc: "Completa el formulario y utiliza el checkout oficial.",
-      },
-      {
-        number: "03",
-        title: "Adaptamos, Revisamos y Publicamos",
-        desc: "Construimos el sitio, enviamos revisión y publicamos después de recibir la información completa.",
-      },
+      { number: "1", title: "Elige tu plan", time: "2 min", desc: "Selecciona el plan que se adapte a tu negocio." },
+      { number: "2", title: "Llena el formulario corto", time: "1 min", desc: "Nombre, negocio, teléfono, email y plan." },
+      { number: "3", title: "Realiza el pago", time: "1 min", desc: "Pago seguro con Stripe. Nunca vemos tu tarjeta." },
+      { number: "4", title: "Danos la información de tu negocio", time: "15–30 min", desc: "Qué vendes, dónde estás, fotos si tienes. Sin info completa, el reloj no corre." },
+      { number: "5", title: "Nosotros creamos tu espacio", time: "3–5 días", desc: "3–5 días hábiles DESPUÉS de tener toda tu info." },
+      { number: "6", title: "Lo revisas", time: "5 min", desc: "Te lo mostramos y nos dices si quieres cambiar algo (1 o 2 rondas según tu plan)." },
+      { number: "7", title: "Lo publicamos", time: "Mismo día", desc: "Tu negocio ya está en internet. Nosotros lo mantenemos." },
     ],
   },
 }[lang];
@@ -56,30 +38,33 @@ const t = {
 
 <section class="py-16" id={lang === "en" ? "how-it-works" : "como-funciona"}>
   <Container>
-    <div class="text-center mb-10" data-reveal>
+    <div class="text-center mb-12" data-reveal>
       <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>
       <p class="text-heading-3 text-lg max-w-2xl mx-auto">{t.subtitle}</p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6" data-stagger>
+    <div class="max-w-3xl mx-auto space-y-4" data-stagger>
       {t.steps.map((step, i) => (
-        <div class="relative p-6 rounded-2xl border border-box-border bg-box-bg hover:border-primary/50 transition-all motion-card">
-          <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center mb-4">
-            <span class="text-white font-bold text-sm">{step.number}</span>
+        <div class="flex items-start gap-4 p-5 rounded-2xl border border-box-border bg-box-bg hover:border-primary/50 transition-all motion-card">
+          <div class="flex flex-col items-center flex-shrink-0">
+            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+              <span class="text-white font-bold text-sm">{step.number}</span>
+            </div>
+            {i < t.steps.length - 1 && (
+              <div class="w-0.5 h-4 bg-primary/20 mt-2"></div>
+            )}
           </div>
-          <h3 class="font-bold text-heading-1 text-lg mb-2">{step.title}</h3>
-          <p class="text-heading-3 text-sm leading-relaxed">{step.desc}</p>
-          {i < t.steps.length - 1 && (
-            <div class="hidden lg:block absolute top-1/2 -right-3 w-6 h-0.5 bg-primary/30 z-10 draw-line"></div>
-          )}
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-1">
+              <h3 class="font-bold text-heading-1 text-base">{step.title}</h3>
+              <span class="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold">
+                {step.time}
+              </span>
+            </div>
+            <p class="text-heading-3 text-sm leading-relaxed">{step.desc}</p>
+          </div>
         </div>
       ))}
-    </div>
-
-    <div class="mt-8 p-4 rounded-xl bg-primary/5 border border-primary/20 text-center max-w-2xl mx-auto motion-card" data-reveal="scale">
-      <p class="text-sm text-heading-2 font-medium">
-        {t.note}
-      </p>
     </div>
   </Container>
 </section>

@@ -1,6 +1,6 @@
 ---
 import Container from "../../shared/Container.astro";
-import { plans, planOrder } from "../../../data/plans";
+import { plans, planOrder, promoConfig } from "../../../data/plans";
 
 export interface Props {
   lang: "en" | "es";
@@ -12,31 +12,33 @@ const t = {
     title: "Simple, Transparent Pricing",
     subtitle: "Choose the plan that fits your business. No long-term contracts.",
     billingMonthly: "Monthly",
-    billingAnnual: "Annual — Save",
+    billingAnnual: "Annual (prepay option)",
     popularBadge: "Recommended",
     setupLabel: "setup",
     monthLabel: "/month",
     yearLabel: "/year",
-    billedAnnually: "Billed annually",
+    billedAnnually: "Billed annually (prepay option)",
     vsMonthly: "vs. 12 monthly payments",
-    growthMessage: "Start with the plan that fits today. Upgrade when you need more.",
+    growthMessage: "Start with what you need. Move up when your business grows.",
     footerNote:
-      "Hosting included while subscription is active. Domain administered by Flores Nexus Group. Premium domains, ownership transfers, additional changes, advanced SEO, and external integrations may require additional charges.",
+      "We keep your site online while your subscription is active. Your web address is managed by Flores Nexus Group. Premium addresses, extra changes, and advanced features may have additional costs.",
+    promoBadge: promoConfig.en.badge,
   },
   es: {
     title: "Precios Simples y Transparentes",
     subtitle: "Elige el plan que se adapte a tu negocio. Sin contratos a largo plazo.",
     billingMonthly: "Mensual",
-    billingAnnual: "Anual — Ahorra",
+    billingAnnual: "Anual (opción de prepago)",
     popularBadge: "Recomendado",
     setupLabel: "inicial",
     monthLabel: "/mes",
     yearLabel: "/año",
-    billedAnnually: "Facturado anualmente",
+    billedAnnually: "Facturado anualmente (opción de prepago)",
     vsMonthly: "vs. 12 pagos mensuales",
-    growthMessage: "Empieza con el plan que se adapte hoy. Cambia a uno mayor cuando necesites más.",
+    growthMessage: "Empieza con lo que necesitas. Sube de plan cuando tu negocio crezca.",
     footerNote:
-      "Hosting incluido mientras la suscripción esté activa. Dominio administrado por Flores Nexus Group. Dominios premium, transferencias de propiedad, cambios adicionales, SEO avanzado e integraciones externas pueden requerir cargos adicionales.",
+      "Mantenemos tu sitio en internet mientras tu suscripción esté activa. Tu dirección web es administrada por Flores Nexus Group. Direcciones premium, cambios extra y funciones avanzadas pueden tener costos adicionales.",
+    promoBadge: promoConfig.es.badge,
   },
 }[lang];
 
@@ -75,6 +77,7 @@ const cards = planOrder.map((id) => plans[id]);
         cards.map((plan) => {
           const copy = plan[lang];
           const isPopular = plan.id === "professional";
+          const isPromoEligible = promoConfig.active && plan.promoEligible;
           return (
             <div
               id={plan.id}
@@ -92,15 +95,34 @@ const cards = planOrder.map((id) => plans[id]);
                 </div>
               )}
 
+              {isPromoEligible && (
+                <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                  <span class="inline-flex items-center gap-1.5 bg-green-600 text-white text-xs font-bold px-4 py-1 rounded-full tracking-wide uppercase">
+                    <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                    {t.promoBadge}
+                  </span>
+                </div>
+              )}
+
               <div class="p-6 pt-8">
                 <h3 class="text-xl font-bold text-heading-1 mb-1">{copy.name}</h3>
                 <p class="text-sm text-heading-3 mb-5 leading-relaxed">{copy.tagline}</p>
 
                 <!-- Monthly price -->
                 <div data-show-billing="monthly" class="mb-5">
-                  <div class="flex items-baseline gap-1 mb-0.5">
-                    <span class="text-3xl font-bold text-heading-1">{plan.setup}</span>
-                    <span class="text-heading-3 text-sm">{t.setupLabel}</span>
+                  <div class="flex items-baseline gap-1.5 mb-0.5">
+                    {isPromoEligible ? (
+                      <>
+                        <span class="text-3xl font-bold text-green-600 dark:text-green-400">{promoConfig.promoSetup}</span>
+                        <span class="text-lg text-heading-3 line-through">{plan.setup}</span>
+                        <span class="text-heading-3 text-sm">{t.setupLabel}</span>
+                      </>
+                    ) : (
+                      <>
+                        <span class="text-3xl font-bold text-heading-1">{plan.setup}</span>
+                        <span class="text-heading-3 text-sm">{t.setupLabel}</span>
+                      </>
+                    )}
                   </div>
                   {plan.monthly && (
                     <div class="flex items-baseline gap-1">
@@ -112,9 +134,19 @@ const cards = planOrder.map((id) => plans[id]);
 
                 <!-- Annual price -->
                 <div data-show-billing="annual" class="hidden mb-5">
-                  <div class="flex items-baseline gap-1 mb-0.5">
-                    <span class="text-3xl font-bold text-heading-1">{plan.setup}</span>
-                    <span class="text-heading-3 text-sm">{t.setupLabel}</span>
+                  <div class="flex items-baseline gap-1.5 mb-0.5">
+                    {isPromoEligible ? (
+                      <>
+                        <span class="text-3xl font-bold text-green-600 dark:text-green-400">{promoConfig.promoSetup}</span>
+                        <span class="text-lg text-heading-3 line-through">{plan.setup}</span>
+                        <span class="text-heading-3 text-sm">{t.setupLabel}</span>
+                      </>
+                    ) : (
+                      <>
+                        <span class="text-3xl font-bold text-heading-1">{plan.setup}</span>
+                        <span class="text-heading-3 text-sm">{t.setupLabel}</span>
+                      </>
+                    )}
                   </div>
                   {plan.annualPrice && (
                     <>
@@ -136,7 +168,7 @@ const cards = planOrder.map((id) => plans[id]);
                   <a
                     href={plan.startForm[lang]}
                     data-plan-cta={plan.id}
-                    class={`w-full flex justify-center items-center px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 motion-button ${isPopular ? "bg-primary text-white hover:bg-blue-800" : "bg-primary text-white hover:bg-blue-800"}`}
+                    class="w-full flex justify-center items-center px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 motion-button bg-primary text-white hover:bg-blue-800"
                     onclick={`event.stopPropagation()`}
                   >
                     {copy.cta}
