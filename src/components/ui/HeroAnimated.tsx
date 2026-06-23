@@ -1,6 +1,5 @@
 import { motion } from "motion/react"
 import { TextRotate } from "@/components/ui/text-rotate"
-import Floating, { FloatingElement } from "@/components/ui/parallax-floating"
 
 interface HeroAnimatedProps {
   lang: "en" | "es"
@@ -37,42 +36,33 @@ const siteScreenshots = [
   },
 ]
 
+const marqueeImages = siteScreenshots.map((s) => s.url)
+const duplicatedImages = [...marqueeImages, ...marqueeImages]
+
 const t = {
   en: {
     headline1: "Managed websites",
     headline2Prefix: "for ",
     rotatingWords: ["You.", "Everyone.", "Landscapers.", "Barber Shops.", "Electricians.", "Roofers.", "Painters.", "Auto Shops.", "Dentists.", "Salons."],
     subheadline:
-      "We build your business website and keep it running for you. Your page shows your services, photos, hours, location, and contact buttons.",
-    subheadline2: "You give us the info. We handle the technical part.",
-    cta1: "View Plans",
-    cta1Href: "/en/pricing",
-    cta2: "Start Now",
-    cta2Href: "/en/start",
-    badge: "Websites for local businesses",
-    oneliner: "Built for you. Managed for you. No technical skills needed.",
+      "You give us your business info. We build and maintain your website.",
+    ctaPrimary: "Start Now",
+    ctaPrimaryHref: "/en/start",
+    ctaSecondary: "View Plans",
+    ctaSecondaryHref: "/en/pricing",
     indicators: ["$0 setup for first 30 businesses", "3–5 business days", "EN/ES support"],
-    promoBadge: "Launch Offer",
-    promoText: "$0 setup for Nexus Card and Starter Website",
-    promoHref: "/en/start",
   },
   es: {
     headline1: "Páginas web administradas",
     headline2Prefix: "para ",
     rotatingWords: ["restaurantes.", "plomeros.", "jardineros.", "barberías.", "electricistas.", "pintores.", "talleres.", "dentistas.", "salones.", "tiendas."],
     subheadline:
-      "Creamos la página web de tu negocio y la mantenemos activa por ti. Tu página muestra tus servicios, fotos, horario, ubicación y botones de contacto.",
-    subheadline2: "Tú nos das la información. Nosotros hacemos la parte técnica.",
-    cta1: "Ver Planes",
-    cta1Href: "/es/precios",
-    cta2: "Empezar Ahora",
-    cta2Href: "/es/empezar",
-    badge: "Páginas web para negocios locales",
-    oneliner: "Lo creamos por ti. Lo administramos por ti. Sin saber de tecnología.",
+      "Tú nos das la información. Nosotros creamos y mantenemos tu página web.",
+    ctaPrimary: "Empezar Ahora",
+    ctaPrimaryHref: "/es/empezar",
+    ctaSecondary: "Ver Planes",
+    ctaSecondaryHref: "/es/precios",
     indicators: ["$0 inicial para los primeros 30 negocios", "3–5 días hábiles", "Atención EN/ES"],
-    promoBadge: "Oferta de Lanzamiento",
-    promoText: "$0 inicial para Nexus Card y Starter Website",
-    promoHref: "/es/empezar",
   },
 }
 
@@ -80,102 +70,10 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
   const content = t[lang]
 
   return (
-    <section className="w-full min-h-[calc(100vh-7rem)] overflow-hidden flex flex-col items-center justify-center relative pb-20">
-      <Floating sensitivity={-0.5} className="h-full pointer-events-none hidden md:block">
-        {/* Upper-left — La Morenita */}
-        <FloatingElement
-          depth={1}
-          className="top-[14%] left-[0%] lg:left-[2%]"
-        >
-          <motion.img
-            src={siteScreenshots[1].url}
-            alt={siteScreenshots[1].title}
-            className="w-40 h-28 lg:w-52 lg:h-36 object-cover hover:scale-105 duration-200 transition-transform -rotate-6 shadow-2xl rounded-xl border border-white/10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          />
-        </FloatingElement>
-
-        {/* Mid-left — Flores Lawn Care */}
-        <FloatingElement
-          depth={0.5}
-          className="top-[38%] left-[0%] lg:left-[1%]"
-        >
-          <motion.img
-            src={siteScreenshots[0].url}
-            alt={siteScreenshots[0].title}
-            className="w-28 h-20 lg:w-36 lg:h-24 object-cover hover:scale-105 duration-200 transition-transform -rotate-[3deg] shadow-2xl rounded-xl border border-white/10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
-          />
-        </FloatingElement>
-
-        {/* Bottom-left — Alma Boutique */}
-        <FloatingElement
-          depth={3}
-          className="top-[64%] left-[1%] lg:left-[3%]"
-        >
-          <motion.img
-            src={siteScreenshots[2].url}
-            alt={siteScreenshots[2].title}
-            className="w-44 h-32 lg:w-56 lg:h-40 object-cover -rotate-[4deg] hover:scale-105 duration-200 transition-transform shadow-2xl rounded-xl border border-white/10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.9 }}
-          />
-        </FloatingElement>
-
-        {/* Upper-right — 3D Interior */}
-        <FloatingElement
-          depth={2}
-          className="top-[14%] left-[82%] lg:left-[80%]"
-        >
-          <motion.img
-            src={siteScreenshots[3].url}
-            alt={siteScreenshots[3].title}
-            className="w-40 h-28 lg:w-52 lg:h-36 object-cover hover:scale-105 duration-200 transition-transform shadow-2xl rotate-[6deg] rounded-xl border border-white/10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.1 }}
-          />
-        </FloatingElement>
-
-        {/* Mid-right — Horizon Photography */}
-        <FloatingElement
-          depth={1.5}
-          className="hidden lg:block top-[40%] left-[87%]"
-        >
-          <motion.img
-            src={siteScreenshots[4].url}
-            alt={siteScreenshots[4].title}
-            className="w-36 h-24 object-cover hover:scale-105 duration-200 transition-transform shadow-2xl rotate-[10deg] rounded-xl border border-white/10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
-          />
-        </FloatingElement>
-
-        {/* Bottom-right — Zeepay */}
-        <FloatingElement
-          depth={1}
-          className="top-[62%] left-[80%] lg:left-[78%]"
-        >
-          <motion.img
-            src={siteScreenshots[5].url}
-            alt={siteScreenshots[5].title}
-            className="w-48 h-36 lg:w-60 lg:h-44 object-cover hover:scale-105 duration-200 transition-transform shadow-2xl rotate-[14deg] rounded-xl border border-white/10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.3 }}
-          />
-        </FloatingElement>
-      </Floating>
-
-      {/* Center content */}
-      <div className="flex flex-col justify-center items-center w-[280px] sm:w-[400px] md:w-[550px] lg:w-[700px] z-10 pointer-events-auto">
-        {/* Headline with TextRotate */}
+    <section className="w-full overflow-hidden flex flex-col items-center relative">
+      {/* Top: centered content with breathing room */}
+      <div className="flex flex-col justify-center items-center w-full max-w-2xl px-6 z-10 pointer-events-auto pt-12 sm:pt-16 md:pt-20 pb-8">
+        {/* 1. Headline */}
         <motion.h1
           className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-center w-full justify-center items-center flex-col flex whitespace-pre leading-tight font-bold tracking-tight space-y-1 md:space-y-3 text-[rgb(var(--heading-1))]"
           animate={{ opacity: 1, y: 0 }}
@@ -200,9 +98,9 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
           </span>
         </motion.h1>
 
-        {/* Subheadline */}
+        {/* 2. Single subheadline */}
         <motion.p
-          className="text-sm sm:text-base md:text-lg lg:text-xl text-center pt-6 sm:pt-8 md:pt-10 max-w-xl text-[rgb(var(--heading-2))]"
+          className="text-base sm:text-lg md:text-xl text-center mt-6 md:mt-8 max-w-lg text-[rgb(var(--heading-2))]"
           animate={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3, ease: "easeOut", delay: 0.5 }}
@@ -210,66 +108,46 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
           {content.subheadline}
         </motion.p>
 
-        {/* Bold statement */}
-        <motion.p
-          className="text-sm sm:text-base md:text-lg font-semibold text-center pt-3 max-w-xl text-[rgb(var(--heading-1))]"
+        {/* 3. CTAs — primary solid + secondary outline */}
+        <motion.div
+          className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 items-center mt-8 md:mt-10 w-full sm:w-auto"
           animate={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3, ease: "easeOut", delay: 0.6 }}
         >
-          {content.subheadline2}
-        </motion.p>
+          <motion.a
+            href={content.ctaPrimaryHref}
+            className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-white bg-primary px-6 py-2.5 sm:px-8 sm:py-3 rounded-full z-20 shadow-lg hover:bg-blue-800 transition-colors duration-200 text-center"
+            whileHover={{
+              scale: 1.05,
+              transition: { type: "spring", damping: 30, stiffness: 400 },
+            }}
+          >
+            {content.ctaPrimary}
+          </motion.a>
+          <motion.a
+            href={content.ctaSecondaryHref}
+            className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-primary border-2 border-primary px-6 py-2.5 sm:px-8 sm:py-3 rounded-full z-20 hover:bg-primary hover:text-white transition-colors duration-200 text-center"
+            whileHover={{
+              scale: 1.05,
+              transition: { type: "spring", damping: 30, stiffness: 400 },
+            }}
+          >
+            {content.ctaSecondary}
+          </motion.a>
+        </motion.div>
 
-        {/* CTAs */}
+        {/* 4. Indicators */}
         <motion.div
-          className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 items-center mt-8 sm:mt-10 md:mt-12 w-full sm:w-auto"
+          className="flex flex-wrap justify-center gap-2.5 mt-8 md:mt-10"
           animate={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3, ease: "easeOut", delay: 0.7 }}
         >
-          <motion.a
-            href={content.cta1Href}
-            className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-white bg-primary px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3 rounded-full z-20 shadow-2xl hover:bg-blue-800 transition-colors duration-200 text-center"
-            whileHover={{
-              scale: 1.05,
-              transition: { type: "spring", damping: 30, stiffness: 400 },
-            }}
-          >
-            {content.cta1}
-          </motion.a>
-          <motion.a
-            href={content.cta2Href}
-            className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-white bg-primary px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3 rounded-full z-20 shadow-2xl hover:bg-blue-800 transition-colors duration-200 text-center"
-            whileHover={{
-              scale: 1.05,
-              transition: { type: "spring", damping: 30, stiffness: 400 },
-            }}
-          >
-            {content.cta2}
-          </motion.a>
-        </motion.div>
-
-        {/* One-liner */}
-        <motion.p
-          className="text-xs sm:text-sm text-center pt-4 text-[rgb(var(--heading-3))] italic"
-          animate={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.3, ease: "easeOut", delay: 0.8 }}
-        >
-          {content.oneliner}
-        </motion.p>
-
-        {/* Indicators */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-3 mt-8 sm:mt-10"
-          animate={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.3, ease: "easeOut", delay: 0.9 }}
-        >
           {content.indicators.map((item) => (
             <span
               key={item}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[rgb(var(--box-border))] bg-[rgb(var(--color-box))] text-xs font-semibold text-[rgb(var(--heading-2))]"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[rgb(var(--box-border))] bg-[rgb(var(--color-box))]/80 backdrop-blur-sm text-xs font-medium text-[rgb(var(--heading-2))]"
             >
               <svg
                 className="w-3.5 h-3.5 text-green-500 flex-shrink-0"
@@ -285,6 +163,40 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
               </svg>
               {item}
             </span>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Image Marquee — below content, not overlapping */}
+      <div className="w-full mt-4 overflow-hidden pointer-events-none pb-4"
+        style={{ maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)" }}
+      >
+        <motion.div
+          className="flex gap-4"
+          animate={{
+            x: ["-50%", "0%"],
+          }}
+          transition={{
+            ease: "linear",
+            duration: 40,
+            repeat: Infinity,
+          }}
+        >
+          {duplicatedImages.map((src, index) => (
+            <div
+              key={index}
+              className="relative aspect-[3/4] h-32 sm:h-40 md:h-48 lg:h-56 flex-shrink-0"
+              style={{
+                rotate: `${index % 2 === 0 ? -2 : 3}deg`,
+              }}
+            >
+              <img
+                src={src}
+                alt={siteScreenshots[index % siteScreenshots.length].title}
+                className="w-full h-full object-cover rounded-2xl shadow-md border border-white/10"
+                loading="lazy"
+              />
+            </div>
           ))}
         </motion.div>
       </div>
