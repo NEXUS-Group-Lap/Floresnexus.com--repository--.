@@ -8,63 +8,81 @@ const { lang } = Astro.props;
 
 const t = {
   en: {
-    title: "Common Questions",
-    viewAll: "View All Questions",
-    viewAllHref: "/en/faq",
+    title: "Frequently Asked Questions",
+    subtitle: "Real questions from people like you.",
+    showMore: "Show more questions",
+    showLess: "Show less",
+    contact: "Still have questions?",
     faqs: [
-      {
-        q: "Do I need to know about technology?",
-        a: "No. We handle all the technical parts. You just give us your business info.",
-      },
-      {
-        q: "Does this guarantee me more sales?",
-        a: "No. A website helps present your business. But it does not guarantee sales.",
-      },
-      {
-        q: "When will my page be ready?",
-        a: "3–5 business days after payment and complete info. Without complete info, the clock doesn't start.",
-      },
-      {
-        q: "Can I request changes?",
-        a: "Yes, depending on your plan. Nexus Card: 0 changes. Starter: 1 small change per month. Professional: up to 3 small changes per month.",
-      },
+      { q: "Do I need to know anything about computers?", a: "No. We do everything technical. You just give us the information about your business — what you do, where you are, how to contact you — and we build the rest." },
+      { q: "Does this guarantee me more sales?", a: "No. We give you a professional space on the internet so people can find you and contact you. Whether you sell more depends on your product, your customer service, and your effort." },
+      { q: "When will my page be ready?", a: "3–5 business days after payment and complete info. Without complete info, the clock doesn't start." },
+      { q: "Can I request changes?", a: "Yes, depending on your plan. Nexus Card: 0 changes. Starter: 1 small change per month. Professional: up to 3 small changes per month." },
+      { q: "Can I cancel whenever I want?", a: "Yes, without penalty. Just let us know and we stop charging the next month. No minimum contract." },
+      { q: "What if I don't like how it looks?", a: "You have 1 or 2 chances to request changes (depending on your plan) before we publish it. These are consolidated lists of corrections, not unlimited changes." },
+      { q: "What happens if my business closes?", a: "You can cancel and we stop charging. Your site will go offline at the end of the billing period." },
+      { q: "Who owns my information?", a: "You own your content (text, photos, business information). We manage the space on the internet where it lives." },
+      { q: "What if I want to change plans?", a: "You can move to a higher plan at any time. You pay the difference in setup (according to the upgrade table) and the new monthly price." },
+      { q: "What exactly does the monthly payment cover?", a: "That your site stays on the internet, updated, and working. This includes keeping it online, basic maintenance, and the small changes included in your plan (0 for Nexus Card, 1 for Starter, 3 for Professional)." },
+      { q: "Can I own my website completely?", a: "The monthly plans are managed by Flores Nexus. If you want to own the site completely (to move it somewhere else), that's a separate service quoted based on complexity (starting at $3,500). Most of our clients don't need this because we take care of everything." },
+      { q: "What if I need more changes than what's included?", a: "You can buy extra changes for $29 each or a pack of 3 changes for $49/month (Starter/Professional only). Unused changes don't carry over to the next month." },
+      { q: "What if I need it faster?", a: "We can speed up the process for an additional cost (starting at $99), subject to availability and prior approval." },
+      { q: "Will you put me first on Google?", a: "No. We don't promise Google positions or marketing results. What we do guarantee is that your site is on the internet, looks professional, and is easy to find." },
+      { q: "What happens with my web address (domain)?", a: "Nexus Card: Your space lives at floresnexus.cards/yourbusiness (does not include your own address). Starter/Professional: Includes 1 standard web address (up to $25/year included). If you want a specific address, premium, or special extension, it may cost extra. Availability is not guaranteed." },
+      { q: "Can I have my site in English and Spanish?", a: "Each plan includes 1 language. If you need both, it's a paid add-on: Nexus Card $49 + $9/month, Starter $149 + $19/month, Professional $349 + $39/month." },
+      { q: "What if I want a refund?", a: "Before we start working: 100% refund minus Stripe processing fees. After we start working: the setup is not refundable. Annual plans: within 30 days, refund for complete unused months, minus fees. Full details at our Refund Policy page." },
+      { q: "What if Flores Nexus makes a mistake?", a: "We correct the error without using your included monthly changes." },
+      { q: "Can I use photos I found on the internet?", a: "No. You can only use photos that you took yourself, that you purchased with a license, or that you have the rights to use. You must confirm image rights when sending your content." },
     ],
   },
   es: {
     title: "Preguntas Frecuentes",
-    viewAll: "Ver Todas las Preguntas",
-    viewAllHref: "/es/preguntas",
+    subtitle: "Preguntas reales de personas como tú.",
+    showMore: "Ver más preguntas",
+    showLess: "Ver menos",
+    contact: "¿Aún tienes preguntas?",
     faqs: [
-      {
-        q: "¿Tengo que saber de tecnología?",
-        a: "No. Nosotros hacemos toda la parte técnica. Tú solo nos das la información de tu negocio.",
-      },
-      {
-        q: "¿Esto me garantiza más ventas?",
-        a: "No. Una página web ayuda a presentar tu negocio. Pero no garantiza ventas.",
-      },
-      {
-        q: "¿Cuándo estará lista mi página?",
-        a: "En 3–5 días hábiles después del pago y la información completa. Sin información completa, el reloj no corre.",
-      },
-      {
-        q: "¿Puedo pedir cambios?",
-        a: "Sí, según el plan. Nexus Card: 0 cambios. Starter: 1 cambio pequeño al mes. Professional: hasta 3 cambios pequeños al mes.",
-      },
+      { q: "¿Tengo que saber de tecnología?", a: "No. Nosotros hacemos toda la parte técnica. Tú solo nos das la información de tu negocio — qué haces, dónde estás, cómo contactarte — y nosotros construimos el resto." },
+      { q: "¿Esto me garantiza más ventas?", a: "No. Nosotros te damos un espacio profesional en internet para que te encuentren y contacten. Que vendas más depende de tu producto, tu atención al cliente y tu esfuerzo." },
+      { q: "¿Cuándo estará lista mi página?", a: "En 3–5 días hábiles después del pago y la información completa. Sin información completa, el reloj no corre." },
+      { q: "¿Puedo pedir cambios?", a: "Sí, según el plan. Nexus Card: 0 cambios. Starter: 1 cambio pequeño al mes. Professional: hasta 3 cambios pequeños al mes." },
+      { q: "¿Puedo cancelar cuando quiera?", a: "Sí, sin penalización. Solo nos avisas y dejamos de cobrar el siguiente mes. No hay contrato mínimo." },
+      { q: "¿Qué pasa si no me gusta cómo queda?", a: "Tienes 1 o 2 oportunidades de pedir cambios (según tu plan) antes de que lo publiquemos. Son listas consolidadas de correcciones, no cambios ilimitados." },
+      { q: "¿Qué pasa si mi negocio cierra?", a: "Puedes cancelar y dejamos de cobrar. Tu sitio se desactiva al final del período de facturación." },
+      { q: "¿Quién es dueño de mi información?", a: "Tú. Tu contenido (textos, fotos, información del negocio) es tuyo. Nosotros solo administramos el espacio en internet donde vive." },
+      { q: "¿Qué pasa si quiero cambiar de plan?", a: "Puedes subir de plan cuando quieras. Pagas la diferencia del precio inicial (según la tabla de upgrades) y la nueva mensualidad." },
+      { q: "¿Qué incluye exactamente la mensualidad?", a: "Que tu sitio siga en internet, actualizado y funcionando. Incluye mantenerlo en línea, mantenimiento básico y los cambios pequeños según tu plan (0 en Nexus Card, 1 en Starter, 3 en Professional)." },
+      { q: "¿Puedo ser dueño de mi sitio web?", a: "Los planes mensuales son administrados por Flores Nexus. Si quieres ser dueño completo del sitio (para moverlo a otro lugar), eso es un servicio separado que se cotiza según la complejidad (desde $3,500). La mayoría de nuestros clientes no necesitan esto porque nosotros nos encargamos de todo." },
+      { q: "¿Qué pasa si necesito más cambios de los incluidos?", a: "Puedes comprar cambios extra por $29 cada uno o un paquete de 3 cambios por $49/mes (solo Starter/Professional). Los cambios no usados no se acumulan al siguiente mes." },
+      { q: "¿Qué pasa si quiero mi sitio más rápido?", a: "Podemos acelerar el proceso por un costo adicional (desde $99), sujeto a disponibilidad y aprobación previa." },
+      { q: "¿Me van a poner primero en Google?", a: "No. No prometemos posiciones en Google ni resultados de marketing. Lo que sí garantizamos es que tu sitio esté en internet, se vea profesional y sea fácil de encontrar." },
+      { q: "¿Qué pasa con mi dirección web (dominio)?", a: "Nexus Card: Tu espacio vive en floresnexus.cards/tunegocio (no incluye dirección propia). Starter/Professional: Incluye 1 dirección web estándar (hasta $25/año incluido). Si quieres una dirección específica, premium o extensión especial, puede tener costo adicional. La disponibilidad no está garantizada." },
+      { q: "¿Puedo tener mi sitio en inglés y español?", a: "Cada plan incluye 1 idioma. Si necesitas los dos, es un extra pagado: Nexus Card $49 + $9/mes, Starter $149 + $19/mes, Professional $349 + $39/mes." },
+      { q: "¿Qué pasa si quiero un reembolso?", a: "Antes de que empecemos a trabajar: reembolso 100% menos comisiones de Stripe. Después de que empecemos: el precio inicial no es reembolsable. Planes anuales: dentro de 30 días, reembolso por meses completos no usados, menos comisiones. Detalles completos en nuestra Política de Reembolsos." },
+      { q: "¿Qué pasa si Flores Nexus comete un error?", a: "Corregimos el error sin consumir tus cambios incluidos del mes." },
+      { q: "¿Puedo usar fotos que encontré en internet?", a: "No. Solo puedes usar fotos que tú hayas tomado, que hayas comprado con licencia, o que tengas derechos para usar. Debes confirmar derechos de imagen al enviar tu contenido." },
     ],
   },
 }[lang];
+
+const visibleCount = 5;
 ---
 
-<section class="py-16">
+<section class="py-16" id={lang === "en" ? "faq" : "preguntas"}>
   <Container>
     <div class="text-center mb-10" data-reveal>
-      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-3">{t.title}</h2>
+      <p class="text-heading-3 text-lg">{t.subtitle}</p>
     </div>
 
     <div class="max-w-3xl mx-auto space-y-3" data-stagger>
-      {t.faqs.map((faq) => (
-        <details class="rounded-xl border border-box-border bg-box-bg overflow-hidden motion-card group">
+      {t.faqs.map((faq, i) => (
+        <details
+          class:list={[
+            "rounded-xl border border-box-border bg-box-bg overflow-hidden motion-card group",
+            i >= visibleCount && "faq-hidden-item hidden"
+          ]}
+        >
           <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer text-heading-1 font-semibold text-sm hover:bg-primary/5 transition-colors list-none">
             {faq.q}
             <svg class="w-5 h-5 text-heading-3 flex-shrink-0 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -78,10 +96,42 @@ const t = {
       ))}
     </div>
 
-    <div class="text-center mt-8" data-reveal>
-      <a href={t.viewAllHref} class="inline-flex items-center gap-2 text-primary font-semibold hover:underline text-sm">
-        {t.viewAll} →
-      </a>
+    <div class="text-center mt-8">
+      <button
+        id="faq-toggle"
+        class="inline-flex items-center gap-2 text-primary font-semibold hover:underline text-sm cursor-pointer"
+        data-show={t.showMore}
+        data-hide={t.showLess}
+      >
+        <span>{t.showMore}</span>
+        <svg class="w-4 h-4 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="text-center mt-6">
+      <p class="text-heading-3 text-sm">
+        {t.contact}{" "}
+        <a href="mailto:hola@floresnexus.com" class="text-primary hover:underline font-semibold">hola@floresnexus.com</a>
+      </p>
     </div>
   </Container>
 </section>
+
+<script>
+  const faqBtn = document.getElementById("faq-toggle");
+  if (faqBtn) {
+    const faqItems = document.querySelectorAll(".faq-hidden-item");
+    const faqLabel = faqBtn.querySelector("span")!;
+    const faqIcon = faqBtn.querySelector("svg") as SVGElement;
+    let faqExpanded = false;
+
+    faqBtn.addEventListener("click", () => {
+      faqExpanded = !faqExpanded;
+      faqItems.forEach((el) => el.classList.toggle("hidden", !faqExpanded));
+      faqLabel.textContent = faqExpanded ? faqBtn.dataset.hide! : faqBtn.dataset.show!;
+      faqIcon.style.transform = faqExpanded ? "rotate(180deg)" : "";
+    });
+  }
+</script>

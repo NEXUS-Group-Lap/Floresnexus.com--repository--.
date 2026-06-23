@@ -8,6 +8,8 @@ import WebExamples from "../../components/sections/WebExamples.astro";
 import HowItWorks from "../../components/sections/HowItWorks.astro";
 import PromoLaunchOffer from "../../components/sections/PromoLaunchOffer.astro";
 import Pricing from "../../components/sections/Pricing.astro";
+import PlanQuiz from "../../components/sections/pricing/PlanQuiz.astro";
+import Container from "../../components/shared/Container.astro";
 import BusinessSystemCTA from "../../components/sections/BusinessSystemCTA.astro";
 import FAQPreview from "../../components/sections/FAQPreview.astro";
 import FinalCTA from "../../components/sections/FinalCTA.astro";
@@ -27,6 +29,22 @@ import FinalCTA from "../../components/sections/FinalCTA.astro";
     <HowItWorks lang="es" />
     <PromoLaunchOffer lang="es" />
     <Pricing lang="es" />
+    <section class="py-6 bg-gray-50 dark:bg-gray-900/30">
+      <Container>
+        <div class="max-w-xl mx-auto text-center">
+          <p class="text-sm text-heading-3 mb-3">¿No sabes qué plan se adapta a tu negocio?</p>
+          <button
+            id="open-quiz-btn"
+            class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border-2 border-primary text-primary font-semibold text-sm hover:bg-primary hover:text-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          >
+            Responde 3 preguntas →
+          </button>
+        </div>
+      </Container>
+    </section>
+    <div class="bg-gray-50 dark:bg-gray-900/30">
+      <PlanQuiz lang="es" compareHref="/es/precios" />
+    </div>
     <BusinessSystemCTA lang="es" />
     <div class="bg-gray-50 dark:bg-gray-900/30">
       <FAQPreview lang="es" />
@@ -34,3 +52,74 @@ import FinalCTA from "../../components/sections/FinalCTA.astro";
     <FinalCTA lang="es" />
   </main>
 </Layout>
+
+<script is:inline>
+(function () {
+  var state = { quizStep: 0, quizAnswers: [null, null, null] };
+
+  function openQuiz() {
+    var q = document.getElementById("quiz-section");
+    if (q) { q.classList.remove("hidden"); setTimeout(function () { q.scrollIntoView({ behavior: "smooth", block: "start" }); }, 50); }
+  }
+
+  function goToQuizStep(step) {
+    state.quizStep = step;
+    document.querySelectorAll("[data-quiz-question]").forEach(function (el) { el.classList.toggle("hidden", parseInt(el.dataset.quizQuestion) !== step); });
+    var label = document.getElementById("quiz-step-label");
+    if (label) label.textContent = (label.dataset.template || "Paso {n} de 3").replace("{n}", step + 1);
+    document.querySelectorAll("[data-quiz-dot]").forEach(function (dot) { var i = parseInt(dot.dataset.quizDot); dot.classList.toggle("bg-primary", i <= step); dot.classList.toggle("bg-gray-300", i > step); dot.classList.toggle("dark:bg-gray-600", i > step); });
+  }
+
+  function calcRecommendation() {
+    if (state.quizAnswers.includes("business-system")) return "business-system";
+    var s = { "nexus-card": 0, starter: 0, professional: 0 };
+    state.quizAnswers.forEach(function (a) { if (a && s[a] !== undefined) s[a]++; });
+    var max = Math.max(s["nexus-card"], s.starter, s.professional);
+    if (s.professional === max && s.professional > 0) return "professional";
+    if (s.starter === max && s.starter > 0) return "starter";
+    return "nexus-card";
+  }
+
+  function showQuizResult() {
+    var rec = calcRecommendation();
+    document.getElementById("quiz-questions").classList.add("hidden");
+    document.getElementById("quiz-progress").classList.add("hidden");
+    document.querySelectorAll("[data-quiz-result-plan]").forEach(function (el) { el.classList.toggle("hidden", el.dataset.quizResultPlan !== rec); });
+    document.getElementById("quiz-result").classList.remove("hidden");
+    setTimeout(function () { document.getElementById("quiz-result").scrollIntoView({ behavior: "smooth", block: "start" }); }, 100);
+  }
+
+  var btn = document.getElementById("open-quiz-btn");
+  if (btn) btn.addEventListener("click", openQuiz);
+
+  document.querySelectorAll("[data-quiz-option]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var step = parseInt(b.dataset.quizStep);
+      state.quizAnswers[step] = b.dataset.quizValue;
+      document.querySelectorAll('[data-quiz-option][data-quiz-step="' + step + '"]').forEach(function (o) { o.classList.remove("border-primary", "bg-primary/10", "text-primary", "font-semibold"); o.classList.add("border-box-border"); o.setAttribute("aria-checked", "false"); });
+      b.classList.add("border-primary", "bg-primary/10", "text-primary", "font-semibold"); b.classList.remove("border-box-border"); b.setAttribute("aria-checked", "true");
+      var next = document.querySelector('[data-quiz-next="' + step + '"]') || (step === 2 ? document.getElementById("quiz-see-result") : null);
+      if (next) { next.removeAttribute("disabled"); next.classList.remove("opacity-40", "cursor-not-allowed"); }
+    });
+  });
+
+  document.querySelectorAll("[data-quiz-next]").forEach(function (b) { b.addEventListener("click", function () { var s = parseInt(b.dataset.quizNext); if (state.quizAnswers[s]) goToQuizStep(s + 1); }); });
+  document.querySelectorAll("[data-quiz-back]").forEach(function (b) { b.addEventListener("click", function () { goToQuizStep(parseInt(b.dataset.quizBack) - 1); }); });
+
+  var seeBtn = document.getElementById("quiz-see-result");
+  if (seeBtn) seeBtn.addEventListener("click", function () { if (state.quizAnswers[2]) showQuizResult(); });
+
+  var restartBtn = document.getElementById("quiz-restart");
+  if (restartBtn) restartBtn.addEventListener("click", function () {
+    state.quizAnswers = [null, null, null];
+    document.querySelectorAll("[data-quiz-option]").forEach(function (o) { o.classList.remove("border-primary", "bg-primary/10", "text-primary", "font-semibold"); o.classList.add("border-box-border"); o.setAttribute("aria-checked", "false"); });
+    document.querySelectorAll("[data-quiz-next]").forEach(function (o) { o.setAttribute("disabled", ""); o.classList.add("opacity-40", "cursor-not-allowed"); });
+    var sr = document.getElementById("quiz-see-result"); if (sr) { sr.setAttribute("disabled", ""); sr.classList.add("opacity-40", "cursor-not-allowed"); }
+    document.getElementById("quiz-result").classList.add("hidden");
+    document.getElementById("quiz-progress").classList.remove("hidden");
+    document.getElementById("quiz-questions").classList.remove("hidden");
+    document.querySelectorAll("[data-quiz-result-plan]").forEach(function (el) { el.classList.add("hidden"); });
+    goToQuizStep(0);
+  });
+})();
+</script>

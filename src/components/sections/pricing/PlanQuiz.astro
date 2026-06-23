@@ -4,8 +4,9 @@ import { plans } from "../../../data/plans";
 
 export interface Props {
   lang: "en" | "es";
+  compareHref?: string;
 }
-const { lang } = Astro.props;
+const { lang, compareHref: compareHrefProp } = Astro.props;
 
 const t = {
   en: {
@@ -134,7 +135,7 @@ const optionValues = [
 
 const resultPlans = ["nexus-card", "starter", "professional", "business-system"];
 
-const compareHref = lang === "en" ? "#compare" : "#comparar";
+const compareHref = compareHrefProp || (lang === "en" ? "#compare" : "#comparar");
 const examplesHref = lang === "en" ? "#examples" : "#ejemplos";
 ---
 

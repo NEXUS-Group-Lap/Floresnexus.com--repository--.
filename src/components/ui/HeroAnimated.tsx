@@ -41,7 +41,7 @@ const t = {
   en: {
     headline1: "Managed websites",
     headline2Prefix: "for ",
-    rotatingWords: ["restaurants.", "plumbers.", "landscapers.", "barber shops.", "electricians.", "roofers.", "painters.", "auto shops.", "dentists.", "salons."],
+    rotatingWords: ["You.", "Everyone.", "Landscapers.", "Barber Shops.", "Electricians.", "Roofers.", "Painters.", "Auto Shops.", "Dentists.", "Salons."],
     subheadline:
       "We build your business website and keep it running for you. Your page shows your services, photos, hours, location, and contact buttons.",
     subheadline2: "You give us the info. We handle the technical part.",

@@ -1,382 +1,51 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/shared/Container.astro";
-import PricingCards from "../../components/sections/pricing/PricingCards.astro";
-import PlanQuiz from "../../components/sections/pricing/PlanQuiz.astro";
-import PlanExamples from "../../components/sections/pricing/PlanExamples.astro";
 import PlanComparisonTable from "../../components/sections/pricing/PlanComparisonTable.astro";
-import HowToStart from "../../components/sections/pricing/HowToStart.astro";
-import StickyPlanBar from "../../components/sections/pricing/StickyPlanBar.astro";
-import CriticalServiceInfo from "../../components/sections/pricing/CriticalServiceInfo.astro";
-import BusinessSystemCTA from "../../components/sections/BusinessSystemCTA.astro";
-import NoLogoYet from "../../components/sections/NoLogoYet.astro";
-import GrowthPath from "../../components/sections/GrowthPath.astro";
-import DigitalAccessProgram from "../../components/sections/DigitalAccessProgram.astro";
-import PromoLaunchOffer from "../../components/sections/PromoLaunchOffer.astro";
-import UpgradeTable from "../../components/sections/UpgradeTable.astro";
-import { plans } from "../../data/plans";
-
-const pagePlanData = {
-  "nexus-card": {
-    name: plans["nexus-card"].es.name,
-    priceMonthly: `${plans["nexus-card"].setup} inicial + ${plans["nexus-card"].monthly}/mes`,
-    priceAnnual: `${plans["nexus-card"].setup} inicial + ${plans["nexus-card"].annualPrice}/año`,
-    startHref: plans["nexus-card"].startForm.es,
-    ctaText: plans["nexus-card"].es.cta,
-    benefits: plans["nexus-card"].es.homeFeatures.slice(0, 3),
-  },
-  starter: {
-    name: plans.starter.es.name,
-    priceMonthly: `${plans.starter.setup} inicial + ${plans.starter.monthly}/mes`,
-    priceAnnual: `${plans.starter.setup} inicial + ${plans.starter.annualPrice}/año`,
-    startHref: plans.starter.startForm.es,
-    ctaText: plans.starter.es.cta,
-    benefits: plans.starter.es.homeFeatures.slice(0, 3),
-  },
-  professional: {
-    name: plans.professional.es.name,
-    priceMonthly: `${plans.professional.setup} inicial + ${plans.professional.monthly}/mes`,
-    priceAnnual: `${plans.professional.setup} inicial + ${plans.professional.annualPrice}/año`,
-    startHref: plans.professional.startForm.es,
-    ctaText: plans.professional.es.cta,
-    benefits: plans.professional.es.homeFeatures.slice(0, 3),
-  },
-  "business-system": {
-    name: plans["business-system"].es.name,
-    priceMonthly: "Desde $2,500 de configuración y $399/mes",
-    priceAnnual: "Desde $2,500 de configuración y $399/mes",
-    startHref: plans["business-system"].startForm.es,
-    ctaText: plans["business-system"].es.cta,
-    benefits: [],
-  },
-};
+import PlanExamples from "../../components/sections/pricing/PlanExamples.astro";
 ---
 
 <Layout
-  title="Planes y Precios"
-  description="Precios de Flores Nexus Group — Nexus Card, Starter Website, Professional Website y Business System."
+  title="Comparar Planes — Flores Nexus Group"
+  description="Compara Nexus Card, Starter Website y Professional Website lado a lado. Ve funciones, límites y ejemplos de cada plan."
   lang="es"
 >
   <main class="pt-24 flex flex-col overflow-hidden">
-    <!-- Hero -->
-    <section class="pt-12 pb-4 text-center">
-      <Container>
-        <div class="max-w-2xl mx-auto" data-reveal>
-          <h1 class="text-4xl md:text-5xl font-bold text-heading-1 mb-3">
-            Elige el nivel de presencia en línea adecuado
-          </h1>
-          <p class="text-heading-3 text-lg mb-2">
-            Comienza con un enlace administrado simple, un sitio web profesional de una página o un sitio completo de varias páginas. Cambia de plan cuando tu negocio crezca.
-          </p>
-          <p class="text-sm text-heading-3">Planes mensuales flexibles con ahorro anual opcional.</p>
-        </div>
-      </Container>
-    </section>
-
-    <!-- 1. Tarjetas de precios con toggle de facturación -->
-    <PricingCards lang="es" />
-
-    <!-- 3. Selector interactivo compacto -->
-    <section class="py-6 bg-gray-50 dark:bg-gray-900/30">
-      <Container>
-        <div class="max-w-xl mx-auto text-center">
-          <p class="text-sm text-heading-3 mb-3">¿No sabes qué plan se adapta a tu negocio?</p>
-          <button
-            id="open-quiz-btn"
-            class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border-2 border-primary text-primary font-semibold text-sm hover:bg-primary hover:text-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-          >
-            Responde 3 preguntas →
-          </button>
-        </div>
-      </Container>
-    </section>
-
-    <!-- Quiz (oculto hasta hacer clic) -->
-    <div class="bg-gray-50 dark:bg-gray-900/30">
-      <PlanQuiz lang="es" />
-    </div>
-
-    <!-- 4. Tabla comparativa simplificada -->
     <PlanComparisonTable lang="es" />
 
-    <!-- 5. Ejemplos (6 en total) -->
     <div class="bg-gray-50 dark:bg-gray-900/30">
       <PlanExamples lang="es" />
     </div>
 
-    <!-- ¿No tienes logo? -->
-    <NoLogoYet lang="es" />
-
-    <!-- Ruta de crecimiento -->
-    <div class="bg-gray-50 dark:bg-gray-900/30">
-      <GrowthPath lang="es" />
-    </div>
-
-    <!-- Promo (oculta por defecto, set active={true} para mostrar) -->
-    <PromoLaunchOffer lang="es" />
-
-    <UpgradeTable lang="es" />
-
-    <!-- 6. Información crítica del servicio -->
-    <CriticalServiceInfo lang="es" />
-
-    <!-- 7. Business System -->
-    <div class="bg-gray-50 dark:bg-gray-900/30">
-      <BusinessSystemCTA lang="es" />
-    </div>
-
-    <!-- Programa de Acceso Digital -->
-    <DigitalAccessProgram lang="es" />
-
-    <!-- 8. Cómo funciona (4 pasos) -->
-    <HowToStart lang="es" />
-
-    <!-- 9. CTA final -->
-    <section class="py-16 bg-gray-50 dark:bg-gray-900/30">
+    <section class="py-16">
       <Container>
         <div class="text-center max-w-2xl mx-auto" data-reveal>
           <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-3">
-            Elige tu plan o déjanos ayudarte a decidir
+            ¿Listo para empezar?
           </h2>
           <p class="text-lg text-heading-3 mb-8">
-            Comienza hoy con la opción que se adapte a tu negocio. Sin compromiso a largo plazo.
+            Elige el plan que se adapte a tu negocio y empieza hoy.
           </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center" data-stagger>
-            <a
-              href="/es/empezar"
-              class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-all duration-300 motion-button"
-            >
-              Comenzar Mi Sitio
-            </a>
-            <button
-              id="open-quiz-btn-2"
-              class="inline-flex items-center justify-center px-8 py-3 rounded-full border-2 border-box-border text-heading-2 font-semibold hover:border-primary hover:text-primary transition-all duration-300 motion-button"
-            >
-              Ayúdame a Elegir
-            </button>
-          </div>
+          <a
+            href="/es/empezar"
+            class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-all duration-300 motion-button"
+          >
+            Comenzar Mi Sitio
+          </a>
         </div>
       </Container>
     </section>
   </main>
-
-  <!-- Barra de plan fija -->
-  <StickyPlanBar lang="es" />
 </Layout>
 
-<script is:inline define:vars={{ pagePlanData }}>
+<script is:inline>
 (function () {
-  var params = new URLSearchParams(window.location.search);
-  var validPlans = ["nexus-card", "starter", "professional", "business-system"];
   var tabPlans = ["nexus-card", "starter", "professional"];
-
-  var state = {
-    billing: params.get("billing") === "annual" ? "annual" : "monthly",
-    selectedPlan: validPlans.includes(params.get("plan") || "") ? params.get("plan") : null,
-    examplesTab: tabPlans.includes(params.get("plan") || "") ? params.get("plan") : "starter",
-    quizStep: 0,
-    quizAnswers: [null, null, null],
-  };
-
-  function updateURL() {
-    var p = new URLSearchParams(window.location.search);
-    if (state.billing === "annual") p.set("billing", "annual"); else p.delete("billing");
-    if (state.selectedPlan) p.set("plan", state.selectedPlan); else p.delete("plan");
-    var qs = p.toString();
-    history.replaceState(null, "", qs ? "?" + qs : window.location.pathname);
-  }
-
-  function renderBilling() {
-    var isAnnual = state.billing === "annual";
-    document.querySelectorAll("[data-billing]").forEach(function (btn) {
-      var active = btn.dataset.billing === state.billing;
-      btn.setAttribute("aria-pressed", active ? "true" : "false");
-      btn.classList.toggle("bg-primary", active);
-      btn.classList.toggle("text-white", active);
-      btn.classList.toggle("text-heading-2", !active);
-    });
-    document.querySelectorAll("[data-show-billing]").forEach(function (el) {
-      el.classList.toggle("hidden", el.dataset.showBilling !== state.billing);
-    });
-    document.querySelectorAll("[data-plan-cta]").forEach(function (el) {
-      var planId = el.dataset.planCta;
-      var baseHref = (pagePlanData[planId] || {}).startHref || "#";
-      el.href = isAnnual ? baseHref + "&billing=annual" : baseHref;
-    });
-    renderStickyBar();
-  }
-
-  function initBillingToggle() {
-    document.querySelectorAll("[data-billing]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        state.billing = btn.dataset.billing;
-        renderBilling();
-        updateURL();
-      });
-    });
-  }
-
-  function renderPlanCards() {
-    document.querySelectorAll("[data-plan-card]").forEach(function (card) {
-      var sel = card.dataset.planCard === state.selectedPlan;
-      card.classList.toggle("ring-2", sel);
-      card.classList.toggle("ring-primary", sel);
-      card.classList.toggle("ring-offset-2", sel);
-    });
-  }
-
-  function initPlanCards() {
-    document.querySelectorAll("[data-plan-card]").forEach(function (card) {
-      card.addEventListener("click", function (e) {
-        if (e.target.closest("a")) return;
-        state.selectedPlan = card.dataset.planCard;
-        renderPlanCards();
-        var tabPlan = tabPlans.includes(state.selectedPlan) ? state.selectedPlan : "starter";
-        switchExamplesTab(tabPlan);
-        renderStickyBar();
-        updateURL();
-      });
-      card.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); card.click(); }
-      });
-    });
-    document.querySelectorAll("[data-plan-cta]").forEach(function (el) {
-      el.addEventListener("click", function () {
-        state.selectedPlan = el.dataset.planCta;
-        renderPlanCards();
-        renderStickyBar();
-        updateURL();
-      });
-    });
-  }
-
-  function openQuiz() {
-    var quizSection = document.getElementById("quiz-section");
-    if (quizSection) {
-      quizSection.classList.remove("hidden");
-      setTimeout(function () { quizSection.scrollIntoView({ behavior: "smooth", block: "start" }); }, 50);
-    }
-  }
-
-  function initQuiz() {
-    document.querySelectorAll("#open-quiz-btn, #open-quiz-btn-2").forEach(function (btn) {
-      if (btn) btn.addEventListener("click", openQuiz);
-    });
-
-    document.querySelectorAll("[data-quiz-option]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var step = parseInt(btn.dataset.quizStep);
-        state.quizAnswers[step] = btn.dataset.quizValue;
-        document.querySelectorAll('[data-quiz-option][data-quiz-step="' + step + '"]').forEach(function (b) {
-          b.classList.remove("border-primary", "bg-primary/10", "text-primary", "font-semibold");
-          b.classList.add("border-box-border");
-          b.setAttribute("aria-checked", "false");
-        });
-        btn.classList.add("border-primary", "bg-primary/10", "text-primary", "font-semibold");
-        btn.classList.remove("border-box-border");
-        btn.setAttribute("aria-checked", "true");
-        var nextBtn = document.querySelector('[data-quiz-next="' + step + '"]') ||
-          (step === 2 ? document.getElementById("quiz-see-result") : null);
-        if (nextBtn) {
-          nextBtn.removeAttribute("disabled");
-          nextBtn.classList.remove("opacity-40", "cursor-not-allowed");
-        }
-      });
-    });
-
-    document.querySelectorAll("[data-quiz-next]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var step = parseInt(btn.dataset.quizNext);
-        if (!state.quizAnswers[step]) return;
-        goToQuizStep(step + 1);
-      });
-    });
-
-    document.querySelectorAll("[data-quiz-back]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var step = parseInt(btn.dataset.quizBack);
-        goToQuizStep(step - 1);
-      });
-    });
-
-    var seeResultBtn = document.getElementById("quiz-see-result");
-    if (seeResultBtn) {
-      seeResultBtn.addEventListener("click", function () {
-        if (!state.quizAnswers[2]) return;
-        showQuizResult();
-      });
-    }
-
-    var restartBtn = document.getElementById("quiz-restart");
-    if (restartBtn) {
-      restartBtn.addEventListener("click", function () {
-        state.quizAnswers = [null, null, null];
-        document.querySelectorAll("[data-quiz-option]").forEach(function (b) {
-          b.classList.remove("border-primary", "bg-primary/10", "text-primary", "font-semibold");
-          b.classList.add("border-box-border");
-          b.setAttribute("aria-checked", "false");
-        });
-        document.querySelectorAll("[data-quiz-next]").forEach(function (b) {
-          b.setAttribute("disabled", "");
-          b.classList.add("opacity-40", "cursor-not-allowed");
-        });
-        var srBtn = document.getElementById("quiz-see-result");
-        if (srBtn) { srBtn.setAttribute("disabled", ""); srBtn.classList.add("opacity-40", "cursor-not-allowed"); }
-        document.getElementById("quiz-result").classList.add("hidden");
-        document.getElementById("quiz-progress").classList.remove("hidden");
-        document.getElementById("quiz-questions").classList.remove("hidden");
-        document.querySelectorAll("[data-quiz-result-plan]").forEach(function (el) { el.classList.add("hidden"); });
-        goToQuizStep(0);
-      });
-    }
-
-    document.querySelectorAll("[data-quiz-examples-link]").forEach(function (el) {
-      el.addEventListener("click", function () { switchExamplesTab(el.dataset.quizExamplesLink); });
-    });
-  }
-
-  function goToQuizStep(step) {
-    state.quizStep = step;
-    document.querySelectorAll("[data-quiz-question]").forEach(function (el) {
-      el.classList.toggle("hidden", parseInt(el.dataset.quizQuestion) !== step);
-    });
-    var label = document.getElementById("quiz-step-label");
-    if (label) label.textContent = (label.dataset.template || "Paso {n} de 3").replace("{n}", step + 1);
-    document.querySelectorAll("[data-quiz-dot]").forEach(function (dot) {
-      var i = parseInt(dot.dataset.quizDot);
-      dot.classList.toggle("bg-primary", i <= step);
-      dot.classList.toggle("bg-gray-300", i > step);
-      dot.classList.toggle("dark:bg-gray-600", i > step);
-    });
-  }
-
-  function calcRecommendation() {
-    if (state.quizAnswers.includes("business-system")) return "business-system";
-    var s = { "nexus-card": 0, starter: 0, professional: 0 };
-    state.quizAnswers.forEach(function (a) { if (a && s[a] !== undefined) s[a]++; });
-    var max = Math.max(s["nexus-card"], s.starter, s.professional);
-    if (s.professional === max && s.professional > 0) return "professional";
-    if (s.starter === max && s.starter > 0) return "starter";
-    return "nexus-card";
-  }
-
-  function showQuizResult() {
-    var rec = calcRecommendation();
-    document.getElementById("quiz-questions").classList.add("hidden");
-    document.getElementById("quiz-progress").classList.add("hidden");
-    document.querySelectorAll("[data-quiz-result-plan]").forEach(function (el) {
-      el.classList.toggle("hidden", el.dataset.quizResultPlan !== rec);
-    });
-    document.getElementById("quiz-result").classList.remove("hidden");
-    if (tabPlans.includes(rec)) { switchExamplesTab(rec); }
-    setTimeout(function () {
-      document.getElementById("quiz-result").scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
-  }
+  var params = new URLSearchParams(window.location.search);
+  var initialTab = tabPlans.includes(params.get("plan") || "") ? params.get("plan") : "starter";
 
   function switchExamplesTab(planId) {
     if (!tabPlans.includes(planId)) return;
-    state.examplesTab = planId;
     document.querySelectorAll("[data-examples-tab]").forEach(function (btn) {
       var active = btn.dataset.examplesTab === planId;
       btn.setAttribute("aria-selected", active ? "true" : "false");
@@ -391,103 +60,27 @@ const pagePlanData = {
     });
   }
 
-  function initExamplesTabs() {
-    document.querySelectorAll("[data-examples-tab]").forEach(function (btn) {
-      btn.addEventListener("click", function () { switchExamplesTab(btn.dataset.examplesTab); });
+  document.querySelectorAll("[data-examples-tab]").forEach(function (btn) {
+    btn.addEventListener("click", function () { switchExamplesTab(btn.dataset.examplesTab); });
+  });
+
+  document.querySelectorAll('[role="tablist"]').forEach(function (tablist) {
+    tablist.addEventListener("keydown", function (e) {
+      var tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+      var idx = tabs.indexOf(document.activeElement);
+      if (idx < 0) return;
+      var next = idx;
+      if (e.key === "ArrowRight") next = (idx + 1) % tabs.length;
+      else if (e.key === "ArrowLeft") next = (idx - 1 + tabs.length) % tabs.length;
+      else if (e.key === "Home") next = 0;
+      else if (e.key === "End") next = tabs.length - 1;
+      else return;
+      e.preventDefault();
+      tabs[next].focus();
+      tabs[next].click();
     });
-  }
+  });
 
-  function renderStickyBar() {
-    var bar = document.getElementById("sticky-plan-bar");
-    if (!bar) return;
-    if (!state.selectedPlan) { bar.classList.add("translate-y-full"); return; }
-    var data = pagePlanData[state.selectedPlan];
-    if (!data) return;
-    bar.classList.remove("translate-y-full");
-    var priceStr = state.billing === "annual" ? data.priceAnnual : data.priceMonthly;
-    var nameEl = bar.querySelector("[data-sticky-name]");
-    if (nameEl) nameEl.textContent = data.name;
-    var priceEl = bar.querySelector("[data-sticky-price]");
-    if (priceEl) priceEl.textContent = priceStr;
-    var benefitsEl = bar.querySelector("[data-sticky-benefits]");
-    if (benefitsEl) {
-      benefitsEl.textContent = "";
-      (data.benefits || []).forEach(function (benefit) {
-        var li = document.createElement("li");
-        li.className = "flex items-center gap-1";
-        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svg.setAttribute("class", "w-3 h-3 text-green-500");
-        svg.setAttribute("fill", "currentColor");
-        svg.setAttribute("viewBox", "0 0 20 20");
-        svg.setAttribute("aria-hidden", "true");
-        var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        path.setAttribute("fill-rule", "evenodd");
-        path.setAttribute("clip-rule", "evenodd");
-        path.setAttribute("d", "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z");
-        svg.appendChild(path);
-        li.appendChild(svg);
-        li.appendChild(document.createTextNode(benefit));
-        benefitsEl.appendChild(li);
-      });
-    }
-    var ctaEl = bar.querySelector("[data-sticky-cta]");
-    if (ctaEl) {
-      ctaEl.href = state.billing === "annual" ? data.startHref + "&billing=annual" : data.startHref;
-      ctaEl.textContent = data.ctaText;
-    }
-    var nameMob = bar.querySelector("[data-sticky-name-mobile]");
-    if (nameMob) nameMob.textContent = data.name;
-    var priceMob = bar.querySelector("[data-sticky-price-mobile]");
-    if (priceMob) priceMob.textContent = priceStr;
-    var ctaMob = bar.querySelector("[data-sticky-cta-mobile]");
-    if (ctaMob) {
-      ctaMob.href = state.billing === "annual" ? data.startHref + "&billing=annual" : data.startHref;
-      ctaMob.textContent = data.ctaText;
-    }
-  }
-
-  function initStickyBar() {
-    var bar = document.getElementById("sticky-plan-bar");
-    if (!bar) return;
-    var footer = document.querySelector("footer");
-    if (footer) {
-      new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (state.selectedPlan) bar.classList.toggle("translate-y-full", entry.isIntersecting);
-        });
-      }, { threshold: 0.01 }).observe(footer);
-    }
-  }
-
-  function initKeyboardNav() {
-    document.querySelectorAll('[role="tablist"]').forEach(function (tablist) {
-      tablist.addEventListener("keydown", function (e) {
-        var tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
-        var idx = tabs.indexOf(document.activeElement);
-        if (idx < 0) return;
-        var next = idx;
-        if (e.key === "ArrowRight") next = (idx + 1) % tabs.length;
-        else if (e.key === "ArrowLeft") next = (idx - 1 + tabs.length) % tabs.length;
-        else if (e.key === "Home") next = 0;
-        else if (e.key === "End") next = tabs.length - 1;
-        else return;
-        e.preventDefault();
-        tabs[next].focus();
-        tabs[next].click();
-      });
-    });
-  }
-
-  initBillingToggle();
-  initPlanCards();
-  initQuiz();
-  initExamplesTabs();
-  initStickyBar();
-  initKeyboardNav();
-
-  renderBilling();
-  renderPlanCards();
-  switchExamplesTab(state.examplesTab);
-  renderStickyBar();
+  switchExamplesTab(initialTab);
 })();
 </script>
