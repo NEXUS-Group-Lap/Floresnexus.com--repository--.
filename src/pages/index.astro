@@ -2,46 +2,20 @@
 import GatewayLayout from "../layouts/GatewayLayout.astro";
 ---
 
-<GatewayLayout title="Choose Language">
-  <main class="flex-1 flex items-center justify-center px-4 py-20">
-    <section class="w-full max-w-3xl text-center">
-      <div class="mb-10">
-        <div class="inline-flex items-center gap-3 mb-5">
-          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-10 h-10">
-            <path d="M16 2L28 10L28 22L16 30L4 22L4 10Z" fill="#cfdcfd" fill-opacity="0.35" stroke="#8aabfc" stroke-width="0.5" stroke-opacity="0.5"></path>
-            <path d="M16 6L24 12L24 20L16 26L8 20L8 12Z" fill="#92b4fd" fill-opacity="0.45" stroke="#4a82f8" stroke-width="0.5" stroke-opacity="0.5"></path>
-            <path d="M16 10L21 14L21 18L16 22L11 18L11 14Z" fill="#1055f4"></path>
-          </svg>
-          <div class="text-left leading-none">
-            <p class="text-base font-bold text-heading-1 tracking-wide">FLORES NEXUS</p>
-            <p class="text-xs font-medium text-heading-3 tracking-widest uppercase">GROUP</p>
-          </div>
-        </div>
-        <h1 class="text-3xl md:text-5xl font-bold text-heading-1 mb-4">Choose your language</h1>
-        <p class="text-heading-3 text-base md:text-lg max-w-xl mx-auto">
-          Select the version of the Flores Nexus Group website you want to visit.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a
-          href="/en/"
-          class="rounded-2xl border-2 border-box-border bg-box-bg p-8 text-left hover:border-primary hover:shadow-lg transition-all duration-300 motion-card"
-        >
-          <p class="text-sm font-semibold text-primary mb-2">English</p>
-          <h2 class="text-2xl font-bold text-heading-1 mb-2">View English Site</h2>
-          <p class="text-sm text-heading-3">Plans, pricing, FAQ, and start form in English.</p>
-        </a>
-
-        <a
-          href="/es/"
-          class="rounded-2xl border-2 border-box-border bg-box-bg p-8 text-left hover:border-primary hover:shadow-lg transition-all duration-300 motion-card"
-        >
-          <p class="text-sm font-semibold text-primary mb-2">Español</p>
-          <h2 class="text-2xl font-bold text-heading-1 mb-2">Ver Sitio en Español</h2>
-          <p class="text-sm text-heading-3">Planes, precios, preguntas y formulario para empezar.</p>
-        </a>
-      </div>
-    </section>
+<GatewayLayout title="Flores Nexus Group">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=/en/" />
+  </noscript>
+  <script is:inline>
+    (function () {
+      var langs = navigator.languages || [navigator.language || "en"];
+      var isSpanish = langs.some(function (l) {
+        return l.toLowerCase().startsWith("es");
+      });
+      window.location.replace(isSpanish ? "/es/" : "/en/");
+    })();
+  </script>
+  <main class="flex-1 flex items-center justify-center px-4">
+    <p class="text-heading-3 text-sm">Redirecting…</p>
   </main>
 </GatewayLayout>
