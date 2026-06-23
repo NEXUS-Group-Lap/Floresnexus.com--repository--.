@@ -25,6 +25,12 @@ import { START_FORM_ENDPOINT } from "../../config/links";
           <p class="text-xs text-heading-3 mb-6 text-center">Paso 2 de 2 — Cuéntanos sobre tu negocio</p>
 
           <form id="onboarding-form" class="space-y-5" data-endpoint={START_FORM_ENDPOINT}>
+            <!-- Honeypot anti-bot -->
+            <div class="absolute -left-[9999px]" aria-hidden="true">
+              <label for="company_website_es">Sitio Web</label>
+              <input type="text" id="company_website_es" name="company_website" tabindex="-1" autocomplete="off" />
+            </div>
+
             <div>
               <label for="industry" class="block text-sm font-semibold text-heading-2 mb-1.5">
                 ¿Qué tipo de negocio tienes? <span class="text-red-500">*</span>
@@ -226,7 +232,14 @@ import { START_FORM_ENDPOINT } from "../../config/links";
   if (type === "quote") {
     if (title) title.textContent = "Solicitud de Cotización Recibida";
     if (message) {
-      message.innerHTML = `Tu solicitud de cotización para Business System fue recibida. Un representante de Flores Nexus Group revisará el alcance del proyecto contigo. <strong class="text-heading-2 block mt-2">No se cobra ningún pago hasta que la cotización sea aprobada.</strong>`;
+      message.textContent = "";
+      const span = document.createElement("span");
+      span.textContent = "Tu solicitud de cotización para Business System fue recibida. Un representante de Flores Nexus Group revisará el alcance del proyecto contigo. ";
+      const strong = document.createElement("strong");
+      strong.className = "text-heading-2 block mt-2";
+      strong.textContent = "No se cobra ningún pago hasta que la cotización sea aprobada.";
+      message.appendChild(span);
+      message.appendChild(strong);
     }
   } else if (type === "application") {
     if (title) title.textContent = "Solicitud Recibida";
@@ -247,15 +260,26 @@ import { START_FORM_ENDPOINT } from "../../config/links";
 
   checkboxes.forEach((cb) => cb.addEventListener("change", checkAllAcknowledged));
 
+  let lastSubmitTime = 0;
+
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+
+      const honeypot = (document.getElementById("company_website_es") as HTMLInputElement)?.value;
+      if (honeypot) return;
+
+      const now = Date.now();
+      if (now - lastSubmitTime < 5000) return;
+      lastSubmitTime = now;
+
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = "Enviando...";
       }
 
       const formData = new FormData(form);
+      formData.delete("company_website");
       const endpoint = form.dataset.endpoint;
 
       if (endpoint && endpoint !== "#") {

@@ -1,0 +1,105 @@
+---
+export interface Props {
+  lang?: "en" | "es";
+}
+
+const { lang = "en" } = Astro.props;
+
+const text = {
+  en: {
+    message: "We use cookies and analytics tools to understand how visitors use our site. By continuing, you accept our",
+    privacy: "Privacy Policy",
+    accept: "Accept",
+    reject: "Reject Non-Essential",
+  },
+  es: {
+    message: "Usamos cookies y herramientas de análisis para entender cómo los visitantes usan nuestro sitio. Al continuar, aceptas nuestra",
+    privacy: "Política de Privacidad",
+    accept: "Aceptar",
+    reject: "Rechazar No Esenciales",
+  },
+};
+
+const t = text[lang];
+const privacyHref = lang === "es" ? "/es/politica-de-privacidad" : "/en/privacy-policy";
+---
+
+<div
+  id="cookie-consent"
+  class="fixed bottom-0 left-0 right-0 z-50 translate-y-full transition-transform duration-500 ease-out"
+  role="dialog"
+  aria-label={lang === "es" ? "Consentimiento de cookies" : "Cookie consent"}
+>
+  <div class="mx-auto max-w-4xl px-4 pb-4">
+    <div class="rounded-2xl border border-box-border bg-box-bg/95 backdrop-blur-md p-5 shadow-xl">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <p class="text-sm text-heading-3 leading-relaxed flex-1">
+          {t.message}
+          <a href={privacyHref} class="text-primary hover:underline ml-1">{t.privacy}</a>.
+        </p>
+        <div class="flex gap-2 flex-shrink-0">
+          <button
+            id="cookie-reject"
+            class="px-4 py-2 rounded-full text-sm font-medium border border-box-border text-heading-2 hover:bg-box-border/20 transition"
+          >
+            {t.reject}
+          </button>
+          <button
+            id="cookie-accept"
+            class="px-5 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:bg-blue-800 transition"
+          >
+            {t.accept}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var consent = localStorage.getItem("cookieConsent");
+    var banner = document.getElementById("cookie-consent");
+    if (!banner) return;
+
+    if (consent === "accepted" || consent === "rejected") {
+      banner.remove();
+      if (consent === "rejected") {
+        disableTracking();
+      }
+      return;
+    }
+
+    setTimeout(function () {
+      banner.classList.remove("translate-y-full");
+    }, 1000);
+
+    document.getElementById("cookie-accept").addEventListener("click", function () {
+      localStorage.setItem("cookieConsent", "accepted");
+      banner.classList.add("translate-y-full");
+      setTimeout(function () { banner.remove(); }, 500);
+    });
+
+    document.getElementById("cookie-reject").addEventListener("click", function () {
+      localStorage.setItem("cookieConsent", "rejected");
+      disableTracking();
+      banner.classList.add("translate-y-full");
+      setTimeout(function () { banner.remove(); }, 500);
+    });
+
+    function disableTracking() {
+      window["ga-disable-G-XXXXXXXXXX"] = true;
+      var scripts = document.querySelectorAll(
+        'script[src*="googletagmanager"], script[src*="google-analytics"], script[src*="fbevents"], script[src*="clarity.ms"]'
+      );
+      scripts.forEach(function (s) { s.remove(); });
+      document.cookie.split(";").forEach(function (c) {
+        var name = c.split("=")[0].trim();
+        if (name.startsWith("_ga") || name.startsWith("_gid") || name.startsWith("_fb") || name.startsWith("_clck") || name.startsWith("_clsk")) {
+          document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=" + location.hostname;
+          document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+        }
+      });
+    }
+  })();
+</script>

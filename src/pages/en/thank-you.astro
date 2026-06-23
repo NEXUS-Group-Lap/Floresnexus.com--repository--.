@@ -27,6 +27,12 @@ import { START_FORM_ENDPOINT } from "../../config/links";
           <p class="text-xs text-heading-3 mb-6 text-center">Step 2 of 2 — Tell us about your business</p>
 
           <form id="onboarding-form" class="space-y-5" data-endpoint={START_FORM_ENDPOINT}>
+            <!-- Honeypot anti-bot -->
+            <div class="absolute -left-[9999px]" aria-hidden="true">
+              <label for="company_website">Company Website</label>
+              <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off" />
+            </div>
+
             <div>
               <label for="industry" class="block text-sm font-semibold text-heading-2 mb-1.5">
                 What type of business do you have? <span class="text-red-500">*</span>
@@ -234,7 +240,14 @@ import { START_FORM_ENDPOINT } from "../../config/links";
   if (type === "quote") {
     if (title) title.textContent = "Quote Request Received";
     if (message) {
-      message.innerHTML = `Your Business System quote request has been received. A Flores Nexus Group representative will review the project scope with you. <strong class="text-heading-2 block mt-2">No payment is collected until the quote is approved.</strong>`;
+      message.textContent = "";
+      const span = document.createElement("span");
+      span.textContent = "Your Business System quote request has been received. A Flores Nexus Group representative will review the project scope with you. ";
+      const strong = document.createElement("strong");
+      strong.className = "text-heading-2 block mt-2";
+      strong.textContent = "No payment is collected until the quote is approved.";
+      message.appendChild(span);
+      message.appendChild(strong);
     }
   } else if (type === "application") {
     if (title) title.textContent = "Application Received";
@@ -255,15 +268,26 @@ import { START_FORM_ENDPOINT } from "../../config/links";
 
   checkboxes.forEach((cb) => cb.addEventListener("change", checkAllAcknowledged));
 
+  let lastSubmitTime = 0;
+
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+
+      const honeypot = (document.getElementById("company_website") as HTMLInputElement)?.value;
+      if (honeypot) return;
+
+      const now = Date.now();
+      if (now - lastSubmitTime < 5000) return;
+      lastSubmitTime = now;
+
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = "Submitting...";
       }
 
       const formData = new FormData(form);
+      formData.delete("company_website");
       const endpoint = form.dataset.endpoint;
 
       if (endpoint && endpoint !== "#") {
