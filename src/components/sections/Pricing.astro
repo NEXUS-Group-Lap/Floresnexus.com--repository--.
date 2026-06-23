@@ -78,7 +78,12 @@ const pricingPlans = planOrder.map((id) => {
 <section class="py-16" id={lang === "en" ? "pricing" : "planes"}>
   <Container>
     <div class="text-center mb-4" data-reveal>
-      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">
+        {lang === "en"
+          ? <Fragment>Simple, <span class="text-primary dark:text-blue-400">Clear</span> Pricing</Fragment>
+          : <Fragment>Precios Simples y <span class="text-primary dark:text-blue-400">Claros</span></Fragment>
+        }
+      </h2>
       <p class="text-heading-3 text-lg max-w-2xl mx-auto">{t.subtitle}</p>
     </div>
 

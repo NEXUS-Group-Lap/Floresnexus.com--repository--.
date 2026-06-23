@@ -71,7 +71,12 @@ const visibleCount = 5;
 <section class="py-16" id={lang === "en" ? "faq" : "preguntas"}>
   <Container>
     <div class="text-center mb-10" data-reveal>
-      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-3">{t.title}</h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-3">
+        {lang === "en"
+          ? <Fragment>Frequently Asked <span class="text-primary dark:text-blue-400">Questions</span></Fragment>
+          : <Fragment>Preguntas <span class="text-primary dark:text-blue-400">Frecuentes</span></Fragment>
+        }
+      </h2>
       <p class="text-heading-3 text-lg">{t.subtitle}</p>
     </div>
 

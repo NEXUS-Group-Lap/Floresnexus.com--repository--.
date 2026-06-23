@@ -29,8 +29,8 @@ interface SquishyPricingCardsProps {
 
 const CARD_COLORS = [
   "bg-[#102a66]",
-  "bg-[#1d4ed8]",
-  "bg-[#1055f4]",
+  "bg-primary",
+  "bg-blue-600",
 ];
 
 export default function SquishyPricingCards({ plans }: SquishyPricingCardsProps) {

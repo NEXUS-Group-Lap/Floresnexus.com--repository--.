@@ -185,7 +185,12 @@ const fanCards = t.examples.map((ex) => ({
 <section class="py-16" id={lang === "en" ? "examples" : "ejemplos"}>
   <Container>
     <div class="text-center mb-6" data-reveal>
-      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">
+        {lang === "en"
+          ? <Fragment>Real Projects and Styles <span class="text-primary dark:text-blue-400">We Can Build</span></Fragment>
+          : <Fragment>Proyectos Reales y Estilos <span class="text-primary dark:text-blue-400">Que Podemos Construir</span></Fragment>
+        }
+      </h2>
       <p class="text-heading-3 text-lg max-w-2xl mx-auto">{t.subtitle}</p>
     </div>
   </Container>

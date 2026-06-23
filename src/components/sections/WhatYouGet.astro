@@ -83,7 +83,12 @@ const t = {
 <section class="py-16" id={lang === "en" ? "what-you-get" : "que-recibes"}>
   <Container>
     <div class="text-center mb-12" data-reveal>
-      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">
+        {lang === "en"
+          ? <Fragment>What Does Your <span class="text-primary dark:text-blue-400">Business</span> Get?</Fragment>
+          : <Fragment>¿Qué recibe tu <span class="text-primary dark:text-blue-400">negocio</span>?</Fragment>
+        }
+      </h2>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-stagger>

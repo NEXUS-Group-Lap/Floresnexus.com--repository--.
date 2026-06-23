@@ -45,9 +45,24 @@ interface TubelightNavProps {
   className?: string
 }
 
+function getActiveFromPath(items: NavItem[]) {
+  if (typeof window === "undefined") return items[0].name
+  const path = window.location.pathname.replace(/\/$/, "")
+  const hash = window.location.hash
+
+  for (const item of [...items].reverse()) {
+    if (item.url.includes("#")) {
+      if (path + hash === item.url) return item.name
+    } else {
+      if (path === item.url.replace(/\/$/, "")) return item.name
+    }
+  }
+  return items[0].name
+}
+
 export function TubelightNav({ lang, className }: TubelightNavProps) {
   const items = navItemsByLang[lang]
-  const [activeTab, setActiveTab] = useState(items[0].name)
+  const [activeTab, setActiveTab] = useState(() => getActiveFromPath(items))
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 })
   const navRef = useRef<HTMLDivElement>(null)
   const tabRefs = useRef<Map<string, HTMLAnchorElement>>(new Map())
@@ -71,17 +86,7 @@ export function TubelightNav({ lang, className }: TubelightNavProps) {
   }, [updateIndicator])
 
   const getActiveFromURL = useCallback(() => {
-    const path = window.location.pathname.replace(/\/$/, "")
-    const hash = window.location.hash
-
-    for (const item of [...items].reverse()) {
-      if (item.url.includes("#")) {
-        if (path + hash === item.url) return item.name
-      } else {
-        if (path === item.url.replace(/\/$/, "")) return item.name
-      }
-    }
-    return items[0].name
+    return getActiveFromPath(items)
   }, [items])
 
   const handleClick = useCallback((name: string, url: string, e: React.MouseEvent) => {
@@ -116,6 +121,13 @@ export function TubelightNav({ lang, className }: TubelightNavProps) {
     }
     window.addEventListener("hashchange", handleHash)
 
+    const homePath = lang === "en" ? "/en" : "/es"
+    const currentPath = window.location.pathname.replace(/\/$/, "")
+    const isHomePage = currentPath === homePath
+
+    if (!isHomePage)
+      return () => window.removeEventListener("hashchange", handleHash)
+
     const hashItems = items.filter((item) => item.url.includes("#"))
     const sections = hashItems
       .map((item) => ({
@@ -149,7 +161,7 @@ export function TubelightNav({ lang, className }: TubelightNavProps) {
       window.removeEventListener("hashchange", handleHash)
       observer.disconnect()
     }
-  }, [items, getActiveFromURL, updateIndicator, setActive])
+  }, [items, lang, getActiveFromURL, updateIndicator, setActive])
 
   useEffect(() => {
     updateIndicator(activeTab)
@@ -162,15 +174,15 @@ export function TubelightNav({ lang, className }: TubelightNavProps) {
         className="relative flex items-center gap-1 bg-[rgb(var(--color-box))]/80 border border-[rgb(var(--box-border))] backdrop-blur-lg py-1 px-1 rounded-full shadow-lg"
       >
         <motion.div
-          className="absolute top-0 -z-10 h-full rounded-full bg-[#1d4ed8]/5"
+          className="absolute top-0 -z-10 h-full rounded-full bg-primary/5"
           animate={{
             left: indicatorStyle.left,
             width: indicatorStyle.width,
           }}
           transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}
         >
-          <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-[#1d4ed8] rounded-t-full">
-            <div className="absolute w-10 h-4 bg-[#1d4ed8]/25 rounded-full blur-md -top-1 -left-1" />
+          <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-primary rounded-t-full">
+            <div className="absolute w-10 h-4 bg-primary/25 rounded-full blur-md -top-1 -left-1" />
           </div>
         </motion.div>
 
@@ -189,10 +201,10 @@ export function TubelightNav({ lang, className }: TubelightNavProps) {
               className={cn(
                 "relative cursor-pointer text-sm font-semibold px-4 py-2 rounded-full transition-colors duration-150",
                 item.cta
-                  ? "bg-[#1d4ed8] text-white hover:bg-[#1e40af]"
+                  ? "bg-primary text-white hover:bg-blue-800"
                   : cn(
-                      "text-[rgb(var(--heading-2))] hover:text-[#1d4ed8]",
-                      isActive && "text-[#1d4ed8]"
+                      "text-[rgb(var(--heading-2))] hover:text-primary",
+                      isActive && "text-primary"
                     )
               )}
             >

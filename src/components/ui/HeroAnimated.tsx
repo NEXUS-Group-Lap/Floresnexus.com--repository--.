@@ -190,7 +190,7 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
             <span className="relative inline-flex h-[1.15em] items-baseline overflow-hidden">
               <TextRotate
                 texts={content.rotatingWords}
-                mainClassName="text-[#1d4ed8]"
+                mainClassName="text-primary dark:text-blue-400"
                 staggerDuration={0.03}
                 staggerFrom="last"
                 rotationInterval={3000}
@@ -229,7 +229,7 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
         >
           <motion.a
             href={content.cta1Href}
-            className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-white bg-[#1d4ed8] px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3 rounded-full z-20 shadow-2xl hover:bg-blue-800 transition-colors duration-200 text-center"
+            className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-white bg-primary px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3 rounded-full z-20 shadow-2xl hover:bg-blue-800 transition-colors duration-200 text-center"
             whileHover={{
               scale: 1.05,
               transition: { type: "spring", damping: 30, stiffness: 400 },
@@ -239,7 +239,7 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
           </motion.a>
           <motion.a
             href={content.cta2Href}
-            className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-white bg-[#2454E6] px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3 rounded-full z-20 shadow-2xl hover:bg-[#1E40AF] transition-colors duration-200 text-center"
+            className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-white bg-primary px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3 rounded-full z-20 shadow-2xl hover:bg-blue-800 transition-colors duration-200 text-center"
             whileHover={{
               scale: 1.05,
               transition: { type: "spring", damping: 30, stiffness: 400 },
