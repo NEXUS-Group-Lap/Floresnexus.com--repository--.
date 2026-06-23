@@ -1,4 +1,4 @@
-import { LayoutGroup, motion } from "motion/react"
+import { motion } from "motion/react"
 import { TextRotate } from "@/components/ui/text-rotate"
 import Floating, { FloatingElement } from "@/components/ui/parallax-floating"
 
@@ -39,39 +39,39 @@ const siteScreenshots = [
 
 const t = {
   en: {
-    headline1: "Your business online,",
-    headline2Prefix: "",
-    rotatingWords: ["without complications.", "ready for customers.", "managed for you.", "hassle-free."],
+    headline1: "Managed websites",
+    headline2Prefix: "for ",
+    rotatingWords: ["restaurants.", "plumbers.", "landscapers.", "barber shops.", "electricians.", "roofers.", "painters.", "auto shops.", "dentists.", "salons."],
     subheadline:
-      "We create and maintain your professional space on the internet so your customers can find you, contact you, and trust you.",
-    subheadline2: "You don't do anything technical. We take care of everything.",
+      "We build your business website and keep it running for you. Your page shows your services, photos, hours, location, and contact buttons.",
+    subheadline2: "You give us the info. We handle the technical part.",
     cta1: "View Plans",
     cta1Href: "/en/pricing",
-    cta2: "Start Now — Setup $0",
+    cta2: "Start Now",
     cta2Href: "/en/start",
     badge: "Websites for local businesses",
-    oneliner: "Built for you. Managed for you. Without agency-level pricing.",
-    indicators: ["Setup $0 for first 30 businesses", "3–5 business days", "EN/ES support"],
+    oneliner: "Built for you. Managed for you. No technical skills needed.",
+    indicators: ["$0 setup for first 30 businesses", "3–5 business days", "EN/ES support"],
     promoBadge: "Launch Offer",
-    promoText: "Setup $0 for the first 30 local businesses",
+    promoText: "$0 setup for Nexus Card and Starter Website",
     promoHref: "/en/start",
   },
   es: {
-    headline1: "Tu negocio en internet,",
-    headline2Prefix: "",
-    rotatingWords: ["sin complicaciones.", "listo para clientes.", "administrado por ti.", "sin estrés."],
+    headline1: "Páginas web administradas",
+    headline2Prefix: "para ",
+    rotatingWords: ["restaurantes.", "plomeros.", "jardineros.", "barberías.", "electricistas.", "pintores.", "talleres.", "dentistas.", "salones.", "tiendas."],
     subheadline:
-      "Creamos y mantenemos tu espacio profesional en internet para que tus clientes te encuentren, te contacten y confíen en ti.",
-    subheadline2: "Tú no haces nada técnico. Nosotros nos encargamos de todo.",
+      "Creamos la página web de tu negocio y la mantenemos activa por ti. Tu página muestra tus servicios, fotos, horario, ubicación y botones de contacto.",
+    subheadline2: "Tú nos das la información. Nosotros hacemos la parte técnica.",
     cta1: "Ver Planes",
     cta1Href: "/es/precios",
-    cta2: "Empezar Ahora — Inicial $0",
+    cta2: "Empezar Ahora",
     cta2Href: "/es/empezar",
-    badge: "Sitios web para negocios locales",
-    oneliner: "Lo creamos por ti. Lo administramos por ti. Sin precios de agencia.",
-    indicators: ["Inicial $0 para los primeros 30 negocios", "3–5 días hábiles", "Atención EN/ES"],
+    badge: "Páginas web para negocios locales",
+    oneliner: "Lo creamos por ti. Lo administramos por ti. Sin saber de tecnología.",
+    indicators: ["$0 inicial para los primeros 30 negocios", "3–5 días hábiles", "Atención EN/ES"],
     promoBadge: "Oferta de Lanzamiento",
-    promoText: "Inicial $0 para los primeros 30 negocios locales",
+    promoText: "$0 inicial para Nexus Card y Starter Website",
     promoHref: "/es/empezar",
   },
 }
@@ -175,17 +175,6 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
 
       {/* Center content */}
       <div className="flex flex-col justify-center items-center w-[280px] sm:w-[400px] md:w-[550px] lg:w-[700px] z-10 pointer-events-auto">
-        {/* Badge */}
-        <motion.div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgb(var(--box-border))] bg-[rgb(var(--color-box))] text-sm text-[rgb(var(--heading-3))] mb-6"
-          animate={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.3, ease: "easeOut", delay: 0.1 }}
-        >
-          <span className="w-2 h-2 rounded-full bg-[#1d4ed8] animate-pulse" />
-          {content.badge}
-        </motion.div>
-
         {/* Headline with TextRotate */}
         <motion.h1
           className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-center w-full justify-center items-center flex-col flex whitespace-pre leading-tight font-bold tracking-tight space-y-1 md:space-y-3 text-[rgb(var(--heading-1))]"
@@ -194,25 +183,21 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
           transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
         >
           <span>{content.headline1}</span>
-          <LayoutGroup>
-            <motion.span layout className="flex whitespace-pre justify-center">
-              <motion.span
-                layout
-                className="flex whitespace-pre"
-                transition={{ type: "spring", damping: 30, stiffness: 400 }}
-              >
-                {content.headline2Prefix}
-              </motion.span>
+          <span className="flex whitespace-pre justify-center items-baseline">
+            <span className="flex whitespace-pre">
+              {content.headline2Prefix}
+            </span>
+            <span className="relative inline-flex h-[1.15em] items-baseline overflow-hidden">
               <TextRotate
                 texts={content.rotatingWords}
-                mainClassName="overflow-hidden pr-3 text-[#1d4ed8] py-0 pb-2 md:pb-4 rounded-xl"
+                mainClassName="text-[#1d4ed8]"
                 staggerDuration={0.03}
                 staggerFrom="last"
                 rotationInterval={3000}
                 transition={{ type: "spring", damping: 30, stiffness: 400 }}
               />
-            </motion.span>
-          </LayoutGroup>
+            </span>
+          </span>
         </motion.h1>
 
         {/* Subheadline */}
@@ -254,7 +239,7 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
           </motion.a>
           <motion.a
             href={content.cta2Href}
-            className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-white bg-green-600 px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3 rounded-full z-20 shadow-2xl hover:bg-green-700 transition-colors duration-200 text-center"
+            className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-white bg-[#2454E6] px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3 rounded-full z-20 shadow-2xl hover:bg-[#1E40AF] transition-colors duration-200 text-center"
             whileHover={{
               scale: 1.05,
               transition: { type: "spring", damping: 30, stiffness: 400 },

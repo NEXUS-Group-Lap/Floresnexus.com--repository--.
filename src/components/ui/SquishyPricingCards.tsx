@@ -74,7 +74,7 @@ function PricingCard({
       )}
 
       {plan.promoEligible && plan.promoBadge && (
-        <span className="absolute top-3 right-3 z-20 rounded-full bg-green-500/30 backdrop-blur-sm px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider text-green-200 border border-green-400/30">
+        <span className="absolute top-3 right-3 z-20 rounded-full bg-blue-500/30 backdrop-blur-sm px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider text-blue-200 border border-blue-400/30">
           {plan.promoBadge}
         </span>
       )}
@@ -93,7 +93,7 @@ function PricingCard({
           <div className="flex items-baseline gap-1.5">
             {plan.promoEligible && plan.promoSetup ? (
               <>
-                <span className="text-4xl font-bold leading-none text-green-300">{plan.promoSetup}</span>
+                <span className="text-4xl font-bold leading-none text-blue-300">{plan.promoSetup}</span>
                 <span className="text-lg text-white/50 line-through">{plan.setup}</span>
                 <span className="text-sm text-white/70">{plan.setupLabel}</span>
               </>

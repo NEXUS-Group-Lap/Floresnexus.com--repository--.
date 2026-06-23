@@ -12,17 +12,19 @@ const { lang = "en" } = Astro.props;
 const navItems =
   lang === "en"
     ? [
-        { href: "/en#what-we-do", text: "Services" },
-        { href: "/en#pricing", text: "Pricing" },
+        { href: "/en", text: "Home" },
+        { href: "/en#what-you-get", text: "Services" },
         { href: "/en#examples", text: "Examples" },
+        { href: "/en#pricing", text: "Pricing" },
         { href: "/en#how-it-works", text: "How It Works" },
         { href: "/en/faq", text: "FAQ" },
         { href: "/en/start", text: "Start" },
       ]
     : [
-        { href: "/es#que-hacemos", text: "Servicios" },
-        { href: "/es#planes", text: "Planes" },
+        { href: "/es", text: "Inicio" },
+        { href: "/es#que-recibes", text: "Servicios" },
         { href: "/es#ejemplos", text: "Ejemplos" },
+        { href: "/es#planes", text: "Planes" },
         { href: "/es#como-funciona", text: "Cómo Funciona" },
         { href: "/es/preguntas", text: "Preguntas" },
         { href: "/es/empezar", text: "Empezar" },

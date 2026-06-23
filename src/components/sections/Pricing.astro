@@ -1,6 +1,6 @@
 ---
 import Container from "../shared/Container.astro";
-import SquishyPricingCards from "../ui/SquishyPricingCards";
+import PricingCards from "../ui/PricingCards";
 import { plans, planOrder, promoConfig } from "../../data/plans";
 
 export interface Props {
@@ -10,50 +10,67 @@ const { lang } = Astro.props;
 
 const t = {
   en: {
-    title: "Simple, Transparent Pricing",
-    subtitle: "Choose the plan that fits your business today. No hidden fees.",
-    growthMessage: "Start with what you need. Move up when your business grows.",
-    setupLabel: "setup",
-    monthLabel: "/month",
-    recommendedBadge: "Recommended",
-    seeAll: "See all features",
-    footerNote: "We keep your site online while your subscription is active. Your own web address is subject to availability and managed by Flores Nexus Group. Premium addresses, extra changes, and advanced features may have additional costs. Full terms apply.",
+    title: "Simple, Clear Pricing",
+    subtitle: "Choose the plan that fits your business. No hidden fees.",
+    growthMessage: "Start with what you need. Move up when you're ready.",
+    footerNote: "We keep your page active while your plan is active. Web addresses are subject to availability and managed by Flores Nexus Group. Extras and additional changes may have separate costs. Full terms apply.",
+    labels: {
+      monthly: "Monthly",
+      annual: "Annual",
+      annualToggleBadge: "(Prepay)",
+      perMonth: "month",
+      perYear: "year",
+      billedMonthly: "Billed Monthly",
+      billedAnnually: "Billed Annually (Prepay)",
+      setupLabel: "setup",
+    },
+    recommendedLabel: "Recommended",
   },
   es: {
-    title: "Precios Simples y Transparentes",
-    subtitle: "Elige el plan que se adapte a tu negocio hoy. Sin costos ocultos.",
-    growthMessage: "Empieza con lo que necesitas. Sube de plan cuando tu negocio crezca.",
-    setupLabel: "inicial",
-    monthLabel: "/mes",
-    recommendedBadge: "Recomendado",
-    seeAll: "Ver todo lo que incluye",
-    footerNote: "Mantenemos tu sitio en internet mientras tu suscripción esté activa. Tu dirección web está sujeta a disponibilidad y es administrada por Flores Nexus Group. Direcciones premium, cambios extra y funciones avanzadas pueden tener costos adicionales. Aplican términos completos.",
+    title: "Precios Simples y Claros",
+    subtitle: "Elige el plan que se adapte a tu negocio. Sin costos ocultos.",
+    growthMessage: "Empieza con lo que necesitas. Sube de plan cuando estés listo.",
+    footerNote: "Mantenemos tu página activa mientras tu plan esté activo. Las direcciones web están sujetas a disponibilidad y son administradas por Flores Nexus Group. Los extras y cambios adicionales pueden tener costos aparte. Aplican términos completos.",
+    labels: {
+      monthly: "Mensual",
+      annual: "Anual",
+      annualToggleBadge: "(Prepago)",
+      perMonth: "mes",
+      perYear: "año",
+      billedMonthly: "Cobro Mensual",
+      billedAnnually: "Cobro Anual (Prepago)",
+      setupLabel: "inicial",
+    },
+    recommendedLabel: "Recomendado",
   },
 }[lang];
+
+function parsePrice(s: string | undefined): number {
+  if (!s) return 0;
+  return parseInt(s.replace(/[^0-9]/g, ""), 10) || 0;
+}
 
 const pricingPlans = planOrder.map((id) => {
   const plan = plans[id];
   const copy = plan[lang];
   const isPromoEligible = promoConfig.active && plan.promoEligible;
   return {
-    id: plan.id,
     name: copy.name,
-    tagline: copy.tagline,
+    monthlyPrice: parsePrice(plan.monthly),
+    annualPrice: parsePrice(plan.annualPrice),
     setup: plan.setup,
-    monthly: plan.monthly,
-    setupLabel: t.setupLabel,
-    monthLabel: t.monthLabel,
-    cta: copy.cta,
-    ctaHref: plan.startForm[lang],
+    features: copy.homeFeatures,
+    description: copy.tagline,
+    buttonText: copy.cta,
+    href: plan.startForm[lang],
     detailsCta: copy.detailsCta,
     detailsHref: plan.detailsHref[lang],
-    features: copy.homeFeatures.slice(0, 4),
-    seeAllLabel: t.seeAll,
-    isRecommended: plan.id === "professional",
-    recommendedLabel: plan.id === "professional" ? t.recommendedBadge : undefined,
+    isPopular: plan.id === "professional",
+    popularLabel: plan.id === "professional" ? t.recommendedLabel : undefined,
     promoEligible: isPromoEligible,
     promoSetup: isPromoEligible ? promoConfig.promoSetup : undefined,
     promoBadge: isPromoEligible ? promoConfig[lang].badge : undefined,
+    annualSavings: plan.annualSavings?.[lang],
   };
 });
 ---
@@ -71,7 +88,7 @@ const pricingPlans = planOrder.map((id) => {
   </Container>
 
   <Container>
-    <SquishyPricingCards client:visible plans={pricingPlans} />
+    <PricingCards client:visible plans={pricingPlans} labels={t.labels} />
     <p class="text-center text-xs text-heading-3 mt-8 max-w-2xl mx-auto italic">{t.footerNote}</p>
   </Container>
 </section>

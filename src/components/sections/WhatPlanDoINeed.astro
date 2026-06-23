@@ -1,0 +1,98 @@
+---
+import Container from "../shared/Container.astro";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    title: "What Plan Do I Need?",
+    plans: [
+      {
+        name: "Nexus Card",
+        desc: "For businesses that need a simple, quick link.",
+        price: "$29/month",
+      },
+      {
+        name: "Starter Website",
+        desc: "For businesses that need a complete page.",
+        price: "$79/month",
+      },
+      {
+        name: "Professional Website",
+        desc: "For businesses that need more sections, photos, and pages.",
+        price: "$149/month",
+      },
+      {
+        name: "Business System",
+        desc: "For businesses that need payments, bookings, or special features.",
+        price: "Custom quote",
+      },
+    ],
+    domainNote: "Depending on your plan, your page can live at a shared Flores Nexus address or at a standard address managed by us.",
+    cta: "View Plans",
+    ctaHref: "/en/pricing",
+  },
+  es: {
+    title: "¿Qué plan necesito?",
+    plans: [
+      {
+        name: "Nexus Card",
+        desc: "Para negocios que necesitan un enlace simple y rápido.",
+        price: "$29/mes",
+      },
+      {
+        name: "Starter Website",
+        desc: "Para negocios que necesitan una página completa.",
+        price: "$79/mes",
+      },
+      {
+        name: "Professional Website",
+        desc: "Para negocios que necesitan más secciones, fotos y páginas.",
+        price: "$149/mes",
+      },
+      {
+        name: "Business System",
+        desc: "Para negocios que necesitan pagos, reservas o funciones especiales.",
+        price: "Cotización",
+      },
+    ],
+    domainNote: "Según tu plan, tu página puede vivir en una dirección compartida de Flores Nexus o en un dominio estándar administrado por nosotros.",
+    cta: "Ver Planes",
+    ctaHref: "/es/precios",
+  },
+}[lang];
+---
+
+<section class="py-16 bg-gray-50 dark:bg-gray-900/30" id={lang === "en" ? "what-plan" : "que-plan"}>
+  <Container>
+    <div class="text-center mb-10" data-reveal>
+      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-4">{t.title}</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto" data-stagger>
+      {t.plans.map((plan) => (
+        <div class="p-5 rounded-2xl border border-box-border bg-box-bg hover:border-primary/50 hover:shadow-md transition-all duration-300 motion-card text-center">
+          <h3 class="font-bold text-heading-1 text-lg mb-2">{plan.name}</h3>
+          <p class="text-heading-3 text-sm leading-relaxed mb-3">{plan.desc}</p>
+          <p class="text-primary font-bold text-base">{plan.price}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-center text-sm text-heading-3 mt-8 max-w-2xl mx-auto" data-reveal>
+      {t.domainNote}
+    </p>
+
+    <div class="text-center mt-6" data-reveal>
+      <a
+        href={t.ctaHref}
+        class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-all duration-300 motion-button"
+      >
+        {t.cta}
+      </a>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,50 @@
+---
+import Container from "../shared/Container.astro";
+
+export interface Props {
+  lang: "en" | "es";
+}
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    title: "What Is a Website?",
+    lines: [
+      "A website is a place on the internet for your business.",
+      "Your customers see what you do, where you are, and how to contact you.",
+      "It can show your services, photos, hours, location, and call buttons.",
+      "You don't need to know about technology.",
+      "You give us the info. We create the page.",
+    ],
+  },
+  es: {
+    title: "¿Qué es una página web?",
+    lines: [
+      "Una página web es un lugar en internet para tu negocio.",
+      "Ahí tus clientes ven qué haces, dónde estás y cómo contactarte.",
+      "Puede mostrar tus servicios, fotos, horario, ubicación y botones de llamada.",
+      "No necesitas saber de tecnología.",
+      "Tú nos das la información. Nosotros creamos la página.",
+    ],
+  },
+}[lang];
+---
+
+<section class="py-16 bg-gray-50 dark:bg-gray-900/30" id={lang === "en" ? "what-is-a-website" : "que-es-una-pagina"}>
+  <Container>
+    <div class="max-w-2xl mx-auto text-center" data-reveal>
+      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-8">{t.title}</h2>
+      <div class="space-y-4">
+        {t.lines.map((line, i) => (
+          <p
+            class="text-lg text-heading-2 leading-relaxed"
+            data-reveal
+            style={`--reveal-delay: ${i * 80}ms`}
+          >
+            {line}
+          </p>
+        ))}
+      </div>
+    </div>
+  </Container>
+</section>

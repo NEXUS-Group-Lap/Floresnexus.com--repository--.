@@ -8,29 +8,25 @@ const { lang } = Astro.props;
 
 const t = {
   en: {
-    title: "This Is How It Works",
-    subtitle: "It's easier than you think. Your total time: less than 1 hour. We do the rest.",
+    title: "How It Works",
+    subtitle: "5 simple steps. You give us the info. We do the rest.",
     steps: [
       { number: "1", title: "Choose a plan", time: "2 min", desc: "Pick the plan that fits your business." },
-      { number: "2", title: "Fill out the short form", time: "1 min", desc: "Name, business, phone, email, and plan." },
-      { number: "3", title: "Complete payment", time: "1 min", desc: "Secure payment through Stripe. We never see your card." },
-      { number: "4", title: "Send us your business info", time: "15–30 min", desc: "What you sell, where you are, photos if you have them. Without complete info, the clock doesn't start." },
-      { number: "5", title: "We build your site", time: "3–5 days", desc: "3–5 business days AFTER we have everything." },
-      { number: "6", title: "You review it", time: "5 min", desc: "We show you the result and you tell us if you want changes (1 or 2 rounds depending on your plan)." },
-      { number: "7", title: "We publish it", time: "Same day", desc: "Your business is now on the internet. We keep it running." },
+      { number: "2", title: "Send your business info", time: "15–30 min", desc: "Complete the form and pay. Then send photos, services, hours, and location." },
+      { number: "3", title: "We create your page", time: "3–5 days", desc: "3–5 business days after payment and complete info." },
+      { number: "4", title: "We publish it online", time: "Same day", desc: "Your business is now on the internet." },
+      { number: "5", title: "We keep it active for you", time: "Ongoing", desc: "We keep your page active while your plan is active." },
     ],
   },
   es: {
-    title: "Así Funciona",
-    subtitle: "Es más fácil de lo que crees. Tu tiempo total: menos de 1 hora. Nosotros hacemos el resto.",
+    title: "Cómo Funciona",
+    subtitle: "5 pasos simples. Tú nos das la información. Nosotros hacemos el resto.",
     steps: [
-      { number: "1", title: "Elige tu plan", time: "2 min", desc: "Selecciona el plan que se adapte a tu negocio." },
-      { number: "2", title: "Llena el formulario corto", time: "1 min", desc: "Nombre, negocio, teléfono, email y plan." },
-      { number: "3", title: "Realiza el pago", time: "1 min", desc: "Pago seguro con Stripe. Nunca vemos tu tarjeta." },
-      { number: "4", title: "Danos la información de tu negocio", time: "15–30 min", desc: "Qué vendes, dónde estás, fotos si tienes. Sin info completa, el reloj no corre." },
-      { number: "5", title: "Nosotros creamos tu espacio", time: "3–5 días", desc: "3–5 días hábiles DESPUÉS de tener toda tu info." },
-      { number: "6", title: "Lo revisas", time: "5 min", desc: "Te lo mostramos y nos dices si quieres cambiar algo (1 o 2 rondas según tu plan)." },
-      { number: "7", title: "Lo publicamos", time: "Mismo día", desc: "Tu negocio ya está en internet. Nosotros lo mantenemos." },
+      { number: "1", title: "Elige un plan", time: "2 min", desc: "Selecciona el plan que se adapte a tu negocio." },
+      { number: "2", title: "Envía la información de tu negocio", time: "15–30 min", desc: "Completa el formulario y paga. Luego envía fotos, servicios, horario y ubicación." },
+      { number: "3", title: "Creamos tu página", time: "3–5 días", desc: "3–5 días hábiles después del pago y la información completa." },
+      { number: "4", title: "La publicamos en internet", time: "Mismo día", desc: "Tu negocio ya está en internet." },
+      { number: "5", title: "La mantenemos activa por ti", time: "Continuo", desc: "Mantenemos tu página activa mientras tu plan esté activo." },
     ],
   },
 }[lang];

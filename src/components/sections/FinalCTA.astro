@@ -11,19 +11,19 @@ const promo = promoConfig[lang];
 
 const t = {
   en: {
-    title: "Ready to put your business on the internet?",
-    subtitle: "You don't need to know technology. We take care of everything.",
+    title: "Start with your website",
+    subtitle: "Fill out the form. We review your info and follow up with you.",
     cta1: "View Plans",
     cta1Href: "/en/pricing",
-    cta2: promoConfig.active ? "Start Now — Setup $0" : "Get Started",
+    cta2: promoConfig.active ? "Start Now" : "Get Started",
     cta2Href: "/en/start",
   },
   es: {
-    title: "¿Listo para poner tu negocio en internet?",
-    subtitle: "No necesitas saber de tecnología. Nosotros nos encargamos de todo.",
+    title: "Empieza con tu página web",
+    subtitle: "Completa el formulario. Nosotros revisamos tu información y seguimos contigo.",
     cta1: "Ver Planes",
     cta1Href: "/es/precios",
-    cta2: promoConfig.active ? "Empezar Ahora — Inicial $0" : "Comenzar",
+    cta2: promoConfig.active ? "Empezar Ahora" : "Comenzar",
     cta2Href: "/es/empezar",
   },
 }[lang];
@@ -44,7 +44,7 @@ const t = {
         </a>
         <a
           href={t.cta2Href}
-          class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-all duration-300 motion-button"
+          class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-[#2454E6] text-white font-semibold hover:bg-[#1E40AF] transition-all duration-300 motion-button"
         >
           {t.cta2}
         </a>

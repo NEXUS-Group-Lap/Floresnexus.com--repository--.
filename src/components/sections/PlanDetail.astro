@@ -2,6 +2,8 @@
 import Container from "../shared/Container.astro";
 import FinalCTA from "./FinalCTA.astro";
 import { plans } from "../../data/plans";
+import { getPlanExamples } from "../../data/plan-examples";
+import { InteractiveImageAccordion } from "../ui/interactive-image-accordion";
 
 export interface Props {
   planId: string;
@@ -49,6 +51,7 @@ const t = {
 
 const features = copy.includes ?? copy.homeFeatures;
 const badge = plan.status === "launch-offer" ? t.launchBadge : plan.status === "quote" ? t.quoteBadge : null;
+const examples = getPlanExamples(planId, lang);
 ---
 
 <main class="pt-24 pb-16 flex flex-col overflow-hidden">
@@ -138,6 +141,19 @@ const badge = plan.status === "launch-offer" ? t.launchBadge : plan.status === "
           )}
         </div>
       </div>
+
+      {examples && (
+        <div class="mt-16" data-reveal="up">
+          <InteractiveImageAccordion
+            items={examples.items}
+            heading={examples.heading}
+            subheading={examples.subheading}
+            ctaText={copy.cta}
+            ctaHref={plan.startForm[lang]}
+            client:visible
+          />
+        </div>
+      )}
 
       <div class="max-w-2xl mx-auto mt-12 p-4 rounded-xl bg-primary/5 border border-primary/20 text-center">
         <p class="text-xs text-heading-3 leading-relaxed">{t.disclaimer}</p>

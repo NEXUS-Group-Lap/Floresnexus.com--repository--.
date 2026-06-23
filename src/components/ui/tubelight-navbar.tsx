@@ -22,7 +22,7 @@ interface NavItem {
 const navItemsByLang: Record<"en" | "es", NavItem[]> = {
   en: [
     { name: "Home", url: "/en", icon: Home },
-    { name: "Services", url: "/en#what-we-do", icon: Wrench },
+    { name: "Services", url: "/en#what-you-get", icon: Wrench },
     { name: "Examples", url: "/en#examples", icon: LayoutGrid },
     { name: "Pricing", url: "/en#pricing", icon: CreditCard },
     { name: "How It Works", url: "/en#how-it-works", icon: Layers },
@@ -31,7 +31,7 @@ const navItemsByLang: Record<"en" | "es", NavItem[]> = {
   ],
   es: [
     { name: "Inicio", url: "/es", icon: Home },
-    { name: "Servicios", url: "/es#que-hacemos", icon: Wrench },
+    { name: "Servicios", url: "/es#que-recibes", icon: Wrench },
     { name: "Ejemplos", url: "/es#ejemplos", icon: LayoutGrid },
     { name: "Planes", url: "/es#planes", icon: CreditCard },
     { name: "Cómo Funciona", url: "/es#como-funciona", icon: Layers },
