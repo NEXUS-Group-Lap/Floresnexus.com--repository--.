@@ -59,6 +59,16 @@ body {
   background: rgb(29 78 216 / 0.18);
 }
 
+/* ── Form focus ───────────────────────────────────────────────────────── */
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgb(29 78 216 / 0.25);
+}
+
 /* ── Scroll reveals ────────────────────────────────────────────────────── */
 
 [data-reveal] {

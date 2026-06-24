@@ -1,11 +1,30 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/shared/Container.astro";
 import AddOns from "../../components/sections/AddOns.astro";
 import FinalCTA from "../../components/sections/FinalCTA.astro";
 ---
 
 <Layout title="Extras y Add-Ons" description="Extras opcionales que puedes agregar a tu plan Flores Nexus — segundo idioma, entrega rápida, diseño de logo y más." lang="es">
   <main class="pt-24 pb-20">
+    <section class="py-8 bg-gray-50 dark:bg-gray-900/30">
+      <Container>
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 max-w-4xl mx-auto">
+          <p class="text-heading-2 text-sm font-medium text-center sm:text-left">
+            ¿Aún no tienes un plan? Elige uno primero.
+          </p>
+          <a
+            href="/es/precios"
+            class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary text-white text-sm font-semibold hover:bg-blue-800 transition-colors duration-200"
+          >
+            Ver Planes
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        </div>
+      </Container>
+    </section>
     <AddOns lang="es" />
     <FinalCTA lang="es" />
   </main>

@@ -55,9 +55,9 @@ import { promoConfig } from "../../data/plans";
                 </label>
                 <input
                   type="text" id="firstName" name="firstName" required
-                  maxlength="50"
+                  maxlength="50" autocomplete="given-name"
                   pattern="[A-Za-zÀ-ÿ\s\-']{1,50}"
-                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary focus:ring-3 focus:ring-primary/25 text-sm"
                   placeholder="John"
                 />
               </div>
@@ -67,9 +67,9 @@ import { promoConfig } from "../../data/plans";
                 </label>
                 <input
                   type="text" id="lastName" name="lastName" required
-                  maxlength="50"
+                  maxlength="50" autocomplete="family-name"
                   pattern="[A-Za-zÀ-ÿ\s\-']{1,50}"
-                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary focus:ring-3 focus:ring-primary/25 text-sm"
                   placeholder="Smith"
                 />
               </div>
@@ -82,8 +82,8 @@ import { promoConfig } from "../../data/plans";
               </label>
               <input
                 type="text" id="businessName" name="businessName" required
-                maxlength="100"
-                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                maxlength="100" autocomplete="organization"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary focus:ring-3 focus:ring-primary/25 text-sm"
                 placeholder="Smith's Roofing & Repair"
               />
             </div>
@@ -96,10 +96,10 @@ import { promoConfig } from "../../data/plans";
                 </label>
                 <input
                   type="tel" id="phone" name="phone" required
-                  maxlength="20"
+                  maxlength="20" autocomplete="tel"
                   pattern="[\d\s\-\+\(\)]{7,20}"
                   title="Please enter a valid phone number"
-                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary focus:ring-3 focus:ring-primary/25 text-sm"
                   placeholder="(555) 000-0000"
                 />
               </div>
@@ -108,8 +108,8 @@ import { promoConfig } from "../../data/plans";
                   Email <span class="text-red-500">*</span>
                 </label>
                 <input
-                  type="email" id="email" name="email" required
-                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  type="email" id="email" name="email" required autocomplete="email"
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary focus:ring-3 focus:ring-primary/25 text-sm"
                   placeholder="john@business.com"
                 />
               </div>
@@ -122,7 +122,7 @@ import { promoConfig } from "../../data/plans";
               </label>
               <select
                 id="mainLanguage" name="mainLanguage" required
-                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary focus:ring-3 focus:ring-primary/25 text-sm"
               >
                 <option value="en">English</option>
                 <option value="es">Spanish</option>
@@ -138,7 +138,7 @@ import { promoConfig } from "../../data/plans";
                 </label>
                 <select
                   id="selectedPlan" name="selectedPlan" required
-                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary focus:ring-3 focus:ring-primary/25 text-sm"
                 >
                   <option value="">Select a plan</option>
                   <option value="nexus-card">Nexus Card — $29/mo</option>
@@ -153,7 +153,7 @@ import { promoConfig } from "../../data/plans";
                 </label>
                 <select
                   id="billingType" name="billingType" required
-                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+                  class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary focus:ring-3 focus:ring-primary/25 text-sm"
                 >
                   <option value="monthly">Monthly</option>
                   <option value="annual">Annual (prepay option)</option>
@@ -178,7 +178,7 @@ import { promoConfig } from "../../data/plans";
             <button
               type="submit"
               id="submit-btn"
-              class="w-full py-3 rounded-full bg-primary text-white font-semibold transition-all duration-300 hover:bg-blue-800"
+              class="w-full py-3 rounded-full bg-primary text-white font-semibold transition-all duration-300 hover:bg-blue-800 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <span id="submit-btn-text">Continue to Secure Payment</span>
             </button>
@@ -268,12 +268,19 @@ import { promoConfig } from "../../data/plans";
 
       if (endpoint && endpoint !== "#") {
         try {
-          await fetch(endpoint, {
+          const res = await fetch(endpoint, {
             method: "POST",
             body: formData,
             headers: { Accept: "application/json" },
           });
-        } catch (_) {}
+          if (!res.ok) throw new Error("submit failed");
+        } catch (_) {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            if (submitBtnText) submitBtnText.textContent = "Continue to Secure Payment";
+          }
+          return;
+        }
       }
 
       const links: Record<string, string> = {

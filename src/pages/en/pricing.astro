@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/shared/Container.astro";
+import Pricing from "../../components/sections/Pricing.astro";
 import PlanComparisonTable from "../../components/sections/pricing/PlanComparisonTable.astro";
 import PlanExamples from "../../components/sections/pricing/PlanExamples.astro";
 ---
@@ -11,6 +12,7 @@ import PlanExamples from "../../components/sections/pricing/PlanExamples.astro";
   lang="en"
 >
   <main class="pt-24 flex flex-col overflow-hidden">
+    <Pricing lang="en" />
     <PlanComparisonTable lang="en" />
 
     <div class="bg-gray-50 dark:bg-gray-900/30">

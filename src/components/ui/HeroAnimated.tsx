@@ -1,4 +1,4 @@
-import { motion } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 import { TextRotate } from "@/components/ui/text-rotate"
 
 interface HeroAnimatedProps {
@@ -68,6 +68,7 @@ const t = {
 
 function HeroAnimated({ lang }: HeroAnimatedProps) {
   const content = t[lang]
+  const prefersReducedMotion = useReducedMotion()
 
   return (
     <section className="w-full overflow-hidden flex flex-col items-center relative">
@@ -173,7 +174,7 @@ function HeroAnimated({ lang }: HeroAnimatedProps) {
       >
         <motion.div
           className="flex gap-4"
-          animate={{
+          animate={prefersReducedMotion ? {} : {
             x: ["-50%", "0%"],
           }}
           transition={{

@@ -13,28 +13,28 @@ const isActive = promoConfig.active;
 ---
 
 {isActive && (
-  <section class="py-12 lg:py-16">
+  <section class="py-16">
     <Container>
-      <div class="max-w-2xl mx-auto text-center p-8 rounded-2xl border border-[#C7D7FE] bg-[#F3F7FF] dark:bg-[#0c1a3d] dark:border-[#1e3a6e]" data-reveal>
+      <div class="text-center max-w-2xl mx-auto" data-reveal>
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E0EAFF] dark:bg-[#1e3a6e] text-[#1D4ED8] dark:text-blue-300 text-xs font-semibold mb-4">
           <span class="w-2 h-2 rounded-full bg-[#2454E6] animate-pulse"></span>
           {promo.badge}
         </div>
-        <h2 class="text-2xl sm:text-3xl font-bold text-[#071B5F] dark:text-white mb-2">
+        <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-3">
           {promo.title}
         </h2>
-        <p class="text-lg font-semibold text-[#071B5F] dark:text-gray-200 mb-2">
+        <p class="text-lg text-heading-3 mb-2">
           {promo.subtitle}
         </p>
-        <p class="text-sm text-[#475569] dark:text-gray-400 mb-2">
+        <p class="text-sm text-heading-3 mb-2">
           {promo.note}
         </p>
-        <p class="text-xs text-[#475569] dark:text-gray-500 mb-6">
+        <p class="text-xs text-heading-3 opacity-70 mb-8">
           {promo.disclaimer}
         </p>
         <a
           href={promo.ctaHref}
-          class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-[#2454E6] text-white font-semibold hover:bg-[#1E40AF] transition-all duration-300 shadow-sm min-w-48 text-center"
+          class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-primary text-white font-semibold hover:bg-blue-800 transition-all duration-300 motion-button"
         >
           {promo.cta}
         </a>

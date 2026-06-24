@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useSpring } from "motion/react";
+import { motion, useSpring, useReducedMotion } from "motion/react";
 import React, {
   useState,
   useRef,
@@ -176,10 +176,12 @@ function PricingToggle() {
     }
   }, [isMonthly]);
 
+  const prefersReducedMotion = useReducedMotion();
+
   const handleToggle = (monthly: boolean) => {
     if (isMonthly === monthly) return;
     setIsMonthly(monthly);
-    if (!monthly && annualBtnRef.current) {
+    if (!monthly && annualBtnRef.current && !prefersReducedMotion) {
       const rect = annualBtnRef.current.getBoundingClientRect();
       confetti({
         particleCount: 80,
@@ -397,6 +399,7 @@ export default function PricingCards({
 }) {
   const [isMonthly, setIsMonthly] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
   const [mousePosition, setMousePosition] = useState<{
     x: number | null;
     y: number | null;
@@ -406,16 +409,18 @@ export default function PricingCards({
     <PricingContext.Provider value={{ isMonthly, setIsMonthly, labels }}>
       <div
         ref={containerRef}
-        onMouseMove={(e) =>
+        onMouseMove={prefersReducedMotion ? undefined : (e) =>
           setMousePosition({ x: e.clientX, y: e.clientY })
         }
-        onMouseLeave={() => setMousePosition({ x: null, y: null })}
+        onMouseLeave={prefersReducedMotion ? undefined : () => setMousePosition({ x: null, y: null })}
         className="relative w-full"
       >
-        <InteractiveStarfield
-          mousePosition={mousePosition}
-          containerRef={containerRef}
-        />
+        {!prefersReducedMotion && (
+          <InteractiveStarfield
+            mousePosition={mousePosition}
+            containerRef={containerRef}
+          />
+        )}
         <div className="relative z-10">
           <PricingToggle />
           <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 items-start gap-8">
