@@ -11,7 +11,7 @@ function mshot(url: string, w = 800, h = 600) {
 
 const siteScreenshots = [
   {
-    url: mshot("https://nexus-group-lap.github.io/floreslawncare/"),
+    url: mshot("https://floresnexus.cards/floreslawn/"),
     title: "Flores Lawn Care",
   },
   {
@@ -19,7 +19,7 @@ const siteScreenshots = [
     title: "La Morenita",
   },
   {
-    url: mshot("https://nexus-group-lap.github.io/alma/"),
+    url: mshot("https://floresnexus.cards/alma/"),
     title: "Alma Boutique",
   },
   {
