@@ -72,6 +72,9 @@ export default function CardFanCarousel({ cards }: CardFanCarouselProps) {
   const hasEntered = useRef(false);
   const directionRef = useRef<"left" | "right" | null>(null);
   const prevVisible = useRef<Set<number>>(new Set());
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const touchLocked = useRef(false);
 
   const totalCards = cards.length;
   const needsPagination = totalCards > MAX_VISIBLE;
@@ -97,6 +100,37 @@ export default function CardFanCarousel({ cards }: CardFanCarouselProps) {
       direction === "right" ? (prev + 1) % totalCards : (prev - 1 + totalCards) % totalCards
     );
   }, [totalCards, needsPagination]);
+
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    if (!needsPagination) return;
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+    touchLocked.current = false;
+  }, [needsPagination]);
+
+  const onTouchMove = useCallback((e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const dx = e.touches[0].clientX - touchStartX.current;
+    const dy = e.touches[0].clientY - touchStartY.current;
+    if (!touchLocked.current && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+      touchLocked.current = true;
+    }
+    if (touchLocked.current) {
+      e.preventDefault();
+    }
+  }, []);
+
+  const onTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    const threshold = 40;
+    if (Math.abs(dx) > threshold && touchLocked.current) {
+      cycle(dx < 0 ? "right" : "left");
+    }
+    touchStartX.current = null;
+    touchStartY.current = null;
+    touchLocked.current = false;
+  }, [cycle]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -254,9 +288,15 @@ export default function CardFanCarousel({ cards }: CardFanCarouselProps) {
   );
 
   return (
-    <section className="flex flex-col items-center w-full py-4 lg:py-8 px-4 md:px-8 relative z-20">
+    <section className="flex flex-col items-center w-full py-4 lg:py-8 px-4 md:px-8 relative z-20 touch-pan-y">
       <div className="flex items-center justify-center w-full max-w-[90rem]">
-        <div ref={containerRef} className="fan-layout flex relative justify-center items-center w-full max-w-[80rem]">
+        <div
+          ref={containerRef}
+          className="fan-layout flex relative justify-center items-center w-full max-w-[80rem]"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           {cards.map((card, index) => {
             const image = (
               <div className="relative w-full h-full overflow-hidden">
@@ -310,25 +350,40 @@ export default function CardFanCarousel({ cards }: CardFanCarouselProps) {
       </div>
 
       {needsPagination && (
-        <div className="flex items-center justify-center gap-4 mt-4 md:mt-6 z-30">
-          <button className={`${ARROW_CLASSES} w-10 h-10 md:w-12 md:h-12`} onClick={() => cycle("left")} aria-label="Previous">
-            {chevron("left")}
-          </button>
-          <div className="flex items-center gap-2">
-            {cards.map((_, i) => (
-              <span
-                key={i}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  i === centerIndex
-                    ? "bg-primary scale-[1.3]"
-                    : "bg-black/15 dark:bg-white/15"
-                }`}
-              />
-            ))}
+        <div className="flex flex-col items-center gap-2 mt-4 md:mt-6 z-30">
+          <div className="flex items-center justify-center gap-4">
+            <button className={`${ARROW_CLASSES} hidden sm:flex w-10 h-10 md:w-12 md:h-12`} onClick={() => cycle("left")} aria-label="Previous">
+              {chevron("left")}
+            </button>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              {cards.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    if (isAnimating.current || i === centerIndex) return;
+                    directionRef.current = i > centerIndex ? "right" : "left";
+                    isAnimating.current = true;
+                    setCenterIndex(i);
+                  }}
+                  aria-label={`Go to slide ${i + 1}`}
+                  className={`rounded-full transition-all duration-300 cursor-pointer ${
+                    i === centerIndex
+                      ? "w-6 h-2 bg-primary"
+                      : "w-2 h-2 bg-black/15 dark:bg-white/15 hover:bg-primary/40"
+                  }`}
+                />
+              ))}
+            </div>
+            <button className={`${ARROW_CLASSES} hidden sm:flex w-10 h-10 md:w-12 md:h-12`} onClick={() => cycle("right")} aria-label="Next">
+              {chevron("right")}
+            </button>
           </div>
-          <button className={`${ARROW_CLASSES} w-10 h-10 md:w-12 md:h-12`} onClick={() => cycle("right")} aria-label="Next">
-            {chevron("right")}
-          </button>
+          <p className="sm:hidden text-xs text-heading-3 opacity-60 flex items-center gap-1.5">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+            </svg>
+            Swipe
+          </p>
         </div>
       )}
     </section>

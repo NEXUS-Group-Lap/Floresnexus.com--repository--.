@@ -273,15 +273,15 @@ function PricingCard({
         delay: index * 0.15,
       }}
       className={cn(
-        "rounded-2xl p-8 flex flex-col relative bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm",
+        "rounded-2xl flex flex-col relative backdrop-blur-sm transition-shadow duration-300",
         plan.isPopular
-          ? "border-2 border-primary shadow-xl"
-          : "border border-gray-200 dark:border-gray-700/50",
+          ? "bg-gradient-to-b from-primary/5 to-blue-50 dark:from-primary/10 dark:to-gray-900/90 border-2 border-primary shadow-xl shadow-primary/10 dark:shadow-primary/20"
+          : "bg-white dark:bg-gray-900/80 border border-gray-200 dark:border-gray-700/50 hover:border-primary/40 dark:hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5",
       )}
     >
       {plan.isPopular && plan.popularLabel && (
         <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
-          <div className="bg-primary py-1.5 px-4 rounded-full flex items-center gap-1.5">
+          <div className="bg-primary py-1.5 px-4 rounded-full flex items-center gap-1.5 shadow-lg shadow-primary/30">
             <LucideStar className="text-white h-4 w-4 fill-current" />
             <span className="text-white text-sm font-semibold whitespace-nowrap">
               {plan.popularLabel}
@@ -292,18 +292,18 @@ function PricingCard({
 
       {plan.promoEligible && plan.promoBadge && (
         <div className="absolute top-3 right-3">
-          <span className="rounded-full bg-blue-500/15 dark:bg-blue-500/25 backdrop-blur-sm px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-300 border border-blue-400/30">
+          <span className="rounded-full bg-green-500/15 dark:bg-green-500/20 backdrop-blur-sm px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-green-700 dark:text-green-300 border border-green-400/30 animate-pulse">
             {plan.promoBadge}
           </span>
         </div>
       )}
 
-      <div className="flex-1 flex flex-col text-center">
-        <h3 className="text-xl font-semibold text-heading-1">{plan.name}</h3>
+      <div className="flex-1 flex flex-col text-center p-8">
+        <h3 className="text-xl font-bold text-heading-1">{plan.name}</h3>
         <p className="mt-2 text-sm text-heading-3">{plan.description}</p>
 
         <div className="mt-6 flex items-baseline justify-center gap-x-1">
-          <span className="text-5xl font-bold tracking-tight text-heading-1">
+          <span className="text-5xl font-extrabold tracking-tight text-primary dark:text-blue-400">
             <NumberFlow
               value={isMonthly ? plan.monthlyPrice : plan.annualPrice}
               format={{
@@ -322,39 +322,41 @@ function PricingCard({
           {isMonthly ? labels.billedMonthly : labels.billedAnnually}
         </p>
 
-        <div className="mt-2 text-sm">
+        <div className="mt-3 text-sm">
           {plan.promoEligible && plan.promoSetup ? (
-            <span>
-              <span className="font-bold text-green-600 dark:text-green-400">
+            <span className="inline-flex items-center gap-1.5 bg-green-50 dark:bg-green-900/30 px-3 py-1 rounded-full">
+              <span className="font-bold text-green-600 dark:text-green-400 text-base">
                 {plan.promoSetup}
               </span>
-              <span className="text-heading-3 line-through ml-1.5">
+              <span className="text-heading-3 line-through text-xs">
                 {plan.setup}
               </span>
-              <span className="text-heading-3 ml-1">{labels.setupLabel}</span>
+              <span className="text-heading-3 text-xs">{labels.setupLabel}</span>
             </span>
           ) : (
-            <span>
-              <span className="font-semibold text-heading-2">{plan.setup}</span>
-              <span className="text-heading-3 ml-1">{labels.setupLabel}</span>
+            <span className="inline-flex items-center gap-1 bg-gray-50 dark:bg-gray-800/50 px-3 py-1 rounded-full">
+              <span className="font-bold text-heading-1">{plan.setup}</span>
+              <span className="text-heading-3 text-xs">{labels.setupLabel}</span>
             </span>
           )}
         </div>
 
         {!isMonthly && plan.annualSavings && (
-          <span className="inline-block mx-auto mt-2 text-xs font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-2.5 py-0.5 rounded-full">
+          <span className="inline-block mx-auto mt-2 text-xs font-semibold text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-3 py-1 rounded-full border border-green-200 dark:border-green-800">
             {plan.annualSavings}
           </span>
         )}
 
+        <div className="mt-8 mb-8 h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-700 to-transparent" />
+
         <ul
           role="list"
-          className="mt-8 space-y-3 text-sm leading-6 text-left text-heading-3"
+          className="space-y-3 text-sm leading-6 text-left text-heading-2"
         >
           {plan.features.map((feature) => (
             <li key={feature} className="flex gap-x-3">
               <Check
-                className="h-6 w-5 flex-none text-primary"
+                className="h-5 w-5 flex-none text-primary"
                 aria-hidden="true"
               />
               {feature}
@@ -366,10 +368,10 @@ function PricingCard({
           <a
             href={plan.href}
             className={cn(
-              "block w-full rounded-lg py-3 text-center text-sm font-bold transition-all duration-200",
+              "block w-full rounded-xl py-3.5 text-center text-sm font-bold transition-all duration-200 cursor-pointer",
               plan.isPopular
-                ? "bg-primary text-white hover:bg-primary/90 shadow-md hover:shadow-lg"
-                : "border-2 border-gray-300 dark:border-gray-600 text-heading-1 hover:border-primary hover:text-primary dark:hover:border-primary",
+                ? "bg-primary text-white hover:bg-blue-800 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5"
+                : "bg-primary text-white hover:bg-blue-800 shadow-md shadow-primary/15 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5",
             )}
           >
             {plan.buttonText}
@@ -377,7 +379,7 @@ function PricingCard({
           {plan.detailsCta && plan.detailsHref && (
             <a
               href={plan.detailsHref}
-              className="block py-1.5 text-center text-xs font-medium text-heading-3 hover:text-primary transition-colors"
+              className="block py-2 text-center text-xs font-semibold text-primary hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
             >
               {plan.detailsCta} →
             </a>
