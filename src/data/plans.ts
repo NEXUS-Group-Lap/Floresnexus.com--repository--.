@@ -2,6 +2,8 @@ import {
   NEXUS_CARD_STRIPE_LINK,
   STARTER_STRIPE_LINK,
   PROFESSIONAL_STRIPE_LINK,
+  NEXUS_CARD_PROMO_STRIPE_LINK,
+  STARTER_PROMO_STRIPE_LINK,
   BUSINESS_QUOTE_FORM_LINK,
 } from "../config/links";
 
@@ -73,7 +75,9 @@ export const plans: Record<string, Plan> = {
     annualSavings: { en: "Save $49", es: "Ahorra $49" },
     stripeLink: NEXUS_CARD_STRIPE_LINK,
     promoEligible: true,
-    startForm: { en: "/en/start?plan=nexus-card", es: "/es/empezar?plan=nexus-card" },
+    startForm: promoConfig.active
+      ? { en: NEXUS_CARD_PROMO_STRIPE_LINK, es: NEXUS_CARD_PROMO_STRIPE_LINK }
+      : { en: NEXUS_CARD_STRIPE_LINK, es: NEXUS_CARD_STRIPE_LINK },
     detailsHref: { en: "/en/plans/mini-card", es: "/es/planes/mini-card" },
     en: {
       name: "Nexus Card",
@@ -165,7 +169,9 @@ export const plans: Record<string, Plan> = {
     annualSavings: { en: "Save $149", es: "Ahorra $149" },
     stripeLink: STARTER_STRIPE_LINK,
     promoEligible: true,
-    startForm: { en: "/en/start?plan=starter", es: "/es/empezar?plan=starter" },
+    startForm: promoConfig.active
+      ? { en: STARTER_PROMO_STRIPE_LINK, es: STARTER_PROMO_STRIPE_LINK }
+      : { en: STARTER_STRIPE_LINK, es: STARTER_STRIPE_LINK },
     detailsHref: { en: "/en/plans/starter", es: "/es/planes/starter" },
     en: {
       name: "Starter Website",
@@ -261,7 +267,7 @@ export const plans: Record<string, Plan> = {
     annualSavings: { en: "Save $289", es: "Ahorra $289" },
     stripeLink: PROFESSIONAL_STRIPE_LINK,
     promoEligible: false,
-    startForm: { en: "/en/start?plan=professional", es: "/es/empezar?plan=professional" },
+    startForm: { en: PROFESSIONAL_STRIPE_LINK, es: PROFESSIONAL_STRIPE_LINK },
     detailsHref: { en: "/en/plans/professional", es: "/es/planes/professional" },
     en: {
       name: "Professional Website",

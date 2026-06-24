@@ -1,6 +1,6 @@
 export const NEXUS_CARD_STRIPE_LINK = "https://buy.stripe.com/cNi3cxgmj1w44hn4n49Ve00";
 export const STARTER_STRIPE_LINK = "https://buy.stripe.com/28E6oJ6LJ6Qo15b6vc9Ve01";
-export const PROFESSIONAL_STRIPE_LINK = "https://buy.stripe.com/4gM00l0nl7Us5Ir2eW9Ve02";
+export const PROFESSIONAL_STRIPE_LINK = "https://buy.stripe.com/4gM00l0nl7Us5lr2eW9Ve02";
 export const BUSINESS_QUOTE_FORM_LINK = "https://formspree.io/f/xaqgnrky";
 export const DIGITAL_ACCESS_FORM_LINK = "https://formspree.io/f/mykqzrve";
 export const ONBOARDING_FORM_LINK = "https://formspree.io/f/xojovgbl";
@@ -13,8 +13,8 @@ export const START_FORM_ENDPOINT = "https://formspree.io/f/mdavkvlo";
 
 export const NEXUS_MINI_STRIPE_LINK = NEXUS_CARD_STRIPE_LINK;
 
-export const NEXUS_CARD_PROMO_STRIPE_LINK = "https://buy.stripe.com/14A7sN9XV8Ywg054n49Ve05";
-export const STARTER_PROMO_STRIPE_LINK = "https://buy.stripe.com/eVq8wRb1ZfmUg059Ho9Ve04";
+export const NEXUS_CARD_PROMO_STRIPE_LINK = "https://buy.stripe.com/eVq8wRb1ZfmUg059Ho9Ve04";
+export const STARTER_PROMO_STRIPE_LINK = "https://buy.stripe.com/14A7sN9XV8Ywg054n49Ve05";
 
 export const WHATSAPP_LINK = "https://wa.me/12392937033";
 export const CONTACT_EMAIL = "hola@floresnexus.com";

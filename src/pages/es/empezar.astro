@@ -281,7 +281,10 @@ import { promoConfig } from "../../data/plans";
 
       const dest = links[plan];
       if (dest && dest !== "#") {
-        window.location.href = dest;
+        const email = (document.getElementById("email") as HTMLInputElement)?.value;
+        const url = new URL(dest);
+        if (email) url.searchParams.set("prefilled_email", email);
+        window.location.href = url.toString();
       } else if (plan === "business-system") {
         window.location.href = "/es/gracias?type=quote&plan=business-system";
       } else {

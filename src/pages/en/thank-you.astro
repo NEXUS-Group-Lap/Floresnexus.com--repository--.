@@ -34,6 +34,20 @@ import { START_FORM_ENDPOINT } from "../../config/links";
             </div>
 
             <div>
+              <label for="mainLanguage" class="block text-sm font-semibold text-heading-2 mb-1.5">
+                Main Language for Your Website <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="mainLanguage" name="mainLanguage" required
+                class="w-full px-4 py-2.5 rounded-xl border border-box-border bg-box-bg text-heading-1 focus:outline-none focus:border-primary text-sm"
+              >
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+              </select>
+              <p class="text-xs text-heading-3 mt-1">Each plan includes 1 language. A second language is a paid add-on.</p>
+            </div>
+
+            <div>
               <label for="industry" class="block text-sm font-semibold text-heading-2 mb-1.5">
                 What type of business do you have? <span class="text-red-500">*</span>
               </label>
