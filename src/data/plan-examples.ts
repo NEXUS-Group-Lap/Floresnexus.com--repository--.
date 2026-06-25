@@ -14,39 +14,27 @@ export const planExamples: Record<string, PlanExamples> = {
       es: "Ejemplos de Nexus Card",
     },
     subheading: {
-      en: "See how local businesses use their Nexus Card to connect with customers.",
-      es: "Mira cómo los negocios locales usan su Nexus Card para conectar con clientes.",
+      en: "Real businesses using their Nexus Card — each one is listed on the floresnexus.cards directory.",
+      es: "Negocios reales usando su Nexus Card — cada uno aparece en el directorio floresnexus.cards.",
     },
     items: [
       {
         id: 1,
-        title: "Plumber",
+        title: "Pulpería La Morenita",
         imageUrl:
-          "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop",
+          "https://s.wordpress.com/mshots/v1/https%3A%2F%2Ffloresnexus.cards%2Flamorenita%2F?w=800&h=900",
       },
       {
         id: 2,
-        title: "Hair Stylist",
+        title: "Alma Closet",
         imageUrl:
-          "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1974&auto=format&fit=crop",
+          "https://s.wordpress.com/mshots/v1/https%3A%2F%2Ffloresnexus.cards%2Falma%2F?w=800&h=900",
       },
       {
         id: 3,
-        title: "Cleaning Service",
+        title: "Flores Lawn Care",
         imageUrl:
-          "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=2070&auto=format&fit=crop",
-      },
-      {
-        id: 4,
-        title: "Tutor",
-        imageUrl:
-          "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop",
-      },
-      {
-        id: 5,
-        title: "Landscaping",
-        imageUrl:
-          "https://images.unsplash.com/photo-1558904541-efa843a96f01?q=80&w=2032&auto=format&fit=crop",
+          "https://s.wordpress.com/mshots/v1/https%3A%2F%2Ffloresnexus.cards%2Ffloreslawn%2F?w=800&h=900",
       },
     ],
   },
