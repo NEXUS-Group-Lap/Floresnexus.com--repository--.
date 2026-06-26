@@ -17,5 +17,4 @@ export const NEXUS_CARD_PROMO_STRIPE_LINK = "https://buy.stripe.com/eVq8wRb1ZfmU
 export const STARTER_PROMO_STRIPE_LINK = "https://buy.stripe.com/14A7sN9XV8Ywg054n49Ve05";
 
 export const WHATSAPP_LINK = "https://wa.me/12392937033";
-export const CONTACT_EMAIL = "hola@floresnexus.com";
-export const LEGAL_EMAIL = "legal@floresnexus.com";
+export const CONTACT_EMAIL = "info@floresnexus.com";

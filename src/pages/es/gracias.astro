@@ -25,11 +25,13 @@ import { START_FORM_ENDPOINT } from "../../config/links";
           <p class="text-xs text-heading-3 mb-6 text-center">Paso 2 de 2 — Cuéntanos sobre tu negocio</p>
 
           <form id="onboarding-form" class="space-y-5" data-endpoint={START_FORM_ENDPOINT}>
-            <!-- Honeypot anti-bot -->
+            <!-- Honeypot anti-bot (Formspree native + custom) -->
             <div class="absolute -left-[9999px]" aria-hidden="true">
               <label for="company_website_es">Sitio Web</label>
               <input type="text" id="company_website_es" name="company_website" tabindex="-1" autocomplete="off" />
+              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
             </div>
+            <input type="hidden" name="_ts" id="onboarding-ts-es" value="" />
 
             <div>
               <label for="mainLanguage" class="block text-sm font-semibold text-heading-2 mb-1.5">
@@ -170,43 +172,21 @@ import { START_FORM_ENDPOINT } from "../../config/links";
               ></textarea>
             </div>
 
-            <div class="rounded-xl border border-box-border bg-box-bg p-4 space-y-3">
-              <p class="text-xs font-semibold text-heading-1 mb-2">Por favor confirma que entiendes:</p>
+            <!-- Aceptación legal -->
+            <div class="rounded-xl border border-box-border bg-box-bg p-4">
               <label class="flex items-start gap-3 cursor-pointer">
-                <input type="checkbox" name="ack_production" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
+                <input type="checkbox" name="ack_terms" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
                 <span class="text-xs text-heading-3 leading-relaxed">
-                  Entiendo que la producción empieza solo después de recibir la información completa del negocio.
+                  He leído y acepto los
+                  <a href="/es/terminos-de-servicio" class="text-primary hover:underline">Términos de Servicio</a>,
+                  <a href="/es/politica-de-privacidad" class="text-primary hover:underline">Política de Privacidad</a>,
+                  <a href="/es/politica-de-reembolsos" class="text-primary hover:underline">Política de Reembolsos</a> y
+                  <a href="/es/alcance-del-servicio" class="text-primary hover:underline">Alcance del Servicio</a> —
+                  incluyendo que la producción comienza después de recibir la información completa, que no se garantizan ventas ni posiciones en Google,
+                  que la transferencia de propiedad no está incluida a menos que se compre por separado, y que todo el contenido que envío es de mi propiedad
+                  o tengo los derechos para usarlo. Enviar material con derechos de autor sin autorización puede resultar en su eliminación y la suspensión del servicio.
                 </span>
               </label>
-              <label class="flex items-start gap-3 cursor-pointer">
-                <input type="checkbox" name="ack_ownership" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
-                <span class="text-xs text-heading-3 leading-relaxed">
-                  Entiendo que la transferencia de propiedad no está incluida a menos que sea aprobada o comprada por separado.
-                </span>
-              </label>
-              <label class="flex items-start gap-3 cursor-pointer">
-                <input type="checkbox" name="ack_images" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
-                <span class="text-xs text-heading-3 leading-relaxed">
-                  Confirmo que tengo los derechos de uso de todas las fotos y contenido que envío.
-                </span>
-              </label>
-              <label class="flex items-start gap-3 cursor-pointer">
-                <input type="checkbox" name="ack_noguarantees" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
-                <span class="text-xs text-heading-3 leading-relaxed">
-                  Entiendo que no se garantizan ventas, leads ni posiciones en Google.
-                </span>
-              </label>
-              <div class="border-t border-box-border pt-3">
-                <label class="flex items-start gap-3 cursor-pointer">
-                  <input type="checkbox" name="ack_terms" class="ack-checkbox mt-0.5 w-4 h-4 flex-shrink-0 accent-primary" />
-                  <span class="text-xs text-heading-3 leading-relaxed">
-                    He leído y acepto los
-                    <a href="/es/terminos-de-servicio" class="text-primary hover:underline">Términos de Servicio</a>,
-                    <a href="/es/politica-de-privacidad" class="text-primary hover:underline">Política de Privacidad</a> y
-                    <a href="/es/politica-de-reembolsos" class="text-primary hover:underline">Política de Reembolsos</a>.
-                  </span>
-                </label>
-              </div>
             </div>
 
             <button
@@ -230,7 +210,7 @@ import { START_FORM_ENDPOINT } from "../../config/links";
 
         <p class="text-xs text-center text-heading-3 mt-6">
           ¿Preguntas? Contáctanos en
-          <a href="mailto:hola@floresnexus.com" class="text-primary hover:underline">hola@floresnexus.com</a>
+          <a href="mailto:info@floresnexus.com" class="text-primary hover:underline">info@floresnexus.com</a>
         </p>
       </div>
     </Container>
@@ -263,6 +243,8 @@ import { START_FORM_ENDPOINT } from "../../config/links";
   }
 
   const form = document.getElementById("onboarding-form") as HTMLFormElement | null;
+  const onboardingTsEs = document.getElementById("onboarding-ts-es") as HTMLInputElement | null;
+  if (onboardingTsEs) onboardingTsEs.value = String(Date.now());
   const checkboxes = document.querySelectorAll(".ack-checkbox") as NodeListOf<HTMLInputElement>;
   const submitBtn = document.getElementById("onboarding-submit") as HTMLButtonElement | null;
   const successDiv = document.getElementById("onboarding-success");
@@ -282,6 +264,9 @@ import { START_FORM_ENDPOINT } from "../../config/links";
 
       const honeypot = (document.getElementById("company_website_es") as HTMLInputElement)?.value;
       if (honeypot) return;
+
+      const loadTime = Number(onboardingTsEs?.value || "0");
+      if (loadTime && Date.now() - loadTime < 3000) return;
 
       const now = Date.now();
       if (now - lastSubmitTime < 5000) return;

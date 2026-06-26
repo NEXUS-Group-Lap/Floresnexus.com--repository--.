@@ -1,6 +1,6 @@
 ---
 import Container from "../shared/Container.astro";
-import { WHATSAPP_LINK, CONTACT_EMAIL, LEGAL_EMAIL } from "../../config/links";
+import { WHATSAPP_LINK, CONTACT_EMAIL } from "../../config/links";
 
 export interface Props {
   lang?: "en" | "es";
@@ -45,7 +45,6 @@ const t = {
     ],
     contactInfo: {
       email: CONTACT_EMAIL,
-      legalEmail: LEGAL_EMAIL,
       whatsapp: WHATSAPP_LINK,
       whatsappLabel: "WhatsApp",
       hours: "Mon–Fri 9AM–5PM ET",
@@ -87,7 +86,6 @@ const t = {
     ],
     contactInfo: {
       email: CONTACT_EMAIL,
-      legalEmail: LEGAL_EMAIL,
       whatsapp: WHATSAPP_LINK,
       whatsappLabel: "WhatsApp",
       hours: "Lun–Vie 9AM–5PM ET",

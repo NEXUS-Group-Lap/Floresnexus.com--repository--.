@@ -150,6 +150,10 @@ const t = {
         <input type="hidden" name="_subject" value="Add-On Request" />
         <input type="hidden" name="formType" value="addon-request" />
         <input type="hidden" name="language" value={lang} />
+        <div class="absolute -left-[9999px]" aria-hidden="true">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+        </div>
+        <input type="hidden" name="_ts" id="addon-ts" value="" />
 
         <div>
           <label for="addon-name" class="block text-xs font-semibold text-heading-2 mb-1">{t.nameLabel}</label>
@@ -238,9 +242,12 @@ const t = {
 
   var lastFocused = null;
 
+  var addonTsField = document.getElementById("addon-ts");
+
   function openModal(addonName) {
     lastFocused = document.activeElement;
     addonField.value = addonName;
+    if (addonTsField) addonTsField.value = String(Date.now());
     form.classList.remove("hidden");
     successDiv.classList.add("hidden");
     errorDiv.classList.add("hidden");
@@ -291,6 +298,8 @@ const t = {
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+    var tsVal = Number(addonTsField && addonTsField.value || "0");
+    if (tsVal && Date.now() - tsVal < 3000) return;
     submitBtn.disabled = true;
     submitBtn.textContent = submittingLabel;
     errorDiv.classList.add("hidden");

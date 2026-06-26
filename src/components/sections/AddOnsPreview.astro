@@ -1,0 +1,199 @@
+---
+import Container from "../shared/Container.astro";
+
+export interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+
+const t = {
+  en: {
+    title: "Need Something Extra?",
+    subtitle: "Optional add-ons you can request at any time — quoted and paid separately.",
+    viewAll: "View All Extras",
+    viewAllHref: "/en/addons",
+    startingAt: "from",
+    oneTime: "one-time",
+    perMonth: "/mo",
+    each: "each",
+    popular: "Popular",
+    addons: [
+      {
+        icon: "globe",
+        name: "Second Language",
+        desc: "Reach customers in English and Spanish",
+        price: "$9",
+        priceSuffix: "/mo",
+        priceNote: "+ setup",
+      },
+      {
+        icon: "map",
+        name: "Google & Apple Maps",
+        desc: "So customers can find you on maps",
+        price: "$50",
+        priceSuffix: "",
+        priceNote: "one-time",
+      },
+      {
+        icon: "mail",
+        name: "Business Email",
+        desc: "info@yourbusiness.com",
+        price: "$75",
+        priceSuffix: "",
+        priceNote: "one-time",
+      },
+      {
+        icon: "zap",
+        name: "Rush Delivery",
+        desc: "Get your site faster",
+        price: "$99",
+        priceSuffix: "+",
+        priceNote: "subject to availability",
+      },
+      {
+        icon: "edit",
+        name: "Extra Changes",
+        desc: "More changes than your plan includes",
+        price: "$29",
+        priceSuffix: "",
+        priceNote: "each",
+      },
+      {
+        icon: "palette",
+        name: "Logo Design",
+        desc: "Scoped design — not unlimited branding",
+        price: "Quote",
+        priceSuffix: "",
+        priceNote: "custom",
+      },
+    ],
+  },
+  es: {
+    title: "¿Necesitas algo extra?",
+    subtitle: "Extras opcionales que puedes solicitar en cualquier momento — se cotizan y pagan por separado.",
+    viewAll: "Ver Todos los Extras",
+    viewAllHref: "/es/extras",
+    startingAt: "desde",
+    oneTime: "único",
+    perMonth: "/mes",
+    each: "c/u",
+    popular: "Popular",
+    addons: [
+      {
+        icon: "globe",
+        name: "Segundo Idioma",
+        desc: "Alcanza clientes en inglés y español",
+        price: "$9",
+        priceSuffix: "/mes",
+        priceNote: "+ inicial",
+      },
+      {
+        icon: "map",
+        name: "Google y Apple Maps",
+        desc: "Para que tus clientes te encuentren en mapas",
+        price: "$50",
+        priceSuffix: "",
+        priceNote: "único",
+      },
+      {
+        icon: "mail",
+        name: "Correo Profesional",
+        desc: "info@tunegocio.com",
+        price: "$75",
+        priceSuffix: "",
+        priceNote: "único",
+      },
+      {
+        icon: "zap",
+        name: "Entrega Rápida",
+        desc: "Recibe tu sitio antes de tiempo",
+        price: "$99",
+        priceSuffix: "+",
+        priceNote: "sujeto a disponibilidad",
+      },
+      {
+        icon: "edit",
+        name: "Cambios Extra",
+        desc: "Más cambios de los que incluye tu plan",
+        price: "$29",
+        priceSuffix: "",
+        priceNote: "c/u",
+      },
+      {
+        icon: "palette",
+        name: "Diseño de Logo",
+        desc: "Diseño con alcance definido",
+        price: "Cotización",
+        priceSuffix: "",
+        priceNote: "personalizada",
+      },
+    ],
+  },
+}[lang];
+
+const icons: Record<string, string> = {
+  globe: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A9 9 0 013 12c0-1.605.42-3.113 1.157-4.418" />`,
+  map: `<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />`,
+  mail: `<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />`,
+  zap: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />`,
+  edit: `<path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />`,
+  palette: `<path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />`,
+};
+---
+
+<section class="py-16 bg-gray-50 dark:bg-gray-900/30">
+  <Container>
+    <div class="text-center mb-10" data-reveal>
+      <h2 class="text-3xl md:text-4xl font-bold text-heading-1 mb-3">
+        {lang === "en"
+          ? <Fragment>Need Something <span class="text-primary dark:text-blue-400">Extra</span>?</Fragment>
+          : <Fragment>¿Necesitas algo <span class="text-primary dark:text-blue-400">extra</span>?</Fragment>
+        }
+      </h2>
+      <p class="text-heading-3 text-lg max-w-2xl mx-auto">{t.subtitle}</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto" data-stagger>
+      {t.addons.map((addon, i) => (
+        <div class="group relative flex flex-col p-5 rounded-2xl border border-box-border bg-box-bg hover:border-primary/40 hover:shadow-md transition-all duration-300 motion-card cursor-default">
+          {i === 0 && (
+            <span class="absolute -top-2.5 right-4 px-2.5 py-0.5 rounded-full bg-primary text-white text-[10px] font-bold uppercase tracking-wider">
+              {t.popular}
+            </span>
+          )}
+
+          <div class="flex items-start gap-3 mb-3">
+            <div class="w-9 h-9 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4.5 h-4.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" set:html={icons[addon.icon]} />
+            </div>
+            <div class="min-w-0">
+              <p class="font-semibold text-heading-1 text-sm leading-tight">{addon.name}</p>
+              <p class="text-xs text-heading-3 mt-0.5 leading-snug">{addon.desc}</p>
+            </div>
+          </div>
+
+          <div class="mt-auto pt-3 border-t border-box-border/50 flex items-baseline gap-1">
+            <span class="text-primary font-bold text-lg leading-none">{addon.price}</span>
+            {addon.priceSuffix && (
+              <span class="text-primary font-semibold text-xs">{addon.priceSuffix}</span>
+            )}
+            <span class="text-heading-3 text-[10px] ml-1">{addon.priceNote}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-8" data-reveal>
+      <a
+        href={t.viewAllHref}
+        class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border-2 border-primary text-primary font-semibold text-sm hover:bg-primary hover:text-white transition-all duration-200"
+      >
+        {t.viewAll}
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
+      </a>
+    </div>
+  </Container>
+</section>

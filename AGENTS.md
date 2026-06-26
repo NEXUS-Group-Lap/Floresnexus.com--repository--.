@@ -10,7 +10,6 @@ Active development brief: Master Development Brief v1.4 (May 2026).
 - Do not promise ownership transfer unless separately purchased or approved.
 - Always say production starts after payment and complete client information are received.
 - Business System must use Request Quote, not direct checkout (never a Stripe payment link).
-- Seller commissions must not appear on public customer pricing pages.
 - Keep English and Spanish pages separate — do not mix languages in one homepage.
 - Keep the moon/dark mode toggle working on all pages.
 - Keep the design mobile-first, clear, visual, and sales-focused.
@@ -25,7 +24,6 @@ Active development brief: Master Development Brief v1.4 (May 2026).
 - `/en/thank-you`, `/es/gracias`
 - `/en/faq`, `/es/preguntas`
 - `/en/careers`, `/es/carreras`
-- `/seller-hub` and sub-pages (internal, English only)
 
 ## Approved Prices (do not change without approval)
 
@@ -49,8 +47,3 @@ Active development brief: Master Development Brief v1.4 (May 2026).
 Avoid: "get more calls", "guaranteed leads", "we grow your business", "SEO results included", "unlimited edits", "ownership included"
 Use instead: "make it easier for customers to contact you", "professional online presence", "basic website structure and contact visibility", "updates depend on selected plan", "ownership transfer is not included unless separately purchased or approved"
 
-## Seller Hub Rules
-
-- Sellers are independent sales representatives, not W2 employees.
-- Commission amounts must never appear on public customer pages.
-- Sellers cannot promise: sales, leads, calls, revenue, Google ranking, unlimited edits, SEO, social media management, ad campaigns, ownership transfer, or faster delivery without complete client info.

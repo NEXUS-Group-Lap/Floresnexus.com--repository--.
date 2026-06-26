@@ -5,9 +5,14 @@ import {
   STARTER_STRIPE_LINK,
   PROFESSIONAL_STRIPE_LINK,
   NEXUS_CARD_STRIPE_LINK,
+  NEXUS_CARD_PROMO_STRIPE_LINK,
+  STARTER_PROMO_STRIPE_LINK,
   START_FORM_ENDPOINT,
 } from "../../config/links";
 import { promoConfig } from "../../data/plans";
+
+const nexusCardLink = promoConfig.active ? NEXUS_CARD_PROMO_STRIPE_LINK : NEXUS_CARD_STRIPE_LINK;
+const starterLink = promoConfig.active ? STARTER_PROMO_STRIPE_LINK : STARTER_STRIPE_LINK;
 ---
 
 <Layout
@@ -37,16 +42,18 @@ import { promoConfig } from "../../data/plans";
           <form
             id="start-form"
             class="space-y-5"
-            data-nexus-card={NEXUS_CARD_STRIPE_LINK}
-            data-starter={STARTER_STRIPE_LINK}
+            data-nexus-card={nexusCardLink}
+            data-starter={starterLink}
             data-professional={PROFESSIONAL_STRIPE_LINK}
             data-endpoint={START_FORM_ENDPOINT}
           >
-            <!-- Honeypot anti-bot -->
+            <!-- Honeypot anti-bot (Formspree native + custom) -->
             <div class="absolute -left-[9999px]" aria-hidden="true">
               <label for="website_url">Website</label>
               <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off" />
+              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
             </div>
+            <input type="hidden" name="_ts" id="form-ts" value="" />
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
@@ -195,6 +202,8 @@ import { promoConfig } from "../../data/plans";
 
 <script>
   const form = document.getElementById("start-form") as HTMLFormElement | null;
+  const tsField = document.getElementById("form-ts") as HTMLInputElement | null;
+  if (tsField) tsField.value = String(Date.now());
   const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement | null;
   const submitBtnText = document.getElementById("submit-btn-text");
   const submitFooterNote = document.getElementById("submit-footer-note");
@@ -244,6 +253,9 @@ import { promoConfig } from "../../data/plans";
 
       const honeypot = (document.getElementById("website_url") as HTMLInputElement)?.value;
       if (honeypot) return;
+
+      const loadTime = Number(tsField?.value || "0");
+      if (loadTime && Date.now() - loadTime < 3000) return;
 
       const now = Date.now();
       if (now - lastSubmitTime < 5000) return;
