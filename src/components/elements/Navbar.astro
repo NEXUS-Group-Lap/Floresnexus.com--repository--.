@@ -35,24 +35,24 @@ const homeHref = lang === "en" ? "/en/" : "/es/";
 
 <header class="fixed inset-x-0 top-0 z-50 bg-[rgb(var(--color-bg))] shadow-sm">
   <div class="w-full border-b border-box-border/50 bg-box-bg/80 backdrop-blur-sm">
-    <div class="flex justify-end items-center gap-5 px-6 py-2 text-xs font-semibold tracking-wide max-w-7xl mx-auto">
+    <div class="flex justify-end items-center gap-4 sm:gap-5 px-6 text-xs font-semibold tracking-wide max-w-7xl mx-auto">
       <a
         href={lang === "en" ? "/en/client-portal" : "/es/portal-cliente"}
-        class="text-heading-3 hover:text-primary transition-colors duration-200"
+        class="text-heading-3 hover:text-primary transition-colors duration-200 inline-flex items-center min-h-11"
       >
         {lang === "en" ? "Client Login" : "Portal del Cliente"}
       </a>
       <span class="text-heading-3 opacity-30">|</span>
       <a
         href="/en/"
-        class={`transition-colors duration-200 ${lang === "en" ? "text-primary" : "text-heading-3 hover:text-primary"}`}
+        class={`transition-colors duration-200 inline-flex items-center min-h-11 ${lang === "en" ? "text-primary" : "text-heading-3 hover:text-primary"}`}
       >
         English
       </a>
       <span class="text-heading-3 opacity-30">|</span>
       <a
         href="/es/"
-        class={`transition-colors duration-200 ${lang === "es" ? "text-primary" : "text-heading-3 hover:text-primary"}`}
+        class={`transition-colors duration-200 inline-flex items-center min-h-11 ${lang === "es" ? "text-primary" : "text-heading-3 hover:text-primary"}`}
       >
         Español
       </a>
@@ -139,7 +139,7 @@ const homeHref = lang === "en" ? "/en/" : "/es/";
           data-open-nav="false"
           aria-label="Menu"
           aria-expanded="false"
-          class="lg:hidden lg:invisible outline-none w-7 h-auto flex flex-col relative gap-y-1.5 focus-visible:ring-2 focus-visible:ring-primary rounded"
+          class="lg:hidden lg:invisible outline-none w-11 h-11 flex flex-col items-center justify-center relative gap-y-1.5 focus-visible:ring-2 focus-visible:ring-primary rounded"
         >
           <span id="line1" class="w-6 h-0.5 rounded-full bg-heading-2 transition-all duration-300 ease-linear"></span>
           <span id="line2" class="w-6 origin-center h-0.5 rounded-full bg-heading-2 transition-all duration-300 ease-linear"></span>

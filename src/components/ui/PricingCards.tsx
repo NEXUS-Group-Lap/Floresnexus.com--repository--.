@@ -211,7 +211,7 @@ function PricingToggle() {
           ref={monthlyBtnRef}
           onClick={() => handleToggle(true)}
           className={cn(
-            "relative z-10 rounded-full px-4 sm:px-6 py-2 text-sm font-medium transition-colors",
+            "relative z-10 rounded-full px-4 sm:px-6 py-3 text-sm font-medium transition-colors",
             isMonthly
               ? "text-white"
               : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white",
@@ -223,7 +223,7 @@ function PricingToggle() {
           ref={annualBtnRef}
           onClick={() => handleToggle(false)}
           className={cn(
-            "relative z-10 rounded-full px-4 sm:px-6 py-2 text-sm font-medium transition-colors",
+            "relative z-10 rounded-full px-4 sm:px-6 py-3 text-sm font-medium transition-colors",
             !isMonthly
               ? "text-white"
               : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white",
