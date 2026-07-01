@@ -168,6 +168,37 @@ const starterLink = promoConfig.active ? STARTER_PROMO_STRIPE_LINK : STARTER_STR
               </div>
             </div>
 
+            <!-- Optional Extras -->
+            <fieldset class="rounded-xl border border-box-border p-4">
+              <legend class="text-sm font-semibold text-heading-2 px-1">Optional Extras (optional)</legend>
+              <p class="text-xs text-heading-3 mb-3 leading-relaxed">
+                Add-ons are not included in your plan price and nothing is charged now. We'll review your selection and follow up with a separate quote and payment link before any extra work begins.
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
+                {[
+                  { value: "second-language", name: "Second language", note: "Price varies by plan — confirmed in your quote" },
+                  { value: "maps-setup", name: "Google & Apple Maps setup", note: "$50 one-time" },
+                  { value: "business-email", name: "Professional business email", note: "$75 one-time" },
+                  { value: "extra-page", name: "Additional page (Professional plan only)", note: "$149 each" },
+                  { value: "external-tool", name: "External tool connection", note: "$99 per tool" },
+                  { value: "rush-delivery", name: "Rush delivery", note: "Subject to availability" },
+                  { value: "domain-change", name: "Domain change", note: "$75 + domain cost" },
+                  { value: "logo-design", name: "Logo design", note: "Custom quote" },
+                ].map((addon) => (
+                  <label class="flex items-start gap-2.5 text-sm text-heading-2 cursor-pointer min-h-[44px] py-1.5">
+                    <input
+                      type="checkbox" name="addons[]" value={addon.value}
+                      class="mt-1 w-4 h-4 rounded border-box-border text-primary focus:outline-none focus:ring-2 focus:ring-primary/50 flex-shrink-0"
+                    />
+                    <span>
+                      <span class="font-medium">{addon.name}</span>
+                      <span class="block text-xs text-heading-3">{addon.note}</span>
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
             <!-- Plan confirmation -->
             <div id="selected-plan-confirmation" class="hidden rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm text-heading-2 leading-relaxed">
               <span id="selected-plan-label" class="font-semibold text-heading-1"></span>
